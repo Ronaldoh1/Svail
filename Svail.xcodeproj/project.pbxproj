@@ -1,0 +1,448 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
+		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
+		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
+		F24B35AC1ADB7E54006153EC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35AB1ADB7E54006153EC /* ViewController.m */; };
+		F24B35AF1ADB7E54006153EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B35AD1ADB7E54006153EC /* Main.storyboard */; };
+		F24B35B11ADB7E54006153EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F24B35B01ADB7E54006153EC /* Images.xcassets */; };
+		F24B35B41ADB7E54006153EC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24B35B21ADB7E54006153EC /* LaunchScreen.xib */; };
+		F24B35C01ADB7E54006153EC /* SvailTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35BF1ADB7E54006153EC /* SvailTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F24B35BA1ADB7E54006153EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F24B35951ADB7E54006153EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F24B359C1ADB7E54006153EC;
+			remoteInfo = Svail;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F24B35A11ADB7E54006153EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F24B35A21ADB7E54006153EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F24B35A41ADB7E54006153EC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F24B35A51ADB7E54006153EC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F24B35A81ADB7E54006153EC /* Svail.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Svail.xcdatamodel; sourceTree = "<group>"; };
+		F24B35AA1ADB7E54006153EC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F24B35AB1ADB7E54006153EC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F24B35AE1ADB7E54006153EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F24B35B01ADB7E54006153EC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F24B35B31ADB7E54006153EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F24B35B91ADB7E54006153EC /* SvailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SvailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F24B35BE1ADB7E54006153EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F24B35BF1ADB7E54006153EC /* SvailTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SvailTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F24B359A1ADB7E54006153EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F24B35B61ADB7E54006153EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F24B35941ADB7E53006153EC = {
+			isa = PBXGroup;
+			children = (
+				F24B359F1ADB7E54006153EC /* Svail */,
+				F24B35BC1ADB7E54006153EC /* SvailTests */,
+				F24B359E1ADB7E54006153EC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F24B359E1ADB7E54006153EC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F24B359D1ADB7E54006153EC /* Svail.app */,
+				F24B35B91ADB7E54006153EC /* SvailTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F24B359F1ADB7E54006153EC /* Svail */ = {
+			isa = PBXGroup;
+			children = (
+				F24B35A41ADB7E54006153EC /* AppDelegate.h */,
+				F24B35A51ADB7E54006153EC /* AppDelegate.m */,
+				F24B35AA1ADB7E54006153EC /* ViewController.h */,
+				F24B35AB1ADB7E54006153EC /* ViewController.m */,
+				F24B35AD1ADB7E54006153EC /* Main.storyboard */,
+				F24B35B01ADB7E54006153EC /* Images.xcassets */,
+				F24B35B21ADB7E54006153EC /* LaunchScreen.xib */,
+				F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */,
+				F24B35A01ADB7E54006153EC /* Supporting Files */,
+			);
+			path = Svail;
+			sourceTree = "<group>";
+		};
+		F24B35A01ADB7E54006153EC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F24B35A11ADB7E54006153EC /* Info.plist */,
+				F24B35A21ADB7E54006153EC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F24B35BC1ADB7E54006153EC /* SvailTests */ = {
+			isa = PBXGroup;
+			children = (
+				F24B35BF1ADB7E54006153EC /* SvailTests.m */,
+				F24B35BD1ADB7E54006153EC /* Supporting Files */,
+			);
+			path = SvailTests;
+			sourceTree = "<group>";
+		};
+		F24B35BD1ADB7E54006153EC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F24B35BE1ADB7E54006153EC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F24B359C1ADB7E54006153EC /* Svail */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F24B35C31ADB7E54006153EC /* Build configuration list for PBXNativeTarget "Svail" */;
+			buildPhases = (
+				F24B35991ADB7E54006153EC /* Sources */,
+				F24B359A1ADB7E54006153EC /* Frameworks */,
+				F24B359B1ADB7E54006153EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Svail;
+			productName = Svail;
+			productReference = F24B359D1ADB7E54006153EC /* Svail.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F24B35B81ADB7E54006153EC /* SvailTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F24B35C61ADB7E54006153EC /* Build configuration list for PBXNativeTarget "SvailTests" */;
+			buildPhases = (
+				F24B35B51ADB7E54006153EC /* Sources */,
+				F24B35B61ADB7E54006153EC /* Frameworks */,
+				F24B35B71ADB7E54006153EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F24B35BB1ADB7E54006153EC /* PBXTargetDependency */,
+			);
+			name = SvailTests;
+			productName = SvailTests;
+			productReference = F24B35B91ADB7E54006153EC /* SvailTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F24B35951ADB7E54006153EC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Svail;
+				TargetAttributes = {
+					F24B359C1ADB7E54006153EC = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					F24B35B81ADB7E54006153EC = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = F24B359C1ADB7E54006153EC;
+					};
+				};
+			};
+			buildConfigurationList = F24B35981ADB7E54006153EC /* Build configuration list for PBXProject "Svail" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F24B35941ADB7E53006153EC;
+			productRefGroup = F24B359E1ADB7E54006153EC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F24B359C1ADB7E54006153EC /* Svail */,
+				F24B35B81ADB7E54006153EC /* SvailTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F24B359B1ADB7E54006153EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F24B35AF1ADB7E54006153EC /* Main.storyboard in Resources */,
+				F24B35B41ADB7E54006153EC /* LaunchScreen.xib in Resources */,
+				F24B35B11ADB7E54006153EC /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F24B35B71ADB7E54006153EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F24B35991ADB7E54006153EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
+				F24B35A31ADB7E54006153EC /* main.m in Sources */,
+				F24B35AC1ADB7E54006153EC /* ViewController.m in Sources */,
+				F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F24B35B51ADB7E54006153EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F24B35C01ADB7E54006153EC /* SvailTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F24B35BB1ADB7E54006153EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F24B359C1ADB7E54006153EC /* Svail */;
+			targetProxy = F24B35BA1ADB7E54006153EC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F24B35AD1ADB7E54006153EC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F24B35AE1ADB7E54006153EC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F24B35B21ADB7E54006153EC /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F24B35B31ADB7E54006153EC /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F24B35C11ADB7E54006153EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F24B35C21ADB7E54006153EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F24B35C41ADB7E54006153EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Svail/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F24B35C51ADB7E54006153EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Svail/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F24B35C71ADB7E54006153EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SvailTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Svail.app/Svail";
+			};
+			name = Debug;
+		};
+		F24B35C81ADB7E54006153EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SvailTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Svail.app/Svail";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F24B35981ADB7E54006153EC /* Build configuration list for PBXProject "Svail" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F24B35C11ADB7E54006153EC /* Debug */,
+				F24B35C21ADB7E54006153EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F24B35C31ADB7E54006153EC /* Build configuration list for PBXNativeTarget "Svail" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F24B35C41ADB7E54006153EC /* Debug */,
+				F24B35C51ADB7E54006153EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F24B35C61ADB7E54006153EC /* Build configuration list for PBXNativeTarget "SvailTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F24B35C71ADB7E54006153EC /* Debug */,
+				F24B35C81ADB7E54006153EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F24B35A81ADB7E54006153EC /* Svail.xcdatamodel */,
+			);
+			currentVersion = F24B35A81ADB7E54006153EC /* Svail.xcdatamodel */;
+			path = Svail.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F24B35951ADB7E54006153EC /* Project object */;
+}
