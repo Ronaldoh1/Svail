@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="OZO-4D-8sd">
+            <objects>
+                <viewController storyboardIdentifier="MapVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iuj-oN-AdL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="adW-mc-NBR"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Ff-qf-Ftp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="V75-MI-Wgr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1u1-8H-yFA">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <connections>
+                                    <outlet property="delegate" destination="iuj-oN-AdL" id="QDF-qW-snm"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1u1-8H-yFA" firstAttribute="top" secondItem="V75-MI-Wgr" secondAttribute="topMargin" id="Diu-ar-SGf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1u1-8H-yFA" secondAttribute="trailing" constant="-16" id="uyM-NE-V0y"/>
+                            <constraint firstItem="1u1-8H-yFA" firstAttribute="leading" secondItem="V75-MI-Wgr" secondAttribute="leadingMargin" constant="-16" id="wKb-fa-CJx"/>
+                            <constraint firstItem="1Ff-qf-Ftp" firstAttribute="top" secondItem="1u1-8H-yFA" secondAttribute="bottom" id="zO7-vO-Nyl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xkR-at-N3g"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GZ3-EB-Dnc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2066" y="309"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CaZ-TJ-6xf">
+            <objects>
+                <navigationController storyboardIdentifier="MapNavVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GQa-ZQ-3eq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="vlz-hs-7Yg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aty-wh-6B2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iuj-oN-AdL" kind="relationship" relationship="rootViewController" id="8dB-MI-RqC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PY7-zq-QVQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1254" y="309"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="en1-vw-rzn">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabBarVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hxE-7f-NYo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="hxW-ni-k9M">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="GQa-ZQ-3eq" kind="relationship" relationship="viewControllers" id="tVb-QD-Jqd"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LxL-dc-EEb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="442" y="309"/>
+        </scene>
+    </scenes>
+</document>
