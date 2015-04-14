@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
+		3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
 		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
 		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
-		F24B35AC1ADB7E54006153EC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35AB1ADB7E54006153EC /* ViewController.m */; };
+		F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35AB1ADB7E54006153EC /* RootViewController.m */; };
 		F24B35AF1ADB7E54006153EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B35AD1ADB7E54006153EC /* Main.storyboard */; };
 		F24B35B11ADB7E54006153EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F24B35B01ADB7E54006153EC /* Images.xcassets */; };
 		F24B35B41ADB7E54006153EC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24B35B21ADB7E54006153EC /* LaunchScreen.xib */; };
@@ -51,14 +53,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24B35A11ADB7E54006153EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F24B35A21ADB7E54006153EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F24B35A41ADB7E54006153EC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F24B35A51ADB7E54006153EC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F24B35A81ADB7E54006153EC /* Svail.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Svail.xcdatamodel; sourceTree = "<group>"; };
-		F24B35AA1ADB7E54006153EC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F24B35AB1ADB7E54006153EC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F24B35AA1ADB7E54006153EC /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		F24B35AB1ADB7E54006153EC /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		F24B35AE1ADB7E54006153EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F24B35B01ADB7E54006153EC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F24B35B31ADB7E54006153EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -156,8 +160,8 @@
 				F24B361A1ADC68E9006153EC /* Login */,
 				F24B35A41ADB7E54006153EC /* AppDelegate.h */,
 				F24B35A51ADB7E54006153EC /* AppDelegate.m */,
-				F24B35AA1ADB7E54006153EC /* ViewController.h */,
-				F24B35AB1ADB7E54006153EC /* ViewController.m */,
+				F24B35AA1ADB7E54006153EC /* RootViewController.h */,
+				F24B35AB1ADB7E54006153EC /* RootViewController.m */,
 				F24B35AD1ADB7E54006153EC /* Main.storyboard */,
 				F24B35B01ADB7E54006153EC /* Images.xcassets */,
 				F24B36321ADC74FF006153EC /* heartz.png */,
@@ -225,8 +229,10 @@
 		F24B361A1ADC68E9006153EC /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F24B36221ADC6AE0006153EC /* Login.storyboard */,
 				F24B36371ADC781F006153EC /* LoginViewController.swift */,
+				3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */,
+				3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */,
+				F24B36221ADC6AE0006153EC /* Login.storyboard */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -387,11 +393,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
-				F24B35AC1ADB7E54006153EC /* ViewController.m in Sources */,
+				F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,
 				F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */,
+				3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
