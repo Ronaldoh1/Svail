@@ -22,6 +22,7 @@
 @property User *provider;
 @property NSDate *specificTime;
 @property BOOL travel;
+@property NSString *description;
 
 
 
