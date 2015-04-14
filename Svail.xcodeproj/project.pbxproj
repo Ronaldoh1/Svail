@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */; };
+		3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */; };
+		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
 		3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
@@ -40,6 +43,16 @@
 		F24B36311ADC6EDD006153EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B36301ADC6EDD006153EC /* MapKit.framework */; };
 		F24B36331ADC74FF006153EC /* heartz.png in Resources */ = {isa = PBXBuildFile; fileRef = F24B36321ADC74FF006153EC /* heartz.png */; };
 		F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B36371ADC781F006153EC /* LoginViewController.swift */; };
+		F24B363D1ADCA6D0006153EC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B363C1ADCA6D0006153EC /* User.m */; };
+		F24B36401ADCABF0006153EC /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B363F1ADCABF0006153EC /* Product.m */; };
+		F24B36431ADCB0E8006153EC /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36421ADCB0E8006153EC /* Purchase.m */; };
+		F24B36461ADCB320006153EC /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36451ADCB320006153EC /* Image.m */; };
+		F24B36491ADCB534006153EC /* Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36481ADCB534006153EC /* Rating.m */; };
+		F24B364C1ADCB645006153EC /* Verification.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B364B1ADCB645006153EC /* Verification.m */; };
+		F24B364F1ADCD911006153EC /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B364E1ADCD911006153EC /* PostViewController.m */; };
+		F24B36511ADCDD70006153EC /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F24B36501ADCDD70006153EC /* camera.png */; };
+		F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */; };
+		F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36561ADD4FDB006153EC /* PostDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +109,25 @@
 		F24B36321ADC74FF006153EC /* heartz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heartz.png; sourceTree = "<group>"; };
 		F24B36361ADC781E006153EC /* Svail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Svail-Bridging-Header.h"; sourceTree = "<group>"; };
 		F24B36371ADC781F006153EC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
+		F24B363B1ADCA6D0006153EC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		F24B363C1ADCA6D0006153EC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		F24B363E1ADCABEF006153EC /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		F24B363F1ADCABF0006153EC /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		F24B36411ADCB0E8006153EC /* Purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchase.h; sourceTree = "<group>"; };
+		F24B36421ADCB0E8006153EC /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
+		F24B36441ADCB320006153EC /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		F24B36451ADCB320006153EC /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
+		F24B36471ADCB534006153EC /* Rating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rating.h; sourceTree = "<group>"; };
+		F24B36481ADCB534006153EC /* Rating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rating.m; sourceTree = "<group>"; };
+		F24B364A1ADCB645006153EC /* Verification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Verification.h; sourceTree = "<group>"; };
+		F24B364B1ADCB645006153EC /* Verification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Verification.m; sourceTree = "<group>"; };
+		F24B364D1ADCD911006153EC /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		F24B364E1ADCD911006153EC /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		F24B36501ADCDD70006153EC /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostHistoryViewController.h; sourceTree = "<group>"; };
+		F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostHistoryViewController.m; sourceTree = "<group>"; };
+		F24B36551ADD4FDB006153EC /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
+		F24B36561ADD4FDB006153EC /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +137,7 @@
 			files = (
 				F24B36311ADC6EDD006153EC /* MapKit.framework in Frameworks */,
 				F24B35E41ADB961E006153EC /* AudioToolbox.framework in Frameworks */,
+				3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */,
 				F24B35E21ADB9613006153EC /* CFNetwork.framework in Frameworks */,
 				F24B35E01ADB95F8006153EC /* CoreLocation.framework in Frameworks */,
 				F24B35DE1ADB95EA006153EC /* CoreGraphics.framework in Frameworks */,
@@ -110,9 +146,11 @@
 				F24B35D81ADB95D2006153EC /* Security.framework in Frameworks */,
 				F24B35D61ADB95CB006153EC /* StoreKit.framework in Frameworks */,
 				F24B35D41ADB95C5006153EC /* libz.dylib in Frameworks */,
+				3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */,
 				F24B35D21ADB95BB006153EC /* libsqlite3.dylib in Frameworks */,
 				F24B35D01ADB95AA006153EC /* SystemConfiguration.framework in Frameworks */,
 				F24B35CE1ADB958C006153EC /* Parse.framework in Frameworks */,
+				3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */,
 				F24B35CD1ADB958C006153EC /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +165,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AAC388C9010252EFDAB2CDBD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F24B35941ADB7E53006153EC = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +181,7 @@
 				F24B35BC1ADB7E54006153EC /* SvailTests */,
 				F24B359E1ADB7E54006153EC /* Products */,
 				F24B36361ADC781E006153EC /* Svail-Bridging-Header.h */,
+				AAC388C9010252EFDAB2CDBD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,6 +211,7 @@
 				F24B35AD1ADB7E54006153EC /* Main.storyboard */,
 				F24B35B01ADB7E54006153EC /* Images.xcassets */,
 				F24B36321ADC74FF006153EC /* heartz.png */,
+				F24B36501ADCDD70006153EC /* camera.png */,
 				F24B35B21ADB7E54006153EC /* LaunchScreen.xib */,
 				F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */,
 				F24B35A01ADB7E54006153EC /* Supporting Files */,
@@ -201,6 +248,18 @@
 		F24B35C91ADB953D006153EC /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				F24B363B1ADCA6D0006153EC /* User.h */,
+				F24B363C1ADCA6D0006153EC /* User.m */,
+				F24B363E1ADCABEF006153EC /* Product.h */,
+				F24B363F1ADCABF0006153EC /* Product.m */,
+				F24B36411ADCB0E8006153EC /* Purchase.h */,
+				F24B36421ADCB0E8006153EC /* Purchase.m */,
+				F24B36441ADCB320006153EC /* Image.h */,
+				F24B36451ADCB320006153EC /* Image.m */,
+				F24B36471ADCB534006153EC /* Rating.h */,
+				F24B36481ADCB534006153EC /* Rating.m */,
+				F24B364A1ADCB645006153EC /* Verification.h */,
+				F24B364B1ADCB645006153EC /* Verification.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -208,6 +267,9 @@
 		F24B35CA1ADB9569006153EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */,
+				3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */,
+				3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */,
 				F24B36301ADC6EDD006153EC /* MapKit.framework */,
 				F24B35E31ADB961E006153EC /* AudioToolbox.framework */,
 				F24B35E11ADB9613006153EC /* CFNetwork.framework */,
@@ -273,6 +335,12 @@
 			isa = PBXGroup;
 			children = (
 				F24B362C1ADC6B4B006153EC /* Post.storyboard */,
+				F24B364D1ADCD911006153EC /* PostViewController.h */,
+				F24B364E1ADCD911006153EC /* PostViewController.m */,
+				F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */,
+				F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */,
+				F24B36551ADD4FDB006153EC /* PostDetailViewController.h */,
+				F24B36561ADD4FDB006153EC /* PostDetailViewController.m */,
 			);
 			name = PostService;
 			sourceTree = "<group>";
@@ -375,6 +443,7 @@
 				F24B35B41ADB7E54006153EC /* LaunchScreen.xib in Resources */,
 				F24B36291ADC6B28006153EC /* Purchase.storyboard in Resources */,
 				F24B35B11ADB7E54006153EC /* Images.xcassets in Resources */,
+				F24B36511ADCDD70006153EC /* camera.png in Resources */,
 				F24B36331ADC74FF006153EC /* heartz.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,10 +463,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */,
+				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
+				F24B36491ADCB534006153EC /* Rating.m in Sources */,
+				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
+				F24B36401ADCABF0006153EC /* Product.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
+				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */,
+				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
+				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
+				F24B36461ADCB320006153EC /* Image.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,
+				F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */,
 				F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */,
 				3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */,
 			);
@@ -535,6 +613,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -551,6 +630,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
