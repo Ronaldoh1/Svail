@@ -44,6 +44,10 @@
 		F24B36461ADCB320006153EC /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36451ADCB320006153EC /* Image.m */; };
 		F24B36491ADCB534006153EC /* Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36481ADCB534006153EC /* Rating.m */; };
 		F24B364C1ADCB645006153EC /* Verification.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B364B1ADCB645006153EC /* Verification.m */; };
+		F24B364F1ADCD911006153EC /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B364E1ADCD911006153EC /* PostViewController.m */; };
+		F24B36511ADCDD70006153EC /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F24B36501ADCDD70006153EC /* camera.png */; };
+		F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */; };
+		F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36561ADD4FDB006153EC /* PostDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		310BBA309E7C8A225656BC1B /* Pods-Svail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.release.xcconfig"; sourceTree = "<group>"; };
+		798252E6F57802F2DB3C16F4 /* Pods-Svail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.debug.xcconfig"; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24B35A11ADB7E54006153EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F24B35A21ADB7E54006153EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -107,6 +113,13 @@
 		F24B36481ADCB534006153EC /* Rating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rating.m; sourceTree = "<group>"; };
 		F24B364A1ADCB645006153EC /* Verification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Verification.h; sourceTree = "<group>"; };
 		F24B364B1ADCB645006153EC /* Verification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Verification.m; sourceTree = "<group>"; };
+		F24B364D1ADCD911006153EC /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		F24B364E1ADCD911006153EC /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		F24B36501ADCDD70006153EC /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostHistoryViewController.h; sourceTree = "<group>"; };
+		F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostHistoryViewController.m; sourceTree = "<group>"; };
+		F24B36551ADD4FDB006153EC /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
+		F24B36561ADD4FDB006153EC /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +154,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AAC388C9010252EFDAB2CDBD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				798252E6F57802F2DB3C16F4 /* Pods-Svail.debug.xcconfig */,
+				310BBA309E7C8A225656BC1B /* Pods-Svail.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F24B35941ADB7E53006153EC = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +172,7 @@
 				F24B35BC1ADB7E54006153EC /* SvailTests */,
 				F24B359E1ADB7E54006153EC /* Products */,
 				F24B36361ADC781E006153EC /* Svail-Bridging-Header.h */,
+				AAC388C9010252EFDAB2CDBD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +202,7 @@
 				F24B35AD1ADB7E54006153EC /* Main.storyboard */,
 				F24B35B01ADB7E54006153EC /* Images.xcassets */,
 				F24B36321ADC74FF006153EC /* heartz.png */,
+				F24B36501ADCDD70006153EC /* camera.png */,
 				F24B35B21ADB7E54006153EC /* LaunchScreen.xib */,
 				F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */,
 				F24B35A01ADB7E54006153EC /* Supporting Files */,
@@ -297,6 +321,12 @@
 			isa = PBXGroup;
 			children = (
 				F24B362C1ADC6B4B006153EC /* Post.storyboard */,
+				F24B364D1ADCD911006153EC /* PostViewController.h */,
+				F24B364E1ADCD911006153EC /* PostViewController.m */,
+				F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */,
+				F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */,
+				F24B36551ADD4FDB006153EC /* PostDetailViewController.h */,
+				F24B36561ADD4FDB006153EC /* PostDetailViewController.m */,
 			);
 			name = PostService;
 			sourceTree = "<group>";
@@ -399,6 +429,7 @@
 				F24B35B41ADB7E54006153EC /* LaunchScreen.xib in Resources */,
 				F24B36291ADC6B28006153EC /* Purchase.storyboard in Resources */,
 				F24B35B11ADB7E54006153EC /* Images.xcassets in Resources */,
+				F24B36511ADCDD70006153EC /* camera.png in Resources */,
 				F24B36331ADC74FF006153EC /* heartz.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,8 +456,11 @@
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				F24B35AC1ADB7E54006153EC /* ViewController.m in Sources */,
+				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
+				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,
+				F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */,
 				F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +585,7 @@
 		};
 		F24B35C41ADB7E54006153EC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 798252E6F57802F2DB3C16F4 /* Pods-Svail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -563,11 +598,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
 		F24B35C51ADB7E54006153EC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 310BBA309E7C8A225656BC1B /* Pods-Svail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -579,6 +616,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};

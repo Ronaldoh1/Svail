@@ -21,6 +21,7 @@
 @dynamic provider;
 @dynamic specificTime;
 @dynamic travel;
+@dynamic description;
 
 + (void)load{
     [self registerSubclass];
