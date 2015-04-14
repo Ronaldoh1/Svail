@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */; };
+		3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */; };
+		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
 		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
 		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
@@ -57,6 +60,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24B35A11ADB7E54006153EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F24B35A21ADB7E54006153EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -116,6 +122,7 @@
 			files = (
 				F24B36311ADC6EDD006153EC /* MapKit.framework in Frameworks */,
 				F24B35E41ADB961E006153EC /* AudioToolbox.framework in Frameworks */,
+				3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */,
 				F24B35E21ADB9613006153EC /* CFNetwork.framework in Frameworks */,
 				F24B35E01ADB95F8006153EC /* CoreLocation.framework in Frameworks */,
 				F24B35DE1ADB95EA006153EC /* CoreGraphics.framework in Frameworks */,
@@ -124,9 +131,11 @@
 				F24B35D81ADB95D2006153EC /* Security.framework in Frameworks */,
 				F24B35D61ADB95CB006153EC /* StoreKit.framework in Frameworks */,
 				F24B35D41ADB95C5006153EC /* libz.dylib in Frameworks */,
+				3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */,
 				F24B35D21ADB95BB006153EC /* libsqlite3.dylib in Frameworks */,
 				F24B35D01ADB95AA006153EC /* SystemConfiguration.framework in Frameworks */,
 				F24B35CE1ADB958C006153EC /* Parse.framework in Frameworks */,
+				3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */,
 				F24B35CD1ADB958C006153EC /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +243,9 @@
 		F24B35CA1ADB9569006153EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */,
+				3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */,
+				3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */,
 				F24B36301ADC6EDD006153EC /* MapKit.framework */,
 				F24B35E31ADB961E006153EC /* AudioToolbox.framework */,
 				F24B35E11ADB9613006153EC /* CFNetwork.framework */,
