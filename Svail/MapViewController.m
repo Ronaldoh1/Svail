@@ -81,6 +81,17 @@
     }
 }
 
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
+{
+    if (newState == MKAnnotationViewDragStateEnding)
+    {
+        CGPoint dropPoint = CGPointMake(view.center.x, view.center.y);
+        CLLocationCoordinate2D newCoordinate = [self.mapView convertPoint:dropPoint toCoordinateFromView:view.superview];
+        [view.annotation setCoordinate:newCoordinate];
+        
+    }
+}
+
 
 
 
