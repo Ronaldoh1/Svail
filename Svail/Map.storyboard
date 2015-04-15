@@ -34,6 +34,9 @@
                                     <segment title="Fri"/>
                                     <segment title="Sat"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentSelected:" destination="iuj-oN-AdL" eventType="valueChanged" id="la4-bS-Jfn"/>
+                                </connections>
                             </segmentedControl>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kJD-Xw-swe">
                                 <rect key="frame" x="0.0" y="64" width="414" height="44"/>
@@ -51,6 +54,7 @@
                     <connections>
                         <outlet property="mapView" destination="1u1-8H-yFA" id="mlG-56-Kwk"/>
                         <outlet property="searchBar" destination="kJD-Xw-swe" id="FeS-iU-pgq"/>
+                        <outlet property="segmentedControl" destination="pYO-oJ-JtS" id="Yh3-ND-FtS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZ3-EB-Dnc" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -9,14 +9,19 @@
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
 #import "EventLocationDownloader.h"
+#import "Service.h"
 
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property CLLocationManager *locationManager;
 @property MKPointAnnotation *providerPoint;
+@property NSArray *eventsArray;
 @property NSArray *searchResults;
+@property NSMutableArray *filterArray;
+@property NSMutableArray *resultsArray;
 
 @end
 
@@ -34,6 +39,7 @@
         self.providerPoint = annotation;
 
         [self.mapView addAnnotation:self.providerPoint];
+
     }];
 
 }
@@ -43,6 +49,7 @@
     MKPinAnnotationView *pinAnnotation = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:nil];
 
     pinAnnotation.canShowCallout = YES;
+    pinAnnotation.draggable = YES;
     pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 
     return pinAnnotation;
@@ -62,8 +69,43 @@
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
         self.searchResults = response.mapItems;
 
+        //NEED TO CREATE MAPITEMS ARRAY FROM FILTERARRAY AS IT HAS SERVICE ITEMS
+
     }];
+
+    NSMutableSet* set1 = [NSMutableSet setWithArray:self.searchResults];
+    NSMutableSet* set2 = [NSMutableSet setWithArray:self.filterArray];
+    [set1 intersectSet:set2];
+
+    NSArray *resultsArray = [set1 allObjects];
 }
+
+- (IBAction)segmentSelected:(UISegmentedControl *)sender
+{
+
+    NSString *weekday = [self.segmentedControl titleForSegmentAtIndex:sender.selectedSegmentIndex];
+
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM dd, yyy"];
+    date = [formatter dateFromString:@"Apr 7, 2011"];
+
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSInteger units =  NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday;
+    NSDateComponents *components = [calendar components:units fromDate:date];
+    NSInteger eventWeekday = [components weekday];
+    NSDateFormatter *eventWeekDay = [[NSDateFormatter alloc]init];
+    [eventWeekDay setDateFormat:@"EEE"];
+
+    //download uploaded geopoints from parse and convert them into mapItems
+
+//    if ([eventWeekDay stringFromDate:date] == weekday && [self.eventsArray containsObject:newService])
+//    {
+//        [self.filterArray addObject:newService];
+//    }
+
+}
+
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
@@ -73,7 +115,7 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     for (CLLocation *location in locations) {
-        if (location.verticalAccuracy < 1000 && location.horizontalAccuracy < 1000)
+        if (location.verticalAccuracy < 100 && location.horizontalAccuracy < 100)
         {
 //            [self.locationManager stopUpdatingLocation];
             [self findEventNearby:location];
@@ -85,10 +127,9 @@
 {
     if (newState == MKAnnotationViewDragStateEnding)
     {
-        CGPoint dropPoint = CGPointMake(view.center.x, view.center.y);
-        CLLocationCoordinate2D newCoordinate = [self.mapView convertPoint:dropPoint toCoordinateFromView:view.superview];
-        [view.annotation setCoordinate:newCoordinate];
-        
+        CLLocationCoordinate2D newCoordinate = view.annotation.coordinate;
+        NSLog(@"dropped at %f,%f", newCoordinate.latitude, newCoordinate.longitude);
+
     }
 }
 

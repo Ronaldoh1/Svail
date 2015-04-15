@@ -17,7 +17,6 @@
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
-		3E4036E91ADDF5BA00C4A0A0 /* draggableAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E81ADDF5BA00C4A0A0 /* draggableAnnotation.m */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
 		3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
@@ -89,8 +88,6 @@
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
 		3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationDownloader.m; sourceTree = "<group>"; };
-		3E4036E71ADDF5BA00C4A0A0 /* draggableAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draggableAnnotation.h; sourceTree = "<group>"; };
-		3E4036E81ADDF5BA00C4A0A0 /* draggableAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = draggableAnnotation.m; sourceTree = "<group>"; };
 		3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -332,8 +329,6 @@
 				F24B36241ADC6AF1006153EC /* Map.storyboard */,
 				3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */,
 				3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */,
-				3E4036E71ADDF5BA00C4A0A0 /* draggableAnnotation.h */,
-				3E4036E81ADDF5BA00C4A0A0 /* draggableAnnotation.m */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -520,7 +515,6 @@
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
-				3E4036E91ADDF5BA00C4A0A0 /* draggableAnnotation.m in Sources */,
 				F24B36401ADCABF0006153EC /* Product.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
