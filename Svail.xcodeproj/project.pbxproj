@@ -19,7 +19,6 @@
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
-		3E4036E91ADDF5BA00C4A0A0 /* draggableAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E81ADDF5BA00C4A0A0 /* draggableAnnotation.m */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
 		3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
@@ -54,7 +53,6 @@
 		F24B36331ADC74FF006153EC /* heartz.png in Resources */ = {isa = PBXBuildFile; fileRef = F24B36321ADC74FF006153EC /* heartz.png */; };
 		F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B36371ADC781F006153EC /* LoginViewController.swift */; };
 		F24B363D1ADCA6D0006153EC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B363C1ADCA6D0006153EC /* User.m */; };
-		F24B36401ADCABF0006153EC /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B363F1ADCABF0006153EC /* Product.m */; };
 		F24B36431ADCB0E8006153EC /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36421ADCB0E8006153EC /* Purchase.m */; };
 		F24B36461ADCB320006153EC /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36451ADCB320006153EC /* Image.m */; };
 		F24B36491ADCB534006153EC /* Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36481ADCB534006153EC /* Rating.m */; };
@@ -64,6 +62,8 @@
 		F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */; };
 		F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36561ADD4FDB006153EC /* PostDetailViewController.m */; };
 		F24B365C1ADDA923006153EC /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365B1ADDA923006153EC /* Service.m */; };
+		F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365E1ADE2015006153EC /* SelectImageViewController.m */; };
+		F24B36631ADE2A75006153EC /* ProviderAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36621ADE2A75006153EC /* ProviderAvailability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,8 +94,6 @@
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
 		3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationDownloader.m; sourceTree = "<group>"; };
-		3E4036E71ADDF5BA00C4A0A0 /* draggableAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draggableAnnotation.h; sourceTree = "<group>"; };
-		3E4036E81ADDF5BA00C4A0A0 /* draggableAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = draggableAnnotation.m; sourceTree = "<group>"; };
 		3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,8 +138,6 @@
 		F24B36371ADC781F006153EC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		F24B363B1ADCA6D0006153EC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		F24B363C1ADCA6D0006153EC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		F24B363E1ADCABEF006153EC /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		F24B363F1ADCABF0006153EC /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		F24B36411ADCB0E8006153EC /* Purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchase.h; sourceTree = "<group>"; };
 		F24B36421ADCB0E8006153EC /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
 		F24B36441ADCB320006153EC /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -160,6 +156,10 @@
 		F24B36581ADD8116006153EC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F24B365A1ADDA923006153EC /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
 		F24B365B1ADDA923006153EC /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
+		F24B365D1ADE2015006153EC /* SelectImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectImageViewController.h; sourceTree = "<group>"; };
+		F24B365E1ADE2015006153EC /* SelectImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageViewController.m; sourceTree = "<group>"; };
+		F24B36611ADE2A75006153EC /* ProviderAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderAvailability.h; sourceTree = "<group>"; };
+		F24B36621ADE2A75006153EC /* ProviderAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderAvailability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +212,7 @@
 		F24B35941ADB7E53006153EC = {
 			isa = PBXGroup;
 			children = (
+				F24B36601ADE2A48006153EC /* Custom Objects */,
 				F24B35CA1ADB9569006153EC /* Frameworks */,
 				F24B35C91ADB953D006153EC /* Data Model */,
 				F24B359F1ADB7E54006153EC /* Svail */,
@@ -287,8 +288,6 @@
 			children = (
 				F24B363B1ADCA6D0006153EC /* User.h */,
 				F24B363C1ADCA6D0006153EC /* User.m */,
-				F24B363E1ADCABEF006153EC /* Product.h */,
-				F24B363F1ADCABF0006153EC /* Product.m */,
 				F24B36411ADCB0E8006153EC /* Purchase.h */,
 				F24B365A1ADDA923006153EC /* Service.h */,
 				F24B365B1ADDA923006153EC /* Service.m */,
@@ -351,8 +350,6 @@
 				F24B36241ADC6AF1006153EC /* Map.storyboard */,
 				3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */,
 				3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */,
-				3E4036E71ADDF5BA00C4A0A0 /* draggableAnnotation.h */,
-				3E4036E81ADDF5BA00C4A0A0 /* draggableAnnotation.m */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -391,6 +388,8 @@
 			isa = PBXGroup;
 			children = (
 				F24B362C1ADC6B4B006153EC /* Post.storyboard */,
+				F24B365D1ADE2015006153EC /* SelectImageViewController.h */,
+				F24B365E1ADE2015006153EC /* SelectImageViewController.m */,
 				F24B364D1ADCD911006153EC /* PostViewController.h */,
 				F24B364E1ADCD911006153EC /* PostViewController.m */,
 				F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */,
@@ -407,6 +406,15 @@
 				F24B362E1ADC6B57006153EC /* Stripe.storyboard */,
 			);
 			name = Stripe;
+			sourceTree = "<group>";
+		};
+		F24B36601ADE2A48006153EC /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				F24B36611ADE2A75006153EC /* ProviderAvailability.h */,
+				F24B36621ADE2A75006153EC /* ProviderAvailability.m */,
+			);
+			name = "Custom Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -572,11 +580,12 @@
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
+				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
 				3E4036E91ADDF5BA00C4A0A0 /* draggableAnnotation.m in Sources */,
-				F24B36401ADCABF0006153EC /* Product.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
+				F24B36631ADE2A75006153EC /* ProviderAvailability.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,

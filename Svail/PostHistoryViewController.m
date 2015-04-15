@@ -21,7 +21,7 @@
     // Do any additional setup after loading the view.
 
     self.navigationItem.hidesBackButton = true;
-    PFQuery *query = [Service query];
+   // PFQuery *query = [Service query];
     
 
 }

@@ -7,7 +7,6 @@
 //
 
 #import <Parse/Parse.h>
-#import "Product.h"
 #import "User.h"
 #import "Image.h"
 
