@@ -113,9 +113,8 @@
 {
     [self.linkedIn getAuthorizationCode:^(NSString *code) {
         [self.linkedIn getAccessToken:code success:^(NSDictionary *accessTokenData) {
-            [self dismissViewControllerAnimated:YES completion:nil];
             NSString *accessToken = [accessTokenData objectForKey:@"access_token"];
-            [self requestMeWithToken:accessToken];
+            [self getConnectionCountWithToken:accessToken];
         }                   failure:^(NSError *error) {
             NSLog(@"Quering accessToken failed %@", error);
         }];
@@ -127,7 +126,7 @@
 }
 
 
-- (void)requestMeWithToken:(NSString *)accessToken {
+- (void)getConnectionCountWithToken:(NSString *)accessToken {
     [self.linkedIn GET:[NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~?oauth2_access_token=%@&format=json", accessToken] parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *result) {
         NSLog(@"current user %@", result);
     }        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
