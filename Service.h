@@ -20,7 +20,7 @@
 @property BOOL isReserved;
 @property NSString *location;
 @property NSNumber *price;
-@property User *provider;
+@property NSString *provider;
 @property NSDate *specificTime;
 @property BOOL travel;
 @property NSString *description;
