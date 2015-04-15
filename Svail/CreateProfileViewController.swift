@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class CreateProfileViewController: UIViewController {
 
@@ -18,12 +17,14 @@ class CreateProfileViewController: UIViewController {
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
+    var currentUser: User = User()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.userInteractionEnabled = true
 
+        self.currentUser = User.currentUser()
     }
 
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
@@ -64,7 +65,7 @@ class CreateProfileViewController: UIViewController {
             let tabBarVC = mapStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
             self.presentViewController(tabBarVC, animated: true, completion: nil)
 
-            //NEED TO SAVE IN BACKGROUND
+            self.currentUser.saveInBackgroundWithTarget(nil, selector: nil)
 
         }
 
@@ -73,33 +74,6 @@ class CreateProfileViewController: UIViewController {
 //            self.showAlert(signUpError)
 //        }
     }
-
-//    func createProfile() {
-//        var user = PFUser()
-//        user["name"] = fullNameTextField.text
-//        user["gender"] = genderTextField.text
-//        user["city"] = cityTextField.text
-//        user["state"] = stateTextField.text
-//        user["specialty"] = specialtyTextField.text
-//        user["occupation"] = occupationTextField.text
-//
-////        user.signUpInBackgroundWithBlock {
-////            (succeeded: Bool, error: NSError?) -> Void in
-//            if error == nil
-//            {
-//                let mapStoryBoard = UIStoryboard(name: "Map", bundle: nil)
-//                let tabBarVC = mapStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
-//                self.presentViewController(tabBarVC, animated: true, completion: nil)
-//
-//            } else {
-//                if let errorString = error!.userInfo?["error"] as? NSString
-//                {
-//                    self.showAlert(errorString)
-//                }
-//
-//            }
-//        }
-//    }
 
     func showAlert(error:NSString)
     {
