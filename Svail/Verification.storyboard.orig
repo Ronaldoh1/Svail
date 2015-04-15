@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+=======
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PGO-H9-GA0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+>>>>>>> Verification
     </dependencies>
     <scenes>
         <!--Social Veri View Controller-->
@@ -84,60 +90,30 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="onTwitterVerifyButtonTapped:" destination="Ujp-WP-e75" eventType="touchUpInside" id="KuH-AX-8ew"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPE-tc-Eyz">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="193" id="3sO-zz-9Hb"/>
-                                    <constraint firstAttribute="height" constant="30" id="V2L-Xe-uOD"/>
-                                </constraints>
-                                <state key="normal" title="Verify with LinkedIn account">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="3sO-zz-9Hb"/>
-                                        <exclude reference="V2L-Xe-uOD"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="3sO-zz-9Hb"/>
-                                        <include reference="V2L-Xe-uOD"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="onLinkedInVerifyButtonTapped:" destination="Ujp-WP-e75" eventType="touchUpInside" id="zDE-CN-EoE"/>
+                                    <action selector="twitterVerifyButton:" destination="Ujp-WP-e75" eventType="touchUpInside" id="kof-Yc-D1T"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="k87-pD-n1O" secondAttribute="trailing" constant="92" id="0HK-BX-zdZ"/>
-                            <constraint firstItem="RPE-tc-Eyz" firstAttribute="top" secondItem="4Li-xT-Mnw" secondAttribute="bottom" constant="67" id="2Y6-QP-ILu"/>
                             <constraint firstItem="4Li-xT-Mnw" firstAttribute="top" secondItem="iyb-lJ-vxZ" secondAttribute="bottom" constant="117" id="5BG-Pv-aIS"/>
                             <constraint firstItem="93S-LF-vrr" firstAttribute="leading" secondItem="i6w-dN-Dpf" secondAttribute="leadingMargin" constant="85" id="D4u-oe-80u"/>
                             <constraint firstAttribute="centerX" secondItem="4Li-xT-Mnw" secondAttribute="centerX" id="GFa-5J-pxA"/>
                             <constraint firstItem="k87-pD-n1O" firstAttribute="top" secondItem="4Li-xT-Mnw" secondAttribute="bottom" constant="233" id="abo-0D-CLL"/>
                             <constraint firstItem="93S-LF-vrr" firstAttribute="top" secondItem="4Li-xT-Mnw" secondAttribute="bottom" constant="233" id="dDd-Gh-aME"/>
-                            <constraint firstAttribute="centerX" secondItem="RPE-tc-Eyz" secondAttribute="centerX" id="f6P-t2-GZ3"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="k87-pD-n1O"/>
                                 <exclude reference="93S-LF-vrr"/>
                                 <exclude reference="4Li-xT-Mnw"/>
-                                <exclude reference="RPE-tc-Eyz"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="5BG-Pv-aIS"/>
                                 <exclude reference="GFa-5J-pxA"/>
                                 <exclude reference="D4u-oe-80u"/>
                                 <exclude reference="dDd-Gh-aME"/>
-                                <exclude reference="2Y6-QP-ILu"/>
-                                <exclude reference="f6P-t2-GZ3"/>
                                 <exclude reference="0HK-BX-zdZ"/>
                                 <exclude reference="abo-0D-CLL"/>
                             </mask>
@@ -147,15 +123,12 @@
                                 <include reference="k87-pD-n1O"/>
                                 <include reference="93S-LF-vrr"/>
                                 <include reference="4Li-xT-Mnw"/>
-                                <include reference="RPE-tc-Eyz"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="5BG-Pv-aIS"/>
                                 <include reference="GFa-5J-pxA"/>
                                 <include reference="D4u-oe-80u"/>
                                 <include reference="dDd-Gh-aME"/>
-                                <include reference="2Y6-QP-ILu"/>
-                                <include reference="f6P-t2-GZ3"/>
                                 <include reference="0HK-BX-zdZ"/>
                                 <include reference="abo-0D-CLL"/>
                             </mask>
@@ -183,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJF-mX-0Na" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1146" y="1044"/>
+            <point key="canvasLocation" x="1950" y="275"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Uo-cK-CsH">
