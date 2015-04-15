@@ -124,82 +124,151 @@
 }
 
 - (IBAction)onSaveImageButtonTapped:(UIBarButtonItem *)sender {
+
     //MARK - Save images//
     if (self.imageArray.count == 1) {
 
-    NSData *imageData = UIImagePNGRepresentation((UIImage *)self.imageArray[0]);
-    PFFile *imageFile = [PFFile fileWithData:imageData];
-    self.pickedImage1.imageFile = imageFile;
-   // self.pickedImage1.service = self.service;
-    [self.pickedImage1 saveInBackground];
+        //define and NSMutable array to hold the image objects.
+        NSMutableArray *imageTempArray = [NSMutableArray new];
+
+        NSData *imageData = UIImagePNGRepresentation((UIImage *)self.imageArray[0]);
+        PFFile *imageFile = [PFFile fileWithData:imageData];
+        self.pickedImage1.imageFile = imageFile;
+        // self.pickedImage1.service = self.service;
+        [imageTempArray addObject:self.pickedImage1];
+
+        [self saveImagesInBackGround:imageTempArray];
+
+
+
+
     }else if(self.imageArray.count == 2){
+
+        //define and NSMutable array to hold the image objects.
+        NSMutableArray *imageTempArray = [NSMutableArray new];
+
         //image1
         NSData *imageData = UIImagePNGRepresentation((UIImage *)self.imageArray[0]);
         PFFile *imageFile = [PFFile fileWithData:imageData];
         self.pickedImage1.imageFile = imageFile;
+        [imageTempArray addObject:self.pickedImage1];
 
         //image2
         NSData *imageData2 = UIImagePNGRepresentation((UIImage *)self.imageArray[1]);
         PFFile *imageFile2 = [PFFile fileWithData:imageData2];
         self.pickedImage2.imageFile = imageFile2;
         //self.pickedImage2.service = self.service;
-        [self.pickedImage2 saveInBackground];
+        [imageTempArray addObject:self.pickedImage2];
+        //[self.pickedImage2 saveInBackground];
 
-        
+        [self saveImagesInBackGround:imageTempArray];
+
+
+
     }else if(self.imageArray.count == 3){
+
+        //define and NSMutable array to hold the image objects.
+        NSMutableArray *imageTempArray = [NSMutableArray new];
+
+
         //image1
         NSData *imageData = UIImagePNGRepresentation((UIImage *)self.imageArray[0]);
         PFFile *imageFile = [PFFile fileWithData:imageData];
         self.pickedImage1.imageFile = imageFile;
+        [imageTempArray addObject:self.pickedImage1];
 
         //image2
         NSData *imageData2 = UIImagePNGRepresentation((UIImage *)self.imageArray[1]);
         PFFile *imageFile2 = [PFFile fileWithData:imageData2];
         self.pickedImage2.imageFile = imageFile2;
         //self.pickedImage2.service = self.service;
-        [self.pickedImage2 saveInBackground];
+       [imageTempArray addObject:self.pickedImage2];
 
         //Image3
         NSData *imageData3 = UIImagePNGRepresentation((UIImage *)self.imageArray[2]);
         PFFile *imageFile3 = [PFFile fileWithData:imageData3];
         self.pickedImage3.imageFile = imageFile3;
         //self.pickedImage2.service = self.service;
-        [self.pickedImage3 saveInBackground];
+        [imageTempArray addObject:self.pickedImage3];
+
+         [self saveImagesInBackGround:imageTempArray];
 
     } if(self.imageArray.count == 4){
+        //define and NSMutable array to hold the image objects.
+        NSMutableArray *imageTempArray = [NSMutableArray new];
+
         //image1
         NSData *imageData = UIImagePNGRepresentation((UIImage *)self.imageArray[0]);
         PFFile *imageFile = [PFFile fileWithData:imageData];
         self.pickedImage1.imageFile = imageFile;
-        [self.pickedImage1 saveInBackground];
+        [imageTempArray addObject:self.pickedImage1];
         //image2
         NSData *imageData2 = UIImagePNGRepresentation((UIImage *)self.imageArray[1]);
         PFFile *imageFile2 = [PFFile fileWithData:imageData2];
         self.pickedImage2.imageFile = imageFile2;
         //self.pickedImage2.service = self.service;
-        [self.pickedImage2 saveInBackground];
+        [imageTempArray addObject:self.pickedImage2];
 
         //Image3
         NSData *imageData3 = UIImagePNGRepresentation((UIImage *)self.imageArray[2]);
         PFFile *imageFile3 = [PFFile fileWithData:imageData3];
         self.pickedImage3.imageFile = imageFile3;
         //self.pickedImage2.service = self.service;
-        [self.pickedImage3 saveInBackground];
+        [imageTempArray addObject:self.pickedImage3];
         //Image4
         NSData *imageData4 = UIImagePNGRepresentation((UIImage *)self.imageArray[3]);
         PFFile *imageFile4 = [PFFile fileWithData:imageData4];
         self.pickedImage4.imageFile = imageFile4;
         //self.pickedImage2.service = self.service;
-        [self.pickedImage4 saveInBackground];
+        [imageTempArray addObject:self.pickedImage4];
+
+        [self saveImagesInBackGround:imageTempArray];
+
     }
 
 }
+- (IBAction)onSkipButtonTapped:(UIButton *)sender {
 
+    [self performSegueWithIdentifier:@"toServiceHistory"sender:self];
+}
+
+//Helper method to save all images in background;
+
+-(void)saveImagesInBackGround:(NSMutableArray *)imagesHolder{
+    //Indicator starts annimating when signing up.
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicator.color = [UIColor colorWithRed:102 green:0 blue:255 alpha:1];
+    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+    [self.view addSubview: activityIndicator];
+
+    [activityIndicator startAnimating];
+
+
+    [Image saveAllInBackground:imagesHolder block:^(BOOL succeeded, NSError *error) {
+
+        //stop actiivity indication from annimating.
+        [activityIndicator stopAnimating];
+
+        if(!error){
+            //successfully saved image1.
+            [self performSegueWithIdentifier:@"toServiceHistory" sender:self];
+
+        }else {
+            [self displayErrorAlert:error.localizedDescription];
+
+        }
+
+    }];
+}
+
+//Helper method to dismissview picker View Controller.
 -(void)cancelPicker{
     [self dismissViewControllerAnimated:true completion:nil];
 
-    
+
 }
+
+
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [self cancelPicker];
 
@@ -221,7 +290,7 @@
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Success!" message:text delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
 
     [alertView show];
-    
+
 }
 
 
@@ -262,8 +331,8 @@
             [self.imageArray removeObjectAtIndex:1];
             UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
             [self.imageArray insertObject:image atIndex:1];
-            
-            
+
+
         }
     }else if(self.thirdImagePicked == true){
         self.thirdImagePicked = false;
@@ -280,8 +349,8 @@
             [self.imageArray removeObjectAtIndex:2];
             UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
             [self.imageArray insertObject:image atIndex:2];
-            
-            
+
+
         }
     }else if(self.fourthImagePicked == true){
         self.fourthImagePicked = false;
@@ -291,9 +360,9 @@
 
             UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
             [self.imageArray insertObject:image atIndex:3];
-
-
-
+            
+            
+            
         } else if (self.imageArray.count == 4) {
             [self.imageArray removeObjectAtIndex:3];
             UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
@@ -302,10 +371,10 @@
             
         }
     }
-
-
-
-
+    
+    
+    
+    
     [self dismissViewControllerAnimated:picker completion:nil];
     
     

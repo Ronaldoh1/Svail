@@ -25,7 +25,9 @@
 
 @property Service *service;
 
+@property (weak, nonatomic) IBOutlet UIDatePicker *startPickerDate;
 
+@property (weak, nonatomic) IBOutlet UIDatePicker *endPickerDate;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControlPicker;
 
 @property User *currentUser;
@@ -40,6 +42,9 @@
     // Do any additional setup after loading the view.
 
     self.service = [Service new];
+    self.startPickerDate.transform = CGAffineTransformMakeScale(0.65, 0.5);
+    self.endPickerDate.transform = CGAffineTransformMakeScale(0.65, 0.5);
+
 
 }
 
