@@ -10,6 +10,9 @@
 #import <Parse/Parse.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
+
 
 @interface AppDelegate ()
 
@@ -22,14 +25,13 @@
     // Override point for customization after application launch.
 
     //Parse Setup
+    [Fabric with:@[TwitterKit]];
     [Parse setApplicationId:@"ebHjZbY6vKWbDo1fmskeLG2XE8Kz6sOEEgXrZolM"
                   clientKey:@"U8IGSnk5tGWURWY0xeQGfXakjWpSiGUbGtKYDShI"];
+
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
 
-
-
-    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url

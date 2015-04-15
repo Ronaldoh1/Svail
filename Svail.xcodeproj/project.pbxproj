@@ -10,6 +10,11 @@
 		3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */; };
 		3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */; };
 		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
+		3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */; };
+		3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD921ADDB4EC00105272 /* TextVeriViewController.m */; };
+		36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE95591ADDC93900ABDB93 /* TwitterKit.framework */; };
+		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
+		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
 		3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
@@ -69,6 +74,13 @@
 		3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		3666FD8E1ADDB4CE00105272 /* SocialVeriViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialVeriViewController.h; sourceTree = "<group>"; };
+		3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialVeriViewController.m; sourceTree = "<group>"; };
+		3666FD911ADDB4EC00105272 /* TextVeriViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextVeriViewController.h; sourceTree = "<group>"; };
+		3666FD921ADDB4EC00105272 /* TextVeriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextVeriViewController.m; sourceTree = "<group>"; };
+		36DE95591ADDC93900ABDB93 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +150,7 @@
 				F24B36311ADC6EDD006153EC /* MapKit.framework in Frameworks */,
 				F24B35E41ADB961E006153EC /* AudioToolbox.framework in Frameworks */,
 				3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */,
+				36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */,
 				F24B35E21ADB9613006153EC /* CFNetwork.framework in Frameworks */,
 				F24B35E01ADB95F8006153EC /* CoreLocation.framework in Frameworks */,
 				F24B35DE1ADB95EA006153EC /* CoreGraphics.framework in Frameworks */,
@@ -152,6 +165,7 @@
 				F24B35CE1ADB958C006153EC /* Parse.framework in Frameworks */,
 				3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */,
 				F24B35CD1ADB958C006153EC /* Bolts.framework in Frameworks */,
+				36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +281,9 @@
 		F24B35CA1ADB9569006153EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36DE95591ADDC93900ABDB93 /* TwitterKit.framework */,
+				36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */,
+				36DE955B1ADDC93900ABDB93 /* Fabric.framework */,
 				3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */,
 				3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */,
 				3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */,
@@ -327,6 +344,10 @@
 			isa = PBXGroup;
 			children = (
 				F24B362A1ADC6B3C006153EC /* Verification.storyboard */,
+				3666FD8E1ADDB4CE00105272 /* SocialVeriViewController.h */,
+				3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */,
+				3666FD911ADDB4EC00105272 /* TextVeriViewController.h */,
+				3666FD921ADDB4EC00105272 /* TextVeriViewController.m */,
 			);
 			name = Verification;
 			sourceTree = "<group>";
@@ -363,6 +384,7 @@
 				F24B35991ADB7E54006153EC /* Sources */,
 				F24B359A1ADB7E54006153EC /* Frameworks */,
 				F24B359B1ADB7E54006153EC /* Resources */,
+				36DE95581ADDC81100ABDB93 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -435,6 +457,7 @@
 			files = (
 				F24B36271ADC6B16006153EC /* Service.storyboard in Resources */,
 				F24B362F1ADC6B57006153EC /* Stripe.storyboard in Resources */,
+				36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */,
 				F24B362B1ADC6B3C006153EC /* Verification.storyboard in Resources */,
 				F24B36231ADC6AE0006153EC /* Login.storyboard in Resources */,
 				F24B35AF1ADB7E54006153EC /* Main.storyboard in Resources */,
@@ -457,6 +480,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		36DE95581ADDC81100ABDB93 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run ebccb669ffdc377a48919250999071ac6c811967 69aec51601d34c23e27ccd034d6b51c63fc10215b3f619080b8e8c5ea7ed8845";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F24B35991ADB7E54006153EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -470,6 +509,8 @@
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
+				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
+				3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */,
 				F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,

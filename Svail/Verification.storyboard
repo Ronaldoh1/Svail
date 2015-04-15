@@ -1,7 +1,174 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PGO-H9-GA0">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Social Veri View Controller-->
+        <scene sceneID="R5Q-1K-Zc4">
+            <objects>
+                <viewController id="Ujp-WP-e75" customClass="SocialVeriViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iyb-lJ-vxZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="UYU-eC-vL9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i6w-dN-Dpf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k87-pD-n1O">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="szg-pL-ZdZ"/>
+                                    <constraint firstAttribute="width" constant="32" id="yZR-Lx-lED"/>
+                                </constraints>
+                                <state key="normal" title="Next">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="szg-pL-ZdZ"/>
+                                        <exclude reference="yZR-Lx-lED"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="szg-pL-ZdZ"/>
+                                        <include reference="yZR-Lx-lED"/>
+                                    </mask>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93S-LF-vrr">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="801-YE-OdX"/>
+                                    <constraint firstAttribute="width" constant="48" id="a0l-io-eF3"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="801-YE-OdX"/>
+                                        <exclude reference="a0l-io-eF3"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="801-YE-OdX"/>
+                                        <include reference="a0l-io-eF3"/>
+                                    </mask>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Li-xT-Mnw">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="2bS-94-G0B"/>
+                                    <constraint firstAttribute="height" constant="30" id="swV-Kb-m3d"/>
+                                </constraints>
+                                <state key="normal" title="Verify with Twitter account">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2bS-94-G0B"/>
+                                        <exclude reference="swV-Kb-m3d"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="2bS-94-G0B"/>
+                                        <include reference="swV-Kb-m3d"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="twitterVerifyButton:" destination="Ujp-WP-e75" eventType="touchUpInside" id="kof-Yc-D1T"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="k87-pD-n1O" secondAttribute="trailing" constant="92" id="0HK-BX-zdZ"/>
+                            <constraint firstItem="4Li-xT-Mnw" firstAttribute="top" secondItem="iyb-lJ-vxZ" secondAttribute="bottom" constant="117" id="5BG-Pv-aIS"/>
+                            <constraint firstItem="93S-LF-vrr" firstAttribute="leading" secondItem="i6w-dN-Dpf" secondAttribute="leadingMargin" constant="85" id="D4u-oe-80u"/>
+                            <constraint firstAttribute="centerX" secondItem="4Li-xT-Mnw" secondAttribute="centerX" id="GFa-5J-pxA"/>
+                            <constraint firstItem="k87-pD-n1O" firstAttribute="top" secondItem="4Li-xT-Mnw" secondAttribute="bottom" constant="233" id="abo-0D-CLL"/>
+                            <constraint firstItem="93S-LF-vrr" firstAttribute="top" secondItem="4Li-xT-Mnw" secondAttribute="bottom" constant="233" id="dDd-Gh-aME"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="k87-pD-n1O"/>
+                                <exclude reference="93S-LF-vrr"/>
+                                <exclude reference="4Li-xT-Mnw"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="5BG-Pv-aIS"/>
+                                <exclude reference="GFa-5J-pxA"/>
+                                <exclude reference="D4u-oe-80u"/>
+                                <exclude reference="dDd-Gh-aME"/>
+                                <exclude reference="0HK-BX-zdZ"/>
+                                <exclude reference="abo-0D-CLL"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="k87-pD-n1O"/>
+                                <include reference="93S-LF-vrr"/>
+                                <include reference="4Li-xT-Mnw"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="5BG-Pv-aIS"/>
+                                <include reference="GFa-5J-pxA"/>
+                                <include reference="D4u-oe-80u"/>
+                                <include reference="dDd-Gh-aME"/>
+                                <include reference="0HK-BX-zdZ"/>
+                                <include reference="abo-0D-CLL"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="JJI-Qt-AAj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qJE-GB-cD5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1135.5" y="275"/>
+        </scene>
+        <!--Text Veri View Controller-->
+        <scene sceneID="YEv-u9-hgm">
+            <objects>
+                <viewController id="b5R-tR-Cmm" customClass="TextVeriViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HDI-8G-6OG"/>
+                        <viewControllerLayoutGuide type="bottom" id="iqE-t5-7j4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c0Q-9y-UU2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fJF-mX-0Na" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1950" y="275"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7Uo-cK-CsH">
+            <objects>
+                <navigationController storyboardIdentifier="VeriNavVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PGO-H9-GA0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="icy-Ov-AKD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ujp-WP-e75" kind="relationship" relationship="rootViewController" id="tJ3-mc-vP5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="noj-fn-kIw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="217.5" y="275"/>
+        </scene>
+    </scenes>
 </document>
