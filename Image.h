@@ -7,9 +7,12 @@
 //
 
 #import <Parse/Parse.h>
+#import "Service.h"
 
-@interface Image : PFObject
+@interface Image : PFObject<PFSubclassing>
 @property PFFile *imageFile;
+@property Service *service;
 
++ (NSString *)parseClassName;
 
 @end
