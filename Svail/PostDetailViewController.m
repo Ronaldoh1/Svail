@@ -8,7 +8,7 @@
 
 #import "PostDetailViewController.h"
 
-@interface PostDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface PostDetailViewController ()
 
 
 @end
@@ -25,16 +25,5 @@
     // Dispose of any resources that can be recreated.
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    return nil;
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
-    return 0;
-}
 @end

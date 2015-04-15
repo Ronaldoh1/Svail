@@ -10,6 +10,7 @@
 
 @implementation Image
 
+@dynamic service;
 @dynamic imageFile;
 
 +(void)load{

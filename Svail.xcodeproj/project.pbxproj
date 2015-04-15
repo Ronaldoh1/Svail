@@ -53,6 +53,7 @@
 		F24B36511ADCDD70006153EC /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F24B36501ADCDD70006153EC /* camera.png */; };
 		F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */; };
 		F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36561ADD4FDB006153EC /* PostDetailViewController.m */; };
+		F24B365C1ADDA923006153EC /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365B1ADDA923006153EC /* Service.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,9 @@
 		F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostHistoryViewController.m; sourceTree = "<group>"; };
 		F24B36551ADD4FDB006153EC /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
 		F24B36561ADD4FDB006153EC /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
+		F24B36581ADD8116006153EC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F24B365A1ADDA923006153EC /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
+		F24B365B1ADDA923006153EC /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,13 +169,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AAC388C9010252EFDAB2CDBD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		F24B35941ADB7E53006153EC = {
 			isa = PBXGroup;
 			children = (
@@ -181,7 +178,6 @@
 				F24B35BC1ADB7E54006153EC /* SvailTests */,
 				F24B359E1ADB7E54006153EC /* Products */,
 				F24B36361ADC781E006153EC /* Svail-Bridging-Header.h */,
-				AAC388C9010252EFDAB2CDBD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -253,6 +249,8 @@
 				F24B363E1ADCABEF006153EC /* Product.h */,
 				F24B363F1ADCABF0006153EC /* Product.m */,
 				F24B36411ADCB0E8006153EC /* Purchase.h */,
+				F24B365A1ADDA923006153EC /* Service.h */,
+				F24B365B1ADDA923006153EC /* Service.m */,
 				F24B36421ADCB0E8006153EC /* Purchase.m */,
 				F24B36441ADCB320006153EC /* Image.h */,
 				F24B36451ADCB320006153EC /* Image.m */,
@@ -267,6 +265,7 @@
 		F24B35CA1ADB9569006153EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F24B36581ADD8116006153EC /* AVFoundation.framework */,
 				3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */,
 				3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */,
 				3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */,
@@ -465,6 +464,7 @@
 				3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */,
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
+				F24B365C1ADDA923006153EC /* Service.m in Sources */,
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
 				F24B36401ADCABF0006153EC /* Product.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,

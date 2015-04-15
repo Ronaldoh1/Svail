@@ -11,7 +11,7 @@
 #import "User.h"
 #import "Image.h"
 
-@interface Purchase : PFObject
+@interface Purchase : PFObject<PFSubclassing>
 @property User *customer;
 @property NSDate *dateCompleted;
 @property BOOL isCompleted;
