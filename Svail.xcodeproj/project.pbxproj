@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3060ABBB5353AFCA3B670434 /* libPods-Svail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3587A31141F93B686E121083 /* libPods-Svail.a */; };
 		3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */; };
 		3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */; };
 		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
 		3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */; };
 		3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD921ADDB4EC00105272 /* TextVeriViewController.m */; };
+		36D4E6231ADE40E200CA13A6 /* LinkedInLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D4E6221ADE40E200CA13A6 /* LinkedInLogInViewController.m */; };
 		36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE95591ADDC93900ABDB93 /* TwitterKit.framework */; };
 		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
@@ -75,6 +77,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3587A31141F93B686E121083 /* libPods-Svail.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Svail.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 		3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialVeriViewController.m; sourceTree = "<group>"; };
 		3666FD911ADDB4EC00105272 /* TextVeriViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextVeriViewController.h; sourceTree = "<group>"; };
 		3666FD921ADDB4EC00105272 /* TextVeriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextVeriViewController.m; sourceTree = "<group>"; };
+		36D4E6211ADE40E200CA13A6 /* LinkedInLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedInLogInViewController.h; sourceTree = "<group>"; };
+		36D4E6221ADE40E200CA13A6 /* LinkedInLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedInLogInViewController.m; sourceTree = "<group>"; };
 		36DE95591ADDC93900ABDB93 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -91,6 +96,8 @@
 		3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationDownloader.m; sourceTree = "<group>"; };
 		3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
+		A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.release.xcconfig"; sourceTree = "<group>"; };
+		D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.debug.xcconfig"; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24B35A11ADB7E54006153EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F24B35A21ADB7E54006153EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -179,6 +186,7 @@
 				3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */,
 				F24B35CD1ADB958C006153EC /* Bolts.framework in Frameworks */,
 				36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */,
+				3060ABBB5353AFCA3B670434 /* libPods-Svail.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +200,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B703C6E9E7BC9786448E02AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */,
+				A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F24B35941ADB7E53006153EC = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +219,7 @@
 				F24B35BC1ADB7E54006153EC /* SvailTests */,
 				F24B359E1ADB7E54006153EC /* Products */,
 				F24B36361ADC781E006153EC /* Svail-Bridging-Header.h */,
+				B703C6E9E7BC9786448E02AE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -308,6 +326,7 @@
 				F24B35CF1ADB95AA006153EC /* SystemConfiguration.framework */,
 				F24B35CB1ADB958C006153EC /* Bolts.framework */,
 				F24B35CC1ADB958C006153EC /* Parse.framework */,
+				3587A31141F93B686E121083 /* libPods-Svail.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -357,6 +376,8 @@
 				F24B362A1ADC6B3C006153EC /* Verification.storyboard */,
 				3666FD8E1ADDB4CE00105272 /* SocialVeriViewController.h */,
 				3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */,
+				36D4E6211ADE40E200CA13A6 /* LinkedInLogInViewController.h */,
+				36D4E6221ADE40E200CA13A6 /* LinkedInLogInViewController.m */,
 				3666FD911ADDB4EC00105272 /* TextVeriViewController.h */,
 				3666FD921ADDB4EC00105272 /* TextVeriViewController.m */,
 			);
@@ -403,10 +424,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F24B35C31ADB7E54006153EC /* Build configuration list for PBXNativeTarget "Svail" */;
 			buildPhases = (
+				8952A51A448E1DB8B6B4AF1C /* Check Pods Manifest.lock */,
 				F24B35991ADB7E54006153EC /* Sources */,
 				F24B359A1ADB7E54006153EC /* Frameworks */,
 				F24B359B1ADB7E54006153EC /* Resources */,
 				36DE95581ADDC81100ABDB93 /* ShellScript */,
+				87C6D07493B99A3C4C072184 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -516,6 +539,36 @@
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run ebccb669ffdc377a48919250999071ac6c811967 69aec51601d34c23e27ccd034d6b51c63fc10215b3f619080b8e8c5ea7ed8845";
 		};
+		87C6D07493B99A3C4C072184 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Svail/Pods-Svail-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8952A51A448E1DB8B6B4AF1C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -537,6 +590,7 @@
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */,
+				36D4E6231ADE40E200CA13A6 /* LinkedInLogInViewController.m in Sources */,
 				F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
@@ -669,6 +723,7 @@
 		};
 		F24B35C41ADB7E54006153EC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -687,6 +742,7 @@
 		};
 		F24B35C51ADB7E54006153EC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
