@@ -12,6 +12,7 @@
 		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
 		3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */; };
 		3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD921ADDB4EC00105272 /* TextVeriViewController.m */; };
+		36D4E6231ADE40E200CA13A6 /* LinkedInLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D4E6221ADE40E200CA13A6 /* LinkedInLogInViewController.m */; };
 		36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE95591ADDC93900ABDB93 /* TwitterKit.framework */; };
 		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
@@ -82,6 +83,8 @@
 		3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialVeriViewController.m; sourceTree = "<group>"; };
 		3666FD911ADDB4EC00105272 /* TextVeriViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextVeriViewController.h; sourceTree = "<group>"; };
 		3666FD921ADDB4EC00105272 /* TextVeriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextVeriViewController.m; sourceTree = "<group>"; };
+		36D4E6211ADE40E200CA13A6 /* LinkedInLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedInLogInViewController.h; sourceTree = "<group>"; };
+		36D4E6221ADE40E200CA13A6 /* LinkedInLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedInLogInViewController.m; sourceTree = "<group>"; };
 		36DE95591ADDC93900ABDB93 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -360,6 +363,8 @@
 				F24B362A1ADC6B3C006153EC /* Verification.storyboard */,
 				3666FD8E1ADDB4CE00105272 /* SocialVeriViewController.h */,
 				3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */,
+				36D4E6211ADE40E200CA13A6 /* LinkedInLogInViewController.h */,
+				36D4E6221ADE40E200CA13A6 /* LinkedInLogInViewController.m */,
 				3666FD911ADDB4EC00105272 /* TextVeriViewController.h */,
 				3666FD921ADDB4EC00105272 /* TextVeriViewController.m */,
 			);
@@ -528,6 +533,7 @@
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */,
+				36D4E6231ADE40E200CA13A6 /* LinkedInLogInViewController.m in Sources */,
 				F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,

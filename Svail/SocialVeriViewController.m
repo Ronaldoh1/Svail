@@ -12,7 +12,11 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 
+
 @interface SocialVeriViewController ()
+
+@property (nonatomic) BOOL isUserVerified;
+
 
 @end
 
@@ -20,50 +24,92 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+
+
+
+
+
+- (IBAction)onTwitterVerifyButtonTapped:(UIButton *)sender
+{
     
-//    TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
-//        // play with Twitter session
-//    }];
-//    logInButton.center = self.view.center;
-//    [self.view addSubview:logInButton];
-    
-    TWTRLogInButton* logInButton =  [TWTRLogInButton
-         buttonWithLogInCompletion:
-         ^(TWTRSession* session, NSError* error) {
+    if ([[Twitter sharedInstance] session]) {
+        [self getTwitterFollowersCount];
+        [self checkIsTwitterUserVerified];
+        [[Twitter sharedInstance] logOut];
+        
+    } else {
+        [[Twitter sharedInstance] logInWithCompletion:^
+         (TWTRSession *session, NSError *error) {
              if (session) {
                  NSLog(@"signed in as %@", [session userName]);
-                 NSString *twitterUserID = [[Twitter sharedInstance] session].userID;
-//                 NSURLRequest *followersQueryRequest = [[[Twitter sharedInstance] APIClient] URLRequestWithMethod:@"GET" URL:followersQueryURL parameters:followersQueryParameters error:nil];
-//                 
-                 
+                 [self getTwitterFollowersCount];
+                 [self checkIsTwitterUserVerified];
+                 [[Twitter sharedInstance] logOut];
              } else {
                  NSLog(@"error: %@", [error localizedDescription]);
-                 [self dismissViewControllerAnimated:YES completion:nil];
              }
          }];
-
-    
-    logInButton.center = self.view.center;
-    [self.view addSubview:logInButton];
-//    
-//    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-//    loginButton.center = self.view.center;
-//    [self.view addSubview:loginButton];
-//    
-   
-
+    }
 }
 
-- (IBAction)twitterVerifyButton:(UIButton *)sender
+-(void)checkIsTwitterUserVerified
 {
-    [[Twitter sharedInstance] logInWithCompletion:^
-     (TWTRSession *session, NSError *error) {
-         if (session) {
-             NSLog(@"signed in as %@", [session userName]);
-         } else {
-             NSLog(@"error: %@", [error localizedDescription]);
-         }
-     }];
+    NSString *twitterUserID = [[Twitter sharedInstance] session].userID;
+    [[[Twitter sharedInstance] APIClient] loadUserWithID:twitterUserID completion:^(TWTRUser *user, NSError *error) {
+        if (!user.isVerified) {
+            NSLog(@"User is not verified");
+        } else {
+            NSLog(@"User is verified");
+        }
+    }];
 }
+
+
+-(void)getTwitterFollowersCount
+{
+    NSString *twitterUserID = [[Twitter sharedInstance] session].userID;
+    NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/followers/ids.json";
+    NSDictionary *params = @{@"id" : twitterUserID};
+    NSError *clientError;
+    NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
+                             URLRequestWithMethod:@"GET"
+                             URL:statusesShowEndpoint
+                             parameters:params
+                             error:&clientError];
+
+    if (request) {
+        [[[Twitter sharedInstance] APIClient]
+         sendTwitterRequest:request
+         completion:^(NSURLResponse *response,
+                      NSData *data,
+                      NSError *connectionError) {
+             if (data) {
+                 // handle the response data e.g.
+                 NSError *jsonError;
+                 NSDictionary *json = [NSJSONSerialization
+                                       JSONObjectWithData:data
+                                       options:0
+                                       error:&jsonError];
+                 NSArray *followerIDs = json[@"ids"];
+                 NSLog(@"%li",followerIDs.count);
+             }
+             else {
+                 NSLog(@"Error: %@", connectionError);
+             }
+         }];
+    }
+    else {
+        NSLog(@"Error: %@", clientError);
+    }
+}
+
+
+
+- (IBAction)onLinkedInVerifyButtonTapped:(UIButton *)sender
+{
+}
+
 
 @end
