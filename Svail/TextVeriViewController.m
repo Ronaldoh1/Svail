@@ -7,8 +7,13 @@
 //
 
 #import "TextVeriViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface TextVeriViewController ()
+@interface TextVeriViewController () <MFMessageComposeViewControllerDelegate, UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *cellPhoneTextField1;
+@property (weak, nonatomic) IBOutlet UITextField *cellPhoneTextField2;
+@property (weak, nonatomic) IBOutlet UITextField *cellPhoneTextField3;
 
 @end
 
@@ -16,22 +21,60 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.cellPhoneTextField1.placeholder = @"Enter cell phone number";
+    self.cellPhoneTextField2.placeholder = @"Enter cell phone number";
+    self.cellPhoneTextField3.placeholder = @"Enter cell phone number";
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)onSendRequestButtonTapped:(UIButton *)sender
+{
+    NSMutableArray *phoneNumbers = [NSMutableArray new];
+    
+    if (![self.cellPhoneTextField1.text isEqualToString:@""]) {
+        [phoneNumbers addObject:self.cellPhoneTextField1.text];
+    }
+    
+    if (![self.cellPhoneTextField2.text isEqualToString:@""]) {
+        [phoneNumbers addObject:self.cellPhoneTextField2.text];
+    }
+    
+    if (![self.cellPhoneTextField3.text isEqualToString:@""]) {
+        [phoneNumbers addObject:self.cellPhoneTextField3.text];
+    }
+    
+    NSString *message = @"Could you help me complete a simple safety level check for using Svail?";
+    
+    [self showSMSWithMessage:message phoneNumbers:phoneNumbers];
 }
-*/
+
+- (void)showSMSWithMessage:(NSString*)message phoneNumbers:(NSArray *)phoneNumbers {
+    
+    if(![MFMessageComposeViewController canSendText]) {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    NSArray *recipents = phoneNumbers;
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    [messageController setRecipients:recipents];
+    [messageController setBody:message];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
+}
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
