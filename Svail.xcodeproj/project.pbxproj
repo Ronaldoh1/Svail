@@ -16,6 +16,7 @@
 		36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE95591ADDC93900ABDB93 /* TwitterKit.framework */; };
 		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
+		3E14AB751AE191800021CC81 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E14AB741AE191800021CC81 /* TabBarViewController.m */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
@@ -90,6 +91,8 @@
 		36DE95591ADDC93900ABDB93 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		3E14AB731AE191800021CC81 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		3E14AB741AE191800021CC81 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		3E4036DB1ADD882600C4A0A0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
@@ -264,6 +267,8 @@
 				F24B35A51ADB7E54006153EC /* AppDelegate.m */,
 				F24B35AA1ADB7E54006153EC /* RootViewController.h */,
 				F24B35AB1ADB7E54006153EC /* RootViewController.m */,
+				3E14AB731AE191800021CC81 /* TabBarViewController.h */,
+				3E14AB741AE191800021CC81 /* TabBarViewController.m */,
 				F24B35AD1ADB7E54006153EC /* Main.storyboard */,
 				F24B35B01ADB7E54006153EC /* Images.xcassets */,
 				F24B36321ADC74FF006153EC /* heartz.png */,
@@ -489,7 +494,7 @@
 				TargetAttributes = {
 					F24B359C1ADB7E54006153EC = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 75KYW377T5;
+						DevelopmentTeam = A37GTC4NZF;
 						SystemCapabilities = {
 							com.apple.OMC = {
 								enabled = 1;
@@ -604,6 +609,7 @@
 			files = (
 				3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */,
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
+				3E14AB751AE191800021CC81 /* TabBarViewController.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
 				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,

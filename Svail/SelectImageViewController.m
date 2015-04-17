@@ -139,6 +139,7 @@
 
         [self saveImagesInBackGround:imageTempArray];
 
+       
 
 
 
@@ -225,6 +226,7 @@
         [self saveImagesInBackGround:imageTempArray];
 
     }
+
 
 }
 - (IBAction)onSkipButtonTapped:(UIButton *)sender {

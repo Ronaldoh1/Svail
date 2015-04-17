@@ -20,9 +20,9 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.userInteractionEnabled = true
-        self.cancelButton = UIButton.buttonWithType(.Custom) as! UIButton
+//        self.cancelButton = UIButton.buttonWithType(.Custom) as! UIButton
         self.cancelButton.backgroundColor = UIColor(red: 78/255.0, green: 56/255.0, blue: 126/255.0, alpha: 1.0)
-        self.registerButton = UIButton.buttonWithType(.Custom) as! UIButton
+//        self.registerButton = UIButton.buttonWithType(.Custom) as! UIButton
         self.registerButton.backgroundColor = UIColor(red: 103/255.0, green: 125/255.0, blue: 55/255.0, alpha: 1.0)
 
     }
@@ -32,12 +32,12 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true)
     }
 
-    @IBAction func onCancelButtonTapped(sender: UIButton)
-    {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateViewControllerWithIdentifier("rootVC") as! UIViewController
-        self.presentViewController(mainVC, animated: true, completion: nil)
-    }
+//    @IBAction func onCancelButtonTapped(sender: UIButton)
+//    {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let mainVC = storyboard.instantiateViewControllerWithIdentifier("rootVC") as! UIViewController
+//        self.presentViewController(mainVC, animated: true, completion: nil)
+//    }
     @IBAction func onRegisterButtonTapped(sender: UIButton)
     {
         var signUpError = ""
