@@ -50,7 +50,7 @@
         [phoneNumbers addObject:self.cellPhoneTextField3.text];
     }
     
-    NSString *message = @"Could you help me complete a simple safety level check for using Svail?";
+    NSString *message = @"Could you help your friend Ron complete a simple safety level check for using Svail?";
     [self sendSMSFromParseWithToNumber:phoneNumbers[0] message:message];
     
 
@@ -105,6 +105,13 @@
                                         NSLog(@"%@",result);
                                     }
                                 }];
+}
+
+- (IBAction)onSkipButtonTapped:(UIButton *)sender
+{
+    UIStoryboard *mapStoryBoard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
+    UIViewController *mapVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MapNavVC"];
+    [self presentViewController:mapVC animated:true completion:nil];
 }
 
 @end

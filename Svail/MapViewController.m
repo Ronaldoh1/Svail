@@ -10,6 +10,10 @@
 #import "EventLocationDownloader.h"
 #import "Service.h"
 
+//PARTICIPANT NUMBER ADDED TO EVENT ? CHANGE PIN COLOR ACCORDINGLY
+//SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
+//CALLOUT CUSTOMIZED
+
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -17,11 +21,12 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property CLLocationManager *locationManager;
 @property MKPointAnnotation *providerPoint;
+@property MKPointAnnotation *draggedAnnotation;
 @property NSMutableArray *eventsArray;
 @property NSMutableArray *searchResults;
 @property NSMutableArray *filterArray;
 @property NSArray *resultsArray;
-@property NSMutableArray *annotationArray;
+@property NSArray *annotationArray;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *profileButton;
 
@@ -36,12 +41,14 @@
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = YES;
 
-    self.filterArray = [NSMutableArray new];
-    self.searchResults = [NSMutableArray new];
-    self.annotationArray = [NSMutableArray new];
+    //zooming map to current location at startup
+    double latitude = self.locationManager.location.coordinate.latitude;
+    double longitude = self.locationManager.location.coordinate.longitude;
+    [self zoom:&latitude :&longitude];
 
     self.profileButton.image = [[User currentUser] objectForKey:@"profileImage"];
 
+    //setting today's date and the next days of the week for segmented control's titles
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MM/dd"];
@@ -69,22 +76,33 @@
     NSString *nextDay6Date = [dateFormat stringFromDate:nextDay6];
     [self.segmentedControl setTitle:nextDay6Date forSegmentAtIndex:6];
 
+    //making segmentedcontrol selected when the view loads
     self.segmentedControl.selected = YES;
-    [self filterEventsForDate:self.segmentedControl];
 
+    //dismissing keyboard when tapped outside searchBar
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+
+    //download Services from Parse and filter it according to today's event
     [EventLocationDownloader downloadEventLocation:^(NSArray *array)
      {
          self.eventsArray = [NSMutableArray arrayWithArray:array];
-
-         for (Service *service in self.eventsArray) {
-             service.annotation = [[MKPointAnnotation alloc] init];
-             [self.annotationArray addObject:service.annotation];
-         }
+         [self filterEventsForDate:self.segmentedControl];
      }];
 }
 
+#pragma Mark - Dismiss Keyboard Method
+
+-(void)dismissKeyboard {
+    [self.searchBar resignFirstResponder];
+    [self searchBarSearchButtonClicked:self.searchBar];
+}
+
+#pragma Mark - Helper Method to add Annotations on Map
+
 -(void)addAnnotationToMapFromArray:(NSArray *)array
 {
+    //converting GeoPoint stored on Parse to coordinate and adding the annotation on map
     for (Service *aService in array) {
 
         PFGeoPoint *serviceGeoPoint = [aService objectForKey:@"theServiceGeoPoint"];
@@ -94,28 +112,66 @@
         aService.annotation = [[MKPointAnnotation alloc] init];
         aService.annotation.title = [aService objectForKey:@"title"];
         aService.annotation.coordinate = serviceCoordinate;
-        [self.mapView removeAnnotations:self.annotationArray];
         [self.mapView addAnnotation:aService.annotation];
 
     }
 }
 
+#pragma Mark - Helper Method to zoom to a defined span on Map
+
+-(void)zoom:(double *)latitude :(double *)logitude
+{
+    MKCoordinateRegion region;
+    region.center.latitude = *latitude;
+    region.center.longitude = *logitude;
+    region.span.latitudeDelta = 0.05;
+    region.span.longitudeDelta = 0.05;
+    region = [self.mapView regionThatFits:region];
+    [self.mapView setRegion:region animated:YES];
+}
+
+#pragma Mark - MKMapView Delegate Methods
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     MKPinAnnotationView *pinAnnotation = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:nil];
 
+    //making the pinAnnotation of user's location draggable
+    if (annotation == mapView.userLocation || annotation == self.draggedAnnotation) {
+        pinAnnotation.pinColor = MKPinAnnotationColorPurple;
+        pinAnnotation.draggable = YES;
+    }
     pinAnnotation.canShowCallout = YES;
-    pinAnnotation.draggable = YES;
-    pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
 
     return pinAnnotation;
 }
 
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
 {
-
+    //getting new coordinate from dragged pin annotation
+    if (newState == MKAnnotationViewDragStateEnding)
+    {
+        CLLocationCoordinate2D newCoordinate = view.annotation.coordinate;
+        NSLog(@"dropped at %f,%f", newCoordinate.latitude, newCoordinate.longitude);
+        self.draggedAnnotation = [MKPointAnnotation new];
+        self.draggedAnnotation.coordinate = newCoordinate;
+        self.mapView.showsUserLocation = NO;
+        [self.mapView addAnnotation:self.draggedAnnotation];
+    }
 }
 
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    [self.locationManager startUpdatingLocation];
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    //segue to request controller
+}
+
+#pragma Mark - Methods to filter Services with SegmentedControl and SearchBar
 
 - (IBAction)segmentSelected:(UISegmentedControl *)sender
 {
@@ -124,10 +180,17 @@
 
 -(void)filterEventsForDate:(UISegmentedControl *)sender
 {
+    //removing all annotations from map
+    self.annotationArray = self.mapView.annotations;
+    [self.mapView removeAnnotations:self.annotationArray];
+
+    self.filterArray = [NSMutableArray new];
+
     NSString *currentDate = [self.segmentedControl titleForSegmentAtIndex:sender.selectedSegmentIndex];
 
     for (Service *aService in self.eventsArray) {
 
+        //changing the date format for date on Parse and storing it as a string
         NSDate *serviceDate = [aService objectForKey:@"startDate"];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
 //        [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
@@ -146,9 +209,15 @@
     [self.mapView reloadInputViews];
 }
 
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    if (![searchText isEqualToString:@""]) {
+    //removing all annotations from map
+    self.annotationArray = self.mapView.annotations;
+    [self.mapView removeAnnotations:self.annotationArray];
+
+    self.searchResults = [NSMutableArray new];
+
+    if (![searchBar.text isEqualToString:@""]) {
 
         for (Service *aService in self.filterArray) {
             if ([[aService objectForKey:@"title"] containsString:searchBar.text]) {
@@ -160,12 +229,8 @@
         self.searchResults = self.filterArray;
     }
     [self addAnnotationToMapFromArray:self.searchResults];
-
-}
-
--(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
-{
-    [self.locationManager startUpdatingLocation];
+    
+        [searchBar resignFirstResponder];
 }
 
 //-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -179,18 +244,8 @@
 //    }
 //}
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
-{
-    if (newState == MKAnnotationViewDragStateEnding)
-    {
-        CLLocationCoordinate2D newCoordinate = view.annotation.coordinate;
-        NSLog(@"dropped at %f,%f", newCoordinate.latitude, newCoordinate.longitude);
-        MKPointAnnotation *newAnnotation = [MKPointAnnotation new];
-        newAnnotation.coordinate = newCoordinate;
-        self.mapView.showsUserLocation = NO;
-        [self.mapView addAnnotation:newAnnotation];
-    }
-}
+
+#pragma Mark - Segue to Post Service View Controller
 
 - (IBAction)onAddServiceButtonTapped:(UIBarButtonItem *)sender
 {

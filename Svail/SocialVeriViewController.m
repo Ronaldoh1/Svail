@@ -21,6 +21,9 @@
 
 @property (nonatomic) BOOL isUserVerified;
 @property (nonatomic) LIALinkedInHttpClient *linkedIn;
+@property (weak, nonatomic) IBOutlet UILabel *fbVeriLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ttVeriLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lkVeriLabel;
 
 
 @end
@@ -30,6 +33,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.fbVeriLabel.textColor = [UIColor lightGrayColor];
+    self.fbVeriLabel.text = @"";
+    self.ttVeriLabel.textColor = [UIColor lightGrayColor];
+    self.ttVeriLabel.text = @"";
+    self.lkVeriLabel.textColor = [UIColor lightGrayColor];
+    self.lkVeriLabel.text = @"";
 }
 
 
@@ -53,6 +63,14 @@
                          if (!error) {
                              NSUInteger friendsCount = [result[@"summary"][@"total_count"] integerValue];
                              NSLog(@"facebook friends count : %li", friendsCount);
+                             if (friendsCount > 9) {
+                                 self.fbVeriLabel.text = @"Pass";
+                                 self.fbVeriLabel.textColor = [UIColor greenColor];
+                             } else {
+                                 self.fbVeriLabel.text = @"Not qualified";
+                                 self.fbVeriLabel.textColor = [UIColor grayColor];
+
+                             }
                          }
                      }];
                 }
@@ -121,6 +139,14 @@
                                        error:&jsonError];
                  NSArray *followerIDs = json[@"ids"];
                  NSLog(@"Twitter followers count : %li",followerIDs.count);
+                 if (followerIDs.count > 9) {
+                     self.ttVeriLabel.text = @"Pass";
+                     self.ttVeriLabel.textColor = [UIColor greenColor];
+                 } else {
+                     self.ttVeriLabel.text = @"Not qualified";
+                     self.ttVeriLabel.textColor = [UIColor grayColor];
+                 }
+
              }
              else {
                  NSLog(@"Error: %@", connectionError);
@@ -160,6 +186,13 @@
     [self.linkedIn GET:[NSString stringWithFormat:@"%@?oauth2_access_token=%@&format=json",queryURLString, accessToken] parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *result)
     {
         NSLog(@"LinkedIn connection count : %@", result[@"numConnections"]);
+        if (result[@"numConnection"]) {
+            self.lkVeriLabel.text = @"Pass";
+            self.lkVeriLabel.textColor = [UIColor greenColor];
+        } else {
+            self.lkVeriLabel.text = @"Not qualified";
+            self.lkVeriLabel.textColor = [UIColor grayColor];
+        }
     }   failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
         NSLog(@"failed to fetch current user %@", error);

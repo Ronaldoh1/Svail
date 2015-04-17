@@ -92,7 +92,7 @@
     //[self.currentUser setSessionToken:@"fsafsafafa"];
 
     //  [self.currentUser save];
-    self.service.provider = @"Ronaldoh1";
+    self.service.provider = [User currentUser].username;
     self.service.title = self.serviceTitle.text;
     self.service.serviceDescription = self.serviceDescription.text;
     self.service.category = self.serviceCategory.text;

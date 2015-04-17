@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import <TwitterKit/TwitterKit.h>
+#import <Parse/Parse.h>
 
 @interface RootViewController ()
 
@@ -18,6 +19,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+
+//    // Create our Installation query
+//    PFQuery *pushQuery = [PFInstallation query];
+//    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+//
+//    // Send push notification to query
+//    [PFPush sendPushMessageToQueryInBackground:pushQuery
+//                                   withMessage:@"Hello World!"];
+
+    //
 
 }
 

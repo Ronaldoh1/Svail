@@ -224,12 +224,10 @@
         self.serviceGeoPointToEdit.latitude = newCoordinate.latitude;
         self.serviceGeoPointToEdit.longitude = newCoordinate.longitude;
         self.userLocation = [self getAddressFromLatLong:self.latLong];
-
-
-
-
     }
 }
+
+
 
 
 
