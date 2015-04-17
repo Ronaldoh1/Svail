@@ -8,6 +8,7 @@
 
 #import "TextVeriViewController.h"
 #import <MessageUI/MessageUI.h>
+#import <Parse/Parse.h>
 
 @interface TextVeriViewController () <MFMessageComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self receiveSMSOnParse];
     self.cellPhoneTextField1.placeholder = @"Enter cell phone number";
     self.cellPhoneTextField2.placeholder = @"Enter cell phone number";
     self.cellPhoneTextField3.placeholder = @"Enter cell phone number";
@@ -49,8 +51,11 @@
     }
     
     NSString *message = @"Could you help me complete a simple safety level check for using Svail?";
+    [self sendSMSFromParseWithToNumber:phoneNumbers[0] message:message];
     
-    [self showSMSWithMessage:message phoneNumbers:phoneNumbers];
+
+    
+//    [self showSMSWithMessage:message phoneNumbers:phoneNumbers];
 }
 
 - (void)showSMSWithMessage:(NSString*)message phoneNumbers:(NSArray *)phoneNumbers {
@@ -75,6 +80,31 @@
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)sendSMSFromParseWithToNumber:(NSString *)toNumber message:(NSString *)message
+{
+    [PFCloud callFunctionInBackground:@"sendSMS"
+                       withParameters:@{@"toNumber":toNumber,
+                                        @"message": message}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        // result is @"Hello world!"
+                                        NSLog(@"%@",result);
+                                    }
+                                }];
+}
+
+-(void)receiveSMSOnParse
+{
+    [PFCloud callFunctionInBackground:@"receiveSMS"
+                       withParameters:@{}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        // result is @"Hello world!"
+                                        NSLog(@"%@",result);
+                                    }
+                                }];
 }
 
 @end
