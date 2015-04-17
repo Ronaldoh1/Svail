@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "Svail": {
+      "applicationId": "ebHjZbY6vKWbDo1fmskeLG2XE8Kz6sOEEgXrZolM",
+      "masterKey": "2oeoqtIX5wZ4D4Lz9DRL8PbOKIvuuIY5ZegL0e7b"
+    },
+    "_default": {
+      "link": "Svail"
+    }
+  }
+}
