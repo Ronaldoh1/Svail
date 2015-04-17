@@ -255,5 +255,13 @@
 }
 
 
+- (IBAction)onHistoryButtonTapped:(UIBarButtonItem *)sender
+{
+    UIStoryboard *postStoryBoard = [UIStoryboard storyboardWithName:@"Post" bundle:nil];
+    UIViewController *postHistoryVC = [postStoryBoard instantiateViewControllerWithIdentifier:@"PostHistoryVC"];
+    [self presentViewController:postHistoryVC animated:true completion:nil];
+}
+
+
 
 @end

@@ -60,18 +60,23 @@
                             <constraint firstItem="pYO-oJ-JtS" firstAttribute="top" secondItem="kJD-Xw-swe" secondAttribute="bottom" id="xkI-IT-OMh"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="xkR-at-N3g">
-                        <barButtonItem key="leftBarButtonItem" id="abS-05-QeI"/>
+                        <barButtonItem key="leftBarButtonItem" title="H" id="FZO-OJ-0Km">
+                            <connections>
+                                <action selector="onHistoryButtonTapped:" destination="iuj-oN-AdL" id="bUV-ef-ucB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="U7w-NT-sOs">
                             <connections>
                                 <action selector="onAddServiceButtonTapped:" destination="iuj-oN-AdL" id="9Fn-fy-ulP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="mapView" destination="1u1-8H-yFA" id="mlG-56-Kwk"/>
-                        <outlet property="profileButton" destination="abS-05-QeI" id="MRU-mg-CKv"/>
                         <outlet property="searchBar" destination="kJD-Xw-swe" id="FeS-iU-pgq"/>
                         <outlet property="segmentedControl" destination="pYO-oJ-JtS" id="Yh3-ND-FtS"/>
                     </connections>
@@ -99,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="1254" y="309"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="en1-vw-rzn">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabBarVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hxE-7f-NYo" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hxE-7f-NYo" customClass="TabBarViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
