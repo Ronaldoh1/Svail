@@ -13,6 +13,8 @@
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 #import "Stripe.h"
+#import "User.h"
+
 
 NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
 
@@ -46,6 +48,7 @@ NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
     [Parse setApplicationId:@"ebHjZbY6vKWbDo1fmskeLG2XE8Kz6sOEEgXrZolM"
                   clientKey:@"U8IGSnk5tGWURWY0xeQGfXakjWpSiGUbGtKYDShI"];
 
+  
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
 

@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import <TwitterKit/TwitterKit.h>
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface RootViewController ()
 
@@ -29,6 +30,18 @@
 //                                   withMessage:@"Hello World!"];
 
     //
+
+    if (![User currentUser]) {
+        // show log in screen
+
+        NSLog(@"User is not logged in");
+    } else {
+        UIStoryboard *mapStoryBoard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
+        UIViewController *MapVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+        [self presentViewController:MapVC animated:true completion:nil];
+
+    }
+
 
 }
 
