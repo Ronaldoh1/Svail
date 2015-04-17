@@ -65,6 +65,7 @@
 		F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365E1ADE2015006153EC /* SelectImageViewController.m */; };
 		F24B36631ADE2A75006153EC /* ProviderAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36621ADE2A75006153EC /* ProviderAvailability.m */; };
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
+		F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,9 @@
 		F24B36621ADE2A75006153EC /* ProviderAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderAvailability.m; sourceTree = "<group>"; };
 		F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationFromMapViewController.h; sourceTree = "<group>"; };
 		F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLocationFromMapViewController.m; sourceTree = "<group>"; };
+		F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Svail.entitlements; sourceTree = "<group>"; };
+		F2A4FC031AE0FEE00022AAB8 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +252,7 @@
 		F24B359F1ADB7E54006153EC /* Svail */ = {
 			isa = PBXGroup;
 			children = (
+				F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */,
 				F24B36211ADC6A93006153EC /* Stripe */,
 				F24B36201ADC6A7B006153EC /* PostService */,
 				F24B361E1ADC69BB006153EC /* Verification */,
@@ -417,6 +422,8 @@
 			isa = PBXGroup;
 			children = (
 				F24B362E1ADC6B57006153EC /* Stripe.storyboard */,
+				F2A4FC031AE0FEE00022AAB8 /* PaymentViewController.h */,
+				F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */,
 			);
 			name = Stripe;
 			sourceTree = "<group>";
@@ -482,6 +489,12 @@
 				TargetAttributes = {
 					F24B359C1ADB7E54006153EC = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = A37GTC4NZF;
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 1;
+							};
+						};
 					};
 					F24B35B81ADB7E54006153EC = {
 						CreatedOnToolsVersion = 6.3;
@@ -605,6 +618,7 @@
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */,
 				F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */,
+				F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
@@ -740,13 +754,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.Svail.Svail";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					STRIPE_ENABLE_APPLEPAY,
+				);
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -759,13 +782,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.Svail.Svail";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					STRIPE_ENABLE_APPLEPAY,
+				);
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
