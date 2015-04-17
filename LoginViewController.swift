@@ -17,6 +17,9 @@ class LoginViewController: UIViewController, UIAlertViewDelegate{
 
         self.view.userInteractionEnabled = true
     }
+    @IBAction func onCancelButtonPressed(sender: UIButton) {
+        
+    }
 
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
     {

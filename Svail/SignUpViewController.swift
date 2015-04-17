@@ -10,6 +10,8 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -18,7 +20,11 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.userInteractionEnabled = true
-        
+        self.cancelButton = UIButton.buttonWithType(.Custom) as! UIButton
+        self.cancelButton.backgroundColor = UIColor(red: 78/255.0, green: 56/255.0, blue: 126/255.0, alpha: 1.0)
+        self.registerButton = UIButton.buttonWithType(.Custom) as! UIButton
+        self.registerButton.backgroundColor = UIColor(red: 103/255.0, green: 125/255.0, blue: 55/255.0, alpha: 1.0)
+
     }
 
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
