@@ -1,5 +1,4 @@
-//
-//  MapViewController.m
+///  MapViewController.m
 //  Svail
 //
 //  Created by Mert Akanay on 4/14/15.

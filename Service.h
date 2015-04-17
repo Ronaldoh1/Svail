@@ -18,12 +18,14 @@
 @property NSString *category;
 @property PFGeoPoint *checkInLocation;
 @property BOOL isReserved;
-@property NSString *location;
+@property PFGeoPoint *theServiceGeoPoint;
+@property NSString *serviceLocationAddress;
 @property NSNumber *price;
 @property NSString *provider;
-@property NSDate *specificTime;
+@property NSDate *startDate;
+@property NSDate *endDate;
 @property BOOL travel;
-@property NSString *description;
+@property NSString *serviceDescription;
 
 
 @end
