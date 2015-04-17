@@ -9,8 +9,11 @@
 #import "RootViewController.h"
 #import <TwitterKit/TwitterKit.h>
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface RootViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *signInButton;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 
 @end
 
@@ -18,8 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 
+    self.signInButton.backgroundColor = [UIColor colorWithRed:194/255.0 green:223/255.0 blue:255/255.0 alpha:1.0];
+    self.signUpButton.backgroundColor = [UIColor colorWithRed:194/255.0 green:223/255.0 blue:255/255.0 alpha:1.0];
 //    // Create our Installation query
 //    PFQuery *pushQuery = [PFInstallation query];
 //    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
@@ -30,12 +34,20 @@
 
     //
 
+    if (![User currentUser]) {
+        // show log in screen
+
+        NSLog(@"User is not logged in");
+    } else {
+        UIStoryboard *mapStoryBoard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
+        UIViewController *MapVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+        [self presentViewController:MapVC animated:true completion:nil];
+
+    }
+
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)presentSignInButton:(UIButton *)sender
 {
         UIStoryboard *loginStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
@@ -48,6 +60,16 @@
     UIStoryboard *signUpStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     UIViewController *signUpVC = [signUpStoryBoard instantiateViewControllerWithIdentifier:@"SignUpNavVC"];
     [self presentViewController:signUpVC animated:true completion:nil];
+}
+
+-(IBAction)unwindSegueFromLogInViewController:(UIStoryboardSegue *)segue
+{
+    
+}
+
+-(IBAction)unwindSegueFromRegisterViewController:(UIStoryboardSegue *)segue
+{
+    
 }
 
 

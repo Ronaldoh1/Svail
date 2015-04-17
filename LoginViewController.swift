@@ -10,10 +10,15 @@ import UIKit
 
 class LoginViewController: UIViewController, UIAlertViewDelegate{
 
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.cancelButton.backgroundColor = UIColor(red: 78/255.0, green: 56/255.0, blue: 126/255.0, alpha: 1.0)
+        self.loginButton.backgroundColor = UIColor(red: 103/255.0, green: 125/255.0, blue: 55/255.0, alpha: 1.0)
 
         self.view.userInteractionEnabled = true
     }
