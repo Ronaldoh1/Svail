@@ -1,0 +1,46 @@
+//
+//  Service.m
+//  Svail
+//
+//  Created by Ronald Hernandez on 4/14/15.
+//  Copyright (c) 2015 Svail. All rights reserved.
+//
+
+#import "Service.h"
+
+@implementation Service
+
+@dynamic title;
+@dynamic availability;
+@dynamic capacity;
+@dynamic category;
+@dynamic checkInLocation;
+@dynamic isReserved;
+@dynamic theServiceGeoPoint;
+@dynamic price;
+@dynamic provider;
+@dynamic startDate;
+@dynamic endDate;
+@dynamic travel;
+<<<<<<< HEAD
+@dynamic description;
+@synthesize annotation;
+=======
+@dynamic serviceLocationAddress;
+@dynamic serviceDescription;
+>>>>>>> 3e578ab94a8644d24bb7358548d54ea4f5dfd8f0
+
++ (void)load{
+    [self registerSubclass];
+}
++ (NSString *)parseClassName{
+    return @"Service";
+}
+
+
+
+
+
+
+
+@end

@@ -7,22 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3060ABBB5353AFCA3B670434 /* libPods-Svail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3587A31141F93B686E121083 /* libPods-Svail.a */; };
 		3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */; };
 		3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */; };
 		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
-<<<<<<< HEAD
-		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
-		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
-		3E4036E91ADDF5BA00C4A0A0 /* draggableAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E81ADDF5BA00C4A0A0 /* draggableAnnotation.m */; };
-=======
 		3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */; };
 		3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD921ADDB4EC00105272 /* TextVeriViewController.m */; };
 		36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE95591ADDC93900ABDB93 /* TwitterKit.framework */; };
 		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
->>>>>>> Verification
+		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
+		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
 		3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */; };
+		3EC9D3D81AE16E1B00071FF3 /* Circle Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9D3D71AE16E1B00071FF3 /* Circle Button.m */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
 		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
 		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
@@ -55,7 +53,6 @@
 		F24B36331ADC74FF006153EC /* heartz.png in Resources */ = {isa = PBXBuildFile; fileRef = F24B36321ADC74FF006153EC /* heartz.png */; };
 		F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B36371ADC781F006153EC /* LoginViewController.swift */; };
 		F24B363D1ADCA6D0006153EC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B363C1ADCA6D0006153EC /* User.m */; };
-		F24B36401ADCABF0006153EC /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B363F1ADCABF0006153EC /* Product.m */; };
 		F24B36431ADCB0E8006153EC /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36421ADCB0E8006153EC /* Purchase.m */; };
 		F24B36461ADCB320006153EC /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36451ADCB320006153EC /* Image.m */; };
 		F24B36491ADCB534006153EC /* Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36481ADCB534006153EC /* Rating.m */; };
@@ -65,6 +62,10 @@
 		F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */; };
 		F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36561ADD4FDB006153EC /* PostDetailViewController.m */; };
 		F24B365C1ADDA923006153EC /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365B1ADDA923006153EC /* Service.m */; };
+		F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365E1ADE2015006153EC /* SelectImageViewController.m */; };
+		F24B36631ADE2A75006153EC /* ProviderAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36621ADE2A75006153EC /* ProviderAvailability.m */; };
+		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
+		F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,17 +79,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3587A31141F93B686E121083 /* libPods-Svail.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Svail.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		3E4036DB1ADD882600C4A0A0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
-		3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationDownloader.m; sourceTree = "<group>"; };
-		3E4036E71ADDF5BA00C4A0A0 /* draggableAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draggableAnnotation.h; sourceTree = "<group>"; };
-		3E4036E81ADDF5BA00C4A0A0 /* draggableAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = draggableAnnotation.m; sourceTree = "<group>"; };
-=======
 		3666FD8E1ADDB4CE00105272 /* SocialVeriViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialVeriViewController.h; sourceTree = "<group>"; };
 		3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialVeriViewController.m; sourceTree = "<group>"; };
 		3666FD911ADDB4EC00105272 /* TextVeriViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextVeriViewController.h; sourceTree = "<group>"; };
@@ -96,9 +90,16 @@
 		36DE95591ADDC93900ABDB93 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
->>>>>>> Verification
+		3E4036DB1ADD882600C4A0A0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
+		3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationDownloader.m; sourceTree = "<group>"; };
 		3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
+		3EC9D3D61AE16E1B00071FF3 /* Circle Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Circle Button.h"; sourceTree = "<group>"; };
+		3EC9D3D71AE16E1B00071FF3 /* Circle Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Circle Button.m"; sourceTree = "<group>"; };
+		A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.release.xcconfig"; sourceTree = "<group>"; };
+		D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.debug.xcconfig"; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24B35A11ADB7E54006153EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F24B35A21ADB7E54006153EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -139,8 +140,6 @@
 		F24B36371ADC781F006153EC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		F24B363B1ADCA6D0006153EC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		F24B363C1ADCA6D0006153EC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		F24B363E1ADCABEF006153EC /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		F24B363F1ADCABF0006153EC /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		F24B36411ADCB0E8006153EC /* Purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchase.h; sourceTree = "<group>"; };
 		F24B36421ADCB0E8006153EC /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
 		F24B36441ADCB320006153EC /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -159,6 +158,15 @@
 		F24B36581ADD8116006153EC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F24B365A1ADDA923006153EC /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
 		F24B365B1ADDA923006153EC /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
+		F24B365D1ADE2015006153EC /* SelectImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectImageViewController.h; sourceTree = "<group>"; };
+		F24B365E1ADE2015006153EC /* SelectImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageViewController.m; sourceTree = "<group>"; };
+		F24B36611ADE2A75006153EC /* ProviderAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderAvailability.h; sourceTree = "<group>"; };
+		F24B36621ADE2A75006153EC /* ProviderAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderAvailability.m; sourceTree = "<group>"; };
+		F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationFromMapViewController.h; sourceTree = "<group>"; };
+		F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLocationFromMapViewController.m; sourceTree = "<group>"; };
+		F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Svail.entitlements; sourceTree = "<group>"; };
+		F2A4FC031AE0FEE00022AAB8 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +193,7 @@
 				3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */,
 				F24B35CD1ADB958C006153EC /* Bolts.framework in Frameworks */,
 				36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */,
+				3060ABBB5353AFCA3B670434 /* libPods-Svail.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,15 +207,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3EC9D3D51AE16DC500071FF3 /* Cosmetic */ = {
+			isa = PBXGroup;
+			children = (
+				3EC9D3D61AE16E1B00071FF3 /* Circle Button.h */,
+				3EC9D3D71AE16E1B00071FF3 /* Circle Button.m */,
+			);
+			name = Cosmetic;
+			sourceTree = "<group>";
+		};
+		B703C6E9E7BC9786448E02AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */,
+				A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F24B35941ADB7E53006153EC = {
 			isa = PBXGroup;
 			children = (
+				3EC9D3D51AE16DC500071FF3 /* Cosmetic */,
+				F24B36601ADE2A48006153EC /* Custom Objects */,
 				F24B35CA1ADB9569006153EC /* Frameworks */,
 				F24B35C91ADB953D006153EC /* Data Model */,
 				F24B359F1ADB7E54006153EC /* Svail */,
 				F24B35BC1ADB7E54006153EC /* SvailTests */,
 				F24B359E1ADB7E54006153EC /* Products */,
 				F24B36361ADC781E006153EC /* Svail-Bridging-Header.h */,
+				B703C6E9E7BC9786448E02AE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,6 +252,7 @@
 		F24B359F1ADB7E54006153EC /* Svail */ = {
 			isa = PBXGroup;
 			children = (
+				F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */,
 				F24B36211ADC6A93006153EC /* Stripe */,
 				F24B36201ADC6A7B006153EC /* PostService */,
 				F24B361E1ADC69BB006153EC /* Verification */,
@@ -275,8 +306,6 @@
 			children = (
 				F24B363B1ADCA6D0006153EC /* User.h */,
 				F24B363C1ADCA6D0006153EC /* User.m */,
-				F24B363E1ADCABEF006153EC /* Product.h */,
-				F24B363F1ADCABF0006153EC /* Product.m */,
 				F24B36411ADCB0E8006153EC /* Purchase.h */,
 				F24B365A1ADDA923006153EC /* Service.h */,
 				F24B365B1ADDA923006153EC /* Service.m */,
@@ -294,13 +323,10 @@
 		F24B35CA1ADB9569006153EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				F24B36581ADD8116006153EC /* AVFoundation.framework */,
-=======
 				36DE95591ADDC93900ABDB93 /* TwitterKit.framework */,
 				36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */,
 				36DE955B1ADDC93900ABDB93 /* Fabric.framework */,
->>>>>>> Verification
 				3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */,
 				3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */,
 				3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */,
@@ -318,6 +344,7 @@
 				F24B35CF1ADB95AA006153EC /* SystemConfiguration.framework */,
 				F24B35CB1ADB958C006153EC /* Bolts.framework */,
 				F24B35CC1ADB958C006153EC /* Parse.framework */,
+				3587A31141F93B686E121083 /* libPods-Svail.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -341,8 +368,6 @@
 				F24B36241ADC6AF1006153EC /* Map.storyboard */,
 				3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */,
 				3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */,
-				3E4036E71ADDF5BA00C4A0A0 /* draggableAnnotation.h */,
-				3E4036E81ADDF5BA00C4A0A0 /* draggableAnnotation.m */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -379,8 +404,12 @@
 			isa = PBXGroup;
 			children = (
 				F24B362C1ADC6B4B006153EC /* Post.storyboard */,
+				F24B365D1ADE2015006153EC /* SelectImageViewController.h */,
+				F24B365E1ADE2015006153EC /* SelectImageViewController.m */,
 				F24B364D1ADCD911006153EC /* PostViewController.h */,
 				F24B364E1ADCD911006153EC /* PostViewController.m */,
+				F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */,
+				F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */,
 				F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */,
 				F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */,
 				F24B36551ADD4FDB006153EC /* PostDetailViewController.h */,
@@ -393,8 +422,19 @@
 			isa = PBXGroup;
 			children = (
 				F24B362E1ADC6B57006153EC /* Stripe.storyboard */,
+				F2A4FC031AE0FEE00022AAB8 /* PaymentViewController.h */,
+				F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */,
 			);
 			name = Stripe;
+			sourceTree = "<group>";
+		};
+		F24B36601ADE2A48006153EC /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				F24B36611ADE2A75006153EC /* ProviderAvailability.h */,
+				F24B36621ADE2A75006153EC /* ProviderAvailability.m */,
+			);
+			name = "Custom Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,10 +444,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F24B35C31ADB7E54006153EC /* Build configuration list for PBXNativeTarget "Svail" */;
 			buildPhases = (
+				8952A51A448E1DB8B6B4AF1C /* Check Pods Manifest.lock */,
 				F24B35991ADB7E54006153EC /* Sources */,
 				F24B359A1ADB7E54006153EC /* Frameworks */,
 				F24B359B1ADB7E54006153EC /* Resources */,
 				36DE95581ADDC81100ABDB93 /* ShellScript */,
+				87C6D07493B99A3C4C072184 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -447,6 +489,15 @@
 				TargetAttributes = {
 					F24B359C1ADB7E54006153EC = {
 						CreatedOnToolsVersion = 6.3;
+<<<<<<< HEAD
+=======
+						DevelopmentTeam = 75KYW377T5;
+>>>>>>> b10b4f111b3d1fbeeffe0d2db9d8822b9e330094
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 1;
+							};
+						};
 					};
 					F24B35B81ADB7E54006153EC = {
 						CreatedOnToolsVersion = 6.3;
@@ -517,6 +568,36 @@
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run ebccb669ffdc377a48919250999071ac6c811967 69aec51601d34c23e27ccd034d6b51c63fc10215b3f619080b8e8c5ea7ed8845";
 		};
+		87C6D07493B99A3C4C072184 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Svail/Pods-Svail-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8952A51A448E1DB8B6B4AF1C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -528,16 +609,19 @@
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
+				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
-				3E4036E91ADDF5BA00C4A0A0 /* draggableAnnotation.m in Sources */,
-				F24B36401ADCABF0006153EC /* Product.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
+				F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */,
+				3EC9D3D81AE16E1B00071FF3 /* Circle Button.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
+				F24B36631ADE2A75006153EC /* ProviderAvailability.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */,
 				F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */,
+				F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
@@ -669,16 +753,26 @@
 		};
 		F24B35C41ADB7E54006153EC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					STRIPE_ENABLE_APPLEPAY,
+				);
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -687,16 +781,26 @@
 		};
 		F24B35C51ADB7E54006153EC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					STRIPE_ENABLE_APPLEPAY,
+				);
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

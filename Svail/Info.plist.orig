@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>Svail.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.Svail.Svail</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -66,10 +66,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 <<<<<<< HEAD
-	<string>Map</string>
+	<string>Verification</string>
 =======
-	<string>Post</string>
->>>>>>> 3e578ab94a8644d24bb7358548d54ea4f5dfd8f0
+	<string>Main</string>
+>>>>>>> 74e5fce375a4d26dab0738ff25937ff753c12624
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

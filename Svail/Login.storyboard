@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -27,12 +28,21 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mee-cH-4lo">
-                                <rect key="frame" x="183" y="253" width="38" height="30"/>
+                                <rect key="frame" x="276" y="253" width="38" height="30"/>
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onLoginButtonTapped:" destination="0uE-4M-ifM" eventType="touchUpInside" id="ZIX-b2-CdQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBU-oR-EVu">
+                                <rect key="frame" x="101" y="253" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCancelButtonPressed:" destination="0uE-4M-ifM" eventType="touchUpInside" id="Kkl-lW-x1V"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -81,8 +91,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YV7-qj-df0">
-                                <rect key="frame" x="83" y="319" width="48" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YV7-qj-df0">
+                                <rect key="frame" x="106" y="319" width="48" height="30"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -90,8 +100,8 @@
                                     <action selector="onCancelButtonTapped:" destination="EYT-WK-rZb" eventType="touchUpInside" id="AcF-Px-1lb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dun-Y5-Bxe">
-                                <rect key="frame" x="233" y="319" width="57" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dun-Y5-Bxe">
+                                <rect key="frame" x="256" y="319" width="57" height="30"/>
                                 <state key="normal" title="Register">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -101,14 +111,21 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Dun-Y5-Bxe" secondAttribute="trailing" constant="101" id="dpr-2e-g3m"/>
+                            <constraint firstItem="YV7-qj-df0" firstAttribute="baseline" secondItem="Dun-Y5-Bxe" secondAttribute="baseline" id="n2C-OS-lBB"/>
+                            <constraint firstItem="YV7-qj-df0" firstAttribute="leading" secondItem="ff2-g8-OYP" secondAttribute="leadingMargin" constant="90" id="qbO-ci-vSL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9Vt-Vj-Rrd"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="cancelButton" destination="YV7-qj-df0" id="Syy-oJ-pf5"/>
                         <outlet property="confirmPasswordTextField" destination="v5B-dt-z4d" id="yCX-n0-iEs"/>
                         <outlet property="emailTextField" destination="TAi-Lh-PEW" id="Pj5-9O-49g"/>
                         <outlet property="passwordTextField" destination="ARq-hL-MBp" id="u4r-w1-vEa"/>
                         <outlet property="phoneNumberTextField" destination="yMv-Xs-aZh" id="K9R-TA-4k2"/>
+                        <outlet property="registerButton" destination="Dun-Y5-Bxe" id="hdk-7i-CgJ"/>
                         <segue destination="ogh-Sm-k1w" kind="show" identifier="toCreateProfileSegue" id="MqR-Th-edO"/>
                     </connections>
                 </viewController>
@@ -132,7 +149,7 @@
                                 <rect key="frame" x="162" y="86" width="90" height="90"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="full name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oPV-LP-HRZ">
-                                <rect key="frame" x="100" y="215" width="215" height="30"/>
+                                <rect key="frame" x="100" y="216" width="215" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -147,22 +164,22 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="state/country" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gmI-Gl-2Qi">
-                                <rect key="frame" x="100" y="354" width="215" height="30"/>
+                                <rect key="frame" x="100" y="351" width="215" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="specialty" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qzJ-9j-CJg">
-                                <rect key="frame" x="100" y="400" width="215" height="30"/>
+                                <rect key="frame" x="100" y="396" width="215" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="occupation" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X7i-vW-sPR">
-                                <rect key="frame" x="100" y="447" width="215" height="30"/>
+                                <rect key="frame" x="100" y="441" width="215" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Bn-wf-oVB">
-                                <rect key="frame" x="100" y="499" width="31" height="30"/>
+                                <rect key="frame" x="100" y="487" width="31" height="30"/>
                                 <state key="normal" title="Skip">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -171,7 +188,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xx9-c7-GZg">
-                                <rect key="frame" x="274" y="499" width="41" height="30"/>
+                                <rect key="frame" x="274" y="487" width="41" height="30"/>
                                 <state key="normal" title="Finish">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
