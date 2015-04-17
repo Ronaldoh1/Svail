@@ -63,6 +63,7 @@
 		F24B365C1ADDA923006153EC /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365B1ADDA923006153EC /* Service.m */; };
 		F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365E1ADE2015006153EC /* SelectImageViewController.m */; };
 		F24B36631ADE2A75006153EC /* ProviderAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36621ADE2A75006153EC /* ProviderAvailability.m */; };
+		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,8 @@
 		F24B365E1ADE2015006153EC /* SelectImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageViewController.m; sourceTree = "<group>"; };
 		F24B36611ADE2A75006153EC /* ProviderAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderAvailability.h; sourceTree = "<group>"; };
 		F24B36621ADE2A75006153EC /* ProviderAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderAvailability.m; sourceTree = "<group>"; };
+		F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationFromMapViewController.h; sourceTree = "<group>"; };
+		F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLocationFromMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +390,8 @@
 				F24B365E1ADE2015006153EC /* SelectImageViewController.m */,
 				F24B364D1ADCD911006153EC /* PostViewController.h */,
 				F24B364E1ADCD911006153EC /* PostViewController.m */,
+				F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */,
+				F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */,
 				F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */,
 				F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */,
 				F24B36551ADD4FDB006153EC /* PostDetailViewController.h */,
@@ -578,6 +583,7 @@
 				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
+				F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
 				F24B36631ADE2A75006153EC /* ProviderAvailability.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,

@@ -10,17 +10,17 @@
 
 @implementation EventLocationDownloader 
 
-+(void)downloadEventLocation:(void (^)(MKPointAnnotation *))complete
++(void)downloadEventLocation:(void (^)(NSArray *))complete
 {
-    MKPointAnnotation *randomAnnotation;
-    double latitude = 38.790752;
-    double longtitude = -123.402039;
-    CLLocationCoordinate2D makersCoordinate = CLLocationCoordinate2DMake(latitude, longtitude);
-    randomAnnotation = [[MKPointAnnotation alloc] init];
-    randomAnnotation.title = @"random location";
-    randomAnnotation.coordinate = makersCoordinate;
+    NSArray *emptyArray = @[];
+    PFQuery *newQuery=[Service query];
+    [newQuery whereKey:@"startDate" notContainedIn:emptyArray];
+    [newQuery findObjectsInBackgroundWithBlock:^(NSArray *services, NSError *error) {
 
-    complete (randomAnnotation);
+        NSArray *eventsArray = services;
+
+        complete (eventsArray);
+    }];
 }
 
 

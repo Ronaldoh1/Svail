@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <Parse/Parse.h>
 
 @interface PostViewController : UIViewController
+
+@property PFGeoPoint *serviceGeoPoint;
 
 @end

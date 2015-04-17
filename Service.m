@@ -16,12 +16,15 @@
 @dynamic category;
 @dynamic checkInLocation;
 @dynamic isReserved;
-@dynamic location;
+@dynamic theServiceGeoPoint;
 @dynamic price;
 @dynamic provider;
-@dynamic specificTime;
+@dynamic startDate;
+@dynamic endDate;
 @dynamic travel;
-@dynamic description;
+@dynamic serviceLocationAddress;
+@dynamic serviceDescription;
+@synthesize annotation;
 
 + (void)load{
     [self registerSubclass];
@@ -29,6 +32,8 @@
 + (NSString *)parseClassName{
     return @"Service";
 }
+
+
 
 
 
