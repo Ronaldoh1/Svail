@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "Service.h"
 #import "User.h"
+#import "SelectLocationFromMapViewController.h"
 
 
 
@@ -21,17 +22,19 @@
 @property (weak, nonatomic) IBOutlet UITextField *serviceCategory;
 @property (weak, nonatomic) IBOutlet UITextField *serviceCapacity;
 @property (weak, nonatomic) IBOutlet UITextField *location;
-@property (weak, nonatomic) IBOutlet UITextField *availability;
 
 @property Service *service;
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *startPickerDate;
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *endPickerDate;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControlPicker;
 
 @property User *currentUser;
+@property (weak, nonatomic) IBOutlet UIView *firstView;
 
+@property (weak, nonatomic) IBOutlet UIView *secondView;
 
 @end
 
@@ -42,8 +45,13 @@
     // Do any additional setup after loading the view.
 
     self.service = [Service new];
-    self.startPickerDate.transform = CGAffineTransformMakeScale(0.65, 0.5);
-    self.endPickerDate.transform = CGAffineTransformMakeScale(0.65, 0.5);
+    self.startPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
+    self.endPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
+
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
 
 
 }
@@ -61,6 +69,16 @@
 
     NSString *errorMessage = @"Error in from. Please note - All fields are required";
 
+
+//    NSDate *startDate = [self.startPickerDate date];
+//
+//
+//
+//    NSDate *endDate = [self.endPickerDate date];
+
+
+
+
     // if ([self.serviceTitle.text isEqualToString:@""] || [self.serviceDescription.text isEqualToString:@""] || [self.serviceCategory.text isEqualToString:@""] || [self.serviceCapacity.text isEqualToString:@""] || [self.location.text isEqualToString:@""]) {
     //
     //        [self displayErrorAlert:errorMessage];
@@ -76,15 +94,27 @@
     //  [self.currentUser save];
     self.service.provider = @"Ronaldoh1";
     self.service.title = self.serviceTitle.text;
-    self.service.description = self.serviceDescription.text;
+    self.service.serviceDescription = self.serviceDescription.text;
     self.service.category = self.serviceCategory.text;
     self.service.capacity = ((NSNumber *)self.serviceCapacity.text);
-    self.service.location = self.location.text;
+    self.service.serviceLocationAddress = self.location.text;
+     self.service.startDate = [self.startPickerDate date];
+     self.service.endDate = [self.endPickerDate date];
+
     if (self.segmentedControlPicker.selectedSegmentIndex == 0) {
         self.service.travel = false;
     }else if (self.segmentedControlPicker.selectedSegmentIndex == 1){
         self.service.travel = true;
     }
+    //save the geopoint
+    self.service.theServiceGeoPoint = self.serviceGeoPoint;
+
+
+
+
+
+
+
 
     //Indicator starts annimating when signing up.
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -114,9 +144,49 @@
 
 
 
+
+
+}
+
+-(NSString*)getAddressFromLatLong : (NSString *)latLng {
+    //  NSString *string = [[Address.text stringByAppendingFormat:@"+%@",cityTxt.text] stringByAppendingFormat:@"+%@",addressText];
+    NSString *esc_addr =  [latLng stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    NSString *req = [NSString stringWithFormat:@"http://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
+    NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:req] encoding:NSUTF8StringEncoding error:NULL];
+    NSMutableDictionary *data = [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding]options:NSJSONReadingMutableContainers error:nil];
+    NSMutableArray *dataArray = (NSMutableArray *)[data valueForKey:@"results" ];
+    if (dataArray.count == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Enter a valid address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }else{
+        for (id firstTime in dataArray) {
+            NSString *jsonStr1 = [firstTime valueForKey:@"formatted_address"];
+            return jsonStr1;
+        }
+    }
+
+    return nil;
 }
 
 
+-(IBAction)unwindSegueFromSelectLocationFromMapViewController:(UIStoryboardSegue *)segue{
+
+    if ([segue.sourceViewController isKindOfClass:[SelectLocationFromMapViewController class]]) {
+        SelectLocationFromMapViewController *selectLocationVC = [segue sourceViewController];
+        // if the user clicked Cancel, we don't want to change the color
+        self.serviceGeoPoint = [PFGeoPoint new];
+
+        self.serviceGeoPoint.latitude = selectLocationVC.serviceGeoPointFromMap.latitude;
+        self.serviceGeoPoint.longitude = selectLocationVC.serviceGeoPointFromMap.longitude;
+        self.location.text = selectLocationVC.userLocation;
+
+        NSLog(@"%f %f", self.serviceGeoPoint.longitude, self.serviceGeoPoint.latitude);
+    }
+}
+- (IBAction)onTappedButtonSetLocation:(UIButton *)sender {
+        [self performSegueWithIdentifier:@"toSelectLocationFromMap" sender:self];
+}
 
 //hide keyboard when user touches outside.
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

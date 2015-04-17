@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Service.h"
 
 @interface PostDetailViewController : UIViewController
+@property Service *serviceToViewEdit;
 
 @end

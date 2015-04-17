@@ -1,5 +1,4 @@
-//
-//  MapViewController.m
+///  MapViewController.m
 //  Svail
 //
 //  Created by Mert Akanay on 4/14/15.
@@ -196,7 +195,7 @@
 - (IBAction)onAddServiceButtonTapped:(UIBarButtonItem *)sender
 {
         UIStoryboard *postStoryBoard = [UIStoryboard storyboardWithName:@"Post" bundle:nil];
-        UIViewController *postVC = [postStoryBoard instantiateViewControllerWithIdentifier:@"postNavBar"];
+        UIViewController *postVC = [postStoryBoard instantiateViewControllerWithIdentifier:@"PostNavBar"];
         [self presentViewController:postVC animated:true completion:nil];
 }
 
