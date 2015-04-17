@@ -494,7 +494,7 @@
 				TargetAttributes = {
 					F24B359C1ADB7E54006153EC = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = A37GTC4NZF;
+						DevelopmentTeam = 75KYW377T5;
 						SystemCapabilities = {
 							com.apple.OMC = {
 								enabled = 1;
@@ -761,7 +761,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.Svail.Svail";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -789,7 +789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.Svail.Svail";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
