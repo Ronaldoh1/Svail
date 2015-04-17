@@ -11,6 +11,8 @@
 #import <Parse/Parse.h>
 
 @interface RootViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *signInButton;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 
 @end
 
@@ -18,24 +20,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 
-//    // Create our Installation query
-//    PFQuery *pushQuery = [PFInstallation query];
-//    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
-//
-//    // Send push notification to query
-//    [PFPush sendPushMessageToQueryInBackground:pushQuery
-//                                   withMessage:@"Hello World!"];
-
-    //
-
+    self.signInButton.backgroundColor = [UIColor colorWithRed:194/255.0 green:223/255.0 blue:255/255.0 alpha:1.0];
+    self.signUpButton.backgroundColor = [UIColor colorWithRed:194/255.0 green:223/255.0 blue:255/255.0 alpha:1.0];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)presentSignInButton:(UIButton *)sender
 {
         UIStoryboard *loginStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];

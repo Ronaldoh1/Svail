@@ -10,6 +10,8 @@ import UIKit
 
 class CreateProfileViewController: UIViewController {
 
+    @IBOutlet weak var finishButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var occupationTextField: UITextField!
     @IBOutlet weak var specialtyTextField: UITextField!
     @IBOutlet weak var stateTextField: UITextField!
@@ -21,6 +23,9 @@ class CreateProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.skipButton.backgroundColor = UIColor(red: 78/255.0, green: 56/255.0, blue: 126/255.0, alpha: 1.0)
+        self.finishButton.backgroundColor = UIColor(red: 103/255.0, green: 125/255.0, blue: 55/255.0, alpha: 1.0)
 
         self.view.userInteractionEnabled = true
 
@@ -52,20 +57,19 @@ class CreateProfileViewController: UIViewController {
 
         }else{
 
-            var user = PFUser()
-            user["name"] = fullNameTextField.text
-            user["gender"] = genderTextField.text
-            user["city"] = cityTextField.text
-            user["state"] = stateTextField.text
-            user["specialty"] = specialtyTextField.text
-            user["occupation"] = occupationTextField.text
+            self.currentUser["name"] = fullNameTextField.text
+            self.currentUser["gender"] = genderTextField.text
+            self.currentUser["city"] = cityTextField.text
+            self.currentUser["state"] = stateTextField.text
+            self.currentUser["specialty"] = specialtyTextField.text
+            self.currentUser["occupation"] = occupationTextField.text
 
+            self.currentUser.save()
 
-            let mapStoryBoard = UIStoryboard(name: "Map", bundle: nil)
-            let tabBarVC = mapStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
-            self.presentViewController(tabBarVC, animated: true, completion: nil)
+            let verificationStoryBoard = UIStoryboard(name: "Verification", bundle: nil)
+            let navBarVC = verificationStoryBoard.instantiateViewControllerWithIdentifier("VeriNavVC") as! UIViewController
+            self.presentViewController(navBarVC, animated: true, completion: nil)
 
-            self.currentUser.saveInBackgroundWithTarget(nil, selector: nil)
 
         }
 
