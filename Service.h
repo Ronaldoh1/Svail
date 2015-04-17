@@ -24,6 +24,7 @@
 @property NSDate *specificTime;
 @property BOOL travel;
 @property NSString *description;
+@property MKPointAnnotation *annotation;
 
 
 @end

@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import <Parse/Parse.h>
+#import "Service.h"
 
 @interface EventLocationDownloader : NSObject <MKMapViewDelegate>
 
-+(void)downloadEventLocation:(void (^)(MKPointAnnotation *))complete;
++(void)downloadEventLocation:(void (^)(NSArray *))complete;
 
 @end

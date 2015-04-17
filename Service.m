@@ -22,6 +22,7 @@
 @dynamic specificTime;
 @dynamic travel;
 @dynamic description;
+@synthesize annotation;
 
 + (void)load{
     [self registerSubclass];
