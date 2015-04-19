@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <Fabric/Fabric.h>
@@ -47,6 +48,8 @@ NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
     [Fabric with:@[TwitterKit]];
     [Parse setApplicationId:@"ebHjZbY6vKWbDo1fmskeLG2XE8Kz6sOEEgXrZolM"
                   clientKey:@"U8IGSnk5tGWURWY0xeQGfXakjWpSiGUbGtKYDShI"];
+//    [PFFacebookUtils initializeFacebookWithLaunchOptions:launchOptions];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
 
   
     return [[FBSDKApplicationDelegate sharedInstance] application:application
@@ -56,7 +59,7 @@ NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
 
 
 
-    return YES;
+//    return YES;
 
 }
 
