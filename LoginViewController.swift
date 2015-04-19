@@ -39,17 +39,22 @@ class LoginViewController: UIViewController, UIAlertViewDelegate{
     func logIn()
     {
 
+        
     PFUser.logInWithUsernameInBackground(self.emailTextField.text, password:self.passwordTextField.text) {
-    (user: PFUser!, error: NSError!) -> Void in
+    (user, error) -> Void in
     if user != nil
     {
-        let mapStoryBoard = UIStoryboard(name: "Map", bundle: nil)
-        let tabBarVC = mapStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
-        self.presentViewController(tabBarVC, animated: true, completion: nil)
+//        let mapStoryBoard = UIStoryboard(name: "Map", bundle: nil)
+//        let tabBarVC = mapStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
+//        self.presentViewController(tabBarVC, animated: true, completion: nil)
+//        
+        let mapStoryBoard = UIStoryboard(name: "Verification", bundle: nil)
+        let veriVC = mapStoryBoard.instantiateViewControllerWithIdentifier("VeriNavVC") as! UIViewController
+        self.presentViewController(veriVC, animated: true, completion: nil)
 
     } else
     {
-        var errorString = error.userInfo?["error"] as? NSString
+        var errorString = error!.userInfo?["error"] as? NSString
         self.showAlert(errorString!)
 //        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }

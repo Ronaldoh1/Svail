@@ -8,8 +8,11 @@
 
 #import "RootViewController.h"
 #import <TwitterKit/TwitterKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Parse/Parse.h>
+
 #import "User.h"
+
 
 @interface RootViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;

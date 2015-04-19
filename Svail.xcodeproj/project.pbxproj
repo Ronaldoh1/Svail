@@ -13,6 +13,9 @@
 		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
 		3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */; };
 		3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD921ADDB4EC00105272 /* TextVeriViewController.m */; };
+		36BBC47B1AE43394007960F1 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47A1AE43394007960F1 /* ParseFacebookUtilsV4.framework */; };
+		36BBC47D1AE435E0007960F1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47C1AE435E0007960F1 /* Parse.framework */; };
+		36BBC47F1AE43969007960F1 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47E1AE43969007960F1 /* Bolts.framework */; };
 		36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE95591ADDC93900ABDB93 /* TwitterKit.framework */; };
 		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
@@ -30,8 +33,6 @@
 		F24B35B11ADB7E54006153EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F24B35B01ADB7E54006153EC /* Images.xcassets */; };
 		F24B35B41ADB7E54006153EC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24B35B21ADB7E54006153EC /* LaunchScreen.xib */; };
 		F24B35C01ADB7E54006153EC /* SvailTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35BF1ADB7E54006153EC /* SvailTests.m */; };
-		F24B35CD1ADB958C006153EC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35CB1ADB958C006153EC /* Bolts.framework */; };
-		F24B35CE1ADB958C006153EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35CC1ADB958C006153EC /* Parse.framework */; };
 		F24B35D01ADB95AA006153EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35CF1ADB95AA006153EC /* SystemConfiguration.framework */; };
 		F24B35D21ADB95BB006153EC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35D11ADB95BB006153EC /* libsqlite3.dylib */; };
 		F24B35D41ADB95C5006153EC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35D31ADB95C5006153EC /* libz.dylib */; };
@@ -88,6 +89,9 @@
 		3666FD8F1ADDB4CE00105272 /* SocialVeriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialVeriViewController.m; sourceTree = "<group>"; };
 		3666FD911ADDB4EC00105272 /* TextVeriViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextVeriViewController.h; sourceTree = "<group>"; };
 		3666FD921ADDB4EC00105272 /* TextVeriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextVeriViewController.m; sourceTree = "<group>"; };
+		36BBC47A1AE43394007960F1 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		36BBC47C1AE435E0007960F1 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		36BBC47E1AE43969007960F1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		36DE95591ADDC93900ABDB93 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -117,8 +121,6 @@
 		F24B35B91ADB7E54006153EC /* SvailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SvailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24B35BE1ADB7E54006153EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F24B35BF1ADB7E54006153EC /* SvailTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SvailTests.m; sourceTree = "<group>"; };
-		F24B35CB1ADB958C006153EC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		F24B35CC1ADB958C006153EC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		F24B35CF1ADB95AA006153EC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F24B35D11ADB95BB006153EC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		F24B35D31ADB95C5006153EC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -179,22 +181,23 @@
 			files = (
 				F24B36311ADC6EDD006153EC /* MapKit.framework in Frameworks */,
 				F24B35E41ADB961E006153EC /* AudioToolbox.framework in Frameworks */,
+				36BBC47B1AE43394007960F1 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */,
 				36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */,
 				F24B35E21ADB9613006153EC /* CFNetwork.framework in Frameworks */,
+				36BBC47F1AE43969007960F1 /* Bolts.framework in Frameworks */,
 				F24B35E01ADB95F8006153EC /* CoreLocation.framework in Frameworks */,
 				F24B35DE1ADB95EA006153EC /* CoreGraphics.framework in Frameworks */,
 				F24B35DC1ADB95E4006153EC /* MobileCoreServices.framework in Frameworks */,
 				F24B35DA1ADB95DD006153EC /* QuartzCore.framework in Frameworks */,
+				36BBC47D1AE435E0007960F1 /* Parse.framework in Frameworks */,
 				F24B35D81ADB95D2006153EC /* Security.framework in Frameworks */,
 				F24B35D61ADB95CB006153EC /* StoreKit.framework in Frameworks */,
 				F24B35D41ADB95C5006153EC /* libz.dylib in Frameworks */,
 				3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */,
 				F24B35D21ADB95BB006153EC /* libsqlite3.dylib in Frameworks */,
 				F24B35D01ADB95AA006153EC /* SystemConfiguration.framework in Frameworks */,
-				F24B35CE1ADB958C006153EC /* Parse.framework in Frameworks */,
 				3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */,
-				F24B35CD1ADB958C006153EC /* Bolts.framework in Frameworks */,
 				36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */,
 				3060ABBB5353AFCA3B670434 /* libPods-Svail.a in Frameworks */,
 			);
@@ -311,9 +314,9 @@
 			children = (
 				F24B363B1ADCA6D0006153EC /* User.h */,
 				F24B363C1ADCA6D0006153EC /* User.m */,
-				F24B36411ADCB0E8006153EC /* Purchase.h */,
 				F24B365A1ADDA923006153EC /* Service.h */,
 				F24B365B1ADDA923006153EC /* Service.m */,
+				F24B36411ADCB0E8006153EC /* Purchase.h */,
 				F24B36421ADCB0E8006153EC /* Purchase.m */,
 				F24B36441ADCB320006153EC /* Image.h */,
 				F24B36451ADCB320006153EC /* Image.m */,
@@ -328,6 +331,9 @@
 		F24B35CA1ADB9569006153EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36BBC47E1AE43969007960F1 /* Bolts.framework */,
+				36BBC47C1AE435E0007960F1 /* Parse.framework */,
+				36BBC47A1AE43394007960F1 /* ParseFacebookUtilsV4.framework */,
 				F24B36581ADD8116006153EC /* AVFoundation.framework */,
 				36DE95591ADDC93900ABDB93 /* TwitterKit.framework */,
 				36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */,
@@ -347,8 +353,6 @@
 				F24B35D31ADB95C5006153EC /* libz.dylib */,
 				F24B35D11ADB95BB006153EC /* libsqlite3.dylib */,
 				F24B35CF1ADB95AA006153EC /* SystemConfiguration.framework */,
-				F24B35CB1ADB958C006153EC /* Bolts.framework */,
-				F24B35CC1ADB958C006153EC /* Parse.framework */,
 				3587A31141F93B686E121083 /* libPods-Svail.a */,
 			);
 			name = Frameworks;

@@ -29,7 +29,7 @@ class CreateProfileViewController: UIViewController {
 
         self.view.userInteractionEnabled = true
 
-        self.currentUser = User.currentUser()
+        self.currentUser = User.currentUser()!
     }
 
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
