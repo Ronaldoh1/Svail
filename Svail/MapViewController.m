@@ -41,11 +41,6 @@
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = YES;
 
-    //zooming map to current location at startup
-    double latitude = self.locationManager.location.coordinate.latitude;
-    double longitude = self.locationManager.location.coordinate.longitude;
-    [self zoom:&latitude :&longitude];
-
     self.profileButton.image = [[User currentUser] objectForKey:@"profileImage"];
 
     //setting today's date and the next days of the week for segmented control's titles
@@ -56,25 +51,13 @@
     [self.segmentedControl setTitle:theDate forSegmentAtIndex:0];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *dayComponent = [NSDateComponents new];
-    dayComponent.day = 1;
-    NSDate *nextDay1 = [calendar dateByAddingComponents:dayComponent toDate:currentDate options:0];
-    NSString *nextDay1Date = [dateFormat stringFromDate:nextDay1];
-    [self.segmentedControl setTitle:nextDay1Date forSegmentAtIndex:1];
-    NSDate *nextDay2 = [calendar dateByAddingComponents:dayComponent toDate:nextDay1 options:0];
-    NSString *nextDay2Date = [dateFormat stringFromDate:nextDay2];
-    [self.segmentedControl setTitle:nextDay2Date forSegmentAtIndex:2];
-    NSDate *nextDay3 = [calendar dateByAddingComponents:dayComponent toDate:nextDay2 options:0];
-    NSString *nextDay3Date = [dateFormat stringFromDate:nextDay3];
-    [self.segmentedControl setTitle:nextDay3Date forSegmentAtIndex:3];
-    NSDate *nextDay4 = [calendar dateByAddingComponents:dayComponent toDate:nextDay3 options:0];
-    NSString *nextDay4Date = [dateFormat stringFromDate:nextDay4];
-    [self.segmentedControl setTitle:nextDay4Date forSegmentAtIndex:4];
-    NSDate *nextDay5 = [calendar dateByAddingComponents:dayComponent toDate:nextDay4 options:0];
-    NSString *nextDay5Date = [dateFormat stringFromDate:nextDay5];
-    [self.segmentedControl setTitle:nextDay5Date forSegmentAtIndex:5];
-    NSDate *nextDay6 = [calendar dateByAddingComponents:dayComponent toDate:nextDay5 options:0];
-    NSString *nextDay6Date = [dateFormat stringFromDate:nextDay6];
-    [self.segmentedControl setTitle:nextDay6Date forSegmentAtIndex:6];
+
+    for (int i = 1; i < 7; i++) {
+        dayComponent.day = i;
+        NSDate *nextDay = [calendar dateByAddingComponents:dayComponent toDate:currentDate options:0];
+        NSString *nextDayDate = [dateFormat stringFromDate:nextDay];
+        [self.segmentedControl setTitle:nextDayDate forSegmentAtIndex:i];
+    }
 
     //making segmentedcontrol selected when the view loads
     self.segmentedControl.selected = YES;
@@ -136,11 +119,15 @@
 {
     MKPinAnnotationView *pinAnnotation = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:nil];
 
-    //making the pinAnnotation of user's location draggable
-    if (annotation == mapView.userLocation || annotation == self.draggedAnnotation) {
-        pinAnnotation.pinColor = MKPinAnnotationColorPurple;
-        pinAnnotation.draggable = YES;
+    if (annotation == mapView.userLocation) {
+        return nil;
     }
+
+    //making the pinAnnotation of user's location draggable
+//    if (annotation == mapView.userLocation || annotation == self.draggedAnnotation) {
+//        pinAnnotation.pinColor = MKPinAnnotationColorPurple;
+//        pinAnnotation.draggable = YES;
+//    }
     pinAnnotation.canShowCallout = YES;
     pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
 
@@ -158,12 +145,33 @@
         self.draggedAnnotation.coordinate = newCoordinate;
         self.mapView.showsUserLocation = NO;
         [self.mapView addAnnotation:self.draggedAnnotation];
+
     }
 }
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
     [self.locationManager startUpdatingLocation];
+    
+}
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    //zooming map to current location at startup
+    double latitude = self.locationManager.location.coordinate.latitude;
+    double longitude = self.locationManager.location.coordinate.longitude;
+    [self zoom:&latitude :&longitude];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    //    for (CLLocation *location in locations) {
+    //        if (location.verticalAccuracy < 100 && location.horizontalAccuracy < 100)
+    //        {
+    ////            [self.locationManager stopUpdatingLocation];
+    ////            [self findEventNearby:location];
+    //        }
+    //    }
 }
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
@@ -233,17 +241,6 @@
         [searchBar resignFirstResponder];
 }
 
-//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-//{
-//    for (CLLocation *location in locations) {
-//        if (location.verticalAccuracy < 100 && location.horizontalAccuracy < 100)
-//        {
-////            [self.locationManager stopUpdatingLocation];
-////            [self findEventNearby:location];
-//        }
-//    }
-//}
-
 
 #pragma Mark - Segue to Post Service View Controller
 
@@ -255,11 +252,11 @@
 }
 
 
-- (IBAction)onHistoryButtonTapped:(UIBarButtonItem *)sender
+- (IBAction)onProfileButtonTapped:(UIBarButtonItem *)sender
 {
-    UIStoryboard *postStoryBoard = [UIStoryboard storyboardWithName:@"Post" bundle:nil];
-    UIViewController *postHistoryVC = [postStoryBoard instantiateViewControllerWithIdentifier:@"PostHistoryVC"];
-    [self presentViewController:postHistoryVC animated:true completion:nil];
+    UIStoryboard *editProfileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
+    UIViewController *editProfileVC = [editProfileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
+    [self presentViewController:editProfileVC animated:true completion:nil];
 }
 
 
