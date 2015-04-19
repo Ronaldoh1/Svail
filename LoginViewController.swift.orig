@@ -1,0 +1,152 @@
+//
+//  LoginViewController.swift
+//  Svail
+//
+//  Created by Ronald Hernandez on 4/13/15.
+//  Copyright (c) 2015 Svail. All rights reserved.
+//
+
+import UIKit
+
+class LoginViewController: UIViewController, UIAlertViewDelegate, FBSDKLoginButtonDelegate{
+
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        //Setup Facebook Login Button. 
+
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+            // User is already logged in, do work such as go to next view controller.
+        }
+        else
+        {
+            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+            self.view.addSubview(loginView)
+            loginView.center = self.view.center
+            loginView.readPermissions = ["public_profile", "email", "user_friends"]
+            loginView.delegate = self
+
+        }
+        //        self.cancelButton.backgroundColor = UIColor(red: 78/255.0, green: 56/255.0, blue: 126/255.0, alpha: 1.0)
+        //        self.loginButton.backgroundColor = UIColor(red: 103/255.0, green: 125/255.0, blue: 55/255.0, alpha: 1.0)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+
+        self.view.userInteractionEnabled = true
+    }
+    @IBAction func onCancelButtonPressed(sender: UIButton) {
+
+    }
+
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent){
+        self.view.endEditing(true)
+    }
+
+    @IBAction func onLoginButtonTapped(sender: UIButton){
+        self.logIn()
+    }
+
+<<<<<<< HEAD
+    func logIn(){
+
+
+        
+            PFUser.logInWithUsernameInBackground(self.emailTextField.text, password: self.passwordTextField.text) { (user, signupError) -> Void in
+
+                if user != nil
+                {
+                    let mapStoryBoard = UIStoryboard(name: "Map", bundle: nil)
+                    let tabBarVC = mapStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
+                    self.presentViewController(tabBarVC, animated: true, completion: nil)
+
+                } else
+                {
+                    var errorString = signupError!.userInfo?["error"] as? NSString
+                    self.showAlert(errorString!)
+                    //        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                }
+        }
+=======
+    func logIn()
+    {
+
+        
+    PFUser.logInWithUsernameInBackground(self.emailTextField.text, password:self.passwordTextField.text) {
+    (user, error) -> Void in
+    if user != nil
+    {
+//        let mapStoryBoard = UIStoryboard(name: "Map", bundle: nil)
+//        let tabBarVC = mapStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
+//        self.presentViewController(tabBarVC, animated: true, completion: nil)
+//        
+        let mapStoryBoard = UIStoryboard(name: "Verification", bundle: nil)
+        let veriVC = mapStoryBoard.instantiateViewControllerWithIdentifier("VeriNavVC") as! UIViewController
+        self.presentViewController(veriVC, animated: true, completion: nil)
+
+    } else
+    {
+        var errorString = error!.userInfo?["error"] as? NSString
+        self.showAlert(errorString!)
+//        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    }
+    }
+>>>>>>> 7439452a53a2e68b64c2eba4fd33e2254182553d
+
+    }
+
+
+
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        println("User Logged In")
+
+        if ((error) != nil)
+        {
+            // Process error
+        }
+        else if result.isCancelled {
+            // Handle cancellations
+        }
+        else {
+            // If you ask for multiple permissions at once, you
+            // should check if specific permissions missing
+            if result.grantedPermissions.contains("email")
+            {
+                // Do work
+            }
+        }
+    }
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        println("User Logged Out")
+    }
+    
+    func showAlert(error:NSString){
+
+        let alertController = UIAlertController(title: "Error in form", message: error as String, preferredStyle: .Alert)
+
+        let oKAction = UIAlertAction(title: "OK", style: .Cancel){
+
+            (action) in
+        }
+        alertController.addAction(oKAction)
+
+        self.presentViewController(alertController, animated: true) {
+
+        }
+
+    }
+    //Move the keyboard up and down 
+    func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y -= 150
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y += 150
+    }
+    
+    
+}
