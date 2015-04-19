@@ -15,6 +15,8 @@
 #import "LIALinkedInHttpClient.h"
 #import "LIALinkedInApplication.h"
 
+#import "User.h"
+
 
 
 @interface SocialVeriViewController ()
@@ -24,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *fbVeriLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ttVeriLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lkVeriLabel;
+@property (nonatomic) User *currentUser;
 
 
 @end
@@ -40,6 +43,8 @@
     self.ttVeriLabel.text = @"";
     self.lkVeriLabel.textColor = [UIColor lightGrayColor];
     self.lkVeriLabel.text = @"";
+    
+    self.currentUser = [User currentUser];
 }
 
 
@@ -78,6 +83,8 @@
         }
     }];
 }
+
+//-(void)
 
 
 
@@ -186,7 +193,8 @@
     [self.linkedIn GET:[NSString stringWithFormat:@"%@?oauth2_access_token=%@&format=json",queryURLString, accessToken] parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *result)
     {
         NSLog(@"LinkedIn connection count : %@", result[@"numConnections"]);
-        if (result[@"numConnection"]) {
+        NSInteger numOfConnections = [result[@"numConnections"] integerValue];
+        if (numOfConnections > 9) {
             self.lkVeriLabel.text = @"Pass";
             self.lkVeriLabel.textColor = [UIColor greenColor];
         } else {

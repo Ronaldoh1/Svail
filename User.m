@@ -13,14 +13,12 @@
 @dynamic state;
 @dynamic city;
 @dynamic name;
-@dynamic numberOfFBFriends;
-@dynamic numberOfLinkedInConnections;
-@dynamic numberOfTwitterFollowers;
 @dynamic occupation;
 @dynamic phoneNumber;
 @dynamic profileImage;
 @dynamic specialty;
 @dynamic gender;
+@dynamic verification;
 
 
 + (void)load {

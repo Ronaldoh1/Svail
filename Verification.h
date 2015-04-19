@@ -7,13 +7,13 @@
 //
 
 #import <Parse/Parse.h>
-#import "User.h"
-@interface Verification : PFObject
+@interface Verification : PFObject<PFSubclassing>
 
-
-@property User *requester;
 @property NSArray *verifiers;
 @property NSNumber *safetyLevel;
+@property (nonatomic) NSNumber *fbLevel;
+@property (nonatomic) NSNumber *ttLevel;
+@property (nonatomic) NSNumber *lkLevel;
 
 
 

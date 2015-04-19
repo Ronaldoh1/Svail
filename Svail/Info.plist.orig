@@ -66,10 +66,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 <<<<<<< HEAD
-	<string>Verification</string>
+	<string>Map</string>
 =======
 	<string>Main</string>
->>>>>>> 74e5fce375a4d26dab0738ff25937ff753c12624
+>>>>>>> 7439452a53a2e68b64c2eba4fd33e2254182553d
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

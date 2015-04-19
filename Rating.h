@@ -9,7 +9,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 
-@interface Rating : PFObject
+@interface Rating : PFObject<PFSubclassing>
 @property NSString *comment;
 @property User *ratee;
 @property User *rater;
