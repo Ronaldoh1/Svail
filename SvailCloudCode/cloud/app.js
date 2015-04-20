@@ -15,8 +15,23 @@ app.use(express.bodyParser());    // Middleware for reading request body
    var referencerNumber = req.query.From;
    var referencerText = req.query.Body;
    var strArray  = referencerText.split('+');
-   var replyToReferencer = 'Thanks for being a reference to ' + strArray[0];
-   console.log(replyToReferencer);
+   var queryUser =  new Parse.Query('User');
+   queryUser.equalTo('phoneNumber', strArray[0]);
+   queryUser.find({
+       success: function(results) 
+       {
+           // results is an array of Parse.Object.
+           result = results[0];
+           console.log(result['name']);
+       },
+       error: function(error) 
+       {
+           // error is an instance of Parse.Error.
+       }
+   });
+   
+//   var replyToReferencer = 'Thanks for being a reference to ' + strArray[0];
+//   console.log(replyToReferencer);
 //    Parse.Cloud.run('sendSMS',{toNumber: referencerNumber, message: replyToReferencer},{          
 //              success: function(results) {            
 
@@ -27,8 +42,8 @@ app.use(express.bodyParser());    // Middleware for reading request body
 //                }
 //            });
 
-    var userNumber =  '+12405061982';
-   // var userNumber =  '+19253219260';
+//    var userNumber =  '+12405061982';
+    var userNumber =  '+19253219260';
     messageToUser = 'One of your Svail references just texted Svail about you.';
 
     Parse.Cloud.run("sendSMS",{toNumber: userNumber, message: messageToUser},{          

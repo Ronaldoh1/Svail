@@ -17,6 +17,7 @@
 @property User *provider;
 @property (nonatomic) PFRelation *images;
 
++(NSString *)parseClassName;
 
 
 @end

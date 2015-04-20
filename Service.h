@@ -28,5 +28,7 @@
 @property NSString *serviceDescription;
 @property MKPointAnnotation *annotation;
 
++(NSString *)parseClassName;
+
 
 @end

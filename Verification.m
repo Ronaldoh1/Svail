@@ -7,41 +7,73 @@
 //
 
 #import "Verification.h"
+#import <Parse/PFObject+Subclass.h>
+
+
 
 @implementation Verification
 
-//static NSNumber *const kMinimumFBFriendsCount = @10;
+static NSUInteger const kMinimumFBFriendsCount = 10;
+static NSUInteger const kMinimumTTFollowersCount = 10;
+static NSUInteger const kMinimumLKConnectionsCount = 10;
+
+
 
 @dynamic verifiers;
 @dynamic safetyLevel;
 @dynamic fbLevel;
 @dynamic ttLevel;
 @dynamic lkLevel;
+@dynamic user;
 
 +(void)load{
     [self registerSubclass];
 
 }
+
 + (NSString *)parseClassName{
     return @"Verification";
 }
 
--(void)getFBLevelWithNumOfFriends:(NSUInteger)numOfFriends
+//To customize initialization, override object instead of init. If overriding init, other Parse classes cannot use this subclass as pointer or relation property.
++(instancetype)object
 {
-    if (numOfFriends > 9) {
-        self.fbLevel = @1;
-    } else {
-        self.fbLevel = @0;
+    Verification *verification = [super object];
+    if (verification) {
+        verification.fbLevel = 0;
+        verification.ttLevel = 0;
+        verification.lkLevel = 0;
     }
+    return verification;
 }
 
--(void)getTTLevelWithNumOfFriends:(NSUInteger)numOfFollowers
++(NSUInteger)getFBLevelWithNumOfFriends:(NSUInteger)numOfFriends
 {
-    if (numOfFollowers > 9) {
-        self.ttLevel = @1;
-    } else {
-        self.ttLevel = @0;
+    NSUInteger fbLevel = 0;
+    if (numOfFriends >= kMinimumFBFriendsCount) {
+        fbLevel = 1;
     }
+    return fbLevel;
 }
+
++(NSUInteger)getTTLevelWithNumOfFollowers:(NSUInteger)numOfFollowers
+{
+    NSUInteger ttLevel = 0;
+    if (numOfFollowers >= kMinimumTTFollowersCount) {
+        ttLevel = 1;
+    }
+    return ttLevel;
+}
+
++(NSUInteger)getLKLevelWithNumOfConnections:(NSUInteger)numOfConnections
+{
+    NSUInteger lkLevel = 0;
+    if (numOfConnections >= kMinimumLKConnectionsCount) {
+        lkLevel = 1;
+    }
+    return lkLevel;
+}
+
+
 
 @end

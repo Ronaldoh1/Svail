@@ -16,6 +16,8 @@
 #import "LIALinkedInApplication.h"
 
 #import "User.h"
+#import "Verification.h"
+#import "Image.h"
 
 
 
@@ -27,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ttVeriLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lkVeriLabel;
 @property (nonatomic) User *currentUser;
+@property (nonatomic) Verification *verification;
 
 
 @end
@@ -45,6 +48,15 @@
     self.lkVeriLabel.text = @"";
     
     self.currentUser = [User currentUser];
+    if (!self.currentUser.verification) {
+        self.currentUser.verification = [Verification object];
+        [self.currentUser saveInBackground];
+    }
+
+    
+
+    
+    
 }
 
 
@@ -68,13 +80,14 @@
                          if (!error) {
                              NSUInteger friendsCount = [result[@"summary"][@"total_count"] integerValue];
                              NSLog(@"facebook friends count : %li", friendsCount);
-                             if (friendsCount > 9) {
+                             self.currentUser.verification.fbLevel = [Verification getFBLevelWithNumOfFriends:friendsCount];
+                             [self.currentUser saveInBackground];
+                             if (self.currentUser.verification.fbLevel > 0) {
                                  self.fbVeriLabel.text = @"Pass";
                                  self.fbVeriLabel.textColor = [UIColor greenColor];
                              } else {
                                  self.fbVeriLabel.text = @"Not qualified";
                                  self.fbVeriLabel.textColor = [UIColor grayColor];
-
                              }
                          }
                      }];
@@ -84,7 +97,6 @@
     }];
 }
 
-//-(void)
 
 
 
@@ -144,9 +156,12 @@
                                        JSONObjectWithData:data
                                        options:0
                                        error:&jsonError];
-                 NSArray *followerIDs = json[@"ids"];
-                 NSLog(@"Twitter followers count : %li",followerIDs.count);
-                 if (followerIDs.count > 9) {
+                 NSUInteger followersCount = [json[@"ids"] count];
+                 NSLog(@"Twitter followers count : %li",followersCount);
+                 self.currentUser.verification.ttLevel = [Verification getTTLevelWithNumOfFollowers:followersCount];
+                 [self.currentUser saveInBackground];
+                 
+                 if (self.currentUser.verification.ttLevel > 0) {
                      self.ttVeriLabel.text = @"Pass";
                      self.ttVeriLabel.textColor = [UIColor greenColor];
                  } else {
@@ -194,13 +209,17 @@
     {
         NSLog(@"LinkedIn connection count : %@", result[@"numConnections"]);
         NSInteger numOfConnections = [result[@"numConnections"] integerValue];
-        if (numOfConnections > 9) {
+        self.currentUser.verification.lkLevel = [Verification getTTLevelWithNumOfFollowers:numOfConnections];
+        [self.currentUser saveInBackground];
+        
+        if (self.currentUser.verification.lkLevel > 0) {
             self.lkVeriLabel.text = @"Pass";
             self.lkVeriLabel.textColor = [UIColor greenColor];
         } else {
             self.lkVeriLabel.text = @"Not qualified";
             self.lkVeriLabel.textColor = [UIColor grayColor];
         }
+        
     }   failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
         NSLog(@"failed to fetch current user %@", error);
@@ -215,7 +234,7 @@
                                    state:@"f**kRonAndMert"
                                    grantedAccess:@[@"r_fullprofile", @"r_network"]];
     
-    return [LIALinkedInHttpClient clientForApplication:application presentingViewController:nil];
+    return [LIALinkedInHttpClient clientForApplication:application presentingViewController:self];
 }
 
 

@@ -15,6 +15,11 @@
 #import <TwitterKit/TwitterKit.h>
 #import "Stripe.h"
 #import "User.h"
+#import "Service.h"
+#import "Purchase.h"
+#import "Image.h"
+#import "Rating.h"
+#import "Verification.h"
 
 
 NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
@@ -43,9 +48,17 @@ NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
 
+    [Fabric with:@[TwitterKit]];
     
     //Parse Setup
-    [Fabric with:@[TwitterKit]];
+
+    [User registerSubclass];
+    [Service registerSubclass];
+    [Purchase registerSubclass];
+    [Image registerSubclass];
+    [Rating registerSubclass];
+    [Verification registerSubclass];
+    
     [Parse setApplicationId:@"ebHjZbY6vKWbDo1fmskeLG2XE8Kz6sOEEgXrZolM"
                   clientKey:@"U8IGSnk5tGWURWY0xeQGfXakjWpSiGUbGtKYDShI"];
 //    [PFFacebookUtils initializeFacebookWithLaunchOptions:launchOptions];

@@ -24,6 +24,7 @@
 
 @class LIALinkedInApplication;
 
+
 @interface LIALinkedInHttpClient : AFHTTPRequestOperationManager
 
 + (LIALinkedInHttpClient *)clientForApplication:(LIALinkedInApplication *)application;

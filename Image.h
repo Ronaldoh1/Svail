@@ -10,6 +10,7 @@
 #import "Service.h"
 
 @interface Image : PFObject<PFSubclassing>
+
 @property PFFile *imageFile;
 @property Service *service;
 

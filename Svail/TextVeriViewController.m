@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self receiveSMSOnParse];
+    
     self.cellPhoneTextField1.placeholder = @"Enter cell phone number";
     self.cellPhoneTextField2.placeholder = @"Enter cell phone number";
     self.cellPhoneTextField3.placeholder = @"Enter cell phone number";
@@ -84,28 +84,26 @@
 
 -(void)sendSMSFromParseWithToNumber:(NSString *)toNumber message:(NSString *)message
 {
-    [PFCloud callFunctionInBackground:@"sendSMS"
-                       withParameters:@{@"toNumber":toNumber,
-                                        @"message": message}
+//    [PFCloud callFunctionInBackground:@"sendSMS"
+//                       withParameters:@{@"toNumber":toNumber,
+//                                        @"message": message}
+//                                block:^(NSString *result, NSError *error) {
+//                                    if (!error) {
+//                                        // result is @"Hello world!"
+//                                        NSLog(@"%@",result);
+//                                    }
+//                                }];
+        [PFCloud callFunctionInBackground:@"test1"
+                       withParameters:nil
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         // result is @"Hello world!"
                                         NSLog(@"%@",result);
                                     }
                                 }];
+
 }
 
--(void)receiveSMSOnParse
-{
-    [PFCloud callFunctionInBackground:@"receiveSMS"
-                       withParameters:@{}
-                                block:^(NSString *result, NSError *error) {
-                                    if (!error) {
-                                        // result is @"Hello world!"
-                                        NSLog(@"%@",result);
-                                    }
-                                }];
-}
 
 - (IBAction)onSkipButtonTapped:(UIButton *)sender
 {

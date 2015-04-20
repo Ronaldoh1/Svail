@@ -7,6 +7,7 @@
 //
 
 #import "Rating.h"
+#import <Parse/PFObject+Subclass.h>
 
 @implementation Rating
 

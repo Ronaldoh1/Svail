@@ -7,6 +7,7 @@
 //
 
 #import "Service.h"
+#import <Parse/PFObject+Subclass.h>
 
 @implementation Service
 

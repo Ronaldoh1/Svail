@@ -15,5 +15,7 @@
 @property User *rater;
 @property NSNumber *rating;
 
++(NSString *)parseClassName;
+
 
 @end

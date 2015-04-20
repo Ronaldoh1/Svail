@@ -69,7 +69,7 @@ class SignUpViewController: UIViewController {
 
 
     func signUp() {
-        var user = PFUser()
+        var user = User()
         user.username = emailTextField.text
         user.password = passwordTextField.text
         // other fields can be set just like with PFObject

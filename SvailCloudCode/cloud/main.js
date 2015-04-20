@@ -39,7 +39,43 @@ Parse.Cloud.define('sendSMS', function(request, response) {
 });
 
 
+Parse.Cloud.define("test", function(request, response) {
 
+  var query = new Parse.Query("Verification");
+   query.equalTo("objectId", "5Y8kSROdYO");
+   query.first({
+       success: function(result) 
+       {
+           // results is an array of Parse.Object.
+           response.success(result.get("objectId"));
+       },
+       error: function(error) 
+       {
+           // error is an instance of Parse.Error.
+           response.error('error');
+       }
+   });
+});
+
+
+Parse.Cloud.define("test1", function(request, response) {
+
+    Parse.Cloud.useMasterKey()
+    var query = new Parse.Query("Verification");
+    query.equalTo("objectId", "lHBL87Sg2H");
+
+    query.find({
+          success: function(results) 
+          {
+              response.success(results.count);
+          },
+          error: function() 
+          {
+              response.error("failed");
+          }
+    });
+
+})
 
 
 //// Include Cloud Code module dependencies

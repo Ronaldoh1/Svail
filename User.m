@@ -10,6 +10,7 @@
 #import <Parse/PFObject+Subclass.h>
 
 @implementation User
+
 @dynamic state;
 @dynamic city;
 @dynamic name;
@@ -21,11 +22,10 @@
 @dynamic verification;
 
 
+
 + (void)load {
     [self registerSubclass];
 }
-
-
 
 
 

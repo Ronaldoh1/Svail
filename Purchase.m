@@ -7,6 +7,7 @@
 //
 
 #import "Purchase.h"
+#import <Parse/PFObject+Subclass.h>
 
 @implementation Purchase
 @dynamic customer;

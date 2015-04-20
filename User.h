@@ -6,10 +6,14 @@
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-#import "Verification.h"
+//#import "Verification.h"
+
+@class Verification;
 
 @interface User : PFUser<PFSubclassing>
+
 @property NSString *state;
 @property NSString *city;
 @property NSString *name;
