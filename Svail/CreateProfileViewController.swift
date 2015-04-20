@@ -24,8 +24,7 @@ class CreateProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.skipButton.backgroundColor = UIColor(red: 78/255.0, green: 56/255.0, blue: 126/255.0, alpha: 1.0)
-        self.finishButton.backgroundColor = UIColor(red: 103/255.0, green: 125/255.0, blue: 55/255.0, alpha: 1.0)
+      
 
         self.view.userInteractionEnabled = true
 

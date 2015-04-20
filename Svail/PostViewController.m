@@ -12,6 +12,7 @@
 #import "Service.h"
 #import "User.h"
 #import "SelectLocationFromMapViewController.h"
+#import "MBProgressHUD.h"
 
 
 
@@ -47,6 +48,11 @@
     self.service = [Service new];
     self.startPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
     self.endPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
+
+    //set delegates for textfields
+    [self setDelegatesForTextFields];
+
+
 
 
 }
@@ -116,17 +122,23 @@
 
 
 
-    //Indicator starts annimating when signing up.
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicator.color = [UIColor colorWithRed:102 green:0 blue:255 alpha:1];
-    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
-    [self.view addSubview: activityIndicator];
+    //Indicator starts annimating when user posts.
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 
-    [activityIndicator startAnimating];
+//    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    activityIndicator.color = [UIColor colorWithRed:102 green:0 blue:255 alpha:1];
+//    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+//    [self.view addSubview: activityIndicator];
+
+    //[activityIndicator startAnimating];
+
+
     [self.service saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 
-        //stop actiivity indication from annimating.
-        [activityIndicator stopAnimating];
+//        //stop actiivity indication from annimating.
+//        [activityIndicator stopAnimating];
 
 
         if (!error) {
@@ -136,13 +148,11 @@
         }else{
             [self displayErrorAlert:error.localizedDescription];
 
-
-
-
         }
     }];
 
-
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
 
 
 
@@ -216,7 +226,30 @@
     
 }
 
+#pragma Marks - hiding keyboard
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+     [textField resignFirstResponder];
 
+    [self.view endEditing:true];
+    return false;
+}
+
+
+- (IBAction)hideKeyBoardForLocationTextField:(UITextField *)sender {
+    [sender resignFirstResponder];
+
+}
+//set the delegate for textfields. 
+//Helpers method to set the delegates of the textfields.
+-(void)setDelegatesForTextFields{
+    self.serviceTitle.delegate = self;
+    self.serviceDescription.delegate = self;
+    self.serviceCategory.delegate = self;
+    self.serviceCapacity.delegate = self;
+    self.location.delegate = self;
+
+    
+}
 
 
 

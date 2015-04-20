@@ -27,6 +27,7 @@
 @property BOOL travel;
 @property NSString *serviceDescription;
 @property MKPointAnnotation *annotation;
+@property NSMutableArray *participants;
 
 +(NSString *)parseClassName;
 
