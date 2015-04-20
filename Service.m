@@ -25,6 +25,7 @@
 @dynamic serviceLocationAddress;
 @dynamic serviceDescription;
 @synthesize annotation;
+@dynamic participants;
 
 + (void)load{
     [self registerSubclass];

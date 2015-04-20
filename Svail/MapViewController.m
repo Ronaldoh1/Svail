@@ -9,6 +9,7 @@
 #import <MapKit/MapKit.h>
 #import "EventLocationDownloader.h"
 #import "Service.h"
+#import "ParticipantsViewController.h"
 
 //PARTICIPANT NUMBER ADDED TO EVENT ? CHANGE PIN COLOR ACCORDINGLY
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
@@ -27,6 +28,7 @@
 @property NSMutableArray *filterArray;
 @property NSArray *resultsArray;
 @property NSArray *annotationArray;
+@property NSMutableArray *serviceParticipants;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *profileButton;
 
@@ -130,6 +132,7 @@
 //    }
     pinAnnotation.canShowCallout = YES;
     pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    pinAnnotation.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 
     return pinAnnotation;
 }
@@ -176,7 +179,28 @@
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    //segue to request controller
+
+        NSArray *emptyArray = @[];
+        PFQuery *newQuery=[Service query];
+        [newQuery whereKey:@"participants" notContainedIn:emptyArray];
+        [newQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            self.serviceParticipants = objects.mutableCopy;
+
+            if ([control tag] == 2)
+            {
+                [self.serviceParticipants addObject:[User currentUser]];
+            }
+            else if ([control tag] == 1)
+            {
+                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"UserProfile" bundle:nil];
+                ParticipantsViewController *participantsVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"profileNavVC"];
+                [self presentViewController:participantsVC animated:true completion:nil];
+                participantsVC.participants = self.serviceParticipants;
+            }
+        }];
+
+
+
 }
 
 #pragma Mark - Methods to filter Services with SegmentedControl and SearchBar

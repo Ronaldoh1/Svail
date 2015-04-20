@@ -22,6 +22,7 @@
 		3E14AB751AE191800021CC81 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E14AB741AE191800021CC81 /* TabBarViewController.m */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
+		3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E80C4951AE4C85800405828 /* ParticipantsViewController.m */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
 		3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */; };
 		3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D28931AE30E8C00D7D648 /* EditProfileViewController.m */; };
@@ -105,12 +106,13 @@
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
 		3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationDownloader.m; sourceTree = "<group>"; };
+		3E80C4941AE4C85800405828 /* ParticipantsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantsViewController.h; sourceTree = "<group>"; };
+		3E80C4951AE4C85800405828 /* ParticipantsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsViewController.m; sourceTree = "<group>"; };
 		3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		3E8D28921AE30E8C00D7D648 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		3E8D28931AE30E8C00D7D648 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		3E8D28971AE30ED600D7D648 /* EditProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
-		3E8D28991AE36E2B00D7D648 /* FacebookSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FacebookSDK; path = ../../../../Documents/FacebookSDK; sourceTree = "<group>"; };
 		3E8D289B1AE381F900D7D648 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		3E8D289E1AE382A800D7D648 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
@@ -224,17 +226,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3E8D28911AE30E0400D7D648 /* Edit Profile */ = {
+		3E8D28911AE30E0400D7D648 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				3E8D28921AE30E8C00D7D648 /* EditProfileViewController.h */,
 				3E8D28931AE30E8C00D7D648 /* EditProfileViewController.m */,
+				3E80C4941AE4C85800405828 /* ParticipantsViewController.h */,
+				3E80C4951AE4C85800405828 /* ParticipantsViewController.m */,
 				3E8D289B1AE381F900D7D648 /* UserProfileViewController.h */,
 				3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */,
 				3E8D28971AE30ED600D7D648 /* EditProfile.storyboard */,
 				3E8D289E1AE382A800D7D648 /* UserProfile.storyboard */,
 			);
-			name = "Edit Profile";
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		3EC9D3D51AE16DC500071FF3 /* Cosmetic */ = {
@@ -283,7 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */,
-				3E8D28911AE30E0400D7D648 /* Edit Profile */,
+				3E8D28911AE30E0400D7D648 /* Profile */,
 				F24B36211ADC6A93006153EC /* Stripe */,
 				F24B36201ADC6A7B006153EC /* PostService */,
 				F24B361E1ADC69BB006153EC /* Verification */,
@@ -654,6 +658,7 @@
 				3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
+				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */,
 				F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */,
