@@ -19,7 +19,7 @@
 @dynamic specialty;
 @dynamic gender;
 @dynamic verification;
-
+@dynamic isFbUser;
 
 + (void)load {
     [self registerSubclass];
