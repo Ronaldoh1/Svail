@@ -18,6 +18,7 @@
 @property PFFile *profileImage;
 @property NSString *specialty;
 @property NSString *gender;
+@property BOOL isFbUser;
 @property (nonatomic) Verification *verification;
 
 

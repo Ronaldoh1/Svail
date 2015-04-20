@@ -7,6 +7,7 @@ target 'Svail' do
     pod 'IOSLinkedInAPI', '~> 2.0'
     pod 'Stripe'
     pod 'Stripe/ApplePay'
+    pod 'MBProgressHUD', '~> 0.9.1'
 
 end
 

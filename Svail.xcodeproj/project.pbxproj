@@ -19,7 +19,6 @@
 		36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE95591ADDC93900ABDB93 /* TwitterKit.framework */; };
 		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
-		3E14AB751AE191800021CC81 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E14AB741AE191800021CC81 /* TabBarViewController.m */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
 		3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E80C4951AE4C85800405828 /* ParticipantsViewController.m */; };
@@ -33,8 +32,6 @@
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
 		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
 		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
-		F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35AB1ADB7E54006153EC /* RootViewController.m */; };
-		F24B35AF1ADB7E54006153EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B35AD1ADB7E54006153EC /* Main.storyboard */; };
 		F24B35B11ADB7E54006153EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F24B35B01ADB7E54006153EC /* Images.xcassets */; };
 		F24B35B41ADB7E54006153EC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24B35B21ADB7E54006153EC /* LaunchScreen.xib */; };
 		F24B35C01ADB7E54006153EC /* SvailTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35BF1ADB7E54006153EC /* SvailTests.m */; };
@@ -57,7 +54,6 @@
 		F24B362D1ADC6B4B006153EC /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362C1ADC6B4B006153EC /* Post.storyboard */; };
 		F24B362F1ADC6B57006153EC /* Stripe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362E1ADC6B57006153EC /* Stripe.storyboard */; };
 		F24B36311ADC6EDD006153EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B36301ADC6EDD006153EC /* MapKit.framework */; };
-		F24B36331ADC74FF006153EC /* heartz.png in Resources */ = {isa = PBXBuildFile; fileRef = F24B36321ADC74FF006153EC /* heartz.png */; };
 		F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B36371ADC781F006153EC /* LoginViewController.swift */; };
 		F24B363D1ADCA6D0006153EC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B363C1ADCA6D0006153EC /* User.m */; };
 		F24B36431ADCB0E8006153EC /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36421ADCB0E8006153EC /* Purchase.m */; };
@@ -70,7 +66,8 @@
 		F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36561ADD4FDB006153EC /* PostDetailViewController.m */; };
 		F24B365C1ADDA923006153EC /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365B1ADDA923006153EC /* Service.m */; };
 		F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365E1ADE2015006153EC /* SelectImageViewController.m */; };
-		F24B36631ADE2A75006153EC /* ProviderAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36621ADE2A75006153EC /* ProviderAvailability.m */; };
+		F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B4981AE4D6D9008F2370 /* fbloginButton.png */; };
+		F268B49B1AE4D72D008F2370 /* connect.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B49A1AE4D72D008F2370 /* connect.png */; };
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
 		F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */; };
 /* End PBXBuildFile section */
@@ -100,8 +97,6 @@
 		36DE95591ADDC93900ABDB93 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		3E14AB731AE191800021CC81 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
-		3E14AB741AE191800021CC81 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		3E4036DB1ADD882600C4A0A0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
@@ -126,9 +121,6 @@
 		F24B35A41ADB7E54006153EC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F24B35A51ADB7E54006153EC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F24B35A81ADB7E54006153EC /* Svail.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Svail.xcdatamodel; sourceTree = "<group>"; };
-		F24B35AA1ADB7E54006153EC /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		F24B35AB1ADB7E54006153EC /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		F24B35AE1ADB7E54006153EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F24B35B01ADB7E54006153EC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F24B35B31ADB7E54006153EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F24B35B91ADB7E54006153EC /* SvailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SvailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +145,6 @@
 		F24B362C1ADC6B4B006153EC /* Post.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
 		F24B362E1ADC6B57006153EC /* Stripe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Stripe.storyboard; sourceTree = "<group>"; };
 		F24B36301ADC6EDD006153EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		F24B36321ADC74FF006153EC /* heartz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heartz.png; sourceTree = "<group>"; };
 		F24B36361ADC781E006153EC /* Svail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Svail-Bridging-Header.h"; sourceTree = "<group>"; };
 		F24B36371ADC781F006153EC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		F24B363B1ADCA6D0006153EC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -178,8 +169,8 @@
 		F24B365B1ADDA923006153EC /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
 		F24B365D1ADE2015006153EC /* SelectImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectImageViewController.h; sourceTree = "<group>"; };
 		F24B365E1ADE2015006153EC /* SelectImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageViewController.m; sourceTree = "<group>"; };
-		F24B36611ADE2A75006153EC /* ProviderAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderAvailability.h; sourceTree = "<group>"; };
-		F24B36621ADE2A75006153EC /* ProviderAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderAvailability.m; sourceTree = "<group>"; };
+		F268B4981AE4D6D9008F2370 /* fbloginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbloginButton.png; sourceTree = "<group>"; };
+		F268B49A1AE4D72D008F2370 /* connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect.png; sourceTree = "<group>"; };
 		F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationFromMapViewController.h; sourceTree = "<group>"; };
 		F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLocationFromMapViewController.m; sourceTree = "<group>"; };
 		F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Svail.entitlements; sourceTree = "<group>"; };
@@ -263,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				3EC9D3D51AE16DC500071FF3 /* Cosmetic */,
-				F24B36601ADE2A48006153EC /* Custom Objects */,
 				F24B35CA1ADB9569006153EC /* Frameworks */,
 				F24B35C91ADB953D006153EC /* Data Model */,
 				F24B359F1ADB7E54006153EC /* Svail */,
@@ -297,13 +287,9 @@
 				F24B361A1ADC68E9006153EC /* Login */,
 				F24B35A41ADB7E54006153EC /* AppDelegate.h */,
 				F24B35A51ADB7E54006153EC /* AppDelegate.m */,
-				F24B35AA1ADB7E54006153EC /* RootViewController.h */,
-				F24B35AB1ADB7E54006153EC /* RootViewController.m */,
-				3E14AB731AE191800021CC81 /* TabBarViewController.h */,
-				3E14AB741AE191800021CC81 /* TabBarViewController.m */,
-				F24B35AD1ADB7E54006153EC /* Main.storyboard */,
 				F24B35B01ADB7E54006153EC /* Images.xcassets */,
-				F24B36321ADC74FF006153EC /* heartz.png */,
+				F268B49A1AE4D72D008F2370 /* connect.png */,
+				F268B4981AE4D6D9008F2370 /* fbloginButton.png */,
 				F24B36501ADCDD70006153EC /* camera.png */,
 				F24B35B21ADB7E54006153EC /* LaunchScreen.xib */,
 				F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */,
@@ -466,15 +452,6 @@
 			name = Stripe;
 			sourceTree = "<group>";
 		};
-		F24B36601ADE2A48006153EC /* Custom Objects */ = {
-			isa = PBXGroup;
-			children = (
-				F24B36611ADE2A75006153EC /* ProviderAvailability.h */,
-				F24B36621ADE2A75006153EC /* ProviderAvailability.m */,
-			);
-			name = "Custom Objects";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -565,11 +542,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F24B36271ADC6B16006153EC /* Service.storyboard in Resources */,
+				F268B49B1AE4D72D008F2370 /* connect.png in Resources */,
 				F24B362F1ADC6B57006153EC /* Stripe.storyboard in Resources */,
 				36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */,
 				F24B362B1ADC6B3C006153EC /* Verification.storyboard in Resources */,
 				F24B36231ADC6AE0006153EC /* Login.storyboard in Resources */,
-				F24B35AF1ADB7E54006153EC /* Main.storyboard in Resources */,
 				F24B362D1ADC6B4B006153EC /* Post.storyboard in Resources */,
 				F24B36251ADC6AF1006153EC /* Map.storyboard in Resources */,
 				3E8D28981AE30ED600D7D648 /* EditProfile.storyboard in Resources */,
@@ -578,7 +555,7 @@
 				F24B36291ADC6B28006153EC /* Purchase.storyboard in Resources */,
 				F24B35B11ADB7E54006153EC /* Images.xcassets in Resources */,
 				F24B36511ADCDD70006153EC /* camera.png in Resources */,
-				F24B36331ADC74FF006153EC /* heartz.png in Resources */,
+				F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,7 +621,6 @@
 			files = (
 				3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */,
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
-				3E14AB751AE191800021CC81 /* TabBarViewController.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
@@ -654,14 +630,12 @@
 				F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */,
 				3EC9D3D81AE16E1B00071FF3 /* Circle Button.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
-				F24B36631ADE2A75006153EC /* ProviderAvailability.m in Sources */,
 				3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */,
-				F24B35AC1ADB7E54006153EC /* RootViewController.m in Sources */,
 				F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
@@ -693,14 +667,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F24B35AD1ADB7E54006153EC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F24B35AE1ADB7E54006153EC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F24B35B21ADB7E54006153EC /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

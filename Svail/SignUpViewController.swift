@@ -8,10 +8,9 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate{
 
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var registerButton: UIButton!
+
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -19,12 +18,12 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.userInteractionEnabled = true
-//        self.cancelButton = UIButton.buttonWithType(.Custom) as! UIButton
-        self.cancelButton.backgroundColor = UIColor(red: 78/255.0, green: 56/255.0, blue: 126/255.0, alpha: 1.0)
-//        self.registerButton = UIButton.buttonWithType(.Custom) as! UIButton
-        self.registerButton.backgroundColor = UIColor(red: 103/255.0, green: 125/255.0, blue: 55/255.0, alpha: 1.0)
+        //Dismiss keyboard
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
 
+        //setuptextfield delegates
+        self.setUpTextFields()
     }
 
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
@@ -32,12 +31,32 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true)
     }
 
-//    @IBAction func onCancelButtonTapped(sender: UIButton)
-//    {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let mainVC = storyboard.instantiateViewControllerWithIdentifier("rootVC") as! UIViewController
-//        self.presentViewController(mainVC, animated: true, completion: nil)
-//    }
+    @IBAction func onFbLoginButtonTapped(sender: AnyObject) {
+
+        var permissions = ["email", "public_profile"]
+
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if let user = user {
+                if user.isNew {
+                    println("User signed up and logged in through Facebook!")
+
+                    
+                } else {
+                    println("User logged in through Facebook!")
+
+                    let mapStoryboard = UIStoryboard(name: "Map", bundle: nil)
+                    let mapVCTab = mapStoryboard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UITabBarController
+                    self.presentViewController(mapVCTab, animated: true, completion: nil)
+
+                }
+            } else {
+                println("Uh oh. The user cancelled the Facebook login.")
+            }
+        }
+
+    }
+
     @IBAction func onRegisterButtonTapped(sender: UIButton)
     {
         var signUpError = ""
@@ -53,7 +72,7 @@ class SignUpViewController: UIViewController {
 
         }else if (count(self.passwordTextField.text) < 1 || count(self.confirmPasswordTextField.text) < 1)
         {
-            
+
             signUpError = "Password must be at least 1 characters long. Please try again."
         }else{
 
@@ -67,7 +86,9 @@ class SignUpViewController: UIViewController {
         }
     }
 
-
+    //helper method to retrieve user info from facebook. 
+    
+    //helper method to sign up user with parse.
     func signUp() {
         var user = PFUser()
         user.username = emailTextField.text
@@ -78,7 +99,7 @@ class SignUpViewController: UIViewController {
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in
             if error == nil {
-               self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+                self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
             } else {
                 if let errorString = error!.userInfo?["error"] as? NSString
                 {
@@ -89,6 +110,7 @@ class SignUpViewController: UIViewController {
         }
     }
 
+    //helper method to show alert
     func showAlert(error:NSString)
     {
 
@@ -99,11 +121,36 @@ class SignUpViewController: UIViewController {
             (action) in
         }
         alertController.addAction(oKAction)
-
+        
         self.presentViewController(alertController, animated: true) {
             
         }
         
     }
 
+    //Helper methods to dismiss keyboard
+    func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y -= 190
+    }
+
+    func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y += 190
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    func setUpTextFields(){
+
+
+        self.phoneNumberTextField.delegate = self;
+        self.confirmPasswordTextField.delegate = self;
+        self.passwordTextField.delegate = self;
+        self.emailTextField.delegate = self;
+
+
+
+    }
+
+    
 }

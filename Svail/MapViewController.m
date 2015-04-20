@@ -9,13 +9,20 @@
 #import <MapKit/MapKit.h>
 #import "EventLocationDownloader.h"
 #import "Service.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "ParticipantsViewController.h"
+
+
+
+
 
 //PARTICIPANT NUMBER ADDED TO EVENT ? CHANGE PIN COLOR ACCORDINGLY
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
 //CALLOUT CUSTOMIZED
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -29,6 +36,7 @@
 @property NSArray *resultsArray;
 @property NSArray *annotationArray;
 @property NSMutableArray *serviceParticipants;
+
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *profileButton;
 
@@ -126,10 +134,10 @@
     }
 
     //making the pinAnnotation of user's location draggable
-//    if (annotation == mapView.userLocation || annotation == self.draggedAnnotation) {
-//        pinAnnotation.pinColor = MKPinAnnotationColorPurple;
-//        pinAnnotation.draggable = YES;
-//    }
+    //    if (annotation == mapView.userLocation || annotation == self.draggedAnnotation) {
+    //        pinAnnotation.pinColor = MKPinAnnotationColorPurple;
+    //        pinAnnotation.draggable = YES;
+    //    }
     pinAnnotation.canShowCallout = YES;
     pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
     pinAnnotation.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -155,7 +163,7 @@
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
     [self.locationManager startUpdatingLocation];
-    
+
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -225,7 +233,7 @@
         //changing the date format for date on Parse and storing it as a string
         NSDate *serviceDate = [aService objectForKey:@"startDate"];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-//        [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+        //        [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
         [dateFormat setDateFormat:@"MM/dd"];
         NSString *serviceDateString = [dateFormat stringFromDate:serviceDate];
 
@@ -261,8 +269,8 @@
         self.searchResults = self.filterArray;
     }
     [self addAnnotationToMapFromArray:self.searchResults];
-    
-        [searchBar resignFirstResponder];
+
+    [searchBar resignFirstResponder];
 }
 
 
@@ -270,9 +278,33 @@
 
 - (IBAction)onAddServiceButtonTapped:(UIBarButtonItem *)sender
 {
+    //        UIStoryboard *postStoryBoard = [UIStoryboard storyboardWithName:@"Post" bundle:nil];
+    //        UIViewController *postVC = [postStoryBoard instantiateViewControllerWithIdentifier:@"PostNavBar"];
+    //        [self presentViewController:postVC animated:true completion:nil];
+
+    if ([User currentUser] != nil){
+
+        NSLog(@"the user is loggged in");
+
         UIStoryboard *postStoryBoard = [UIStoryboard storyboardWithName:@"Post" bundle:nil];
+
         UIViewController *postVC = [postStoryBoard instantiateViewControllerWithIdentifier:@"PostNavBar"];
+
         [self presentViewController:postVC animated:true completion:nil];
+
+    }else {
+
+        //        UIStoryboard *loginStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+
+        //        UIViewController *loginVC = [loginStoryBoard instantiateViewControllerWithIdentifier:@"LoginNavVC"];
+
+        //        [self presentViewController:loginVC animated:true completion:nil];
+
+        [self presentActionSheetForLogInOrSignUp];
+
+
+    }
+
 }
 
 
@@ -283,6 +315,172 @@
     [self presentViewController:editProfileVC animated:true completion:nil];
 }
 
+
+#pragma Mark - Unwind Segues
+
+
+
+-(IBAction)unwindSegueFromLogInViewController:(UIStoryboardSegue *)segue
+
+{
+
+
+
+}
+
+
+
+-(IBAction)unwindSegueFromRegisterViewController:(UIStoryboardSegue *)segue
+
+{
+
+
+
+}
+
+
+
+#pragma Marks - Helper Methods
+
+
+
+//actionSheets - this will handle the user's actions
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+
+
+    if (buttonIndex == 0) {
+
+        UIStoryboard *loginStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+
+        UIViewController *loginVC = [loginStoryBoard instantiateViewControllerWithIdentifier:@"LoginNavVC"];
+
+        [self presentViewController:loginVC animated:true completion:nil];
+
+
+
+    } else if(buttonIndex == 1){
+
+        UIStoryboard *signUpStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+
+        UIViewController *signUpVC = [signUpStoryBoard instantiateViewControllerWithIdentifier:@"SignUpNavVC"];
+
+        [self presentViewController:signUpVC animated:true completion:nil];
+
+
+
+    }else{
+
+        NSArray *permissionsArray = @[ @"email", @"public_profile"];
+
+        [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+            if (!user) {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+
+                //Present an alert when the user cancels the login
+
+                NSString *alertMessage = @"There was a problem logging in. You must Svail to use your facebook account to log you in";
+
+                NSString *alertTitle =@"Oops - Facebook Login was canceled";
+
+                [[[UIAlertView alloc] initWithTitle:alertTitle
+
+                                            message:alertMessage
+
+                                           delegate:nil
+
+                                  cancelButtonTitle:@"OK"
+
+                                  otherButtonTitles:nil] show];
+
+            } else if (user.isNew) {
+                //if the user is new want to get his/her data and store it in parse.
+                [self getFacebookUserData];
+
+                //we also need to retrieve his profile picture.
+
+
+                NSLog(@"User signed up and logged in through Facebook!");
+
+
+
+
+                NSLog(@"%@", user);
+            } else {
+                NSLog(@"User logged in through Facebook!");
+            }
+        }];
+
+
+
+    }
+
+}
+
+//this helper method is used to retrieve the facebook data from the user and store in parse.
+-(void)getFacebookUserData{
+
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        // handle response
+        [User currentUser].name = result[@"name"];
+        [User currentUser].email = result[@"email"];
+        [User currentUser].isFbUser = true;
+        [[User currentUser] saveInBackground];
+
+
+        [self getFbUserProfileImage:result[@"id"]];
+
+    }];
+}
+
+//helper method to retrieve user's profile image from facebook..
+
+-(void)getFbUserProfileImage:(id)facebookID{
+
+
+    // URL should point to https://graph.facebook.com/{facebookId}/picture?type=large&return_ssl_resources=1
+    NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
+
+    // Run network request asynchronously
+    [NSURLConnection sendAsynchronousRequest:urlRequest
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+         if (connectionError == nil && data != nil) {
+             // Set the image in the imageView
+             // UIImage *image = [UIImage imageWithData:data];
+
+             PFFile *file = [ PFFile fileWithData:data];
+
+             [User currentUser].profileImage = file;
+
+             [[User currentUser] saveInBackground];
+
+
+
+             NSLog(@"%@", data);
+         }
+     }];
+    
+}
+
+-(void)presentActionSheetForLogInOrSignUp{
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Sign in or Sign Up"
+                                  
+                                                             delegate:self
+                                  
+                                                    cancelButtonTitle:@"Cancel"destructiveButtonTitle:nil otherButtonTitles:@"Sign in", @"Sign Up", @"Login With Facebook", nil];
+    
+    
+    //present the action sheet.
+    [actionSheet showInView:self.view];
+    
+}
 
 
 @end

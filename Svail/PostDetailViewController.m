@@ -10,7 +10,7 @@
 #import "SelectLocationFromMapViewController.h"
 #import "PostHistoryViewController.h"
 
-@interface PostDetailViewController ()
+@interface PostDetailViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *EditSaveButton;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startPickerDate;
@@ -45,19 +45,10 @@
 
     //initially disable the textfields.
 
-    self.serviceTitle.enabled = false;
-    self.serviceDescription.enabled = false;
-    self.serviceCategory.enabled = false;
-    self.serviceCapacity.enabled = false;
-    self.serviceLocation.enabled = false;
-    self.canHostSegmentedControl.enabled = false;
-    self.startPickerDate.enabled = false;
-    self.endPickerDate.enabled = false;
-    self.setLocationButton.enabled = false;
-    self.doneButton.enabled = false;
-    self.startDateView.userInteractionEnabled = false;
-    self.endPickerDate.userInteractionEnabled = false;
+    [self disableTextFields];
 
+    //Set the delegates for textfields.
+    [self setDelegatesForTextFields];
     //initialize the service to view and edit.
 
     //self.theServiceomParse = [Service new];
@@ -275,7 +266,42 @@
     }
 }
 
+#pragma Marks - UITextField Delegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+
+    [self.view endEditing:true];
+    return false;
+}
 
 
+
+//Helper Method to disable Textfields
+-(void)disableTextFields{
+    self.serviceTitle.enabled = false;
+    self.serviceDescription.enabled = false;
+    self.serviceCategory.enabled = false;
+    self.serviceCapacity.enabled = false;
+    self.serviceLocation.enabled = false;
+    self.canHostSegmentedControl.enabled = false;
+    self.startPickerDate.enabled = false;
+    self.endPickerDate.enabled = false;
+    self.setLocationButton.enabled = false;
+    self.doneButton.enabled = false;
+    self.startDateView.userInteractionEnabled = false;
+    self.endPickerDate.userInteractionEnabled = false;
+}
+
+//Helpers method to set the delegates of the textfields.
+-(void)setDelegatesForTextFields{
+    self.serviceTitle.delegate = self;
+    self.serviceDescription.delegate = self;
+    self.serviceCategory.delegate = self;
+    self.serviceCapacity.delegate = self;
+    self.serviceLocation.delegate = self;
+
+
+}
 
 @end
