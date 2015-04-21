@@ -14,10 +14,6 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "ParticipantsViewController.h"
 
-
-
-
-
 //PARTICIPANT NUMBER ADDED TO EVENT ? CHANGE PIN COLOR ACCORDINGLY
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
 //CALLOUT CUSTOMIZED
@@ -191,17 +187,18 @@
         NSArray *emptyArray = @[];
         PFQuery *newQuery=[Service query];
         [newQuery whereKey:@"participants" notContainedIn:emptyArray];
+        [newQuery includeKey:@"participants"];
         [newQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             self.serviceParticipants = objects.mutableCopy;
 
-            if ([control tag] == 2)
+            if (control == view.rightCalloutAccessoryView)
             {
                 [self.serviceParticipants addObject:[User currentUser]];
             }
-            else if ([control tag] == 1)
+            else if (control == view.leftCalloutAccessoryView)
             {
                 UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"UserProfile" bundle:nil];
-                ParticipantsViewController *participantsVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"profileNavVC"];
+                ParticipantsViewController *participantsVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"participantsVC"];
                 [self presentViewController:participantsVC animated:true completion:nil];
                 participantsVC.participants = self.serviceParticipants;
             }
@@ -318,31 +315,20 @@
 
 #pragma Mark - Unwind Segues
 
-
-
 -(IBAction)unwindSegueFromLogInViewController:(UIStoryboardSegue *)segue
 
 {
 
-
-
 }
-
-
 
 -(IBAction)unwindSegueFromRegisterViewController:(UIStoryboardSegue *)segue
 
 {
 
-
-
 }
 
 
-
 #pragma Marks - Helper Methods
-
-
 
 //actionSheets - this will handle the user's actions
 
@@ -459,7 +445,6 @@
              [User currentUser].profileImage = file;
 
              [[User currentUser] saveInBackground];
-
 
 
              NSLog(@"%@", data);

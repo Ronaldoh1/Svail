@@ -9,8 +9,11 @@
 #import "ParticipantsViewController.h"
 #import "User.h"
 #import "Service.h"
+#import "UserProfileViewController.h"
+#import "Verification.h"
 
 @interface ParticipantsViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -26,7 +29,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellID"];
     User *theUser = [self.participants objectAtIndex:indexPath.row];
     cell.textLabel.text = theUser.name;
-   // cell.detailTextLabel.text = [NSString stringWithFormat:@"Safety level:%@",theUser.verification.safetyLevel ];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Safety level:%@",theUser.verification.safetyLevel];
 
     [theUser.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
@@ -46,6 +49,14 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.participants.count;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    UserProfileViewController *userProfVC = [segue destinationViewController];
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    User *theUser = [self.participants objectAtIndex:indexPath.row];
+    userProfVC.selectedUser = theUser;
 }
 
 @end
