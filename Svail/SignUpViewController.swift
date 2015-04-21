@@ -41,6 +41,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                 if user.isNew {
                     println("User signed up and logged in through Facebook!")
 
+                    self.getFacebookUserData()
+
+                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
+                    let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UINavigationController
+                    self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+
                     
                 } else {
                     println("User logged in through Facebook!")
@@ -87,6 +93,37 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     }
 
     //helper method to retrieve user info from facebook. 
+    //helper method to get user data from facebook.
+
+    func getFacebookUserData(){
+
+        var user = User.currentUser()
+
+        var fbRequest = FBSDKGraphRequest(graphPath:"/me", parameters: nil);
+        fbRequest.startWithCompletionHandler { (connection : FBSDKGraphRequestConnection!, result : AnyObject!, error : NSError!) -> Void in
+
+            if error == nil {
+
+                user?.name = result["name"] as! String
+
+                user?.email = result["email"] as? String
+
+                user?.gender = result["gender"] as! String
+
+                user?.saveInBackground()
+
+                //self.getFbUserProfileImage(result)
+
+
+
+            } else {
+                
+                println("Error Getting Friends \(error)");
+                
+            }
+        }
+        
+    }
     
     //helper method to sign up user with parse.
     func signUp() {
@@ -99,7 +136,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in
             if error == nil {
-                self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+
+                //if sign up is successful then send the usre to edit profile.
+                let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
+                let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UITabBarController
+                self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+
+//                self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
             } else {
                 if let errorString = error!.userInfo?["error"] as? NSString
                 {

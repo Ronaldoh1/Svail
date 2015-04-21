@@ -9,10 +9,17 @@
 #import <MapKit/MapKit.h>
 #import "EventLocationDownloader.h"
 #import "Service.h"
+<<<<<<< HEAD
+#import "ParticipantsViewController.h"
+=======
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import "ParticipantsViewController.h"
+
+
+
+
+>>>>>>> 6504c85531d24d3ea172d4d2637ae2f2d8a7b304
 
 //PARTICIPANT NUMBER ADDED TO EVENT ? CHANGE PIN COLOR ACCORDINGLY
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
@@ -187,18 +194,17 @@
         NSArray *emptyArray = @[];
         PFQuery *newQuery=[Service query];
         [newQuery whereKey:@"participants" notContainedIn:emptyArray];
-        [newQuery includeKey:@"participants"];
         [newQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             self.serviceParticipants = objects.mutableCopy;
 
-            if (control == view.rightCalloutAccessoryView)
+            if ([control tag] == 2)
             {
                 [self.serviceParticipants addObject:[User currentUser]];
             }
-            else if (control == view.leftCalloutAccessoryView)
+            else if ([control tag] == 1)
             {
                 UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"UserProfile" bundle:nil];
-                ParticipantsViewController *participantsVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"participantsVC"];
+                ParticipantsViewController *participantsVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"profileNavVC"];
                 [self presentViewController:participantsVC animated:true completion:nil];
                 participantsVC.participants = self.serviceParticipants;
             }
@@ -315,20 +321,31 @@
 
 #pragma Mark - Unwind Segues
 
+
+
 -(IBAction)unwindSegueFromLogInViewController:(UIStoryboardSegue *)segue
 
 {
 
+
+
 }
+
+
 
 -(IBAction)unwindSegueFromRegisterViewController:(UIStoryboardSegue *)segue
 
 {
 
+
+
 }
 
 
+
 #pragma Marks - Helper Methods
+
+
 
 //actionSheets - this will handle the user's actions
 
@@ -385,12 +402,6 @@
                 [self getFacebookUserData];
 
                 //we also need to retrieve his profile picture.
-
-
-                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
-                ParticipantsViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
-                [self presentViewController:editProfileVC animated:true completion:nil];
-
 
 
                 NSLog(@"User signed up and logged in through Facebook!");
@@ -451,6 +462,7 @@
              [User currentUser].profileImage = file;
 
              [[User currentUser] saveInBackground];
+
 
 
              NSLog(@"%@", data);

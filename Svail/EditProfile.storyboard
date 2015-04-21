@@ -87,7 +87,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVi-vM-ikA">
-                                <rect key="frame" x="130" y="472" width="60" height="25"/>
+                                <rect key="frame" x="191" y="472" width="60" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Evm-Sp-dYZ"/>
                                     <constraint firstAttribute="width" constant="60" id="JKt-Au-d99"/>
@@ -126,6 +126,19 @@
                                     <action selector="onVeriButtonTapped:" destination="xR8-dY-6vx" eventType="touchUpInside" id="7iZ-T4-MMh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWi-xM-fuo">
+                                <rect key="frame" x="70" y="472" width="60" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="CEi-8v-wjb"/>
+                                    <constraint firstAttribute="width" constant="60" id="kTU-F9-fF6"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCancelButtonPressed:" destination="xR8-dY-6vx" eventType="touchUpInside" id="Clp-6B-UPa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -134,6 +147,8 @@
                             <constraint firstItem="USd-mv-u2o" firstAttribute="top" secondItem="yIm-eo-YDe" secondAttribute="bottom" constant="8" id="57Y-dA-l9I"/>
                             <constraint firstAttribute="centerX" secondItem="yIm-eo-YDe" secondAttribute="centerX" id="5IY-vk-oCk"/>
                             <constraint firstItem="V30-l1-mlK" firstAttribute="top" secondItem="jjv-7k-kOL" secondAttribute="bottom" constant="8" id="89C-pz-stt"/>
+                            <constraint firstAttribute="centerX" secondItem="kWi-xM-fuo" secondAttribute="centerX" constant="60" id="8o5-Hk-uvb"/>
+                            <constraint firstItem="kWi-xM-fuo" firstAttribute="top" secondItem="rG2-RI-YiP" secondAttribute="bottom" constant="15" id="Adn-gS-e0Z"/>
                             <constraint firstAttribute="centerX" secondItem="V30-l1-mlK" secondAttribute="centerX" id="Ct0-3c-SqL"/>
                             <constraint firstAttribute="centerX" secondItem="tcM-GW-LnY" secondAttribute="centerX" id="EsY-8O-Xc2"/>
                             <constraint firstItem="GaB-ha-u6i" firstAttribute="leading" secondItem="tVi-vM-ikA" secondAttribute="trailing" constant="47" id="FPo-mC-Vuj"/>
@@ -145,7 +160,7 @@
                             <constraint firstItem="GaB-ha-u6i" firstAttribute="top" secondItem="rG2-RI-YiP" secondAttribute="bottom" constant="13" id="SMr-8f-Yr7"/>
                             <constraint firstAttribute="centerX" secondItem="ege-Aj-o1l" secondAttribute="centerX" id="Tu0-zb-rqQ"/>
                             <constraint firstAttribute="centerX" secondItem="df9-Jo-bkx" secondAttribute="centerX" id="TwR-gm-W1t"/>
-                            <constraint firstAttribute="centerX" secondItem="tVi-vM-ikA" secondAttribute="centerX" id="cPn-ir-OzC"/>
+                            <constraint firstAttribute="centerX" secondItem="tVi-vM-ikA" secondAttribute="centerX" constant="-61" id="cPn-ir-OzC"/>
                             <constraint firstItem="tcM-GW-LnY" firstAttribute="top" secondItem="USd-mv-u2o" secondAttribute="bottom" constant="8" id="cUe-Vo-aDn"/>
                             <constraint firstAttribute="centerX" secondItem="U0S-X7-1xR" secondAttribute="centerX" id="dGg-gF-pcY"/>
                             <constraint firstItem="yIm-eo-YDe" firstAttribute="top" secondItem="U0S-X7-1xR" secondAttribute="bottom" constant="8" id="f16-KB-xNI"/>
@@ -175,6 +190,7 @@
             <objects>
                 <navigationController storyboardIdentifier="editProfileNavVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rua-oX-T4E" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zJe-YU-0mX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -186,7 +202,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8D-XS-3Cc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="382"/>
+            <point key="canvasLocation" x="596" y="382"/>
         </scene>
     </scenes>
 </document>

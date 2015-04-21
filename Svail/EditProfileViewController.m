@@ -116,5 +116,9 @@
     UIViewController *veriNavVC = [veriStoryboard instantiateViewControllerWithIdentifier:@"VeriNavVC"];
     [self presentViewController:veriNavVC animated:YES completion:nil];
 }
+- (IBAction)onCancelButtonPressed:(UIButton *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "UserProfileViewController.h"
+#import "Verification.h"
 
 @interface UserProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -38,7 +39,7 @@
     self.stateLabel.text = self.selectedUser.state;
     self.specialtyLabel.text = self.selectedUser.specialty;
     self.occupationLabel.text = self.selectedUser.occupation;
-//    self.safetyLevelLabel.text =
+    self.safetyLevelLabel.text = [NSString stringWithFormat:@"Safety level:%@",self.selectedUser.verification.safetyLevel];
     [self.selectedUser.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *image = [UIImage imageWithData:data];
