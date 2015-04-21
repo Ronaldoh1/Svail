@@ -9,6 +9,7 @@
 #import "TextVeriViewController.h"
 #import <MessageUI/MessageUI.h>
 #import <Parse/Parse.h>
+#import "Verification.h"
 
 @interface TextVeriViewController () <MFMessageComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -93,7 +94,9 @@
 //                                        NSLog(@"%@",result);
 //                                    }
 //                                }];
-        [PFCloud callFunctionInBackground:@"test1"
+    
+    
+        [PFCloud callFunctionInBackground:@"processReferenceText"
                        withParameters:nil
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
