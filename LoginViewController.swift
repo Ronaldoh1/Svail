@@ -40,6 +40,10 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
 
                     self.getFacebookUserData()
 
+                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
+                    let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UINavigationController
+                    self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+
                 } else {
                     println("User logged in through Facebook!")
 
@@ -91,10 +95,22 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
 
     func getFacebookUserData(){
 
+        var user = User.currentUser()
+
         var fbRequest = FBSDKGraphRequest(graphPath:"/me", parameters: nil);
         fbRequest.startWithCompletionHandler { (connection : FBSDKGraphRequestConnection!, result : AnyObject!, error : NSError!) -> Void in
 
             if error == nil {
+
+                user?.name = result["name"] as! String
+
+                user?.email = result["email"] as? String
+
+                user?.gender = result["gender"] as! String
+
+                user?.saveInBackground()
+
+                self.getFbUserProfileImage(result)
 
                 
 
@@ -104,6 +120,12 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
                 
             }
         }
+
+    }
+
+    
+    func getFbUserProfileImage(facebookID:AnyObject){
+        // Get user profile pic
 
 
 

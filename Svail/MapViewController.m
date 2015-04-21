@@ -387,6 +387,12 @@
                 //we also need to retrieve his profile picture.
 
 
+                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
+                ParticipantsViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
+                [self presentViewController:editProfileVC animated:true completion:nil];
+
+
+
                 NSLog(@"User signed up and logged in through Facebook!");
 
 

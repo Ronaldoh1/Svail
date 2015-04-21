@@ -63,9 +63,10 @@
 }
 
 - (IBAction)onBackButtonTapped:(UIBarButtonItem *)sender {
-    UIStoryboard *mapStoryBoard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
-    UIViewController *mapTabVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-    [self presentViewController:mapTabVC animated:true completion:nil];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+    
 }
 
 
