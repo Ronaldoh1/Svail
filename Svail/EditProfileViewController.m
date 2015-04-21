@@ -12,6 +12,8 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
+#import "Verification.h"
+
 @interface EditProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, FBSDKGraphRequestConnectionDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *fullnameTextField;
@@ -107,5 +109,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)onVeriButtonTapped:(UIButton *)sender
+{
+    
+    UIStoryboard *veriStoryboard = [UIStoryboard storyboardWithName:@"Verification" bundle:nil];
+    UIViewController *veriNavVC = [veriStoryboard instantiateViewControllerWithIdentifier:@"VeriNavVC"];
+    [self presentViewController:veriNavVC animated:YES completion:nil];
+}
 
 @end

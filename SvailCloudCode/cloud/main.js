@@ -39,41 +39,28 @@ Parse.Cloud.define('sendSMS', function(request, response) {
 });
 
 
-Parse.Cloud.define("test", function(request, response) {
+Parse.Cloud.define("processReferenceText", function(request, response) {
 
-  var query = new Parse.Query("Verification");
-   query.equalTo("objectId", "5Y8kSROdYO");
-   query.first({
-       success: function(result) 
-       {
-           // results is an array of Parse.Object.
-           response.success(result.get("objectId"));
-       },
-       error: function(error) 
-       {
-           // error is an instance of Parse.Error.
-           response.error('error');
-       }
-   });
-});
-
-
-Parse.Cloud.define("test1", function(request, response) {
-
-    Parse.Cloud.useMasterKey()
-    var query = new Parse.Query("Verification");
-    query.equalTo("objectId", "lHBL87Sg2H");
+//    Parse.Cloud.useMasterKey()
+    var query = new Parse.Query(Parse.User);
+    query.equalTo("phoneNumber", request);
 
     query.find({
           success: function(results) 
           {
-              response.success(results.count);
+              //console.log(results[0].get("objectId"));
+              response.success(results[0].get("phoneNumber"));
           },
           error: function() 
           {
               response.error("failed");
           }
     });
+
+})
+
+
+Parse.Cloud.define("test", function(request, response) {
 
 })
 
