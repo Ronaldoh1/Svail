@@ -17,6 +17,7 @@
 @property NSMutableArray *arrayOfServiceObjects;
 @property Service *serviceFromParse;
 @property Service *serviceSelected;
+@property NSIndexPath *itemToDeletIndexPath;
 @end
 
 @implementation PostHistoryViewController
@@ -36,7 +37,7 @@
             // The find succeeded.
             NSLog(@"Successfully retrieved %lu objects.", (unsigned long)objects.count);
 
-            self.arrayOfServiceObjects = objects.copy;
+            self.arrayOfServiceObjects = objects.mutableCopy;
 
 
 
@@ -75,9 +76,6 @@
 
     cell.textLabel.text = self.serviceFromParse.title;
     cell.detailTextLabel.text = self.serviceFromParse.category;
-    
-
-
 
     return cell;
 }
@@ -88,6 +86,47 @@
 //    NSLog(@"%@", self.serviceSelected.title);
 //
 //}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    return @"Delete Service";
+}
+//check for table for delete mode and display the alert.
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle ==UITableViewCellEditingStyleDelete){
+         self.itemToDeletIndexPath = indexPath;
+
+        [self displayAlert];
+    }
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    //button index 0 means the user presses the cancel button.
+    if (buttonIndex == 0) {
+
+
+    }else{
+        //else this means that the user click on delete and should continue to remove the item from
+
+        //we also need to remove this item from parse.
+        Service *serviceToDelete = self.arrayOfServiceObjects[self.itemToDeletIndexPath.row];
+
+        [serviceToDelete deleteInBackground];
+
+
+        [self.arrayOfServiceObjects removeObjectAtIndex:self.itemToDeletIndexPath.row];
+
+
+
+        [self.tableView reloadData]; // tell table to refresh now
+
+        
+    }
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
@@ -107,6 +146,13 @@
 
 }
 
+#pragma Marks - Helper Methods. 
 
+-(void) displayAlert{
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Service?" message:@"Are you sure want to delete this service from Svail?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+
+    [alert show];
+}
 
 @end

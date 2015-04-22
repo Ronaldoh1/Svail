@@ -13,6 +13,8 @@
 #import "User.h"
 #import "SelectLocationFromMapViewController.h"
 #import "MBProgressHUD.h"
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 
 
@@ -24,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *serviceCapacity;
 @property (weak, nonatomic) IBOutlet UITextField *location;
 @property (weak, nonatomic) IBOutlet UITextField *price;
+@property SLComposeViewController *mySL;
 
 @property Service *service;
 
@@ -127,15 +130,8 @@
 
     //Indicator starts annimating when user posts.
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.7 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-
-//    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//    activityIndicator.color = [UIColor colorWithRed:102 green:0 blue:255 alpha:1];
-//    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
-//    [self.view addSubview: activityIndicator];
-
-    //[activityIndicator startAnimating];
 
 
     [self.service saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -253,7 +249,38 @@
 
     
 }
+//share to facebook
+- (IBAction)sharetoFacebookButton:(UIButton *)sender {
 
+    //allocate composed view controller
+    self.mySL = [[SLComposeViewController alloc]init];
+
+    //set the type of social media that you want to post to.
+    self.mySL = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+
+    //set the text that you want to share.
+    [self.mySL setInitialText:[NSString stringWithFormat:@"Hi, I just posted a new service on Svail! Please check it out! => %@ - %@ for only $%@", self.serviceTitle.text, self.serviceDescription.text, self.price.text]];
+
+    [self presentViewController:self.mySL animated:true completion:nil];
+
+    
+}
+
+- (IBAction)tweetItButtonTapped:(UIButton *)sender {
+
+    //allocate composed view controller
+    self.mySL = [[SLComposeViewController alloc]init];
+
+    //set the type of social media that you want to post to.
+    self.mySL = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+
+    //set the text that you want to share.
+    [self.mySL setInitialText:[NSString stringWithFormat:@"Hi, I just posted a new service on Svail! Please check it out! => %@ - %@ for only $%@", self.serviceTitle.text, self.serviceDescription.text, self.price.text]];
+
+    [self presentViewController:self.mySL animated:true completion:nil];
+
+
+}
 
 
 @end

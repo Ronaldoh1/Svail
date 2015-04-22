@@ -7,6 +7,7 @@
 //
 
 #import "SelectImageViewController.h"
+#import "MBProgressHUD.h"
 #import "Image.h"
 
 @interface SelectImageViewController ()<UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -139,7 +140,7 @@
 
         [self saveImagesInBackGround:imageTempArray];
 
-       
+
 
 
 
@@ -183,7 +184,7 @@
         PFFile *imageFile2 = [PFFile fileWithData:imageData2];
         self.pickedImage2.imageFile = imageFile2;
         //self.pickedImage2.service = self.service;
-       [imageTempArray addObject:self.pickedImage2];
+        [imageTempArray addObject:self.pickedImage2];
 
         //Image3
         NSData *imageData3 = UIImagePNGRepresentation((UIImage *)self.imageArray[2]);
@@ -192,7 +193,7 @@
         //self.pickedImage2.service = self.service;
         [imageTempArray addObject:self.pickedImage3];
 
-         [self saveImagesInBackGround:imageTempArray];
+        [self saveImagesInBackGround:imageTempArray];
 
     } if(self.imageArray.count == 4){
         //define and NSMutable array to hold the image objects.
@@ -237,30 +238,31 @@
 //Helper method to save all images in background;
 
 -(void)saveImagesInBackGround:(NSMutableArray *)imagesHolder{
-    //Indicator starts annimating when signing up.
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicator.color = [UIColor colorWithRed:102 green:0 blue:255 alpha:1];
-    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
-    [self.view addSubview: activityIndicator];
 
-    [activityIndicator startAnimating];
+    //Indicator starts annimating when user saves images.
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.9 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 
 
-    [Image saveAllInBackground:imagesHolder block:^(BOOL succeeded, NSError *error) {
+        [Image saveAllInBackground:imagesHolder block:^(BOOL succeeded, NSError *error) {
 
+
+
+            if(!error){
+                //successfully saved image1.
+                [self performSegueWithIdentifier:@"toServiceHistory"sender:self];
+
+            }else {
+                [self displayErrorAlert:error.localizedDescription];
+
+            }
+
+        }];
         //stop actiivity indication from annimating.
-        [activityIndicator stopAnimating];
 
-        if(!error){
-            //successfully saved image1.
-            [self performSegueWithIdentifier:@"toServiceHistory" sender:self];
-
-        }else {
-            [self displayErrorAlert:error.localizedDescription];
-
-        }
-
-    }];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
 }
 
 //Helper method to dismissview picker View Controller.
@@ -351,15 +353,15 @@
             [self.imageArray removeObjectAtIndex:2];
             UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
             [self.imageArray insertObject:image atIndex:2];
-
-
+            
+            
         }
     }else if(self.fourthImagePicked == true){
         self.fourthImagePicked = false;
-
+        
         if (self.imageArray.count != 4){
-
-
+            
+            
             UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
             [self.imageArray insertObject:image atIndex:3];
             
