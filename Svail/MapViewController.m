@@ -13,6 +13,7 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "ParticipantsViewController.h"
+#import "CustomPointAnnotation.h"
 
 //PARTICIPANT NUMBER ADDED TO EVENT ? CHANGE PIN COLOR ACCORDINGLY
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
@@ -24,8 +25,8 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property CLLocationManager *locationManager;
-@property MKPointAnnotation *providerPoint;
-@property MKPointAnnotation *draggedAnnotation;
+@property CustomPointAnnotation *providerPoint;
+@property CustomPointAnnotation *draggedAnnotation;
 @property NSMutableArray *eventsArray;
 @property NSMutableArray *searchResults;
 @property NSMutableArray *filterArray;
@@ -79,6 +80,9 @@
          [self filterEventsForDate:self.segmentedControl];
      }];
 }
+- (IBAction)OnLogOutButtonTapped:(UIButton *)sender {
+    [User logOut];
+}
 
 #pragma Mark - Dismiss Keyboard Method
 
@@ -98,10 +102,25 @@
         double latitude = serviceGeoPoint.latitude;
         double longtitude = serviceGeoPoint.longitude;
         CLLocationCoordinate2D serviceCoordinate = CLLocationCoordinate2DMake(latitude, longtitude);
-        aService.annotation = [[MKPointAnnotation alloc] init];
-        aService.annotation.title = [aService objectForKey:@"title"];
-        aService.annotation.coordinate = serviceCoordinate;
-        [self.mapView addAnnotation:aService.annotation];
+        CustomPointAnnotation *newAnnotation = [[CustomPointAnnotation alloc] init];
+        newAnnotation.title = [aService objectForKey:@"title"];
+        newAnnotation.coordinate = serviceCoordinate;
+        newAnnotation.service = aService;
+
+        if (self.serviceParticipants.count < [newAnnotation.service.capacity integerValue]/2)
+        {
+            newAnnotation.color = [UIColor colorWithRed:58/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
+        }
+        else if (self.serviceParticipants.count >= [newAnnotation.service.capacity integerValue]/2 && self.serviceParticipants.count < [newAnnotation.service.capacity integerValue])
+        {
+            newAnnotation.color = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:0/255.0 alpha:1.0];;
+        }
+        else if (self.serviceParticipants.count == [newAnnotation.service.capacity integerValue])
+        {
+            newAnnotation.color = MKPinAnnotationColorRed;
+        }
+
+        [self.mapView addAnnotation:newAnnotation];
 
     }
 }
@@ -123,6 +142,8 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    CustomPointAnnotation *customAnnotation = (CustomPointAnnotation *)annotation;
+
     MKPinAnnotationView *pinAnnotation = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:nil];
 
     if (annotation == mapView.userLocation) {
@@ -134,6 +155,20 @@
     //        pinAnnotation.pinColor = MKPinAnnotationColorPurple;
     //        pinAnnotation.draggable = YES;
     //    }
+
+//    else if (self.serviceParticipants.count < [customAnnotation.service.capacity integerValue]/2)
+//    {
+//        pinAnnotation.pinColor = MKPinAnnotationColorGreen;
+//    }
+//    else if (self.serviceParticipants.count >= [customAnnotation.service.capacity integerValue]/2 && self.serviceParticipants.count < [customAnnotation.service.capacity integerValue])
+//    {
+//        pinAnnotation.pinColor = MKPinAnnotationColorPurple;
+//    }
+//    else if (self.serviceParticipants.count == [customAnnotation.service.capacity integerValue])
+//    {
+//        pinAnnotation.pinColor = MKPinAnnotationColorRed;
+//    }
+
     pinAnnotation.canShowCallout = YES;
     pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
     pinAnnotation.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -148,7 +183,7 @@
     {
         CLLocationCoordinate2D newCoordinate = view.annotation.coordinate;
         NSLog(@"dropped at %f,%f", newCoordinate.latitude, newCoordinate.longitude);
-        self.draggedAnnotation = [MKPointAnnotation new];
+        self.draggedAnnotation = [CustomPointAnnotation new];
         self.draggedAnnotation.coordinate = newCoordinate;
         self.mapView.showsUserLocation = NO;
         [self.mapView addAnnotation:self.draggedAnnotation];
@@ -184,28 +219,34 @@
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
 
-        NSArray *emptyArray = @[];
-        PFQuery *newQuery=[Service query];
-        [newQuery whereKey:@"participants" notContainedIn:emptyArray];
-        [newQuery includeKey:@"participants"];
-        [newQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            self.serviceParticipants = objects.mutableCopy;
+    CustomPointAnnotation *annotation = view.annotation;
+    if ([annotation.service objectForKey:@"participants"] == nil)
+    {
+        self.serviceParticipants = [NSMutableArray new];
+        annotation.service.participants = self.serviceParticipants;
+        [annotation.service saveInBackground];
+        
+    }
+    else
+    {
+        self.serviceParticipants = [annotation.service objectForKey:@"participants"];
+    }
 
-            if (control == view.rightCalloutAccessoryView)
-            {
-                [self.serviceParticipants addObject:[User currentUser]];
-            }
-            else if (control == view.leftCalloutAccessoryView)
-            {
-                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"UserProfile" bundle:nil];
-                ParticipantsViewController *participantsVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"participantsVC"];
-                [self presentViewController:participantsVC animated:true completion:nil];
-                participantsVC.participants = self.serviceParticipants;
-            }
-        }];
+    if (control == view.rightCalloutAccessoryView)
+    {
+        //THIS PART WILL CHANGE AFTER PURCHASE
 
+        [self.serviceParticipants addObject:[User currentUser]];
+        [annotation.service saveInBackground];
 
-
+    }
+    else if (control == view.leftCalloutAccessoryView)
+    {
+        UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"UserProfile" bundle:nil];
+        ParticipantsViewController *participantsVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"participantsVC"];
+        [self presentViewController:participantsVC animated:true completion:nil];
+        participantsVC.participants = self.serviceParticipants;
+    }
 }
 
 #pragma Mark - Methods to filter Services with SegmentedControl and SearchBar
