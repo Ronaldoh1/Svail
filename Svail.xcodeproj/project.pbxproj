@@ -19,6 +19,9 @@
 		36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE95591ADDC93900ABDB93 /* TwitterKit.framework */; };
 		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
+		36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB01A1AE5F6D50045AF92 /* Reference.m */; };
+		36EBB01E1AE68E260045AF92 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB01D1AE68E260045AF92 /* CategoryViewController.m */; };
+		36EBB0211AE68E610045AF92 /* ServiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0201AE68E610045AF92 /* ServiceListViewController.m */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
 		3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E80C4951AE4C85800405828 /* ParticipantsViewController.m */; };
@@ -97,6 +100,12 @@
 		36DE95591ADDC93900ABDB93 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		36EBB0191AE5F6D50045AF92 /* Reference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reference.h; sourceTree = "<group>"; };
+		36EBB01A1AE5F6D50045AF92 /* Reference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reference.m; sourceTree = "<group>"; };
+		36EBB01C1AE68E260045AF92 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
+		36EBB01D1AE68E260045AF92 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		36EBB01F1AE68E610045AF92 /* ServiceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceListViewController.h; sourceTree = "<group>"; };
+		36EBB0201AE68E610045AF92 /* ServiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceListViewController.m; sourceTree = "<group>"; };
 		3E4036DB1ADD882600C4A0A0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
@@ -339,6 +348,8 @@
 				F24B36481ADCB534006153EC /* Rating.m */,
 				F24B364A1ADCB645006153EC /* Verification.h */,
 				F24B364B1ADCB645006153EC /* Verification.m */,
+				36EBB0191AE5F6D50045AF92 /* Reference.h */,
+				36EBB01A1AE5F6D50045AF92 /* Reference.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -400,6 +411,10 @@
 			isa = PBXGroup;
 			children = (
 				F24B36261ADC6B16006153EC /* Service.storyboard */,
+				36EBB01C1AE68E260045AF92 /* CategoryViewController.h */,
+				36EBB01D1AE68E260045AF92 /* CategoryViewController.m */,
+				36EBB01F1AE68E610045AF92 /* ServiceListViewController.h */,
+				36EBB0201AE68E610045AF92 /* ServiceListViewController.m */,
 			);
 			name = ServiceList;
 			sourceTree = "<group>";
@@ -623,16 +638,19 @@
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
+				36EBB01E1AE68E260045AF92 /* CategoryViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
 				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
 				F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */,
 				3EC9D3D81AE16E1B00071FF3 /* Circle Button.m in Sources */,
+				36EBB0211AE68E610045AF92 /* ServiceListViewController.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
 				3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
+				36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */,
 				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				3666FD931ADDB4EC00105272 /* TextVeriViewController.m in Sources */,

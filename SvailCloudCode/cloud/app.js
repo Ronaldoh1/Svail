@@ -15,20 +15,6 @@ app.use(express.bodyParser());    // Middleware for reading request body
    var referencerNumber = req.query.From;
    var referencerText = req.query.Body;
    var strArray  = referencerText.split('+');
-   var queryUser =  new Parse.Query('User');
-   queryUser.equalTo('phoneNumber', strArray[0]);
-   queryUser.find({
-       success: function(results) 
-       {
-           // results is an array of Parse.Object.
-           result = results[0];
-           console.log(result['name']);
-       },
-       error: function(error) 
-       {
-           // error is an instance of Parse.Error.
-       }
-   });
    
 //   var replyToReferencer = 'Thanks for being a reference to ' + strArray[0];
 //   console.log(replyToReferencer);

@@ -19,12 +19,11 @@ static NSUInteger const kMinimumLKConnectionsCount = 10;
 
 
 
-@dynamic verifiers;
+@dynamic references;
 @dynamic safetyLevel;
 @dynamic fbLevel;
 @dynamic ttLevel;
 @dynamic lkLevel;
-@dynamic user;
 
 +(void)load{
     [self registerSubclass];
@@ -43,6 +42,7 @@ static NSUInteger const kMinimumLKConnectionsCount = 10;
         verification.fbLevel = 0;
         verification.ttLevel = 0;
         verification.lkLevel = 0;
+        verification.references = @[];
     }
     return verification;
 }

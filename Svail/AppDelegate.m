@@ -20,6 +20,7 @@
 #import "Image.h"
 #import "Rating.h"
 #import "Verification.h"
+#import "Reference.h"
 
 
 NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
@@ -58,6 +59,7 @@ NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
     [Image registerSubclass];
     [Rating registerSubclass];
     [Verification registerSubclass];
+    [Reference registerSubclass];
     
     [Parse setApplicationId:@"ebHjZbY6vKWbDo1fmskeLG2XE8Kz6sOEEgXrZolM"
                   clientKey:@"U8IGSnk5tGWURWY0xeQGfXakjWpSiGUbGtKYDShI"];

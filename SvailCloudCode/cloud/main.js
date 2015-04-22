@@ -42,26 +42,83 @@ Parse.Cloud.define('sendSMS', function(request, response) {
 Parse.Cloud.define("processReferenceText", function(request, response) {
 
 //    Parse.Cloud.useMasterKey()
-    var query = new Parse.Query(Parse.User);
-    query.equalTo("phoneNumber", request);
+    var fromNumber = request.params.fromNumber;
+    var numberInMessage = request.params.message;
 
-    query.find({
-          success: function(results) 
-          {
-              //console.log(results[0].get("objectId"));
-              response.success(results[0].get("phoneNumber"));
+     var Reference = Parse.Object.extend("Reference");
+    var User = Parse.Object.extend("User");
+    var queryOfUser = new Parse.Query(User);
+    queryOfUser.include("verification.references");
+    queryOfUser.equalTo("phoneNumber", numberInMessage);
+
+    Parse.User.logIn("user", "pass").then(function(user) {
+      return query.find();
+      }).then(function(results) {
+        return results[0].save({ key: value });
+        }).then(function(result) {
+          // the object was saved.
+          }, function(error) {
+            // there was some error.
+            });
+
+    queryOfUser.find().then(function(results) 
+    {
+             var userToVerify = results[0];
+             var verification = userToVerify.get("verification");
+             var references = verification.get("references");
+              for (var i = 0; i < references.length; ++i) 
+              {
+                    console.log(i);
+                    var reference = references[i];
+                    console.log(reference.get("fromPhoneNumber"));
+                    var fromPhoneNumber = reference.get("fromPhoneNumber");
+                    console.log(fromPhoneNumber);
+                    if (fromPhoneNumber ===  fromNumber) 
+                    {
+                        return Parse.Promise.error("Reference already exists");
+                    }
+
+               }
+                          console.log("record not found");
+
+                         var reference = new Reference();
+                         reference.set("fromPhoneNumber",fromNumber);
+                         reference.set("userToVerify",userToVerify);
+                          verification.add("references",reference);
+
+
+                          verification.save(null,{
+                              success: function (object) 
+                              { 
+                                  response.success(object.get("references"));
+                              }, 
+                              error: function (object, error) { 
+                                  response.error(error);
+                              }
+                          })
+
           },
           error: function() 
           {
-              response.error("failed");
+              response.error("failed to find user");
           }
-    });
+    })
 
 })
 
 
 Parse.Cloud.define("test", function(request, response) {
+    Parse.Cloud.run('processReferenceText',{fromNumber: '0123456789', message: '9253219260'},{          
+              success: function(results) {            
 
+                   console.log('to send');
+                   response.success(results);
+                }, error: function(results, error) {
+
+                   console.log('to fail');
+                  response.error("failed test");
+                }
+            });
 })
 
 

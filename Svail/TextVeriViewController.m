@@ -96,7 +96,7 @@
 //                                }];
     
     
-        [PFCloud callFunctionInBackground:@"processReferenceText"
+        [PFCloud callFunctionInBackground:@"test"
                        withParameters:nil
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
