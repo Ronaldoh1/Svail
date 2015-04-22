@@ -13,9 +13,15 @@ app.use(express.bodyParser());    // Middleware for reading request body
 //   res.send(req.query.Body);
    console.log(req.query.Body);
    var referencerNumber = req.query.From;
-   var referencerText = req.query.Body;
-   var strArray  = referencerText.split('+');
-   
+   var message = req.query.Body;
+   var messageToReferencer = "Thanks for texting us about one of our users.Svail.";
+   Parse.Cloud.run("sendSMS",{toNumber: referencerNumber  , message: messageToReferencer});         
+
+   Parse.Cloud.run('processReferenceText',{fromNumber:referencerNumber , message: message});         
+
+
+
+  
 //   var replyToReferencer = 'Thanks for being a reference to ' + strArray[0];
 //   console.log(replyToReferencer);
 //    Parse.Cloud.run('sendSMS',{toNumber: referencerNumber, message: replyToReferencer},{          
@@ -29,19 +35,7 @@ app.use(express.bodyParser());    // Middleware for reading request body
 //            });
 
 //    var userNumber =  '+12405061982';
-    var userNumber =  '+19253219260';
-    messageToUser = 'One of your Svail references just texted Svail about you.';
-
-    Parse.Cloud.run("sendSMS",{toNumber: userNumber, message: messageToUser},{          
-              success: function(results) {            
-
-                   console.log('to send');
-                }, error: function(results, error) {
-
-                   console.log('to fail');
-                }
-            });
-
+    
  });
 
 // Attach the Express app to Cloud Code.
