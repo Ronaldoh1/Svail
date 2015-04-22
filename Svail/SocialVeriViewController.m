@@ -18,46 +18,159 @@
 #import "User.h"
 #import "Verification.h"
 #import "Image.h"
+#import "Reference.h"
 
 
 
-@interface SocialVeriViewController ()
+@interface SocialVeriViewController () <UITextFieldDelegate>
 
 @property (nonatomic) BOOL isUserVerified;
 @property (nonatomic) LIALinkedInHttpClient *linkedIn;
-@property (weak, nonatomic) IBOutlet UILabel *fbVeriLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ttVeriLabel;
-@property (weak, nonatomic) IBOutlet UILabel *lkVeriLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *fbCheckmark;
+@property (weak, nonatomic) IBOutlet UIImageView *ttCheckmark;
+@property (weak, nonatomic) IBOutlet UIImageView *lkCheckmark;
+@property (weak, nonatomic) IBOutlet UIButton *fbVerifyButton;
+@property (weak, nonatomic) IBOutlet UIButton *ttVerifyButton;
+@property (weak, nonatomic) IBOutlet UIButton *lkVerifyButton;
+@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *phoneNumberTextFields;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *phoneNumberCheckmarks;
+
 @property (nonatomic) User *currentUser;
-@property (nonatomic) Verification *verification;
 
 
 @end
 
 @implementation SocialVeriViewController
 
+static float const kAlphaForButtonsIfVerified = 0.2;
+static float const kAlphaForButtonsIfNotVerified = 1.0;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.fbVeriLabel.textColor = [UIColor lightGrayColor];
-    self.fbVeriLabel.text = @"";
-    self.ttVeriLabel.textColor = [UIColor lightGrayColor];
-    self.ttVeriLabel.text = @"";
-    self.lkVeriLabel.textColor = [UIColor lightGrayColor];
-    self.lkVeriLabel.text = @"";
-    
     self.currentUser = [User currentUser];
+    self.view.hidden = YES;
+    [self.fbVerifyButton setNeedsDisplay];
+    [self.ttVerifyButton setNeedsDisplay];
+    [self.lkVerifyButton setNeedsDisplay];
+    
     if (!self.currentUser.verification) {
         self.currentUser.verification = [Verification object];
         [self.currentUser saveInBackground];
+    } else {
+        PFQuery *query = [User query];
+        [query includeKey:@"verification.references"];
+        [query getObjectInBackgroundWithId:self.currentUser.objectId block:^(PFObject *user, NSError *error)
+        {
+            self.view.hidden = NO;
+            self.currentUser = (User *)user;
+            NSLog(@"%li",self.currentUser.verification.fbLevel);
+            NSLog(@"%li",self.currentUser.verification.ttLevel);
+            NSLog(@"%li",self.currentUser.verification.lkLevel);
+            NSLog(@"%li",self.currentUser.verification.references.count);
+            Reference *reference = self.currentUser.verification.references[0];
+            NSLog(@"%@",reference.fromPhoneNumber);
+            [self showFBItems:self.currentUser.verification.fbLevel > 0];
+            [self showTTItems:self.currentUser.verification.ttLevel > 0];
+            [self showLKItems:self.currentUser.verification.lkLevel > 0];
+            
+            [self showPhoneNumberItems];
+        }];
     }
-
     
 
-    
     
 }
+
+-(void)showFBItems:(BOOL)isVerified
+{
+    if (isVerified) {
+        self.fbCheckmark.hidden = NO;
+        self.fbVerifyButton.imageView.alpha = kAlphaForButtonsIfVerified;
+        self.fbVerifyButton.userInteractionEnabled = NO;
+    } else {
+        self.fbCheckmark.hidden = YES;
+        self.fbVerifyButton.imageView.alpha = kAlphaForButtonsIfNotVerified;
+        self.fbVerifyButton.userInteractionEnabled = YES;
+    }
+}
+
+-(void)showTTItems:(BOOL)isVerified
+{
+    if (isVerified) {
+        self.ttCheckmark.hidden = NO;
+        self.ttVerifyButton.imageView.alpha = 0.4;
+        self.ttVerifyButton.userInteractionEnabled = NO;
+    } else {
+        self.ttCheckmark.hidden = YES;
+        self.ttVerifyButton.imageView.alpha = 1.0;
+        self.ttVerifyButton.userInteractionEnabled = YES;
+    }
+}
+
+-(void)showLKItems:(BOOL)isVerified
+{
+    if (isVerified) {
+        self.lkCheckmark.hidden = NO;
+        self.lkVerifyButton.imageView.alpha = 0.4;
+        self.lkVerifyButton.userInteractionEnabled = NO;
+    } else {
+        self.lkCheckmark.hidden = YES;
+        self.lkVerifyButton.imageView.alpha = 1.0;
+        self.lkVerifyButton.userInteractionEnabled = YES;
+    }
+}
+
+-(void)showPhoneNumberItems
+{
+    for (UIImageView *phoneNumberCheckmark in self.phoneNumberCheckmarks) {
+        phoneNumberCheckmark.hidden = YES;
+    }
+    NSArray *references = self.currentUser.verification.references;
+    for (int i = 0; i < references.count; i++) {
+        ((UIImageView *)self.phoneNumberCheckmarks[i]).hidden = NO;
+        UITextField *phoneNumberTextField = self.phoneNumberTextFields[i];
+        Reference *reference = references[i];
+        phoneNumberTextField.text = reference.fromPhoneNumber;
+    }
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    NSUInteger index = [self.phoneNumberTextFields indexOfObject:textField];
+    return ((UIImageView *)self.phoneNumberCheckmarks[index]).isHidden;
+}
+
+- (IBAction)onRequestButtonTapped:(UIButton *)sender
+{
+    
+    NSString *message = [NSString stringWithFormat:@"Could you help your friend %@ complete a simple safety level check for using Svail?", [User currentUser].name];
+    
+    for (int i = 0; i < 3 - self.currentUser.verification.references.count; i++) {
+        UITextField *textField = self.phoneNumberTextFields[i];
+        if (![textField.text isEqualToString:@""]) {
+            [self sendSMSFromParseWithToNumber:textField.text message:message];
+        }
+    }
+
+}
+
+-(void)sendSMSFromParseWithToNumber:(NSString *)toNumber message:(NSString *)message
+{
+    [PFCloud callFunctionInBackground:@"sendSMS"
+                       withParameters:@{@"toNumber":toNumber,
+                                        @"message": message}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        // result is @"Hello world!"
+                                        NSLog(@"%@",result);
+                                    }
+                                }];
+
+}
+
+
 
 
 - (IBAction)onFacebookVerifyButtonTapped:(UIButton *)sender
@@ -82,13 +195,8 @@
                              NSLog(@"facebook friends count : %li", friendsCount);
                              self.currentUser.verification.fbLevel = [Verification getFBLevelWithNumOfFriends:friendsCount];
                              [self.currentUser saveInBackground];
-                             if (self.currentUser.verification.fbLevel > 0) {
-                                 self.fbVeriLabel.text = @"Pass";
-                                 self.fbVeriLabel.textColor = [UIColor greenColor];
-                             } else {
-                                 self.fbVeriLabel.text = @"Not qualified";
-                                 self.fbVeriLabel.textColor = [UIColor grayColor];
-                             }
+                             [self showFBItems:self.currentUser.verification.fbLevel > 0];
+                            
                          }
                      }];
                 }
@@ -160,14 +268,7 @@
                  NSLog(@"Twitter followers count : %li",followersCount);
                  self.currentUser.verification.ttLevel = [Verification getTTLevelWithNumOfFollowers:followersCount];
                  [self.currentUser saveInBackground];
-                 
-                 if (self.currentUser.verification.ttLevel > 0) {
-                     self.ttVeriLabel.text = @"Pass";
-                     self.ttVeriLabel.textColor = [UIColor greenColor];
-                 } else {
-                     self.ttVeriLabel.text = @"Not qualified";
-                     self.ttVeriLabel.textColor = [UIColor grayColor];
-                 }
+                 [self showTTItems:self.currentUser.verification.ttLevel > 0];
 
              }
              else {
@@ -211,14 +312,7 @@
         NSInteger numOfConnections = [result[@"numConnections"] integerValue];
         self.currentUser.verification.lkLevel = [Verification getTTLevelWithNumOfFollowers:numOfConnections];
         [self.currentUser saveInBackground];
-        
-        if (self.currentUser.verification.lkLevel > 0) {
-            self.lkVeriLabel.text = @"Pass";
-            self.lkVeriLabel.textColor = [UIColor greenColor];
-        } else {
-            self.lkVeriLabel.text = @"Not qualified";
-            self.lkVeriLabel.textColor = [UIColor grayColor];
-        }
+        [self showLKItems:self.currentUser.verification.lkLevel > 0];
         
     }   failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
@@ -237,6 +331,12 @@
     return [LIALinkedInHttpClient clientForApplication:application presentingViewController:self];
 }
 
-
+- (IBAction)onDoneButtonTapped:(UIBarButtonItem *)sender
+{
+    UIStoryboard *mapStoryBoard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
+    UIViewController *mapVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MapNavVC"];
+    [self presentViewController:mapVC animated:true completion:nil];
+    
+}
 
 @end

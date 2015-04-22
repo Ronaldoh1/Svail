@@ -10,6 +10,7 @@
 #import <MessageUI/MessageUI.h>
 #import <Parse/Parse.h>
 #import "Verification.h"
+#import "User.h"
 
 @interface TextVeriViewController () <MFMessageComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -51,7 +52,8 @@
         [phoneNumbers addObject:self.cellPhoneTextField3.text];
     }
     
-    NSString *message = @"Could you help your friend Ron complete a simple safety level check for using Svail?";
+    
+    NSString *message = [NSString stringWithFormat:@"Could you help your friend %@ complete a simple safety level check for using Svail?", [User currentUser].name];
     [self sendSMSFromParseWithToNumber:phoneNumbers[0] message:message];
     
 
@@ -85,25 +87,25 @@
 
 -(void)sendSMSFromParseWithToNumber:(NSString *)toNumber message:(NSString *)message
 {
-//    [PFCloud callFunctionInBackground:@"sendSMS"
-//                       withParameters:@{@"toNumber":toNumber,
-//                                        @"message": message}
-//                                block:^(NSString *result, NSError *error) {
-//                                    if (!error) {
-//                                        // result is @"Hello world!"
-//                                        NSLog(@"%@",result);
-//                                    }
-//                                }];
-    
-    
-        [PFCloud callFunctionInBackground:@"test"
-                       withParameters:nil
+    [PFCloud callFunctionInBackground:@"sendSMS"
+                       withParameters:@{@"toNumber":toNumber,
+                                        @"message": message}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         // result is @"Hello world!"
                                         NSLog(@"%@",result);
                                     }
                                 }];
+    
+    
+//        [PFCloud callFunctionInBackground:@"test"
+//                       withParameters:nil
+//                                block:^(NSString *result, NSError *error) {
+//                                    if (!error) {
+//                                        // result is @"Hello world!"
+//                                        NSLog(@"%@",result);
+//                                    }
+//                                }];
 
 }
 

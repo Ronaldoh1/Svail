@@ -11,7 +11,7 @@
 @interface Verification : PFObject<PFSubclassing>
 
 @property NSArray *references;
-@property NSNumber *safetyLevel;
+@property NSInteger safetyLevel;
 @property (nonatomic) NSUInteger fbLevel;
 @property (nonatomic) NSUInteger ttLevel;
 @property (nonatomic) NSUInteger lkLevel;
