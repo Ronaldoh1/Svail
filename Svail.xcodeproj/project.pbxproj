@@ -75,6 +75,8 @@
 		F268B49B1AE4D72D008F2370 /* connect.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B49A1AE4D72D008F2370 /* connect.png */; };
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
 		F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */; };
+		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
+		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +193,8 @@
 		F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Svail.entitlements; sourceTree = "<group>"; };
 		F2A4FC031AE0FEE00022AAB8 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
 		F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		F2F94D281AE785BA0092C583 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		F2F94D2A1AE785C00092C583 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +202,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */,
+				F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */,
 				F24B36311ADC6EDD006153EC /* MapKit.framework in Frameworks */,
 				F24B35E41ADB961E006153EC /* AudioToolbox.framework in Frameworks */,
 				36BBC47B1AE43394007960F1 /* ParseFacebookUtilsV4.framework in Frameworks */,
@@ -363,6 +369,8 @@
 		F24B35CA1ADB9569006153EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F2F94D2A1AE785C00092C583 /* Accounts.framework */,
+				F2F94D281AE785BA0092C583 /* Social.framework */,
 				36BBC47E1AE43969007960F1 /* Bolts.framework */,
 				36BBC47C1AE435E0007960F1 /* Parse.framework */,
 				36BBC47A1AE43394007960F1 /* ParseFacebookUtilsV4.framework */,
