@@ -77,6 +77,8 @@
 		F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */; };
 		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
 		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
+		F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */; };
+		F2F94D2F1AE7FD240092C583 /* TweetIt.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2E1AE7FD240092C583 /* TweetIt.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +197,8 @@
 		F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		F2F94D281AE785BA0092C583 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		F2F94D2A1AE785C00092C583 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-share-buttons.png"; sourceTree = "<group>"; };
+		F2F94D2E1AE7FD240092C583 /* TweetIt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TweetIt.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +313,8 @@
 				F24B35A41ADB7E54006153EC /* AppDelegate.h */,
 				F24B35A51ADB7E54006153EC /* AppDelegate.m */,
 				F24B35B01ADB7E54006153EC /* Images.xcassets */,
+				F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */,
+				F2F94D2E1AE7FD240092C583 /* TweetIt.png */,
 				F268B49A1AE4D72D008F2370 /* connect.png */,
 				F268B4981AE4D6D9008F2370 /* fbloginButton.png */,
 				F24B36501ADCDD70006153EC /* camera.png */,
@@ -577,9 +583,11 @@
 				F24B36271ADC6B16006153EC /* Service.storyboard in Resources */,
 				F268B49B1AE4D72D008F2370 /* connect.png in Resources */,
 				F24B362F1ADC6B57006153EC /* Stripe.storyboard in Resources */,
+				F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */,
 				36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */,
 				F24B362B1ADC6B3C006153EC /* Verification.storyboard in Resources */,
 				F24B36231ADC6AE0006153EC /* Login.storyboard in Resources */,
+				F2F94D2F1AE7FD240092C583 /* TweetIt.png in Resources */,
 				F24B362D1ADC6B4B006153EC /* Post.storyboard in Resources */,
 				F24B36251ADC6AF1006153EC /* Map.storyboard in Resources */,
 				3E8D28981AE30ED600D7D648 /* EditProfile.storyboard in Resources */,

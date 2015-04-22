@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *serviceTitle;
 @property (weak, nonatomic) IBOutlet UIDatePicker *endPickerDate;
 @property (weak, nonatomic) IBOutlet UIButton *setLocationButton;
+@property (weak, nonatomic) IBOutlet UITextField *price;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property Service *theServicefromParse;
 @property PFGeoPoint *tempGeoPoint;
