@@ -91,12 +91,10 @@
 
     return @"Delete Service";
 }
-//check for table for delete mode.
+//check for table for delete mode and display the alert.
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(editingStyle ==UITableViewCellEditingStyleDelete){
          self.itemToDeletIndexPath = indexPath;
-
-
 
         [self displayAlert];
     }
