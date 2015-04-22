@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *serviceCategory;
 @property (weak, nonatomic) IBOutlet UITextField *serviceCapacity;
 @property (weak, nonatomic) IBOutlet UITextField *location;
+@property (weak, nonatomic) IBOutlet UITextField *price;
 
 @property Service *service;
 
@@ -104,6 +105,7 @@
     self.service.serviceDescription = self.serviceDescription.text;
     self.service.category = self.serviceCategory.text;
     self.service.capacity = ((NSNumber *)self.serviceCapacity.text);
+    self.service.price = ((NSNumber *) self.price.text);
     self.service.serviceLocationAddress = self.location.text;
      self.service.startDate = [self.startPickerDate date];
      self.service.endDate = [self.endPickerDate date];
