@@ -24,6 +24,8 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
         self.setUpTextFieldsForLogin()
 
         self.view.userInteractionEnabled = true
+
+        println("it's working")
     }
     @IBAction func onCancelButtonPressed(sender: UIButton) {
 
@@ -100,7 +102,10 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
         var fbRequest = FBSDKGraphRequest(graphPath:"/me", parameters: nil);
         fbRequest.startWithCompletionHandler { (connection : FBSDKGraphRequestConnection!, result : AnyObject!, error : NSError!) -> Void in
 
+
+
             if error == nil {
+
 
                 user?.name = result["name"] as! String
 
@@ -108,28 +113,58 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
 
                 user?.gender = result["gender"] as! String
 
+                println(result["picture"])
+
                 user?.saveInBackground()
 
-                self.getFbUserProfileImage(result)
+                var facebookID = result["id"] as? String
 
-                
+
+
+                // self.getFbUserProfileImage(result)
+
+                //self.getFbUserProfileImage()
+                self.getFbUserProfileImage(facebookID!)
+
 
             } else {
 
                 println("Error Getting Friends \(error)");
-                
+
             }
         }
 
     }
 
-    
-    func getFbUserProfileImage(facebookID:AnyObject){
+
+
+    func getFbUserProfileImage(facebookID :String){
         // Get user profile pic
 
 
+        let url = NSURL(string: "https://graph.facebook.com/\(facebookID)/picture?type=large")
+        let urlRequest = NSURLRequest(URL: url!)
+
+        NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue()) { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
+
+            print(data);
+
+            // Display the image
+            //let image = UIImage(data: data)
+            // self.profilePic.image = image
+
+            var file = PFFile(data: data)
+
+            User.currentUser()?.profileImage = file;
+
+            User.currentUser()?.saveInBackground()
+
+
+        }
 
     }
+
+
     //helper method to show alert.
 
     func showAlert(error:NSString){
@@ -143,25 +178,25 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
         alertController.addAction(oKAction)
 
         self.presentViewController(alertController, animated: true) {
-
+            
         }
-
+        
     }
     //MARK - Delegate method to dismiss keyboard.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
-
+    
     //Helper methods to dismiss keyboard
     func keyboardWillShow(sender: NSNotification) {
         self.view.frame.origin.y -= 190
     }
-
+    
     func keyboardWillHide(sender: NSNotification) {
         self.view.frame.origin.y += 190
     }
-
+    
     func setUpTextFieldsForLogin(){
         
         self.passwordTextField.delegate = self;

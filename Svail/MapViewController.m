@@ -80,6 +80,9 @@
          [self filterEventsForDate:self.segmentedControl];
      }];
 }
+- (IBAction)OnLogOutButtonTapped:(UIButton *)sender {
+    [User logOut];
+}
 
 #pragma Mark - Dismiss Keyboard Method
 

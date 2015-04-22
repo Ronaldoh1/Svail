@@ -47,7 +47,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                     let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UINavigationController
                     self.presentViewController(editProfileNavVC, animated: true, completion: nil)
 
-                    
                 } else {
                     println("User logged in through Facebook!")
 
@@ -92,39 +91,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         }
     }
 
-    //helper method to retrieve user info from facebook. 
-    //helper method to get user data from facebook.
 
-    func getFacebookUserData(){
-
-        var user = User.currentUser()
-
-        var fbRequest = FBSDKGraphRequest(graphPath:"/me", parameters: nil);
-        fbRequest.startWithCompletionHandler { (connection : FBSDKGraphRequestConnection!, result : AnyObject!, error : NSError!) -> Void in
-
-            if error == nil {
-
-                user?.name = result["name"] as! String
-
-                user?.email = result["email"] as? String
-
-                user?.gender = result["gender"] as! String
-
-                user?.saveInBackground()
-
-                //self.getFbUserProfileImage(result)
-
-
-
-            } else {
-                
-                println("Error Getting Friends \(error)");
-                
-            }
-        }
-        
-    }
-    
     //helper method to sign up user with parse.
     func signUp() {
         var user = User()
@@ -142,7 +109,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                 let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UITabBarController
                 self.presentViewController(editProfileNavVC, animated: true, completion: nil)
 
-//                self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+                //                self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
             } else {
                 if let errorString = error!.userInfo?["error"] as? NSString
                 {
@@ -151,6 +118,77 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
 
             }
         }
+    }
+
+    //helper method to get user data from facebook.
+
+    func getFacebookUserData(){
+
+        var user = User.currentUser()
+
+        var fbRequest = FBSDKGraphRequest(graphPath:"/me", parameters: nil);
+        fbRequest.startWithCompletionHandler { (connection : FBSDKGraphRequestConnection!, result : AnyObject!, error : NSError!) -> Void in
+
+
+
+            if error == nil {
+
+
+                user?.name = result["name"] as! String
+
+                user?.email = result["email"] as? String
+
+                user?.gender = result["gender"] as! String
+
+                println(result["picture"])
+
+                user?.saveInBackground()
+
+                var facebookID = result["id"] as? String
+
+
+
+                // self.getFbUserProfileImage(result)
+
+                //self.getFbUserProfileImage()
+                self.getFbUserProfileImage(facebookID!)
+                
+                
+            } else {
+                
+                println("Error Getting Friends \(error)");
+                
+            }
+        }
+        
+    }
+
+    //getFacebook Profile Image
+
+    func getFbUserProfileImage(facebookID :String){
+        // Get user profile pic
+
+
+        let url = NSURL(string: "https://graph.facebook.com/\(facebookID)/picture?type=large")
+        let urlRequest = NSURLRequest(URL: url!)
+
+        NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue()) { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
+
+            print(data);
+
+            // Display the image
+            //let image = UIImage(data: data)
+            // self.profilePic.image = image
+
+            var file = PFFile(data: data)
+
+            User.currentUser()?.profileImage = file;
+
+            User.currentUser()?.saveInBackground()
+
+
+        }
+
     }
 
     //helper method to show alert
@@ -164,18 +202,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
             (action) in
         }
         alertController.addAction(oKAction)
-        
+
         self.presentViewController(alertController, animated: true) {
-            
+
         }
-        
+
     }
 
     //Helper methods to dismiss keyboard
     func keyboardWillShow(sender: NSNotification) {
         self.view.frame.origin.y -= 190
     }
-
+    
     func keyboardWillHide(sender: NSNotification) {
         self.view.frame.origin.y += 190
     }
@@ -184,16 +222,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         return false
     }
     func setUpTextFields(){
-
-
+        
+        
         self.phoneNumberTextField.delegate = self;
         self.confirmPasswordTextField.delegate = self;
         self.passwordTextField.delegate = self;
         self.emailTextField.delegate = self;
-
-
-
+        
+        
+        
     }
-
+    
     
 }
