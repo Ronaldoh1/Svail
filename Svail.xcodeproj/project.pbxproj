@@ -22,6 +22,8 @@
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
 		3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E80C4951AE4C85800405828 /* ParticipantsViewController.m */; };
+		3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */; };
+		3E83BB921AE712D90064AE89 /* ZSPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E83BB911AE712D90064AE89 /* ZSPinAnnotation.m */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
 		3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */; };
 		3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D28931AE30E8C00D7D648 /* EditProfileViewController.m */; };
@@ -103,6 +105,10 @@
 		3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationDownloader.m; sourceTree = "<group>"; };
 		3E80C4941AE4C85800405828 /* ParticipantsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantsViewController.h; sourceTree = "<group>"; };
 		3E80C4951AE4C85800405828 /* ParticipantsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsViewController.m; sourceTree = "<group>"; };
+		3E83BB8D1AE6B93C0064AE89 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
+		3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPointAnnotation.m; sourceTree = "<group>"; };
+		3E83BB901AE712D90064AE89 /* ZSPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPinAnnotation.h; sourceTree = "<group>"; };
+		3E83BB911AE712D90064AE89 /* ZSPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPinAnnotation.m; sourceTree = "<group>"; };
 		3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		3E8D28921AE30E8C00D7D648 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
@@ -389,6 +395,10 @@
 			children = (
 				3E4036DB1ADD882600C4A0A0 /* MapViewController.h */,
 				3E4036DC1ADD882600C4A0A0 /* MapViewController.m */,
+				3E83BB8D1AE6B93C0064AE89 /* CustomPointAnnotation.h */,
+				3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */,
+				3E83BB901AE712D90064AE89 /* ZSPinAnnotation.h */,
+				3E83BB911AE712D90064AE89 /* ZSPinAnnotation.m */,
 				F24B36241ADC6AF1006153EC /* Map.storyboard */,
 				3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */,
 				3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */,
@@ -639,12 +649,14 @@
 				F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
+				3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,
 				F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */,
 				F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */,
 				3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */,
 				3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */,
+				3E83BB921AE712D90064AE89 /* ZSPinAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
