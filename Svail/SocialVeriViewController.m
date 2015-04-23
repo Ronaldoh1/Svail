@@ -29,11 +29,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *fbCheckmark;
 @property (weak, nonatomic) IBOutlet UIImageView *ttCheckmark;
 @property (weak, nonatomic) IBOutlet UIImageView *lkCheckmark;
+@property (weak, nonatomic) IBOutlet UIImageView *safetyCheckmark;
 @property (weak, nonatomic) IBOutlet UIButton *fbVerifyButton;
 @property (weak, nonatomic) IBOutlet UIButton *ttVerifyButton;
 @property (weak, nonatomic) IBOutlet UIButton *lkVerifyButton;
+@property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *phoneNumberTextFields;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *phoneNumberCheckmarks;
+
 
 @property (nonatomic) User *currentUser;
 
@@ -42,22 +45,32 @@
 
 @implementation SocialVeriViewController
 
-static float const kAlphaForButtonsIfVerified = 0.2;
+static float const kAlphaForButtonsIfVerified = 0.1;
+static float const kAlphaForSafetyCheckmarkUnqualified = 0.1;
 static float const kAlphaForButtonsIfNotVerified = 1.0;
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
-    self.currentUser = [User currentUser];
+    [super viewDidLoad];
+     self.currentUser = [User currentUser];
+    
     self.view.hidden = YES;
     [self.fbVerifyButton setNeedsDisplay];
     [self.ttVerifyButton setNeedsDisplay];
     [self.lkVerifyButton setNeedsDisplay];
     
     if (!self.currentUser.verification) {
+        self.view.hidden = NO;
         self.currentUser.verification = [Verification object];
         [self.currentUser saveInBackground];
+        [self showFBItems:NO];
+        [self showTTItems:NO];
+        [self showLKItems:NO];
+            
+        [self showPhoneNumberItems];
+        [self showSafetyLevelItems];
+           
     } else {
         PFQuery *query = [User query];
         [query includeKey:@"verification.references"];
@@ -69,18 +82,37 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
             NSLog(@"%li",self.currentUser.verification.ttLevel);
             NSLog(@"%li",self.currentUser.verification.lkLevel);
             NSLog(@"%li",self.currentUser.verification.references.count);
-            Reference *reference = self.currentUser.verification.references[0];
-            NSLog(@"%@",reference.fromPhoneNumber);
             [self showFBItems:self.currentUser.verification.fbLevel > 0];
             [self showTTItems:self.currentUser.verification.ttLevel > 0];
             [self showLKItems:self.currentUser.verification.lkLevel > 0];
             
             [self showPhoneNumberItems];
+            [self showSafetyLevelItems];
         }];
     }
-    
+}
 
+
+-(void)showSafetyLevelItems
+{
+    if (self.currentUser.verification.hasReachedSafeLevel) {
+        self.safetyCheckmark.alpha = 1.0;
+    } else {
+        self.safetyCheckmark.alpha = kAlphaForSafetyCheckmarkUnqualified;
+    }
     
+    Verification *verification = self.currentUser.verification;
+    verification.safetyLevel = [verification calculateSafetyLevel];
+     [verification saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+         if (succeeded) {
+             NSLog(@"%li",verification.safetyLevel);
+         } else {
+             NSLog(@"%li",verification.safetyLevel);
+         }
+     }];
+    
+    self.levelLabel.text = [NSString stringWithFormat:@"Verification Level : %li", self.currentUser.verification.safetyLevel];
+    [verification saveInBackground];
 }
 
 -(void)showFBItems:(BOOL)isVerified
@@ -100,11 +132,11 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 {
     if (isVerified) {
         self.ttCheckmark.hidden = NO;
-        self.ttVerifyButton.imageView.alpha = 0.4;
+        self.ttVerifyButton.imageView.alpha = kAlphaForButtonsIfVerified;
         self.ttVerifyButton.userInteractionEnabled = NO;
     } else {
         self.ttCheckmark.hidden = YES;
-        self.ttVerifyButton.imageView.alpha = 1.0;
+        self.ttVerifyButton.imageView.alpha = kAlphaForButtonsIfNotVerified;
         self.ttVerifyButton.userInteractionEnabled = YES;
     }
 }
@@ -113,11 +145,11 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 {
     if (isVerified) {
         self.lkCheckmark.hidden = NO;
-        self.lkVerifyButton.imageView.alpha = 0.4;
+        self.lkVerifyButton.imageView.alpha = kAlphaForButtonsIfVerified;
         self.lkVerifyButton.userInteractionEnabled = NO;
     } else {
         self.lkCheckmark.hidden = YES;
-        self.lkVerifyButton.imageView.alpha = 1.0;
+        self.lkVerifyButton.imageView.alpha = kAlphaForButtonsIfNotVerified;
         self.lkVerifyButton.userInteractionEnabled = YES;
     }
 }
@@ -196,6 +228,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                              self.currentUser.verification.fbLevel = [Verification getFBLevelWithNumOfFriends:friendsCount];
                              [self.currentUser saveInBackground];
                              [self showFBItems:self.currentUser.verification.fbLevel > 0];
+                             [self showSafetyLevelItems];
                             
                          }
                      }];
@@ -269,6 +302,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                  self.currentUser.verification.ttLevel = [Verification getTTLevelWithNumOfFollowers:followersCount];
                  [self.currentUser saveInBackground];
                  [self showTTItems:self.currentUser.verification.ttLevel > 0];
+                 [self showSafetyLevelItems];
 
              }
              else {
@@ -313,6 +347,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
         self.currentUser.verification.lkLevel = [Verification getTTLevelWithNumOfFollowers:numOfConnections];
         [self.currentUser saveInBackground];
         [self showLKItems:self.currentUser.verification.lkLevel > 0];
+        [self showSafetyLevelItems];
         
     }   failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {

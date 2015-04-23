@@ -20,26 +20,54 @@ PODS:
   - AFNetworking/UIKit (2.5.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Braintree (3.7.1):
+    - Braintree/API (= 3.7.1)
+    - Braintree/Drop-In (= 3.7.1)
+    - Braintree/Payments (= 3.7.1)
+    - Braintree/PayPal (= 3.7.1)
+    - Braintree/UI (= 3.7.1)
+    - Braintree/Venmo (= 3.7.1)
+  - Braintree/API (3.7.1)
+  - Braintree/Drop-In (3.7.1):
+    - Braintree/API
+    - Braintree/Payments
+    - Braintree/PayPal
+    - Braintree/UI
+    - Braintree/Venmo
+  - Braintree/Payments (3.7.1):
+    - Braintree/API
+    - Braintree/PayPal
+    - Braintree/Venmo
+  - Braintree/PayPal (3.7.1):
+    - Braintree/API
+    - Braintree/UI
+  - Braintree/UI (3.7.1):
+    - Braintree/API
+  - Braintree/Venmo (3.7.1):
+    - Braintree/API
   - IOSLinkedInAPI (2.0.0):
     - AFNetworking (>= 2.0.0)
   - MBProgressHUD (0.9.1)
-  - Stripe (3.1.0):
-    - Stripe/Core (= 3.1.0)
-  - Stripe/ApplePay (3.1.0):
-    - Stripe/Core
-  - Stripe/Core (3.1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.2)
+  - Braintree (from `https://github.com/braintree/braintree_ios.git`)
   - IOSLinkedInAPI (~> 2.0)
   - MBProgressHUD (~> 0.9.1)
-  - Stripe
-  - Stripe/ApplePay
+
+EXTERNAL SOURCES:
+  Braintree:
+    :git: https://github.com/braintree/braintree_ios.git
+
+CHECKOUT OPTIONS:
+  Braintree:
+    :commit: f188882d56c9abd685fc740db2a4ba00709ce097
+    :git: https://github.com/braintree/braintree_ios.git
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
+  Braintree: 34193472b6da9c66b1f83223102372f4221d1958
   IOSLinkedInAPI: d0adc664472d471b0df9b2aad92a2d82de926c40
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  Stripe: 8a456332f4db97bd0b8457fc8cce1e1a69ac0cd1
 
-COCOAPODS: 0.36.4
+COCOAPODS: 0.37.0.beta.1

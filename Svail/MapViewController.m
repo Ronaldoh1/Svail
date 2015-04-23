@@ -240,10 +240,13 @@
     {
         //THIS PART WILL CHANGE AFTER PURCHASE
 
-        [self.serviceParticipants addObject:[User currentUser]];
-        [annotation.service saveInBackground];
-
+//        [self.serviceParticipants addObject:[User currentUser]];
+//        [annotation.service saveInBackground];
+        UIStoryboard *purchaseStoryboard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
+        UIViewController *reviewPurchaseNavVC = [purchaseStoryboard instantiateViewControllerWithIdentifier:@"ReviewPurchaseNavVC"];
+        [self presentViewController:reviewPurchaseNavVC animated:TRUE completion:nil];
     }
+    
     else if (control == view.leftCalloutAccessoryView)
     {
         UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"UserProfile" bundle:nil];

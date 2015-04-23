@@ -13,7 +13,6 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
-#import "Stripe.h"
 #import "User.h"
 #import "Service.h"
 #import "Purchase.h"
@@ -36,9 +35,6 @@ NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-
-    //set up stripe
-    [Stripe setDefaultPublishableKey:StripePublishableKey];
 
     //Setup Push Notifications
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
