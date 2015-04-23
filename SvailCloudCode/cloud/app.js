@@ -15,9 +15,13 @@ app.use(express.bodyParser());    // Middleware for reading request body
    var referencerNumber = req.query.From;
    var message = req.query.Body;
    var messageToReferencer = "Thanks for texting us about one of our users.Svail.";
-   Parse.Cloud.run("sendSMS",{toNumber: referencerNumber  , message: messageToReferencer});         
+   if (referencerNumber.indexOf(message) <= -1){
+       Parse.Cloud.run("sendSMS",{toNumber: referencerNumber  , message: messageToReferencer});         
+       Parse.Cloud.run('processReferenceText',{fromNumber:referencerNumber , message: message});         
+   } else {
+       console.log("Prevent self referencing");
+   }
 
-   Parse.Cloud.run('processReferenceText',{fromNumber:referencerNumber , message: message});         
 
 
 

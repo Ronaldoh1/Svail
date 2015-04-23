@@ -15,6 +15,7 @@
 @property (nonatomic) NSUInteger fbLevel;
 @property (nonatomic) NSUInteger ttLevel;
 @property (nonatomic) NSUInteger lkLevel;
+@property (nonatomic) BOOL hasReachedSafeLevel;
 
 
 +(NSString *)parseClassName;
@@ -23,6 +24,7 @@
 +(NSUInteger)getTTLevelWithNumOfFollowers:(NSUInteger)numOfFollowers;
 +(NSUInteger)getLKLevelWithNumOfConnections:(NSUInteger)numOfConnections;
 
+-(NSInteger)calculateSafetyLevel;
 
 
 @end

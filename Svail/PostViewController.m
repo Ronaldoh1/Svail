@@ -112,6 +112,7 @@
     self.service.serviceLocationAddress = self.location.text;
      self.service.startDate = [self.startPickerDate date];
      self.service.endDate = [self.endPickerDate date];
+    self.service.participants = @[].mutableCopy;
 
     if (self.segmentedControlPicker.selectedSegmentIndex == 0) {
         self.service.travel = false;

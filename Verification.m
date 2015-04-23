@@ -13,6 +13,7 @@
 
 @implementation Verification
 
+static NSUInteger const kLowestSafetyLevel = 5;
 static NSUInteger const kMinimumFBFriendsCount = 10;
 static NSUInteger const kMinimumTTFollowersCount = 10;
 static NSUInteger const kMinimumLKConnectionsCount = 10;
@@ -25,10 +26,13 @@ static NSUInteger const kPointsForVerifiedLKAccount = 2;
 
 
 @dynamic references;
-@dynamic safetyLevel;
 @dynamic fbLevel;
 @dynamic ttLevel;
 @dynamic lkLevel;
+@dynamic hasReachedSafeLevel;
+@dynamic safetyLevel;
+
+//don't sythesize parse properties
 
 +(void)load{
     [self registerSubclass];
@@ -80,10 +84,16 @@ static NSUInteger const kPointsForVerifiedLKAccount = 2;
     return lkLevel;
 }
 
--(NSInteger)safetyLevel
+-(NSInteger)calculateSafetyLevel
 {
     return self.references.count * kPointsForReference + self.fbLevel +
             self.ttLevel + self.lkLevel;
+}
+
+
+-(BOOL)hasReachedSafeLevel
+{
+    return self.safetyLevel >= kLowestSafetyLevel;
 }
 
 
