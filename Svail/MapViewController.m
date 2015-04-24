@@ -15,7 +15,6 @@
 #import "ParticipantsViewController.h"
 #import "CustomPointAnnotation.h"
 
-//PARTICIPANT NUMBER ADDED TO EVENT ? CHANGE PIN COLOR ACCORDINGLY
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
 //CALLOUT CUSTOMIZED
 
@@ -110,14 +109,17 @@
         if (self.serviceParticipants.count < [newAnnotation.service.capacity integerValue]/2)
         {
             newAnnotation.color = [UIColor colorWithRed:58/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
+            newAnnotation.type = ZSPinAnnotationTypeTag;
         }
         else if (self.serviceParticipants.count >= [newAnnotation.service.capacity integerValue]/2 && self.serviceParticipants.count < [newAnnotation.service.capacity integerValue])
         {
-            newAnnotation.color = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:0/255.0 alpha:1.0];;
+            newAnnotation.color = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:0/255.0 alpha:1.0];
+            newAnnotation.type = ZSPinAnnotationTypeTag;
         }
         else if (self.serviceParticipants.count == [newAnnotation.service.capacity integerValue])
         {
-            newAnnotation.color = MKPinAnnotationColorRed;
+            newAnnotation.color = [UIColor redColor];
+            newAnnotation.type = ZSPinAnnotationTypeTag;
         }
 
         [self.mapView addAnnotation:newAnnotation];
@@ -144,7 +146,7 @@
 {
     CustomPointAnnotation *customAnnotation = (CustomPointAnnotation *)annotation;
 
-    MKPinAnnotationView *pinAnnotation = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:nil];
+    ZSPinAnnotation *pinAnnotation = [[ZSPinAnnotation alloc]initWithAnnotation:annotation reuseIdentifier:nil];
 
     if (annotation == mapView.userLocation) {
         return nil;
@@ -172,6 +174,8 @@
     pinAnnotation.canShowCallout = YES;
     pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
     pinAnnotation.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    pinAnnotation.annotationType = ZSPinAnnotationTypeTagStroke;
+    pinAnnotation.annotationColor = customAnnotation.color;
 
     return pinAnnotation;
 }
