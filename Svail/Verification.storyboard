@@ -32,7 +32,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="122" y="363" width="157" height="30"/>
+                                    <rect key="frame" x="127" y="363" width="148" height="30"/>
                                     <mask key="constraints">
                                         <include reference="E0l-FR-5py"/>
                                         <include reference="r3o-20-yFc"/>
@@ -128,7 +128,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="287" y="366" width="30" height="24"/>
+                                    <rect key="frame" x="283" y="366" width="30" height="24"/>
                                     <mask key="constraints">
                                         <include reference="QDf-K3-kPD"/>
                                         <include reference="tYa-Xo-soz"/>
@@ -530,6 +530,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Verification" id="JJI-Qt-AAj">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="W5h-XZ-6td">
+                            <connections>
+                                <action selector="onCancelButtonTapped:" destination="Ujp-WP-e75" id="og4-si-fjj"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="bYu-IF-peF">
                             <connections>
                                 <action selector="onDoneButtonTapped:" destination="Ujp-WP-e75" id="hGu-9H-X7o"/>
