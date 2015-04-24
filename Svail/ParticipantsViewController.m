@@ -29,7 +29,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellID"];
     User *theUser = [self.participants objectAtIndex:indexPath.row];
     cell.textLabel.text = theUser.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Safety level:%@",theUser.verification.safetyLevel];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Safety level:%ld",(long)theUser.verification.safetyLevel];
 
     [theUser.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {

@@ -39,8 +39,6 @@
 
             self.arrayOfServiceObjects = objects.mutableCopy;
 
-
-
            [self.tableView reloadData];
 
 
