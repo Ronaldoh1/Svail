@@ -115,7 +115,9 @@
         <scene sceneID="CaZ-TJ-6xf">
             <objects>
                 <navigationController storyboardIdentifier="MapNavVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GQa-ZQ-3eq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="vlz-hs-7Yg"/>
+                    <tabBarItem key="tabBarItem" image="mapicon.png" id="vlz-hs-7Yg">
+                        <inset key="imageInsets" minX="41" minY="46" maxX="38" maxY="35"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aty-wh-6B2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -152,5 +154,8 @@
     </scenes>
     <resources>
         <image name="currentlocationarrow" width="43" height="43"/>
+    </resources>
+    <resources>
+        <image name="mapicon.png" width="128" height="128"/>
     </resources>
 </document>

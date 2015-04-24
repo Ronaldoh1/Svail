@@ -11,6 +11,7 @@
 #import "Verification.h"
 #import "Service.h"
 #import "ParticipantPurchaseCVCell.h"
+#import "ConfirmPurchaseViewController.h"
 
 @interface ReviewPurchaseViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *providerProfileImageView;
@@ -235,6 +236,13 @@
     UIViewController *mapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MapNavVC"];
     [self presentViewController:mapNavVC animated:true completion:nil];
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    ConfirmPurchaseViewController *confirmVC = [segue destinationViewController];
+    confirmVC.serviceToPurchase = self.service;
+    
+
 }
 
 @end
