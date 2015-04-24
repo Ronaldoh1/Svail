@@ -76,6 +76,7 @@
 		F24B365C1ADDA923006153EC /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365B1ADDA923006153EC /* Service.m */; };
 		F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365E1ADE2015006153EC /* SelectImageViewController.m */; };
 		F262CB641AE97DAB00988E5B /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F262CB631AE97DAB00988E5B /* PayViewController.swift */; };
+		F262CB691AEACAED00988E5B /* mapicon.png in Resources */ = {isa = PBXBuildFile; fileRef = F262CB681AEACAED00988E5B /* mapicon.png */; };
 		F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B4981AE4D6D9008F2370 /* fbloginButton.png */; };
 		F268B49B1AE4D72D008F2370 /* connect.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B49A1AE4D72D008F2370 /* connect.png */; };
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
@@ -207,6 +208,7 @@
 		F24B365E1ADE2015006153EC /* SelectImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageViewController.m; sourceTree = "<group>"; };
 		F262CB631AE97DAB00988E5B /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		F262CB671AEAA6A600988E5B /* Svail_Team_Distribution_Profile.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = Svail_Team_Distribution_Profile.mobileprovision; sourceTree = "<group>"; };
+		F262CB681AEACAED00988E5B /* mapicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapicon.png; sourceTree = "<group>"; };
 		F268B4981AE4D6D9008F2370 /* fbloginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbloginButton.png; sourceTree = "<group>"; };
 		F268B49A1AE4D72D008F2370 /* connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect.png; sourceTree = "<group>"; };
 		F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationFromMapViewController.h; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */,
 				F2F94D2E1AE7FD240092C583 /* TweetIt.png */,
 				F268B49A1AE4D72D008F2370 /* connect.png */,
+				F262CB681AEACAED00988E5B /* mapicon.png */,
 				F268B4981AE4D6D9008F2370 /* fbloginButton.png */,
 				F24B36501ADCDD70006153EC /* camera.png */,
 				F24B35B21ADB7E54006153EC /* LaunchScreen.xib */,
@@ -613,6 +616,7 @@
 			files = (
 				F24B36271ADC6B16006153EC /* Service.storyboard in Resources */,
 				F268B49B1AE4D72D008F2370 /* connect.png in Resources */,
+				F262CB691AEACAED00988E5B /* mapicon.png in Resources */,
 				F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */,
 				36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */,
 				F24B362B1ADC6B3C006153EC /* Verification.storyboard in Resources */,
