@@ -60,7 +60,6 @@
 		F24B36291ADC6B28006153EC /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36281ADC6B28006153EC /* Purchase.storyboard */; };
 		F24B362B1ADC6B3C006153EC /* Verification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362A1ADC6B3C006153EC /* Verification.storyboard */; };
 		F24B362D1ADC6B4B006153EC /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362C1ADC6B4B006153EC /* Post.storyboard */; };
-		F24B362F1ADC6B57006153EC /* Stripe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362E1ADC6B57006153EC /* Stripe.storyboard */; };
 		F24B36311ADC6EDD006153EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B36301ADC6EDD006153EC /* MapKit.framework */; };
 		F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B36371ADC781F006153EC /* LoginViewController.swift */; };
 		F24B363D1ADCA6D0006153EC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B363C1ADCA6D0006153EC /* User.m */; };
@@ -74,10 +73,10 @@
 		F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36561ADD4FDB006153EC /* PostDetailViewController.m */; };
 		F24B365C1ADDA923006153EC /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365B1ADDA923006153EC /* Service.m */; };
 		F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365E1ADE2015006153EC /* SelectImageViewController.m */; };
+		F262CB641AE97DAB00988E5B /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F262CB631AE97DAB00988E5B /* PayViewController.swift */; };
 		F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B4981AE4D6D9008F2370 /* fbloginButton.png */; };
 		F268B49B1AE4D72D008F2370 /* connect.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B49A1AE4D72D008F2370 /* connect.png */; };
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
-		F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */; };
 		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
 		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
 		F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */; };
@@ -175,7 +174,6 @@
 		F24B36281ADC6B28006153EC /* Purchase.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Purchase.storyboard; sourceTree = "<group>"; };
 		F24B362A1ADC6B3C006153EC /* Verification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Verification.storyboard; sourceTree = "<group>"; };
 		F24B362C1ADC6B4B006153EC /* Post.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
-		F24B362E1ADC6B57006153EC /* Stripe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Stripe.storyboard; sourceTree = "<group>"; };
 		F24B36301ADC6EDD006153EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F24B36361ADC781E006153EC /* Svail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Svail-Bridging-Header.h"; sourceTree = "<group>"; };
 		F24B36371ADC781F006153EC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
@@ -201,13 +199,12 @@
 		F24B365B1ADDA923006153EC /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
 		F24B365D1ADE2015006153EC /* SelectImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectImageViewController.h; sourceTree = "<group>"; };
 		F24B365E1ADE2015006153EC /* SelectImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageViewController.m; sourceTree = "<group>"; };
+		F262CB631AE97DAB00988E5B /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		F268B4981AE4D6D9008F2370 /* fbloginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbloginButton.png; sourceTree = "<group>"; };
 		F268B49A1AE4D72D008F2370 /* connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect.png; sourceTree = "<group>"; };
 		F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationFromMapViewController.h; sourceTree = "<group>"; };
 		F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLocationFromMapViewController.m; sourceTree = "<group>"; };
 		F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Svail.entitlements; sourceTree = "<group>"; };
-		F2A4FC031AE0FEE00022AAB8 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
-		F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		F2F94D281AE785BA0092C583 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		F2F94D2A1AE785C00092C583 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-share-buttons.png"; sourceTree = "<group>"; };
@@ -324,7 +321,6 @@
 			children = (
 				F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */,
 				3E8D28911AE30E0400D7D648 /* Profile */,
-				F24B36211ADC6A93006153EC /* Stripe */,
 				F24B36201ADC6A7B006153EC /* PostService */,
 				F24B361E1ADC69BB006153EC /* Verification */,
 				F24B361D1ADC6970006153EC /* Purchase */,
@@ -480,6 +476,7 @@
 				36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */,
 				36EBB0221AE80F550045AF92 /* ReviewPurchaseViewController.h */,
 				36EBB0231AE80F550045AF92 /* ReviewPurchaseViewController.m */,
+				F262CB631AE97DAB00988E5B /* PayViewController.swift */,
 			);
 			name = Purchase;
 			sourceTree = "<group>";
@@ -510,16 +507,6 @@
 				F24B36561ADD4FDB006153EC /* PostDetailViewController.m */,
 			);
 			name = PostService;
-			sourceTree = "<group>";
-		};
-		F24B36211ADC6A93006153EC /* Stripe */ = {
-			isa = PBXGroup;
-			children = (
-				F24B362E1ADC6B57006153EC /* Stripe.storyboard */,
-				F2A4FC031AE0FEE00022AAB8 /* PaymentViewController.h */,
-				F2A4FC041AE0FEE00022AAB8 /* PaymentViewController.m */,
-			);
-			name = Stripe;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -613,7 +600,6 @@
 			files = (
 				F24B36271ADC6B16006153EC /* Service.storyboard in Resources */,
 				F268B49B1AE4D72D008F2370 /* connect.png in Resources */,
-				F24B362F1ADC6B57006153EC /* Stripe.storyboard in Resources */,
 				F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */,
 				36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */,
 				F24B362B1ADC6B3C006153EC /* Verification.storyboard in Resources */,
@@ -712,9 +698,9 @@
 				36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */,
 				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
-				F2A4FC051AE0FEE00022AAB8 /* PaymentViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
+				F262CB641AE97DAB00988E5B /* PayViewController.swift in Sources */,
 				3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,

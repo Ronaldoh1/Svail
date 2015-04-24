@@ -1,7 +1,6 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Braintree" "${PODS_ROOT}/Headers/Public/IOSLinkedInAPI" "${PODS_ROOT}/Headers/Public/MBProgressHUD"
-LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/Braintree/Braintree/PayPal/mSDK"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/Braintree" -isystem "${PODS_ROOT}/Headers/Public/IOSLinkedInAPI" -isystem "${PODS_ROOT}/Headers/Public/MBProgressHUD"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"PayPalMobile-BT" -l"Pods-Svail-AFNetworking" -l"Pods-Svail-Braintree" -l"Pods-Svail-IOSLinkedInAPI" -l"Pods-Svail-MBProgressHUD" -l"c++" -framework "AVFoundation" -framework "AddressBook" -framework "AudioToolbox" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "MessageUI" -framework "MobileCoreServices" -framework "Security" -framework "SystemConfiguration" -framework "UIKit" -weak_framework "PassKit"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/IOSLinkedInAPI" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/PaymentKit" "${PODS_ROOT}/Headers/Public/Stripe"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/IOSLinkedInAPI" -isystem "${PODS_ROOT}/Headers/Public/MBProgressHUD" -isystem "${PODS_ROOT}/Headers/Public/PaymentKit" -isystem "${PODS_ROOT}/Headers/Public/Stripe"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"Pods-Svail-AFNetworking" -l"Pods-Svail-IOSLinkedInAPI" -l"Pods-Svail-MBProgressHUD" -l"Pods-Svail-PaymentKit" -l"Pods-Svail-Stripe" -framework "CoreGraphics" -framework "Foundation" -framework "MobileCoreServices" -framework "Security" -framework "SystemConfiguration" -weak_framework "AddressBook" -weak_framework "PassKit"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods

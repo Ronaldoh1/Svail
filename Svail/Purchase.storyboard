@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -148,7 +148,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tUp-9X-d12">
@@ -388,21 +388,21 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="WAb-ac-7o5"/>
-                                        <exclude reference="DOO-zx-WCM"/>
-                                        <exclude reference="WJQ-pe-CCJ"/>
-                                        <exclude reference="dmz-7d-FCf"/>
-                                        <exclude reference="orw-wb-TAo"/>
-                                        <exclude reference="IhN-Ns-1qs"/>
-                                        <exclude reference="Kwv-NS-9Wg"/>
+                                        <exclude reference="Ndy-wc-bub"/>
+                                        <exclude reference="ioc-fN-0nG"/>
                                         <exclude reference="Ety-Zn-eEO"/>
                                         <exclude reference="TzJ-Qq-PK5"/>
+                                        <exclude reference="dmz-7d-FCf"/>
+                                        <exclude reference="orw-wb-TAo"/>
+                                        <exclude reference="6Sd-Xc-MEo"/>
+                                        <exclude reference="gBu-Th-GsS"/>
                                         <exclude reference="TB3-cO-sPT"/>
                                         <exclude reference="TCl-f6-nBa"/>
                                         <exclude reference="lkb-0a-Eze"/>
-                                        <exclude reference="6Sd-Xc-MEo"/>
-                                        <exclude reference="gBu-Th-GsS"/>
-                                        <exclude reference="Ndy-wc-bub"/>
-                                        <exclude reference="ioc-fN-0nG"/>
+                                        <exclude reference="DOO-zx-WCM"/>
+                                        <exclude reference="WJQ-pe-CCJ"/>
+                                        <exclude reference="IhN-Ns-1qs"/>
+                                        <exclude reference="Kwv-NS-9Wg"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
@@ -417,21 +417,21 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="WAb-ac-7o5"/>
-                                        <include reference="DOO-zx-WCM"/>
-                                        <include reference="WJQ-pe-CCJ"/>
-                                        <include reference="dmz-7d-FCf"/>
-                                        <include reference="orw-wb-TAo"/>
-                                        <include reference="IhN-Ns-1qs"/>
-                                        <include reference="Kwv-NS-9Wg"/>
+                                        <include reference="Ndy-wc-bub"/>
+                                        <include reference="ioc-fN-0nG"/>
                                         <include reference="Ety-Zn-eEO"/>
                                         <include reference="TzJ-Qq-PK5"/>
+                                        <include reference="dmz-7d-FCf"/>
+                                        <include reference="orw-wb-TAo"/>
+                                        <include reference="6Sd-Xc-MEo"/>
+                                        <include reference="gBu-Th-GsS"/>
                                         <include reference="TB3-cO-sPT"/>
                                         <include reference="TCl-f6-nBa"/>
                                         <include reference="lkb-0a-Eze"/>
-                                        <include reference="6Sd-Xc-MEo"/>
-                                        <include reference="gBu-Th-GsS"/>
-                                        <include reference="Ndy-wc-bub"/>
-                                        <include reference="ioc-fN-0nG"/>
+                                        <include reference="DOO-zx-WCM"/>
+                                        <include reference="WJQ-pe-CCJ"/>
+                                        <include reference="IhN-Ns-1qs"/>
+                                        <include reference="Kwv-NS-9Wg"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -589,10 +589,25 @@
                     <view key="view" contentMode="scaleToFill" id="1Vp-it-dnt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDy-Yf-iLb">
+                                <rect key="frame" x="183" y="86" width="140" height="42"/>
+                                <state key="normal" backgroundImage="ApplePayBTN_42pt__black_textLogo_">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="purchaseWithApplePayButton:" destination="YSt-Ta-dF7" eventType="touchUpInside" id="zq1-HV-jep"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Confirm Purchase" id="lWI-Pz-t20">
-                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="JKy-Ji-Geg"/>
+                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="JKy-Ji-Geg">
+                            <connections>
+                                <action selector="save:" destination="YSt-Ta-dF7" id="5na-5Z-3bY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="px9-BU-7ZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -608,6 +623,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cDM-zc-6wd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2df-e6-FV8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -636,6 +652,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ApplePayBTN_42pt__black_textLogo_" width="140" height="42"/>
         <image name="checkmark" width="300" height="296"/>
     </resources>
 </document>

@@ -107,30 +107,46 @@ Parse.Cloud.define("test", function(request, response) {
  
 })
 
+Parse.Cloud.define("charge", function(request, response) {
 
-//// Include Cloud Code module dependencies
-//var express = require('express'),
-//    twilio = require('twilio');
-//     
-//     // Create an Express web app (more info: http://expressjs.com/)
-//     var app = express();
-//      
-//      // Create a route that will respond to am HTTP GET request with some
-//      // simple TwiML instructions
-//      app.get('/hello', function(request, response) {
-//          // Create a TwiML response generator object
-//              var twiml = new twilio.TwimlResponse();
-//               
-//                   // add some instructions
-//                       twiml.say('Hello there! Isn\'t Parse cool?', {
-//                               voice:'woman'
-//                                   });
-//                      console.log("Received a new text: " + request.Url);
-//                                    
-//                                        // Render the TwiML XML document
-//                                            response.type('text/xml');
-//                                                response.send(twiml.toString());
-//                                                });
-//                                                 
-//                                                 // Start the Express app
-//                                                 app.listen();
+    console.log("fuck");
+    console.log("token: "+request.params.token);
+    console.log("amount: "+request.params.amount);
+    console.log("currency: "+request.params.currency);
+
+    Stripe.Charges.create({
+      amount: request.params.amount, // in cents
+      currency: request.params.currency,
+      name: "Ronald Hernandez",
+	card: request.params.token
+    },{
+    success: function(results) {
+      response.success(results);
+    },
+    error: function(httpResponse) {
+      response.error(httpResponse);
+    }
+ });
+});;
+
+
+var stripe = require('stripe');
+ stripe.initialize('sk_test_MmcKyzlkanhBHXzaLtbgOTVX');
+Parse.Cloud.define("hello", function(request, response) {
+
+
+
+var stripeToken = request.params.token;
+
+  var charge = stripe.Charges.create({
+  amount: 1000, // express dollars in cents 
+  currency: 'usd',
+  card: stripeToken
+}).then(function(result) {
+  console.log(result);
+   response.success()
+
+}, function(error){
+response.error()});
+
+  });

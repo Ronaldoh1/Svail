@@ -8,3 +8,5 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
 #import "User.h"
+#import "Stripe.h"
+#import "PTKView.h"
