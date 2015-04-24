@@ -33,6 +33,7 @@
 @property NSArray *resultsArray;
 @property NSArray *annotationArray;
 @property NSMutableArray *serviceParticipants;
+@property (weak, nonatomic) IBOutlet UIButton *currentLocationButton;
 
 
 @end
@@ -61,7 +62,12 @@
     [self.segmentedControl setTitle:theDate forSegmentAtIndex:0];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *dayComponent = [NSDateComponents new];
-    
+
+//    self.currentLocationButton.layer.cornerRadius = self.currentLocationButton.frame.size.height / 2;
+//    self.currentLocationButton.layer.masksToBounds = YES;
+//    self.currentLocationButton.layer.borderWidth = 1.0;
+//    self.currentLocationButton.layer.borderColor = [UIColor grayColor];
+//    self.currentLocationButton.clipsToBounds = YES;
 
 
     for (int i = 1; i < 7; i++) {
@@ -107,7 +113,11 @@
 
             [button addTarget:self action:@selector(onProfileButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
             [button setImage:profileImage forState:UIControlStateNormal];
-            UIBarButtonItem *profileButtonItem= [[UIBarButtonItem alloc] initWithCustomView:button];
+
+             UIView *profileButtonView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+             profileButtonView.bounds = CGRectOffset(profileButtonView.bounds, 10, 0);
+             [profileButtonView addSubview:button];
+ UIBarButtonItem *profileButtonItem= [[UIBarButtonItem alloc] initWithCustomView:profileButtonView];
              self.navigationItem.leftBarButtonItem=profileButtonItem;
 
          }
@@ -415,6 +425,11 @@
 
     }
 
+}
+
+- (IBAction)onCurrentLocationButtonTapped:(UIButton *)sender
+{
+    [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
 }
 
 

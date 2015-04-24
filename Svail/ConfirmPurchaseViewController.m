@@ -31,7 +31,7 @@
     self.amount = @5;
     self.titled = @"Cooking for you";
     //set the navigationbar title to the price.
-    self.navigationItem.title = [NSString stringWithFormat:@"Total:$%@", self.serviceToPurchase.price];
+    self.navigationItem.title = [NSString stringWithFormat:@"Total: $%@", self.serviceToPurchase.price];
 
     //set the paymentviewform.
     self.paymentView = [[PTKView alloc] initWithFrame:CGRectMake(15,20,290,55)];
@@ -65,10 +65,15 @@
           } else {
               NSString *myVal = token.tokenId;
               NSLog(@"%@",token);
-              [PFCloud callFunctionInBackground:@"stripeCharge" withParameters:@{@"token":myVal, @"amount":self.amount}
+              [PFCloud callFunctionInBackground:@"stripeCharge" withParameters:@{@"token":myVal, @"amount":self.serviceToPurchase.price}
                                           block:^(NSString *result, NSError *error) {
                                               if (!error) {
                                                   NSLog(@"from Cloud Code Res: %@",result);
+
+                                                  //adding user to participants
+
+                                                  [self.serviceToPurchase.participants addObject:[User currentUser]];
+                                                  [self.serviceToPurchase saveInBackground];
                                                   // Create our Installation query
                                                   PFQuery *pushQuery = [PFInstallation query];
                                                   [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
@@ -102,10 +107,10 @@
                                  paymentRequestWithMerchantIdentifier:@"merchant.com.Svail.Svail"];
 
     //TO-DO - NEED TO SET THE TITLE OF SERVICE HERE.
-    NSString *label = [NSString stringWithFormat:@"for %@", self.titled]; //This text will be displayed in the Apple Pay authentication view after the word "Pay"
+    NSString *label = [NSString stringWithFormat:@"for %@", self.serviceToPurchase.title]; //This text will be displayed in the Apple Pay authentication view after the word "Pay"
 
     //change the ammount to be displayed to the user of the item he/she is purchasing.
-    NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:[self.amount stringValue]]; //Can change to any amount
+    NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.serviceToPurchase.price]; //Can change to any amount
 
     request.paymentSummaryItems = @[
                                     [PKPaymentSummaryItem summaryItemWithLabel:label
@@ -142,7 +147,7 @@
 
                                               */
                                              NSString *someToken = [NSString stringWithFormat:@"%@",token.tokenId];
-                                             NSDictionary *chargeParams = @{@"token": someToken, @"amount": self.amount};
+                                             NSDictionary *chargeParams = @{@"token": someToken, @"amount": self.serviceToPurchase.price};
 
                                              [PFCloud callFunctionInBackground:@"applePayCharge"
                                                                 withParameters:chargeParams
@@ -178,6 +183,12 @@
      PKPaymentAuthorizationViewController knows when and how to update its UI.
 
      */
+
+    //save the participants to the service.
+    
+    [self.serviceToPurchase.participants addObject:[User currentUser]];
+    [self.serviceToPurchase saveInBackground];
+
 
     //Create our Installation query
     PFQuery *pushQuery = [PFInstallation query];

@@ -46,7 +46,6 @@
             self.imageView.image = image;
         }
     }];
-
 }
 
 -(void)callPhoneNumber

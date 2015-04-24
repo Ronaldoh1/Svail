@@ -23,6 +23,7 @@
     [super viewDidLoad];
 
     PFQuery *query = [Service query];
+    [query includeKey:@"provider"];
     [query whereKey:@"participants" equalTo:[User currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
@@ -46,7 +47,7 @@
     Service *requestedService = self.requestedServices[indexPath.row];
 
     cell.textLabel.text = requestedService.title;
-    cell.detailTextLabel.text = requestedService.provider;
+    cell.detailTextLabel.text = requestedService.provider.name;
 
     return cell;
 }
