@@ -15,6 +15,7 @@
 #import "ParticipantsViewController.h"
 #import "CustomPointAnnotation.h"
 #import "ReviewPurchaseViewController.h"
+#import "PurchaseHistoryViewController.h"
 
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
 
@@ -34,6 +35,7 @@
 @property NSMutableArray *serviceParticipants;
 @property (weak, nonatomic) IBOutlet UIButton *currentLocationButton;
 
+
 @end
 
 @implementation MapViewController
@@ -41,6 +43,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+//    UIStoryboard *purchaseStoryboard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
+//    UIViewController *purchaseHistoryVC = [purchaseStoryboard instantiateViewControllerWithIdentifier:@"PurchaseHistoryVC"];
+//    [self.tabBarController addChildViewController:purchaseHistoryVC];
+//    
+    
     self.locationManager = [CLLocationManager new];
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = YES;

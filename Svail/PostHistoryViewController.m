@@ -30,7 +30,7 @@
 
     self.navigationItem.hidesBackButton = true;
    PFQuery *query = [Service query];
-    [query whereKey:@"provider" containsString:[User currentUser].username];
+    [query whereKey:@"provider" equalTo:[User currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
         if (!error) {

@@ -9,7 +9,6 @@ Parse.Cloud.define('sendSMS', function(request, response) {
     var toNumber = request.params.toNumber;
     var fromNumber = '+19252300512';
     var message = request.params.message;
-    console.log('fuck');
 
     //require the Twilio module and create a REST client
     var client = require('twilio')(accountSid, authToken);

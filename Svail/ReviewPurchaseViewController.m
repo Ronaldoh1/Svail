@@ -52,7 +52,7 @@
     {
         if (!error) {
             User *currentUser = (User *)user;
-            if ([[currentUser.verification objectForKey:@"safetyLevel"] integerValue] >= 0) {
+            if ([[currentUser.verification objectForKey:@"safetyLevel"] integerValue] >= 5) {
                 self.safetyImageView.hidden = false;
             } else {
                 self.safetyImageView.hidden = true;
