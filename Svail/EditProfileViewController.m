@@ -47,10 +47,10 @@
         if (!error) {
             UIImage *image = [UIImage imageWithData:data];
             self.profileImage.image = image;
-//            self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2;
-//            self.profileImage.layer.masksToBounds = YES;
-//            self.profileImage.layer.borderWidth = 1.5;
-//            self.profileImage.clipsToBounds = YES;
+            self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2;
+            self.profileImage.layer.masksToBounds = YES;
+            self.profileImage.layer.borderWidth = 1.5;
+            self.profileImage.clipsToBounds = YES;
         }
     }];
 }
