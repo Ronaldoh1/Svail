@@ -95,7 +95,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     //helper method to sign up user with parse.
     func signUp() {
         var user = User()
-        user.username = emailTextField.text
+        user.email = emailTextField.text
+        user.username = user.email
         user.password = passwordTextField.text
         // other fields can be set just like with PFObject
         user["phoneNumber"] = phoneNumberTextField.text

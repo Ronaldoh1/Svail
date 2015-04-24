@@ -6,7 +6,10 @@ target 'Svail' do
     pod 'AFNetworking', '~> 2.5.2'
     pod 'IOSLinkedInAPI', '~> 2.0'
     pod 'MBProgressHUD', '~> 0.9.1'
-    pod 'Braintree', :git => 'https://github.com/braintree/braintree_ios.git'
+    pod 'Stripe'
+    pod 'PaymentKit'
+    pod 'Stripe/ApplePay'
+    pod 'HockeySDK', '~> 3.6.4'
 
 end
 

@@ -20,9 +20,11 @@
 #import "Rating.h"
 #import "Verification.h"
 #import "Reference.h"
+#import <Stripe/Stripe.h>
+#import "HockeySDK.h"
 
 
-NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
+NSString * const StripePublishableKey = @"pk_test_MHARLds9Wz6gEyNgBOpVruIR";
 
 
 @interface AppDelegate ()
@@ -35,7 +37,16 @@ NSString * const StripePublishableKey = @"pk_test_6pRNASCoBOKtIshFeQd4XMUh";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
+    //set up HockeySDK
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"654614209e824adf264ce5958b382590"];
+    [[BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager].authenticator
+     authenticateInstallation];
 
+
+    //set up stripe
+
+    [Stripe setDefaultPublishableKey:StripePublishableKey];
     //Setup Push Notifications
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                     UIUserNotificationTypeBadge |
