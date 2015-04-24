@@ -200,6 +200,7 @@
 		F24B365D1ADE2015006153EC /* SelectImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectImageViewController.h; sourceTree = "<group>"; };
 		F24B365E1ADE2015006153EC /* SelectImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageViewController.m; sourceTree = "<group>"; };
 		F262CB631AE97DAB00988E5B /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
+		F262CB671AEAA6A600988E5B /* Svail_Team_Distribution_Profile.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = Svail_Team_Distribution_Profile.mobileprovision; sourceTree = "<group>"; };
 		F268B4981AE4D6D9008F2370 /* fbloginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbloginButton.png; sourceTree = "<group>"; };
 		F268B49A1AE4D72D008F2370 /* connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect.png; sourceTree = "<group>"; };
 		F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationFromMapViewController.h; sourceTree = "<group>"; };
@@ -296,6 +297,7 @@
 		F24B35941ADB7E53006153EC = {
 			isa = PBXGroup;
 			children = (
+				F262CB671AEAA6A600988E5B /* Svail_Team_Distribution_Profile.mobileprovision */,
 				3EC9D3D51AE16DC500071FF3 /* Cosmetic */,
 				F24B35CA1ADB9569006153EC /* Frameworks */,
 				F24B35C91ADB953D006153EC /* Data Model */,
@@ -845,7 +847,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ronald Hernandez (2VXA774V28)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -873,7 +875,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ronald Hernandez (2VXA774V28)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
