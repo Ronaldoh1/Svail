@@ -11,6 +11,8 @@
 		360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */; };
 		360CBE261AE8493C00A1F8CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 360CBE251AE8493C00A1F8CF /* Images.xcassets */; };
 		360CBE291AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */; };
+		364DF2F61AE98A9F00E0DFF6 /* CategoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF2F51AE98A9F00E0DFF6 /* CategoryCollectionViewCell.m */; };
+		364DF2F91AE98D0100E0DFF6 /* ServiceCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF2F81AE98D0100E0DFF6 /* ServiceCategory.m */; };
 		3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */; };
 		3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */; };
 		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
@@ -105,6 +107,10 @@
 		360CBE251AE8493C00A1F8CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		360CBE271AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantPurchaseCVCell.h; sourceTree = "<group>"; };
 		360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantPurchaseCVCell.m; sourceTree = "<group>"; };
+		364DF2F41AE98A9F00E0DFF6 /* CategoryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCollectionViewCell.h; sourceTree = "<group>"; };
+		364DF2F51AE98A9F00E0DFF6 /* CategoryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCollectionViewCell.m; sourceTree = "<group>"; };
+		364DF2F71AE98D0100E0DFF6 /* ServiceCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceCategory.h; sourceTree = "<group>"; };
+		364DF2F81AE98D0100E0DFF6 /* ServiceCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceCategory.m; sourceTree = "<group>"; };
 		3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -460,8 +466,12 @@
 			isa = PBXGroup;
 			children = (
 				F24B36261ADC6B16006153EC /* Service.storyboard */,
+				364DF2F41AE98A9F00E0DFF6 /* CategoryCollectionViewCell.h */,
+				364DF2F51AE98A9F00E0DFF6 /* CategoryCollectionViewCell.m */,
 				36EBB01C1AE68E260045AF92 /* CategoryViewController.h */,
 				36EBB01D1AE68E260045AF92 /* CategoryViewController.m */,
+				364DF2F71AE98D0100E0DFF6 /* ServiceCategory.h */,
+				364DF2F81AE98D0100E0DFF6 /* ServiceCategory.m */,
 				36EBB01F1AE68E610045AF92 /* ServiceListViewController.h */,
 				36EBB0201AE68E610045AF92 /* ServiceListViewController.m */,
 			);
@@ -698,6 +708,7 @@
 				36EBB01E1AE68E260045AF92 /* CategoryViewController.m in Sources */,
 				36EBB0241AE80F550045AF92 /* ReviewPurchaseViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
+				364DF2F91AE98D0100E0DFF6 /* ServiceCategory.m in Sources */,
 				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
@@ -716,6 +727,7 @@
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
 				3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */,
+				364DF2F61AE98A9F00E0DFF6 /* CategoryCollectionViewCell.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,
 				F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */,

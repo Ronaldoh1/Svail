@@ -21,7 +21,7 @@
 @property PFGeoPoint *theServiceGeoPoint;
 @property NSString *serviceLocationAddress;
 @property NSNumber *price;
-@property NSString *provider;
+@property User *provider;
 @property NSDate *startDate;
 @property NSDate *endDate;
 @property BOOL travel;

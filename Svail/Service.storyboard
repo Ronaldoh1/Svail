@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Category View Controller-->
@@ -18,22 +19,58 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-Ec-GLU">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EBF-S1-jcj">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="155" height="155"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ml9-aH-WIy">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCell" id="Ml9-aH-WIy" customClass="CategoryCollectionViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="155" height="155"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nzO-yr-Yge">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="nzO-yr-Yge" secondAttribute="bottom" constant="-8" id="DB0-gl-qOE"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="nzO-yr-Yge" secondAttribute="trailing" constant="-8" id="FCt-3W-qBo"/>
+                                            <constraint firstItem="nzO-yr-Yge" firstAttribute="leading" secondItem="Ml9-aH-WIy" secondAttribute="leadingMargin" constant="-8" id="lKA-V4-BpN"/>
+                                            <constraint firstItem="nzO-yr-Yge" firstAttribute="top" secondItem="Ml9-aH-WIy" secondAttribute="topMargin" constant="-8" id="zSp-PV-NAq"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="nzO-yr-Yge"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <exclude reference="DB0-gl-qOE"/>
+                                                <exclude reference="FCt-3W-qBo"/>
+                                                <exclude reference="lKA-V4-BpN"/>
+                                                <exclude reference="zSp-PV-NAq"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="nzO-yr-Yge"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <include reference="DB0-gl-qOE"/>
+                                                <include reference="FCt-3W-qBo"/>
+                                                <include reference="lKA-V4-BpN"/>
+                                                <include reference="zSp-PV-NAq"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
+                                            <outlet property="categoryImageView" destination="nzO-yr-Yge" id="EqY-id-Ns0"/>
                                             <segue destination="8aH-qV-aPg" kind="show" id="EVh-tv-xer"/>
                                         </connections>
                                     </collectionViewCell>
@@ -41,6 +78,28 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="wuh-Ec-GLU" secondAttribute="bottom" id="SpQ-7o-kcJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wuh-Ec-GLU" secondAttribute="trailing" constant="-16" id="VHX-rM-sWt"/>
+                            <constraint firstItem="wuh-Ec-GLU" firstAttribute="leading" secondItem="yhB-S4-1H0" secondAttribute="leadingMargin" constant="-16" id="Vfa-UP-D3Z"/>
+                            <constraint firstItem="wuh-Ec-GLU" firstAttribute="top" secondItem="qOu-sd-jLf" secondAttribute="bottom" id="Yih-Yt-M39"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="SpQ-7o-kcJ"/>
+                                <exclude reference="VHX-rM-sWt"/>
+                                <exclude reference="Vfa-UP-D3Z"/>
+                                <exclude reference="Yih-Yt-M39"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="SpQ-7o-kcJ"/>
+                                <include reference="VHX-rM-sWt"/>
+                                <include reference="Vfa-UP-D3Z"/>
+                                <include reference="Yih-Yt-M39"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="e3U-ls-oIW"/>
@@ -48,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgo-3g-i1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1270" y="181"/>
+            <point key="canvasLocation" x="1269" y="181"/>
         </scene>
         <!--Service List View Controller-->
         <scene sceneID="7z0-Ex-9ve">
@@ -59,7 +118,7 @@
                         <viewControllerLayoutGuide type="bottom" id="UW9-uv-tfD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tXD-Aa-Nfc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="653" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0ll-vn-qNp">

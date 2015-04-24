@@ -14,6 +14,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "ParticipantsViewController.h"
 #import "CustomPointAnnotation.h"
+#import "ReviewPurchaseViewController.h"
 
 //PARTICIPANT NUMBER ADDED TO EVENT ? CHANGE PIN COLOR ACCORDINGLY
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
@@ -34,9 +35,6 @@
 @property NSArray *annotationArray;
 @property NSMutableArray *serviceParticipants;
 
-
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *profileButton;
-
 @end
 
 @implementation MapViewController
@@ -47,8 +45,8 @@
     self.locationManager = [CLLocationManager new];
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = YES;
-
-    self.profileButton.image = [[User currentUser] objectForKey:@"profileImage"];
+    
+    [self setupProfileButton];
 
     //setting today's date and the next days of the week for segmented control's titles
     NSDate *currentDate = [NSDate date];
@@ -58,6 +56,8 @@
     [self.segmentedControl setTitle:theDate forSegmentAtIndex:0];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *dayComponent = [NSDateComponents new];
+    
+
 
     for (int i = 1; i < 7; i++) {
         dayComponent.day = i;
@@ -80,6 +80,36 @@
          [self filterEventsForDate:self.segmentedControl];
      }];
 }
+
+
+
+
+- (void)setupProfileButton
+{
+    [[User currentUser].profileImage getDataInBackgroundWithBlock:^(NSData *data,
+                                                                  NSError *error)
+     {
+         if (!error) {
+             UIImage *profileImage = [UIImage imageWithData:data];
+            CGRect buttonFrame = CGRectMake(0, 0, 40., 40.);
+            UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
+             
+             button.layer.cornerRadius = button.frame.size.height / 2;
+             button.layer.masksToBounds = YES;
+             button.layer.borderWidth = 2.0;
+             button.layer.borderColor = [UIColor lightGrayColor].CGColor;
+             
+
+            [button addTarget:self action:@selector(onProfileButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+            [button setImage:profileImage forState:UIControlStateNormal];
+            UIBarButtonItem *profileButtonItem= [[UIBarButtonItem alloc] initWithCustomView:button];
+             self.navigationItem.leftBarButtonItem=profileButtonItem;
+
+         }
+     }];
+}
+
+
 - (IBAction)OnLogOutButtonTapped:(UIButton *)sender {
     [User logOut];
 }
@@ -240,6 +270,8 @@
 //        [annotation.service saveInBackground];
         UIStoryboard *purchaseStoryboard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
         UIViewController *reviewPurchaseNavVC = [purchaseStoryboard instantiateViewControllerWithIdentifier:@"ReviewPurchaseNavVC"];
+        ReviewPurchaseViewController *reviewPurchaseVC = reviewPurchaseNavVC.childViewControllers[0];
+        reviewPurchaseVC.serviceId = annotation.service.objectId;
         [self presentViewController:reviewPurchaseNavVC animated:TRUE completion:nil];
     }
     

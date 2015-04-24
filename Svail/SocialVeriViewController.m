@@ -182,11 +182,18 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     for (int i = 0; i < 3 - self.currentUser.verification.references.count; i++) {
         UITextField *textField = self.phoneNumberTextFields[i];
         if (![textField.text isEqualToString:@""]) {
-            [self sendSMSFromParseWithToNumber:textField.text message:message];
+            if (![textField.text isEqualToString:self.currentUser.phoneNumber]) {
+                [self sendSMSFromParseWithToNumber:textField.text message:message];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter a phone number diefferent than yours." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+
         }
     }
 
 }
+
 
 -(void)sendSMSFromParseWithToNumber:(NSString *)toNumber message:(NSString *)message
 {
@@ -372,6 +379,13 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     UIViewController *mapVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MapNavVC"];
     [self presentViewController:mapVC animated:true completion:nil];
     
+}
+
+- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
+{
+    UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
+    UIViewController *MapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MapNavVC"];
+    [self presentViewController:MapNavVC animated:true completion:nil];
 }
 
 @end
