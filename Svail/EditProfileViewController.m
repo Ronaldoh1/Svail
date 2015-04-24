@@ -118,10 +118,7 @@
 }
 - (IBAction)onCancelButtonPressed:(UIButton *)sender
 {
-//    [self dismissViewControllerAnimated:YES completion:nil];
-    UIStoryboard *veriStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
-    UITabBarController *MapTabVC = [veriStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-    [self presentViewController:MapTabVC animated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

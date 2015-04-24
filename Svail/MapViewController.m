@@ -16,7 +16,6 @@
 #import "CustomPointAnnotation.h"
 
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
-//CALLOUT CUSTOMIZED
 
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate>
 
@@ -158,26 +157,53 @@
     //        pinAnnotation.draggable = YES;
     //    }
 
-//    else if (self.serviceParticipants.count < [customAnnotation.service.capacity integerValue]/2)
-//    {
-//        pinAnnotation.pinColor = MKPinAnnotationColorGreen;
-//    }
-//    else if (self.serviceParticipants.count >= [customAnnotation.service.capacity integerValue]/2 && self.serviceParticipants.count < [customAnnotation.service.capacity integerValue])
-//    {
-//        pinAnnotation.pinColor = MKPinAnnotationColorPurple;
-//    }
-//    else if (self.serviceParticipants.count == [customAnnotation.service.capacity integerValue])
-//    {
-//        pinAnnotation.pinColor = MKPinAnnotationColorRed;
-//    }
-
     pinAnnotation.canShowCallout = YES;
     pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
     pinAnnotation.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     pinAnnotation.annotationType = ZSPinAnnotationTypeTagStroke;
     pinAnnotation.annotationColor = customAnnotation.color;
 
+    PFQuery *serviceQuery = [Service query];
+    [serviceQuery includeKey:@"provider"];
+    [serviceQuery getObjectInBackgroundWithId:customAnnotation.service.objectId block:^(PFObject *object, NSError *error) {
+        Service *service = (Service *)object;
+        User *provider = service.provider;
+
+
+        if (!(provider.profileImage == nil) || !(provider == nil)) {
+
+            [provider.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    CGSize scaledSize = CGSizeMake(40, 40);
+                    UIGraphicsBeginImageContext(scaledSize);
+                    [image drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
+                    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+                    UIGraphicsEndImageContext();
+                    UIImageView *imageView = [[UIImageView alloc]initWithImage:scaledImage];
+                    //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
+                    //    imageView.image = scaledImage;
+                    pinAnnotation.leftCalloutAccessoryView = imageView;
+                }
+            }];
+
+        }else
+        {
+            UIImage *image = [UIImage imageNamed:@"facebook_logo"];
+            CGSize scaledSize = CGSizeMake(40, 40);
+            UIGraphicsBeginImageContext(scaledSize);
+            [image drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
+            UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:scaledImage];
+            //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
+            //    imageView.image = scaledImage;
+            pinAnnotation.leftCalloutAccessoryView = imageView;
+        }
+    }];
+
     return pinAnnotation;
+
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
@@ -223,18 +249,18 @@
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
 
-    CustomPointAnnotation *annotation = view.annotation;
-    if ([annotation.service objectForKey:@"participants"] == nil)
-    {
-        self.serviceParticipants = [NSMutableArray new];
-        annotation.service.participants = self.serviceParticipants;
-        [annotation.service saveInBackground];
-        
-    }
-    else
-    {
-        self.serviceParticipants = [annotation.service objectForKey:@"participants"];
-    }
+//    CustomPointAnnotation *annotation = view.annotation;
+//    if ([annotation.service objectForKey:@"participants"] == nil)
+//    {
+//        self.serviceParticipants = [NSMutableArray new];
+//        annotation.service.participants = self.serviceParticipants;
+//        [annotation.service saveInBackground];
+//        
+//    }
+//    else
+//    {
+//        self.serviceParticipants = [annotation.service objectForKey:@"participants"];
+//    }
 
     if (control == view.rightCalloutAccessoryView)
     {
