@@ -587,11 +587,11 @@
                         <viewControllerLayoutGuide type="bottom" id="aXD-LM-NKu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1Vp-it-dnt">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDy-Yf-iLb">
-                                <rect key="frame" x="183" y="86" width="140" height="42"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDy-Yf-iLb">
+                                <rect key="frame" x="137" y="401" width="140" height="42"/>
                                 <state key="normal" backgroundImage="ApplePayBTN_42pt__black_textLogo_">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -599,16 +599,41 @@
                                     <action selector="purchaseWithApplePayButton:" destination="YSt-Ta-dF7" eventType="touchUpInside" id="zq1-HV-jep"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sho-cg-9no">
+                                <rect key="frame" x="195" y="362" width="25" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your card number to request service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMw-in-Etu">
+                                <rect key="frame" x="19" y="72" width="379" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="Bgi-Bo-h5d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sho-cg-9no" firstAttribute="centerX" secondItem="iDy-Yf-iLb" secondAttribute="centerX" id="2aG-2M-ORx"/>
+                            <constraint firstItem="aMw-in-Etu" firstAttribute="leading" secondItem="1Vp-it-dnt" secondAttribute="leadingMargin" constant="3" id="47N-VZ-hzR"/>
+                            <constraint firstItem="aXD-LM-NKu" firstAttribute="top" secondItem="iDy-Yf-iLb" secondAttribute="bottom" constant="293" id="DDM-A9-WZ5"/>
+                            <constraint firstItem="iDy-Yf-iLb" firstAttribute="centerX" secondItem="1Vp-it-dnt" secondAttribute="centerX" id="GRa-Qb-RPa"/>
+                            <constraint firstItem="iDy-Yf-iLb" firstAttribute="top" secondItem="sho-cg-9no" secondAttribute="bottom" constant="18" id="KKS-ay-lnp"/>
+                            <constraint firstItem="aMw-in-Etu" firstAttribute="trailing" secondItem="1Vp-it-dnt" secondAttribute="trailingMargin" id="Q95-TN-Xei"/>
+                            <constraint firstItem="aMw-in-Etu" firstAttribute="top" secondItem="avf-hv-Uee" secondAttribute="bottom" constant="8" symbolic="YES" id="xh8-X4-c57"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Confirm Purchase" id="lWI-Pz-t20">
-                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="JKy-Ji-Geg">
+                        <barButtonItem key="rightBarButtonItem" title="Pay" id="JKy-Ji-Geg">
                             <connections>
-                                <action selector="save:" destination="YSt-Ta-dF7" id="5na-5Z-3bY"/>
+                                <action selector="onPayButtonTapped:" destination="YSt-Ta-dF7" id="aFy-94-4Ck"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="px9-BU-7ZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

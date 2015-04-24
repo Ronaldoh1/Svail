@@ -132,14 +132,34 @@ Parse.Cloud.define("charge", function(request, response) {
 
 var stripe = require('stripe');
  stripe.initialize('sk_test_MmcKyzlkanhBHXzaLtbgOTVX');
-Parse.Cloud.define("hello", function(request, response) {
+Parse.Cloud.define("stripeCharge", function(request, response) {
 
 
 
 var stripeToken = request.params.token;
 
   var charge = stripe.Charges.create({
-  amount: 1000, // express dollars in cents 
+  amount: request.params.amount * 100, // express dollars in cents 
+  currency: 'usd',
+  card: stripeToken
+}).then(function(result) {
+  console.log(result);
+   response.success()
+
+}, function(error){
+response.error()});
+  });
+
+
+
+Parse.Cloud.define("applePayCharge", function(request, response) {
+
+
+
+var stripeToken = request.params.token;
+
+  var charge = stripe.Charges.create({
+  amount: request.params.amount * 100, // express dollars in cents 
   currency: 'usd',
   card: stripeToken
 }).then(function(result) {

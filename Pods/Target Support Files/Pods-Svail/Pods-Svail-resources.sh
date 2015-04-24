@@ -79,6 +79,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "PaymentKit/PaymentKit/Resources/gradient@2x.png"
   install_resource "PaymentKit/PaymentKit/Resources/textfield.png"
   install_resource "PaymentKit/PaymentKit/Resources/textfield@2x.png"
+  install_resource "${BUILT_PRODUCTS_DIR}/HockeySDKResources.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "PaymentKit/PaymentKit/Resources/Cards/amex.png"
@@ -102,6 +103,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "PaymentKit/PaymentKit/Resources/gradient@2x.png"
   install_resource "PaymentKit/PaymentKit/Resources/textfield.png"
   install_resource "PaymentKit/PaymentKit/Resources/textfield@2x.png"
+  install_resource "${BUILT_PRODUCTS_DIR}/HockeySDKResources.bundle"
 fi
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

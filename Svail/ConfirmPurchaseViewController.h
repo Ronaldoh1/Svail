@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Service.h"
 
 @interface ConfirmPurchaseViewController : UIViewController
+
+@property Service *serviceToPurchase;
 
 @end

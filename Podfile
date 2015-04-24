@@ -9,6 +9,7 @@ target 'Svail' do
     pod 'Stripe'
     pod 'PaymentKit'
     pod 'Stripe/ApplePay'
+    pod 'HockeySDK', '~> 3.6.4'
 
 end
 
