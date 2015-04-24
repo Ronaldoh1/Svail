@@ -650,7 +650,7 @@
         <!--Service Request History-->
         <scene sceneID="E4h-Ps-5Ea">
             <objects>
-                <viewController id="lhV-T6-Qxe" customClass="PurchaseHistoryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PurchaseHistoryVC" id="lhV-T6-Qxe" customClass="PurchaseHistoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q4l-p2-fNS"/>
                         <viewControllerLayoutGuide type="bottom" id="cDM-zc-6wd"/>
