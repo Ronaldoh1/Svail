@@ -8,27 +8,63 @@
 
 import UIKit
 
-class CreateProfileViewController: UIViewController {
+class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var finishButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var occupationTextField: UITextField!
-    @IBOutlet weak var specialtyTextField: UITextField!
     @IBOutlet weak var stateTextField: UITextField!
-    @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
+
     var currentUser: User = User()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      
+        self.view.backgroundColor = UIColor(red: 240/255.0, green: 248/255.0, blue: 255/255.0, alpha: 1.0)
+
+        self.profileImage.layer.cornerRadius = 90/2.0
+        self.profileImage.clipsToBounds = true
+        
+        //making the buttons round
+        self.skipButton.clipsToBounds = true
+        self.skipButton.layer.cornerRadius = 60/2.0
+        self.skipButton.backgroundColor = UIColor(red: 255/255.0, green: 127/255.0, blue: 59/255.0, alpha: 1.0)
+        self.skipButton.layer.borderColor = UIColor.redColor() as! CGColor;
+        self.skipButton.layer.borderWidth = 2.0
+
+        self.finishButton.clipsToBounds = true
+        self.finishButton.layer.cornerRadius = 60/2.0
+        self.finishButton.backgroundColor = UIColor(red: 59/255.0, green: 185/255.0, blue: 255/255.0, alpha: 1.0)
+        self.finishButton.layer.borderColor = UIColor.redColor() as! CGColor;
+        self.finishButton.layer.borderWidth = 2.0
 
         self.view.userInteractionEnabled = true
 
         self.currentUser = User.currentUser()!
+
+        if (self.currentUser.isFbUser == true)
+        {
+            self.currentUser.profileImage.getDataInBackgroundWithBlock {
+                (imageData: NSData?, error: NSError?) -> Void in
+                if error == nil {
+                    if let imageData = imageData {
+                        let image = UIImage(data:imageData)
+                        self.profileImage.image = image
+                    }
+                }
+            }
+        }else
+            {
+                self.profileImage.image = UIImage(named:"defaultimage")
+                let image = UIImage(named:"defaultimage")
+                let imageData = UIImagePNGRepresentation(image)
+                let imageFile = PFFile(name:"image.png", data:imageData)
+                self.currentUser.profileImage = imageFile
+                currentUser.saveInBackground()
+            }
     }
 
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
@@ -48,7 +84,7 @@ class CreateProfileViewController: UIViewController {
     {
         var signUpError = ""
 
-        if (self.fullNameTextField.text == "" || self.genderTextField.text == "" || self.cityTextField.text == "" || self.stateTextField.text == "" || self.specialtyTextField.text == "" || self.occupationTextField.text == "")
+        if (self.fullNameTextField.text == "" || self.genderTextField.text == "" || self.stateTextField.text == "" || self.occupationTextField.text == "")
         {
 
             signUpError = "One or more fields are blank. Please try again!"
@@ -58,9 +94,7 @@ class CreateProfileViewController: UIViewController {
 
             self.currentUser["name"] = fullNameTextField.text
             self.currentUser["gender"] = genderTextField.text
-            self.currentUser["city"] = cityTextField.text
             self.currentUser["state"] = stateTextField.text
-            self.currentUser["specialty"] = specialtyTextField.text
             self.currentUser["occupation"] = occupationTextField.text
 
             self.currentUser.save()
@@ -93,5 +127,42 @@ class CreateProfileViewController: UIViewController {
             
         }
         
+    }
+    @IBAction func onChangePhotoButtonTapped(sender: UIButton)
+    {
+        let actionSheet = UIActionSheet(title:"Select Image for Profile", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil, otherButtonTitles: "From Library", "From Camera")
+
+        actionSheet.showInView(self.view)
+
+    }
+
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if (buttonIndex == 1)
+        {
+            let pickerView = UIImagePickerController()
+            pickerView.allowsEditing = true
+            pickerView.delegate = self
+            pickerView.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            self.presentViewController(pickerView, animated: true, completion: nil)
+        }
+        else if (buttonIndex == 0)
+        {
+            let pickerView = UIImagePickerController()
+            pickerView.allowsEditing = true
+            pickerView.delegate = self
+            pickerView.sourceType = UIImagePickerControllerSourceType.Camera
+            self.presentViewController(pickerView, animated: true, completion: nil)
+        }
+    }
+
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+
+        let img = info [UIImagePickerControllerOriginalImage] as! UIImage
+        let imageData = UIImagePNGRepresentation(img)
+        let imageFile = PFFile(data: imageData)
+        self.currentUser.profileImage = imageFile
+        self.profileImage.image = img
+        self.currentUser.profileImage.saveInBackground()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

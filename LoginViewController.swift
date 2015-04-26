@@ -11,6 +11,8 @@ import UIKit
 class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDelegate{
 
 
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     override func viewDidLoad() {
@@ -25,7 +27,20 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
 
         self.view.userInteractionEnabled = true
 
-        println("it's working")
+        self.view.backgroundColor = UIColor(red: 240/255.0, green: 248/255.0, blue: 255/255.0, alpha: 1.0)
+
+        //making the buttons round
+        self.cancelButton.clipsToBounds = true
+        self.cancelButton.layer.cornerRadius = 60/2.0
+        self.cancelButton.backgroundColor = UIColor(red: 255/255.0, green: 127/255.0, blue: 59/255.0, alpha: 1.0)
+        self.cancelButton.layer.borderColor = UIColor.redColor() as! CGColor;
+        self.cancelButton.layer.borderWidth = 2.0
+
+        self.signInButton.clipsToBounds = true
+        self.signInButton.layer.cornerRadius = 60/2.0
+        self.signInButton.backgroundColor = UIColor(red: 59/255.0, green: 185/255.0, blue: 255/255.0, alpha: 1.0)
+        self.signInButton.layer.borderColor = UIColor.redColor() as! CGColor;
+        self.signInButton.layer.borderWidth = 2.0
     }
     @IBAction func onCancelButtonPressed(sender: UIButton) {
 

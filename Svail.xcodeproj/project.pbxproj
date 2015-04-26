@@ -39,7 +39,6 @@
 		3E8D28981AE30ED600D7D648 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8D28971AE30ED600D7D648 /* EditProfile.storyboard */; };
 		3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */; };
 		3E8D289F1AE382A800D7D648 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8D289E1AE382A800D7D648 /* UserProfile.storyboard */; };
-		3EC9D3D81AE16E1B00071FF3 /* Circle Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9D3D71AE16E1B00071FF3 /* Circle Button.m */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
 		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
 		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
@@ -150,8 +149,6 @@
 		3E8D289B1AE381F900D7D648 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		3E8D289E1AE382A800D7D648 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
-		3EC9D3D61AE16E1B00071FF3 /* Circle Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Circle Button.h"; sourceTree = "<group>"; };
-		3EC9D3D71AE16E1B00071FF3 /* Circle Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Circle Button.m"; sourceTree = "<group>"; };
 		A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.release.xcconfig"; sourceTree = "<group>"; };
 		D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.debug.xcconfig"; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,8 +284,6 @@
 		3EC9D3D51AE16DC500071FF3 /* Cosmetic */ = {
 			isa = PBXGroup;
 			children = (
-				3EC9D3D61AE16E1B00071FF3 /* Circle Button.h */,
-				3EC9D3D71AE16E1B00071FF3 /* Circle Button.m */,
 			);
 			name = Cosmetic;
 			sourceTree = "<group>";
@@ -719,7 +714,6 @@
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
 				F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */,
-				3EC9D3D81AE16E1B00071FF3 /* Circle Button.m in Sources */,
 				36EBB0211AE68E610045AF92 /* ServiceListViewController.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
 				360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */,
