@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-//#import "Verification.h"
+#import "Verification.h"
 
-@class Verification;
+//@class Verification;
 
 @interface User : PFUser<PFSubclassing>
 
@@ -25,5 +25,6 @@
 @property BOOL isFbUser;
 @property (nonatomic) Verification *verification;
 
+//-(void)getVerificationRecordWithCompletion:(void (^)())complete;
 
 @end

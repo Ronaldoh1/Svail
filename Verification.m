@@ -8,6 +8,7 @@
 
 #import "Verification.h"
 #import <Parse/PFObject+Subclass.h>
+#import "User.h"
 
 
 
@@ -31,6 +32,7 @@ static NSUInteger const kPointsForVerifiedLKAccount = 2;
 @dynamic lkLevel;
 @dynamic hasReachedSafeLevel;
 @dynamic safetyLevel;
+@dynamic phoneVerifyCode;
 
 //don't sythesize parse properties
 
@@ -84,6 +86,8 @@ static NSUInteger const kPointsForVerifiedLKAccount = 2;
     return lkLevel;
 }
 
+
+
 -(NSInteger)calculateSafetyLevel
 {
     return self.references.count * kPointsForReference + self.fbLevel +
@@ -96,6 +100,38 @@ static NSUInteger const kPointsForVerifiedLKAccount = 2;
     return self.safetyLevel >= kLowestSafetyLevel;
 }
 
+-(void)sendVerifyCodeToPhoneNumber:(NSString *)phoneNumber
+{
+    NSUInteger verifyCode = arc4random_uniform(899999) + 100000;
+    self.phoneVerifyCode = [NSString stringWithFormat:@"%lu",verifyCode];
+    NSString *message = [NSString stringWithFormat:@"Svaid phone number verification code: %@",self.phoneVerifyCode];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    {
+        if (succeeded) {
+            [PFCloud callFunctionInBackground:@"sendSMS" withParameters:@{@"toNumber":phoneNumber,
+                            @"message": message} block:^(NSString *result, NSError *error)
+            {
+                if (!error) {
+                    NSLog(@"%@",result);
+                }
+            }];
+        }
+        
+    }];
+}
+
+
+-(BOOL)verifyPhoneNumber:(NSString *)phoneNumber withVerifyCode:(NSString *)verifyCode
+{
+    if ([verifyCode isEqualToString:self.phoneVerifyCode]) {
+        [User currentUser].phoneNumber = phoneNumber;
+        [[User currentUser] saveInBackground];
+        return true;
+    } else {
+        return false;
+    }
+   
+}
 
 
 @end

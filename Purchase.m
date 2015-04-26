@@ -23,10 +23,11 @@
     [self registerSubclass];
 
 }
+
 + (NSString *)parseClassName{
     return @"Purchase";
-
 }
+
 -(void)setImages:(PFRelation *)images{
     _images = images;
 }

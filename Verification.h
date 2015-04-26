@@ -16,6 +16,7 @@
 @property (nonatomic) NSUInteger ttLevel;
 @property (nonatomic) NSUInteger lkLevel;
 @property (nonatomic) BOOL hasReachedSafeLevel;
+@property (nonatomic) NSString *phoneVerifyCode;
 
 
 +(NSString *)parseClassName;
@@ -23,6 +24,11 @@
 +(NSUInteger)getFBLevelWithNumOfFriends:(NSUInteger)numOfFriends;
 +(NSUInteger)getTTLevelWithNumOfFollowers:(NSUInteger)numOfFollowers;
 +(NSUInteger)getLKLevelWithNumOfConnections:(NSUInteger)numOfConnections;
+
+
+
+-(void)sendVerifyCodeToPhoneNumber:(NSString *)phoneNumber;
+-(BOOL)verifyPhoneNumber:(NSString *)phoneNumber withVerifyCode:(NSString *)verifyCode;
 
 -(NSInteger)calculateSafetyLevel;
 

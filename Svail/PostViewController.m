@@ -107,8 +107,8 @@
     self.service.title = self.serviceTitle.text;
     self.service.serviceDescription = self.serviceDescription.text;
     self.service.category = self.serviceCategory.text;
-    self.service.capacity = ((NSNumber *)self.serviceCapacity.text);
-    self.service.price = ((NSNumber *) self.price.text);
+    self.service.capacity = @([self.serviceCapacity.text integerValue]);
+    self.service.price = [NSDecimalNumber decimalNumberWithString:self.price.text];
     self.service.serviceLocationAddress = self.location.text;
      self.service.startDate = [self.startPickerDate date];
      self.service.endDate = [self.endPickerDate date];
