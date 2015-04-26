@@ -11,12 +11,29 @@ import UIKit
 class SignUpViewController: UIViewController, UITextFieldDelegate{
 
 
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.view.backgroundColor = UIColor(red: 240/255.0, green: 248/255.0, blue: 255/255.0, alpha: 1.0)
+
+        //making the buttons round
+        self.cancelButton.clipsToBounds = true
+        self.cancelButton.layer.cornerRadius = 60/2.0
+        self.cancelButton.backgroundColor = UIColor(red: 255/255.0, green: 127/255.0, blue: 59/255.0, alpha: 1.0)
+        self.cancelButton.layer.borderColor = UIColor.redColor() as! CGColor;
+        self.cancelButton.layer.borderWidth = 2.0
+
+        self.registerButton.clipsToBounds = true
+        self.registerButton.layer.cornerRadius = 60/2.0
+        self.registerButton.backgroundColor = UIColor(red: 59/255.0, green: 185/255.0, blue: 255/255.0, alpha: 1.0)
+        self.registerButton.layer.borderColor = UIColor.redColor() as! CGColor;
+        self.registerButton.layer.borderWidth = 2.0
 
         //Dismiss keyboard
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
@@ -37,15 +54,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
 
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
             (user: PFUser?, error: NSError?) -> Void in
-            if let user = user {
+            if let user = user as? User{
                 if user.isNew {
                     println("User signed up and logged in through Facebook!")
 
                     self.getFacebookUserData()
 
-                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
-                    let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UINavigationController
-                    self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+                    user.isFbUser = true
+                    user.saveInBackgroundWithBlock {
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                            self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+
+                        } else {
+                            println("CANNOT FUCKING SEGUE")
+                        }
+                    }//                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
+//                    let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UINavigationController
+//                    self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+
 
                 } else {
                     println("User logged in through Facebook!")
@@ -98,6 +125,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         user.email = emailTextField.text
         user.username = user.email
         user.password = passwordTextField.text
+        user.isFbUser = false
         // other fields can be set just like with PFObject
         user["phoneNumber"] = phoneNumberTextField.text
 
@@ -105,12 +133,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
             (succeeded: Bool, error: NSError?) -> Void in
             if error == nil {
 
-                //if sign up is successful then send the usre to edit profile.
-                let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
-                let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UITabBarController
-                self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+                //if sign up is successful then send the user to edit profile.
+//                let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
+//                let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UITabBarController
+//                self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+                self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
 
-                //                self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+
             } else {
                 if let errorString = error!.userInfo?["error"] as? NSString
                 {

@@ -117,7 +117,7 @@
              UIView *profileButtonView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
              profileButtonView.bounds = CGRectOffset(profileButtonView.bounds, 10, 0);
              [profileButtonView addSubview:button];
- UIBarButtonItem *profileButtonItem= [[UIBarButtonItem alloc] initWithCustomView:profileButtonView];
+             UIBarButtonItem *profileButtonItem= [[UIBarButtonItem alloc] initWithCustomView:profileButtonView];
              self.navigationItem.leftBarButtonItem=profileButtonItem;
 
          }

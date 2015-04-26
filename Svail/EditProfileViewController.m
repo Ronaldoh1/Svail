@@ -16,13 +16,15 @@
 
 @interface EditProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, FBSDKGraphRequestConnectionDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UIButton *verifyButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UITextField *fullnameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UITextField *cityTextField;
 @property (weak, nonatomic) IBOutlet UITextField *stateTextField;
-@property (weak, nonatomic) IBOutlet UITextField *specialtyTextField;
 @property (weak, nonatomic) IBOutlet UITextField *occupationTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 
 @property User *currentUser;
@@ -34,23 +36,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.cancelButton.clipsToBounds = true;
+    self.cancelButton.layer.cornerRadius = 40/2.0;
+    self.cancelButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+    self.saveButton.clipsToBounds = true;
+    self.saveButton.layer.cornerRadius = 40/2.0;
+    self.saveButton.backgroundColor = [UIColor colorWithRed:59/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
+
+    self.verifyButton.clipsToBounds = true;
+    self.verifyButton.layer.cornerRadius = 40/2.0;
+    self.verifyButton.backgroundColor = [UIColor colorWithRed:247/255.0 green:93/255.0 blue:89/255.0 alpha:1.0];
+
     self.currentUser = [User currentUser];
 
+    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+
     self.fullnameTextField.text = self.currentUser.name;
-    self.emailTextField.text = self.currentUser.username;
-    self.passwordTextField.text = self.currentUser.password;
-    self.cityTextField.text = self.currentUser.city;
+
+    if (self.currentUser.isFbUser == YES) {
+
+        self.passwordTextField.hidden = YES;
+
+    }else{
+
+        self.passwordTextField.text = self.currentUser.password;
+    }
+    self.emailTextField.text = self.currentUser.email;
     self.stateTextField.text = self.currentUser.state;
-    self.specialtyTextField.text = self.currentUser.specialty;
     self.occupationTextField.text = self.currentUser.occupation;
+    self.phoneTextField.text = self.currentUser.phoneNumber;
     [self.currentUser.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *image = [UIImage imageWithData:data];
             self.profileImage.image = image;
-//            self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2;
-//            self.profileImage.layer.masksToBounds = YES;
-//            self.profileImage.layer.borderWidth = 1.5;
-//            self.profileImage.clipsToBounds = YES;
+            self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2;
+            self.profileImage.layer.masksToBounds = YES;
+            self.profileImage.layer.borderWidth = 1.5;
+            self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+            self.profileImage.clipsToBounds = YES;
         }
     }];
 }
@@ -103,9 +126,8 @@
 {
     self.currentUser.username = self.emailTextField.text;
     self.currentUser.name = self.fullnameTextField.text;
-    self.currentUser.city = self.cityTextField.text;
     self.currentUser.state = self.stateTextField.text;
-    self.currentUser.specialty = self.specialtyTextField.text;
+    self.currentUser.phoneNumber = self.phoneTextField.text;
     self.currentUser.occupation = self.occupationTextField.text;
 
     [self.currentUser saveInBackground];
