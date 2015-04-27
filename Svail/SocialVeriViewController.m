@@ -53,39 +53,32 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-     self.currentUser = [User currentUser];
-
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+    self.fbCheckmark.hidden = true;
+    self.ttCheckmark.hidden = true;
+    self.lkCheckmark.hidden = true;
+    self.safetyCheckmark.alpha = kAlphaForSafetyCheckmarkUnqualified;
+    self.levelLabel.text = [NSString stringWithFormat:@"Verification Level : 0"];
+    for (UIImageView *phoneNumberCheckMark in self.phoneNumberCheckmarks) {
+        phoneNumberCheckMark.hidden = true;
+    }
+
+    self.currentUser = [User currentUser];
     
-    
-    if (!self.currentUser.verification) {
-        self.currentUser.verification = [Verification object];
-        [self.currentUser saveInBackground];
-        [self setupFBItems:NO];
-        [self setupTTItems:NO];
-        [self setupLKItems:NO];
-            
-        [self setupPhoneNumberItems];
-        [self setupSafetyLevelItems];
-           
-    } else {
-        PFQuery *query = [User query];
-        [query includeKey:@"verification.references"];
-        [query getObjectInBackgroundWithId:self.currentUser.objectId block:^(PFObject *user, NSError *error)
-        {
-            self.currentUser = (User *)user;
-            NSLog(@"%li",self.currentUser.verification.fbLevel);
-            NSLog(@"%li",self.currentUser.verification.ttLevel);
-            NSLog(@"%li",self.currentUser.verification.lkLevel);
-            NSLog(@"%li",self.currentUser.verification.references.count);
+    [self.currentUser getVerificationInfoWithCompletion:^(NSError *error)
+    {
+        if (!error) {
+
             [self setupFBItems:self.currentUser.verification.fbLevel > 0];
             [self setupTTItems:self.currentUser.verification.ttLevel > 0];
             [self setupLKItems:self.currentUser.verification.lkLevel > 0];
-            
             [self setupPhoneNumberItems];
             [self setupSafetyLevelItems];
-        }];
-    }
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
+            [alert show];
+        }
+    }];
 }
 
 

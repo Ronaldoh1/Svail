@@ -10,10 +10,10 @@
 #import "User.h"
 
 @interface Rating : PFObject<PFSubclassing>
-@property NSString *comment;
+//@property NSString *comment;
 @property User *ratee;
 @property User *rater;
-@property NSNumber *rating;
+@property double value;
 
 +(NSString *)parseClassName;
 

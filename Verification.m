@@ -104,7 +104,7 @@ static NSUInteger const kPointsForVerifiedLKAccount = 2;
 {
     NSUInteger verifyCode = arc4random_uniform(899999) + 100000;
     self.phoneVerifyCode = [NSString stringWithFormat:@"%lu",verifyCode];
-    NSString *message = [NSString stringWithFormat:@"Svaid phone number verification code: %@",self.phoneVerifyCode];
+    NSString *message = [NSString stringWithFormat:@"Svail sent phone number verification code: %@",self.phoneVerifyCode];
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
         if (succeeded) {

@@ -11,10 +11,10 @@
 
 @implementation Rating
 
-@dynamic comment;
+//@dynamic comment;
 @dynamic ratee;
 @dynamic rater;
-@dynamic rating;
+@dynamic value;
 
 +(void)load{
     [self registerSubclass];

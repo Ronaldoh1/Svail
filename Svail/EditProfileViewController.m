@@ -14,7 +14,7 @@
 
 #import "Verification.h"
 
-@interface EditProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, FBSDKGraphRequestConnectionDelegate>
+@interface EditProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIAlertViewDelegate, FBSDKGraphRequestConnectionDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *verifyButton;
@@ -127,13 +127,27 @@
     self.currentUser.username = self.emailTextField.text;
     self.currentUser.name = self.fullnameTextField.text;
     self.currentUser.state = self.stateTextField.text;
-    self.currentUser.phoneNumber = self.phoneTextField.text;
+//    self.currentUser.phoneNumber = self.phoneTextField.text;
     self.currentUser.occupation = self.occupationTextField.text;
-
     [self.currentUser saveInBackground];
+    
+    if (self.phoneTextField.text.length == 10 && ![self.phoneTextField.text isEqualToString:self.currentUser.phoneNumber]) {
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+        [self.currentUser.verification sendVerifyCodeToPhoneNumber:self.phoneTextField.text];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Enter verification code" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        alert.tag = 1;
+        [alert show];
+    } else if (self.phoneTextField.text.length > 0 && self.phoneTextField.text.length != 10){
+        UIAlertView  *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter 10 digits phone number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+
+
 }
+
 
 - (IBAction)onVeriButtonTapped:(UIButton *)sender
 {
@@ -142,9 +156,33 @@
     UIViewController *veriNavVC = [veriStoryboard instantiateViewControllerWithIdentifier:@"VeriNavVC"];
     [self presentViewController:veriNavVC animated:YES completion:nil];
 }
+
 - (IBAction)onCancelButtonPressed:(UIButton *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1 && buttonIndex == 0) {
+        UITextField *verifyCodeTextField = [alertView textFieldAtIndex:0];
+        if ([self.currentUser.verification verifyPhoneNumber:self.phoneTextField.text withVerifyCode:verifyCodeTextField.text]) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Successful!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
+            alert.tag = 2;
+            [alert show];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Wrong code." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
+            alert.tag = 3;
+            [alert show];
+        }
+        
+    }
+    
+    if (alertView.tag == 2 && buttonIndex == 0) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+
 }
 
 @end

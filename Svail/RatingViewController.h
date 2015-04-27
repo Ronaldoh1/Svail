@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Service.h"
+
 
 @interface RatingViewController : UIViewController
+
+@property (nonatomic) Service *service;
 
 @end

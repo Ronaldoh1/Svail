@@ -15,6 +15,7 @@
     NSArray *emptyArray = @[];
     PFQuery *newQuery=[Service query];
     [newQuery whereKey:@"startDate" notContainedIn:emptyArray];
+    newQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [newQuery findObjectsInBackgroundWithBlock:^(NSArray *services, NSError *error) {
 
         NSArray *eventsArray = services;

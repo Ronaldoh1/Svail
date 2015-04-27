@@ -10,8 +10,11 @@
 #import "User.h"
 #import "Verification.h"
 #import "Service.h"
+#import "Rating.h"
 #import "ParticipantPurchaseCVCell.h"
 #import "ConfirmPurchaseViewController.h"
+#import "CustomViewUtilities.h"
+#import "RatingViewController.h"
 
 @interface ReviewPurchaseViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *providerProfileImageView;
@@ -48,6 +51,7 @@
     //use query to get verification property of currentuser, because verification is pointer, its content will not be retrieved by simply calling currentuser.verification.
     PFQuery *currentUserQuery = [User query];
     [currentUserQuery includeKey:@"verification"];
+    currentUserQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [currentUserQuery getObjectInBackgroundWithId:self.currentUser.objectId block:^(PFObject *user, NSError *error)
     {
         if (!error) {
@@ -58,14 +62,16 @@
                 self.safetyImageView.hidden = true;
             }
         } else {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//            [alert show];
+            return;
         }
     }];
     
     PFQuery *serviceQuery = [Service query];
     [serviceQuery includeKey:@"provider"];
     [serviceQuery includeKey:@"participants"];
+    serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [serviceQuery getObjectInBackgroundWithId:self.serviceId block:^(PFObject *object, NSError *error)
      {
          self.service = (Service *)object;
@@ -78,25 +84,35 @@
                                                                           NSError *error)
             {
                 if (!error) {
-                    self.providerProfileImageView.image = [UIImage imageWithData:data];
-                    self.providerProfileImageView.layer.cornerRadius = self.providerProfileImageView.frame.size.height / 2;
-                    self.providerProfileImageView.layer.masksToBounds = YES;
-                    self.providerProfileImageView.layer.borderWidth = 2.0;
-                    self.providerProfileImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+             [CustomViewUtilities setupProfileImageView:self.providerProfileImageView WithImage:[UIImage imageWithData:data]];
                 }
             }];
             
             PFQuery *providerServicesQuery = [Service query];
             [providerServicesQuery whereKey:@"provider" equalTo:self.service.provider];
+            providerServicesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
             [providerServicesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                                       NSError *error)
             {
                 if (!error) {
                     self.numOfServicesLabel.text = [NSString stringWithFormat:@"%li",objects.count];
-                    self.ratingLabel.text = @"0";
+
                 }
                 
             }];
+            
+            PFQuery *providerRatingsQuery = [Rating query];
+            [providerRatingsQuery whereKey:@"ratee" equalTo:self.service.provider];
+            providerRatingsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+            [providerRatingsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
+                                                                      NSError *error)
+            {
+                if (!error) {
+                    self.ratingLabel.text = [NSString stringWithFormat:@"%.1f",[[objects valueForKeyPath:@"@avg.value"] doubleValue]];
+                }
+                
+            }];
+ 
             
             
            self.ratingLabel.text =
@@ -111,8 +127,9 @@
             
             
         } else {
-             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
+//             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//            [alert show];
+            return;
         }
          
      }];
@@ -136,13 +153,13 @@
 
 -(void)setupServiceTitle
 {
-        self.serviceTitleLabel.text = [NSString stringWithFormat:@"Title %@",self.service.title];
-        self.serviceTitleLabel.font = [UIFont fontWithName:@"Arial" size:13.0];
-        NSRange range = [self.serviceTitleLabel.text rangeOfString:@"Title"];
-        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceTitleLabel.text];
-        [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:13.0]} range:range];
-        [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-        self.serviceTitleLabel.attributedText = attributedText;
+    self.serviceTitleLabel.text = [NSString stringWithFormat:@"Title %@",self.service.title];
+    self.serviceTitleLabel.font = [UIFont fontWithName:@"Arial" size:13.0];
+    NSRange range = [self.serviceTitleLabel.text rangeOfString:@"Title"];
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceTitleLabel.text];
+    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:13.0]} range:range];
+    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
+    self.serviceTitleLabel.attributedText = attributedText;
 }
 
 -(void)setupTimeLabel
@@ -212,12 +229,8 @@
 
     [participant.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
-            UIImage *image = [UIImage imageWithData:data];
-            cell.participantProfileImageView.image = image;
-            cell.participantProfileImageView.layer.cornerRadius = cell.participantProfileImageView.frame.size.height / 2;
-            cell.participantProfileImageView.layer.masksToBounds = YES;
-            cell.participantProfileImageView.layer.borderWidth = 2.0;
-            cell.participantProfileImageView.layer.borderColor = [UIColor yellowColor].CGColor;
+            
+            [CustomViewUtilities setupProfileImageView:cell.participantProfileImageView WithImage:[UIImage imageWithData:data]];
             [cell layoutSubviews];
         }
     }];
@@ -243,10 +256,21 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    ConfirmPurchaseViewController *confirmVC = [segue destinationViewController];
-    confirmVC.serviceToPurchase = self.service;
-    
+//    ConfirmPurchaseViewController *confirmVC = [segue destinationViewController];
+//    confirmVC.serviceToPurchase = self.service;
+    RatingViewController *ratingVC = [segue destinationViewController];
+    ratingVC.service = self.service;
+}
 
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if (![self.service.participants containsObject:self.currentUser]) {
+        return YES;
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"You already booked the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        return NO;
+    }
 }
 
 @end

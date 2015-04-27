@@ -93,7 +93,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     {
         var signUpError = ""
 
-        if (self.emailTextField.text == "" || self.passwordTextField.text == "" || self.confirmPasswordTextField.text == "" || self.phoneNumberTextField.text == "")
+//        if (self.emailTextField.text == "" || self.passwordTextField.text == "" || self.confirmPasswordTextField.text == "" || self.phoneNumberTextField.text == "")
+        if (self.emailTextField.text == "" || self.passwordTextField.text == "" || self.confirmPasswordTextField.text == "")
         {
 
             signUpError = "One or more fields are blank. Please try again!"
@@ -137,6 +138,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
 //                let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
 //                let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UITabBarController
 //                self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+                
+                PFQuery.clearAllCachedResults();
+                
                 self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
 
 

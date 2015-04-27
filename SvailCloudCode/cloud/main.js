@@ -169,3 +169,35 @@ var stripeToken = request.params.token;
 response.error()});
 
   });
+
+
+Parse.Cloud.define("sendPushToUser", function(request, response) {
+    var sender = request.user;
+    var recipient = request.params.recipient;
+    var message = request.params.message;
+
+    // Validate that the sender is allowed to send to the recipient.
+    // For example each user has an array of objectIds of friends
+//    if (senderUser.get("friendIds").indexOf(recipientUserId) === -1) {
+//        response.error("The recipient is not the sender's friend, cannot send push.");
+//    }
+
+    // Send the push.
+    // Find devices associated with the recipient user
+//    var recipientUser = new Parse.User();
+//    recipientUser.id = recipientUserId;
+    var pushQuery = new Parse.Query(Parse.Installation);
+    pushQuery.equalTo("user", recipientUser);
+
+    // Send the push notification to results of the query
+    Parse.Push.send({
+        where: pushQuery,
+        data: {
+            alert: message
+        }
+    }).then(function() {
+        response.success("Push was sent successfully.")
+    }, function(error) {
+        response.error("Push failed to send with error: " + error.message);
+    });
+});

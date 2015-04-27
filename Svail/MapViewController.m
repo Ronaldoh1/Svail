@@ -16,6 +16,7 @@
 #import "CustomPointAnnotation.h"
 #import "ReviewPurchaseViewController.h"
 #import "PurchaseHistoryViewController.h"
+#import "CustomViewUtilities.h"
 
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
 
@@ -42,6 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 
 //    UIStoryboard *purchaseStoryboard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
 //    UIViewController *purchaseHistoryVC = [purchaseStoryboard instantiateViewControllerWithIdentifier:@"PurchaseHistoryVC"];
@@ -52,7 +54,8 @@
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = YES;
     
-    [self setupProfileButton];
+
+
 
     //setting today's date and the next days of the week for segmented control's titles
     NSDate *currentDate = [NSDate date];
@@ -92,8 +95,10 @@
      }];
 }
 
-
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self setupProfileButton];
+}
 
 - (void)setupProfileButton
 {
@@ -105,11 +110,7 @@
             CGRect buttonFrame = CGRectMake(0, 0, 40., 40.);
             UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
              
-             button.layer.cornerRadius = button.frame.size.height / 2;
-             button.layer.masksToBounds = YES;
-             button.layer.borderWidth = 2.0;
-             button.layer.borderColor = [UIColor lightGrayColor].CGColor;
-             
+            [CustomViewUtilities transformToCircleViewFromSquareView:button];
 
             [button addTarget:self action:@selector(onProfileButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
             [button setImage:profileImage forState:UIControlStateNormal];
@@ -212,7 +213,13 @@
 
     PFQuery *serviceQuery = [Service query];
     [serviceQuery includeKey:@"provider"];
+    serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [serviceQuery getObjectInBackgroundWithId:customAnnotation.service.objectId block:^(PFObject *object, NSError *error) {
+        
+        if (error) {
+            return;
+        }
+        
         Service *service = (Service *)object;
         User *provider = service.provider;
 

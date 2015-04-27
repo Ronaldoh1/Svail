@@ -20,7 +20,7 @@
 @property BOOL isReserved;
 @property PFGeoPoint *theServiceGeoPoint;
 @property NSString *serviceLocationAddress;
-@property NSNumber *price;
+@property NSDecimalNumber *price;
 @property User *provider;
 @property NSDate *startDate;
 @property NSDate *endDate;

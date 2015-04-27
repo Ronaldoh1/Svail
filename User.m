@@ -27,19 +27,29 @@
     [self registerSubclass];
 }
 
-//-(void)getVerificationRecordWithCompletion:(void (^)())complete
-//{
-//    
-//    if (!self.verification) {
-//        self.verification = [Verification object];
-//        [self saveInBackground];
-//    } else {
-//        PFQuery *query = [User query];
-//        [query includeKey:@"verification.references"];
-//        [query getObjectInBackgroundWithId:self.objectId block:^(PFObject *user, NSError *error)
-//         {
-//    }
-//}
+-(void)getVerificationInfoWithCompletion:(void (^)(NSError *))complete
+{
+    
+    if (!self.verification) {
+        self.verification = [Verification object];
+        [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
+            complete(error);
+        }];
+    } else {
+        PFQuery *query = [User query];
+        [query includeKey:@"verification.references"];
+        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        [query getObjectInBackgroundWithId:self.objectId block:^(PFObject *user, NSError *error)
+        {
+            if (error) {
+                return;
+            }
+            self.verification = ((User *)user).verification;
+            complete(error);
+        }];
+    }
+}
 
 
 @end

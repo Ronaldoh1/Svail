@@ -55,6 +55,8 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
                 if user.isNew {
                     println("User signed up and logged in through Facebook!")
 
+                    PFQuery.clearAllCachedResults();
+                    
                     self.getFacebookUserData()
 
                     let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
@@ -64,6 +66,8 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
                 } else {
                     println("User logged in through Facebook!")
 
+                    PFQuery.clearAllCachedResults();
+                    
                     let mapStoryboard = UIStoryboard(name: "Map", bundle: nil)
                     let mapVCTab = mapStoryboard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UITabBarController
                     self.presentViewController(mapVCTab, animated: true, completion: nil)
@@ -95,6 +99,7 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
                 //        let tabBarVC = mapStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
                 //        self.presentViewController(tabBarVC, animated: true, completion: nil)
                 //
+       //         PFQuery.clearAllCachedResults();
                 let mapStoryBoard = UIStoryboard(name: "Verification", bundle: nil)
                 let veriVC = mapStoryBoard.instantiateViewControllerWithIdentifier("VeriNavVC") as! UIViewController
                 self.presentViewController(veriVC, animated: true, completion: nil)

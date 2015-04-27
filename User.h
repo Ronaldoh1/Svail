@@ -25,6 +25,6 @@
 @property BOOL isFbUser;
 @property (nonatomic) Verification *verification;
 
-//-(void)getVerificationRecordWithCompletion:(void (^)())complete;
+-(void)getVerificationInfoWithCompletion:(void (^)(NSError *))complete;
 
 @end

@@ -25,6 +25,7 @@
     PFQuery *query = [Service query];
     [query includeKey:@"provider"];
     [query whereKey:@"participants" equalTo:[User currentUser]];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
         if (!error) {

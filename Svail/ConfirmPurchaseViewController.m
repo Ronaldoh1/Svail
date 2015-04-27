@@ -110,7 +110,7 @@
     NSString *label = [NSString stringWithFormat:@"for %@", self.serviceToPurchase.title]; //This text will be displayed in the Apple Pay authentication view after the word "Pay"
 
     //change the ammount to be displayed to the user of the item he/she is purchasing.
-    NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.serviceToPurchase.price]; //Can change to any amount
+    NSDecimalNumber *amount = self.serviceToPurchase.price; //Can change to any amount
 
     request.paymentSummaryItems = @[
                                     [PKPaymentSummaryItem summaryItemWithLabel:label
