@@ -13,6 +13,12 @@
 		360CBE291AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */; };
 		364DF2FC1AECDAFD00E0DFF6 /* RatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */; };
 		364DF30C1AEDA2F600E0DFF6 /* CustomViewUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF30B1AEDA2F600E0DFF6 /* CustomViewUtilities.m */; };
+		360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */; };
+		360CBE261AE8493C00A1F8CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 360CBE251AE8493C00A1F8CF /* Images.xcassets */; };
+		360CBE291AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */; };
+		364DF2F61AE98A9F00E0DFF6 /* CategoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF2F51AE98A9F00E0DFF6 /* CategoryCollectionViewCell.m */; };
+		364DF2F91AE98D0100E0DFF6 /* ServiceCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF2F81AE98D0100E0DFF6 /* ServiceCategory.m */; };
+		364DF2FC1AECDAFD00E0DFF6 /* RatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */; };
 		3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */; };
 		3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */; };
 		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
@@ -24,6 +30,8 @@
 		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
 		36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB01A1AE5F6D50045AF92 /* Reference.m */; };
+		36EBB01E1AE68E260045AF92 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB01D1AE68E260045AF92 /* CategoryViewController.m */; };
+		36EBB0211AE68E610045AF92 /* ServiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0201AE68E610045AF92 /* ServiceListViewController.m */; };
 		36EBB0241AE80F550045AF92 /* ReviewPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0231AE80F550045AF92 /* ReviewPurchaseViewController.m */; };
 		36EBB0271AE822A80045AF92 /* ConfirmPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
@@ -37,7 +45,13 @@
 		3E8D28981AE30ED600D7D648 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8D28971AE30ED600D7D648 /* EditProfile.storyboard */; };
 		3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */; };
 		3E8D289F1AE382A800D7D648 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8D289E1AE382A800D7D648 /* UserProfile.storyboard */; };
+<<<<<<< HEAD
+		3EC9D3D81AE16E1B00071FF3 /* Circle Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9D3D71AE16E1B00071FF3 /* Circle Button.m */; };
+		F232741E1AECF3E10019CE62 /* SelectTimeSlotsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */; };
+		F23274211AED59CB0019CE62 /* CustomSelectTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23274201AED59CB0019CE62 /* CustomSelectTimeCell.m */; };
+=======
 		3E968BD31AED9F2B009FB31F /* CustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E968BD21AED9F2B009FB31F /* CustomImageView.m */; };
+>>>>>>> ca1d9f7e91e137850536dfd9d7959e146544d6a4
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
 		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
 		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
@@ -86,6 +100,15 @@
 		F2F94D331AE8FA8A0092C583 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D321AE8FA8A0092C583 /* Foundation.framework */; };
 		F2F94D351AE936580092C583 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D341AE936570092C583 /* CoreTelephony.framework */; };
 		F2F94D371AE936640092C583 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D361AE936640092C583 /* CoreText.framework */; };
+		F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */; };
+		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
+		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
+		F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */; };
+		F2F94D2F1AE7FD240092C583 /* TweetIt.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2E1AE7FD240092C583 /* TweetIt.png */; };
+		F2F94D311AE8FA820092C583 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D301AE8FA820092C583 /* UIKit.framework */; };
+		F2F94D331AE8FA8A0092C583 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D321AE8FA8A0092C583 /* Foundation.framework */; };
+		F2F94D351AE936580092C583 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D341AE936570092C583 /* CoreTelephony.framework */; };
+		F2F94D371AE936640092C583 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D361AE936640092C583 /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +132,17 @@
 		364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingViewController.m; sourceTree = "<group>"; };
 		364DF30A1AEDA2F600E0DFF6 /* CustomViewUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewUtilities.h; sourceTree = "<group>"; };
 		364DF30B1AEDA2F600E0DFF6 /* CustomViewUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewUtilities.m; sourceTree = "<group>"; };
+		360CBE1E1AE8271400A1F8CF /* PurchaseHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseHistoryViewController.h; sourceTree = "<group>"; };
+		360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseHistoryViewController.m; sourceTree = "<group>"; };
+		360CBE251AE8493C00A1F8CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		360CBE271AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantPurchaseCVCell.h; sourceTree = "<group>"; };
+		360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantPurchaseCVCell.m; sourceTree = "<group>"; };
+		364DF2F41AE98A9F00E0DFF6 /* CategoryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCollectionViewCell.h; sourceTree = "<group>"; };
+		364DF2F51AE98A9F00E0DFF6 /* CategoryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCollectionViewCell.m; sourceTree = "<group>"; };
+		364DF2F71AE98D0100E0DFF6 /* ServiceCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceCategory.h; sourceTree = "<group>"; };
+		364DF2F81AE98D0100E0DFF6 /* ServiceCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceCategory.m; sourceTree = "<group>"; };
+		364DF2FA1AECDAFD00E0DFF6 /* RatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingViewController.h; sourceTree = "<group>"; };
+		364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingViewController.m; sourceTree = "<group>"; };
 		3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -122,6 +156,10 @@
 		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		36EBB0191AE5F6D50045AF92 /* Reference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reference.h; sourceTree = "<group>"; };
 		36EBB01A1AE5F6D50045AF92 /* Reference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reference.m; sourceTree = "<group>"; };
+		36EBB01C1AE68E260045AF92 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
+		36EBB01D1AE68E260045AF92 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		36EBB01F1AE68E610045AF92 /* ServiceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceListViewController.h; sourceTree = "<group>"; };
+		36EBB0201AE68E610045AF92 /* ServiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceListViewController.m; sourceTree = "<group>"; };
 		36EBB0221AE80F550045AF92 /* ReviewPurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewPurchaseViewController.h; sourceTree = "<group>"; };
 		36EBB0231AE80F550045AF92 /* ReviewPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewPurchaseViewController.m; sourceTree = "<group>"; };
 		36EBB0251AE822A80045AF92 /* ConfirmPurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPurchaseViewController.h; sourceTree = "<group>"; };
@@ -148,6 +186,10 @@
 		3E968BD21AED9F2B009FB31F /* CustomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImageView.m; sourceTree = "<group>"; };
 		A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.release.xcconfig"; sourceTree = "<group>"; };
 		D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.debug.xcconfig"; sourceTree = "<group>"; };
+		F232741C1AECF3E00019CE62 /* SelectTimeSlotsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTimeSlotsViewController.h; sourceTree = "<group>"; };
+		F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTimeSlotsViewController.m; sourceTree = "<group>"; };
+		F232741F1AED59CB0019CE62 /* CustomSelectTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSelectTimeCell.h; sourceTree = "<group>"; };
+		F23274201AED59CB0019CE62 /* CustomSelectTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSelectTimeCell.m; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24B35A11ADB7E54006153EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F24B35A21ADB7E54006153EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -208,6 +250,8 @@
 		F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationFromMapViewController.h; sourceTree = "<group>"; };
 		F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLocationFromMapViewController.m; sourceTree = "<group>"; };
 		F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Svail.entitlements; sourceTree = "<group>"; };
+		F2F1C5A51AEEA773000C4BEF /* GenerateTimeSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTimeSlot.h; sourceTree = "<group>"; };
+		F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTimeSlot.m; sourceTree = "<group>"; };
 		F2F94D281AE785BA0092C583 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		F2F94D2A1AE785C00092C583 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-share-buttons.png"; sourceTree = "<group>"; };
@@ -264,6 +308,7 @@
 
 /* Begin PBXGroup section */
 		364DF2FD1AED86E400E0DFF6 /* Custom View */ = {
+		3E8D28911AE30E0400D7D648 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				364DF30A1AEDA2F600E0DFF6 /* CustomViewUtilities.h */,
@@ -471,6 +516,14 @@
 			isa = PBXGroup;
 			children = (
 				F24B36261ADC6B16006153EC /* Service.storyboard */,
+				364DF2F41AE98A9F00E0DFF6 /* CategoryCollectionViewCell.h */,
+				364DF2F51AE98A9F00E0DFF6 /* CategoryCollectionViewCell.m */,
+				36EBB01C1AE68E260045AF92 /* CategoryViewController.h */,
+				36EBB01D1AE68E260045AF92 /* CategoryViewController.m */,
+				364DF2F71AE98D0100E0DFF6 /* ServiceCategory.h */,
+				364DF2F81AE98D0100E0DFF6 /* ServiceCategory.m */,
+				36EBB01F1AE68E610045AF92 /* ServiceListViewController.h */,
+				36EBB0201AE68E610045AF92 /* ServiceListViewController.m */,
 			);
 			name = ServiceList;
 			sourceTree = "<group>";
@@ -509,15 +562,21 @@
 			children = (
 				F24B362C1ADC6B4B006153EC /* Post.storyboard */,
 				F24B365D1ADE2015006153EC /* SelectImageViewController.h */,
+				F232741C1AECF3E00019CE62 /* SelectTimeSlotsViewController.h */,
+				F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */,
 				F24B365E1ADE2015006153EC /* SelectImageViewController.m */,
 				F24B364D1ADCD911006153EC /* PostViewController.h */,
 				F24B364E1ADCD911006153EC /* PostViewController.m */,
+				F232741F1AED59CB0019CE62 /* CustomSelectTimeCell.h */,
+				F23274201AED59CB0019CE62 /* CustomSelectTimeCell.m */,
 				F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */,
 				F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */,
 				F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */,
 				F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */,
 				F24B36551ADD4FDB006153EC /* PostDetailViewController.h */,
 				F24B36561ADD4FDB006153EC /* PostDetailViewController.m */,
+				F2F1C5A51AEEA773000C4BEF /* GenerateTimeSlot.h */,
+				F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */,
 			);
 			name = PostService;
 			sourceTree = "<group>";
@@ -709,6 +768,7 @@
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
+				36EBB01E1AE68E260045AF92 /* CategoryViewController.m in Sources */,
 				36EBB0241AE80F550045AF92 /* ReviewPurchaseViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
 <<<<<<< HEAD
@@ -721,19 +781,24 @@
 				364DF30C1AEDA2F600E0DFF6 /* CustomViewUtilities.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
 				F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */,
+				36EBB0211AE68E610045AF92 /* ServiceListViewController.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
+				F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */,
 				360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */,
 				3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				364DF2FC1AECDAFD00E0DFF6 /* RatingViewController.m in Sources */,
 				36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */,
+				F232741E1AECF3E10019CE62 /* SelectTimeSlotsViewController.m in Sources */,
 				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
+				F23274211AED59CB0019CE62 /* CustomSelectTimeCell.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
 				F262CB641AE97DAB00988E5B /* PayViewController.swift in Sources */,
 				3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */,
+				364DF2F61AE98A9F00E0DFF6 /* CategoryCollectionViewCell.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,
 				F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */,

@@ -12,9 +12,11 @@
 #import "Service.h"
 #import "User.h"
 #import "SelectLocationFromMapViewController.h"
+#import "SelectTimeSlotsViewController.h"
 #import "MBProgressHUD.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
+
 
 
 
@@ -28,18 +30,21 @@
 @property (weak, nonatomic) IBOutlet UITextField *price;
 @property SLComposeViewController *mySL;
 
+@property (weak, nonatomic) IBOutlet UILabel *selectStartorEndDateLabel;
+
 @property Service *service;
 
-@property (weak, nonatomic) IBOutlet UIDatePicker *startPickerDate;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIView *secondaryView;
+@property (weak, nonatomic) IBOutlet UITextField *startDateTextField;
 
-@property (weak, nonatomic) IBOutlet UIDatePicker *endPickerDate;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControlPicker;
+@property BOOL startDateTapped;
 
 @property User *currentUser;
-@property (weak, nonatomic) IBOutlet UIView *firstView;
 
-@property (weak, nonatomic) IBOutlet UIView *secondView;
+
 
 @end
 
@@ -48,13 +53,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    //Define the service
     self.service = [Service new];
-    self.startPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
-    self.endPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
+
+
+
+    //set the date picker
+    self.secondaryView.hidden = true;
+    self.startDateTapped = false;
+    self.datePicker.datePickerMode = UIDatePickerModeDate; //set the date as date mode only
+
+
+//    self.startPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
+//    self.endPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
 
     //set delegates for textfields
     [self setDelegatesForTextFields];
+
 
 
 
@@ -108,10 +123,11 @@
     self.service.serviceDescription = self.serviceDescription.text;
     self.service.category = self.serviceCategory.text;
     self.service.capacity = @([self.serviceCapacity.text integerValue]);
-    self.service.price = [NSDecimalNumber decimalNumberWithString:self.price.text];
+    self.service.price = @([self.price.text floatValue]);
     self.service.serviceLocationAddress = self.location.text;
-     self.service.startDate = [self.startPickerDate date];
-     self.service.endDate = [self.endPickerDate date];
+    
+//     self.service.startDate = [self.startPickerDate date];
+//     self.service.endDate = [self.endPickerDate date];
     self.service.participants = @[].mutableCopy;
 
     if (self.segmentedControlPicker.selectedSegmentIndex == 0) {
@@ -158,6 +174,48 @@
 
 }
 
+
+//---Date Picker methods---//
+
+//
+- (IBAction)onChooseStartDate:(UITextField *)sender {
+
+    self.secondaryView.hidden = false;
+
+    [self.startDateTextField resignFirstResponder];
+    self.selectStartorEndDateLabel.text = @"Select A Start Date";
+    self.startDateTapped = true;
+
+
+}
+
+
+- (IBAction)onDonePickingDate:(UIButton *)sender {
+
+
+        self.secondaryView.hidden = true;
+
+    //set the service start date
+        self.service.startDate = self.datePicker.date;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+
+        self.startDateTextField.text = [dateFormatter stringFromDate:self.datePicker.date];
+
+
+
+
+}
+
+
+
+- (IBAction)onChooseTimeSlotButtonTapped:(id)sender {
+
+
+}
+
+
 -(NSString*)getAddressFromLatLong : (NSString *)latLng {
     //  NSString *string = [[Address.text stringByAppendingFormat:@"+%@",cityTxt.text] stringByAppendingFormat:@"+%@",addressText];
     NSString *esc_addr =  [latLng stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -179,6 +237,10 @@
     return nil;
 }
 
+-(IBAction)unwindFromSelectTimesViewController:(UIStoryboardSegue *)segue{
+
+    
+}
 
 -(IBAction)unwindSegueFromSelectLocationFromMapViewController:(UIStoryboardSegue *)segue{
 
@@ -194,6 +256,11 @@
         NSLog(@"%f %f", self.serviceGeoPoint.longitude, self.serviceGeoPoint.latitude);
     }
 }
+
+- (IBAction)onLocationLabelTapped:(UITextField *)sender {
+     [self performSegueWithIdentifier:@"toSelectLocationFromMap" sender:self];
+}
+
 - (IBAction)onTappedButtonSetLocation:(UIButton *)sender {
         [self performSegueWithIdentifier:@"toSelectLocationFromMap" sender:self];
 }
@@ -267,6 +334,8 @@
     
 }
 
+//Share on Twitter
+
 - (IBAction)tweetItButtonTapped:(UIButton *)sender {
 
     //allocate composed view controller
@@ -281,6 +350,18 @@
     [self presentViewController:self.mySL animated:true completion:nil];
 
 
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    SelectTimeSlotsViewController *destVC = segue.destinationViewController;
+
+    if ([segue.identifier isEqualToString:@"toSelectServiceTimes"]) {
+
+         destVC.service = self.service;
+    }
+
+    
 }
 
 

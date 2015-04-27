@@ -27,6 +27,8 @@
 @dynamic serviceDescription;
 @synthesize annotation;
 @dynamic participants;
+@dynamic startTimes;
+@dynamic durationTime;
 
 + (void)load{
     [self registerSubclass];

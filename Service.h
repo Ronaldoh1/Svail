@@ -24,10 +24,12 @@
 @property User *provider;
 @property NSDate *startDate;
 @property NSDate *endDate;
+@property NSMutableArray *startTimes;
 @property BOOL travel;
 @property NSString *serviceDescription;
 @property MKPointAnnotation *annotation;
 @property NSMutableArray *participants;
+@property double durationTime;
 
 +(NSString *)parseClassName;
 

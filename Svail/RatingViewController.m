@@ -26,7 +26,7 @@
     [super viewDidLoad];
     
     for (UIButton *starButton in self.starButtons) {
-        starButton.alpha = 0.4;
+        starButton.alpha = 0.2;
     }
     
     PFQuery *serviceQuery = [Service query];
