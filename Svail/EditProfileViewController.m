@@ -76,6 +76,10 @@
             self.profileImage.clipsToBounds = YES;
         }
     }];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+
 }
 
 - (IBAction)onChangeImageButtonPressed:(UIButton *)sender
@@ -182,6 +186,17 @@
     if (alertView.tag == 2 && buttonIndex == 0) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+
+}
+
+-(void)dismissKeyboard {
+    [self.fullnameTextField resignFirstResponder];
+    [self.emailTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    [self.stateTextField resignFirstResponder];
+    [self.occupationTextField resignFirstResponder];
+    [self.phoneTextField resignFirstResponder];
+
 
 }
 

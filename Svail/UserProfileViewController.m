@@ -12,13 +12,11 @@
 @interface UserProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *fullnameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *safetyLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
-@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *specialtyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *occupationLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *safetyImageView;
 
 @end
 
@@ -26,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
 
     self.fullnameLabel.text = self.selectedUser.name;
     self.emailLabel.text = self.selectedUser.username;
@@ -35,15 +35,35 @@
     UITapGestureRecognizer *onPhoneNumberTapped = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(callPhoneNumber)];
     [self.phoneLabel addGestureRecognizer:onPhoneNumberTapped];
 
-    self.cityLabel.text = self.selectedUser.city;
     self.stateLabel.text = self.selectedUser.state;
-    self.specialtyLabel.text = self.selectedUser.specialty;
     self.occupationLabel.text = self.selectedUser.occupation;
-    self.safetyLevelLabel.text = [NSString stringWithFormat:@"Safety level:%ld",(long)self.selectedUser.verification.safetyLevel];
+
+    PFQuery *providerQuery = [User query];
+    [providerQuery includeKey:@"verification"];
+    [providerQuery getObjectInBackgroundWithId:self.selectedUser.objectId block:^(PFObject *user, NSError *error)
+     {
+         if (!error) {
+             User *selectedUser = (User *)user;
+             if ([[selectedUser.verification objectForKey:@"safetyLevel"] integerValue] >= 5) {
+                 self.safetyImageView.hidden = false;
+             } else {
+                 self.safetyImageView.hidden = true;
+             }
+         } else {
+             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+             [alert show];
+         }
+     }];
+
     [self.selectedUser.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *image = [UIImage imageWithData:data];
             self.imageView.image = image;
+            self.imageView.layer.cornerRadius = self.imageView.frame.size.height / 2;
+            self.imageView.layer.masksToBounds = YES;
+            self.imageView.layer.borderWidth = 1.5;
+            self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+            self.imageView.clipsToBounds = YES;
         }
     }];
 }
@@ -55,5 +75,9 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneString]];
 }
 
+- (IBAction)onDoneButtonPressed:(UIBarButtonItem *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

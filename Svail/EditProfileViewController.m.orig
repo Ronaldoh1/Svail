@@ -14,15 +14,17 @@
 
 #import "Verification.h"
 
-@interface EditProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, FBSDKGraphRequestConnectionDelegate>
+@interface EditProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIAlertViewDelegate, FBSDKGraphRequestConnectionDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UIButton *verifyButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UITextField *fullnameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UITextField *cityTextField;
 @property (weak, nonatomic) IBOutlet UITextField *stateTextField;
-@property (weak, nonatomic) IBOutlet UITextField *specialtyTextField;
 @property (weak, nonatomic) IBOutlet UITextField *occupationTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 
 @property User *currentUser;
@@ -34,21 +36,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.cancelButton.clipsToBounds = true;
+    self.cancelButton.layer.cornerRadius = 40/2.0;
+    self.cancelButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+    self.saveButton.clipsToBounds = true;
+    self.saveButton.layer.cornerRadius = 40/2.0;
+    self.saveButton.backgroundColor = [UIColor colorWithRed:59/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
+
+    self.verifyButton.clipsToBounds = true;
+    self.verifyButton.layer.cornerRadius = 40/2.0;
+    self.verifyButton.backgroundColor = [UIColor colorWithRed:247/255.0 green:93/255.0 blue:89/255.0 alpha:1.0];
+
     self.currentUser = [User currentUser];
 
+    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+
     self.fullnameTextField.text = self.currentUser.name;
-    self.emailTextField.text = self.currentUser.username;
-    self.passwordTextField.text = self.currentUser.password;
-    self.cityTextField.text = self.currentUser.city;
+
+    if (self.currentUser.isFbUser == YES) {
+
+        self.passwordTextField.hidden = YES;
+
+    }else{
+
+        self.passwordTextField.text = self.currentUser.password;
+    }
+    self.emailTextField.text = self.currentUser.email;
     self.stateTextField.text = self.currentUser.state;
-    self.specialtyTextField.text = self.currentUser.specialty;
     self.occupationTextField.text = self.currentUser.occupation;
+    self.phoneTextField.text = self.currentUser.phoneNumber;
     [self.currentUser.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *image = [UIImage imageWithData:data];
             self.profileImage.image = image;
+            self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2;
+            self.profileImage.layer.masksToBounds = YES;
+            self.profileImage.layer.borderWidth = 1.5;
+            self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+            self.profileImage.clipsToBounds = YES;
         }
     }];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+
 }
 
 - (IBAction)onChangeImageButtonPressed:(UIButton *)sender
@@ -99,28 +130,74 @@
 {
     self.currentUser.username = self.emailTextField.text;
     self.currentUser.name = self.fullnameTextField.text;
-    self.currentUser.city = self.cityTextField.text;
     self.currentUser.state = self.stateTextField.text;
-    self.currentUser.specialty = self.specialtyTextField.text;
+//    self.currentUser.phoneNumber = self.phoneTextField.text;
     self.currentUser.occupation = self.occupationTextField.text;
-
     [self.currentUser saveInBackground];
+    
+    if (self.phoneTextField.text.length == 10 && ![self.phoneTextField.text isEqualToString:self.currentUser.phoneNumber]) {
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+        [self.currentUser.verification sendVerifyCodeToPhoneNumber:self.phoneTextField.text];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Enter verification code" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        alert.tag = 1;
+        [alert show];
+    } else if (self.phoneTextField.text.length > 0 && self.phoneTextField.text.length != 10){
+        UIAlertView  *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter 10 digits phone number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+
+
 }
 
-<<<<<<< HEAD
+
 - (IBAction)onVeriButtonTapped:(UIButton *)sender
 {
     
     UIStoryboard *veriStoryboard = [UIStoryboard storyboardWithName:@"Verification" bundle:nil];
     UIViewController *veriNavVC = [veriStoryboard instantiateViewControllerWithIdentifier:@"VeriNavVC"];
     [self presentViewController:veriNavVC animated:YES completion:nil];
-=======
+}
+
 - (IBAction)onCancelButtonPressed:(UIButton *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
->>>>>>> ccbab9eaf5af783a49b4a4be7bd228c0bdb63275
+}
+
+<<<<<<< HEAD
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1 && buttonIndex == 0) {
+        UITextField *verifyCodeTextField = [alertView textFieldAtIndex:0];
+        if ([self.currentUser.verification verifyPhoneNumber:self.phoneTextField.text withVerifyCode:verifyCodeTextField.text]) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Successful!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
+            alert.tag = 2;
+            [alert show];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Wrong code." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
+            alert.tag = 3;
+            [alert show];
+        }
+        
+    }
+    
+    if (alertView.tag == 2 && buttonIndex == 0) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+=======
+-(void)dismissKeyboard {
+    [self.fullnameTextField resignFirstResponder];
+    [self.emailTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    [self.stateTextField resignFirstResponder];
+    [self.occupationTextField resignFirstResponder];
+    [self.phoneTextField resignFirstResponder];
+
+>>>>>>> ca1d9f7e91e137850536dfd9d7959e146544d6a4
+
 }
 
 @end
