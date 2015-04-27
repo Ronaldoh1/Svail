@@ -40,6 +40,8 @@
 		3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */; };
 		3E8D289F1AE382A800D7D648 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8D289E1AE382A800D7D648 /* UserProfile.storyboard */; };
 		3EC9D3D81AE16E1B00071FF3 /* Circle Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9D3D71AE16E1B00071FF3 /* Circle Button.m */; };
+		F232741E1AECF3E10019CE62 /* SelectTimeSlotsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */; };
+		F23274211AED59CB0019CE62 /* CustomSelectTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23274201AED59CB0019CE62 /* CustomSelectTimeCell.m */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
 		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
 		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
@@ -80,6 +82,7 @@
 		F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B4981AE4D6D9008F2370 /* fbloginButton.png */; };
 		F268B49B1AE4D72D008F2370 /* connect.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B49A1AE4D72D008F2370 /* connect.png */; };
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
+		F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */; };
 		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
 		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
 		F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */; };
@@ -154,6 +157,10 @@
 		3EC9D3D71AE16E1B00071FF3 /* Circle Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Circle Button.m"; sourceTree = "<group>"; };
 		A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.release.xcconfig"; sourceTree = "<group>"; };
 		D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.debug.xcconfig"; sourceTree = "<group>"; };
+		F232741C1AECF3E00019CE62 /* SelectTimeSlotsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTimeSlotsViewController.h; sourceTree = "<group>"; };
+		F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTimeSlotsViewController.m; sourceTree = "<group>"; };
+		F232741F1AED59CB0019CE62 /* CustomSelectTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSelectTimeCell.h; sourceTree = "<group>"; };
+		F23274201AED59CB0019CE62 /* CustomSelectTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSelectTimeCell.m; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24B35A11ADB7E54006153EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F24B35A21ADB7E54006153EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -214,6 +221,8 @@
 		F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationFromMapViewController.h; sourceTree = "<group>"; };
 		F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLocationFromMapViewController.m; sourceTree = "<group>"; };
 		F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Svail.entitlements; sourceTree = "<group>"; };
+		F2F1C5A51AEEA773000C4BEF /* GenerateTimeSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTimeSlot.h; sourceTree = "<group>"; };
+		F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTimeSlot.m; sourceTree = "<group>"; };
 		F2F94D281AE785BA0092C583 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		F2F94D2A1AE785C00092C583 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-share-buttons.png"; sourceTree = "<group>"; };
@@ -511,15 +520,21 @@
 			children = (
 				F24B362C1ADC6B4B006153EC /* Post.storyboard */,
 				F24B365D1ADE2015006153EC /* SelectImageViewController.h */,
+				F232741C1AECF3E00019CE62 /* SelectTimeSlotsViewController.h */,
+				F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */,
 				F24B365E1ADE2015006153EC /* SelectImageViewController.m */,
 				F24B364D1ADCD911006153EC /* PostViewController.h */,
 				F24B364E1ADCD911006153EC /* PostViewController.m */,
+				F232741F1AED59CB0019CE62 /* CustomSelectTimeCell.h */,
+				F23274201AED59CB0019CE62 /* CustomSelectTimeCell.m */,
 				F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */,
 				F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */,
 				F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */,
 				F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */,
 				F24B36551ADD4FDB006153EC /* PostDetailViewController.h */,
 				F24B36561ADD4FDB006153EC /* PostDetailViewController.m */,
+				F2F1C5A51AEEA773000C4BEF /* GenerateTimeSlot.h */,
+				F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */,
 			);
 			name = PostService;
 			sourceTree = "<group>";
@@ -722,13 +737,16 @@
 				3EC9D3D81AE16E1B00071FF3 /* Circle Button.m in Sources */,
 				36EBB0211AE68E610045AF92 /* ServiceListViewController.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
+				F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */,
 				360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */,
 				3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */,
+				F232741E1AECF3E10019CE62 /* SelectTimeSlotsViewController.m in Sources */,
 				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
+				F23274211AED59CB0019CE62 /* CustomSelectTimeCell.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
 				F262CB641AE97DAB00988E5B /* PayViewController.swift in Sources */,
