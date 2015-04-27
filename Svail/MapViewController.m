@@ -12,14 +12,16 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import "ParticipantsViewController.h"
+#import "UserProfileViewController.h"
 #import "CustomPointAnnotation.h"
 #import "ReviewPurchaseViewController.h"
 #import "PurchaseHistoryViewController.h"
+#import "EditProfileViewController.h"
+#import "CustomImageView.h"
 
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -186,6 +188,30 @@
     [self.mapView setRegion:region animated:YES];
 }
 
+//#pragma Mark - CLLocation Methods
+//
+//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+//{
+//    for (CLLocation *location in locations) {
+//        if (location.verticalAccuracy < 100 && location.horizontalAccuracy < 100)
+//        {
+//            //            [self.locationManager stopUpdatingLocation];
+//                        [self findServicesNearby:location];
+//        }
+//    }
+//}
+//
+//-(void)findServicesNearby:(CLLocation *)location
+//{
+//    MKLocalSearchRequest *request = [MKLocalSearchRequest new];
+//    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(10, 10));
+//    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
+//    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+//        self.locationArray = response.mapItems;
+//
+//    }];
+//}
+
 #pragma Mark - MKMapView Delegate Methods
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -210,6 +236,40 @@
     pinAnnotation.annotationType = ZSPinAnnotationTypeTagStroke;
     pinAnnotation.annotationColor = customAnnotation.color;
 
+    if (customAnnotation.service.travel == true) {
+        if (self.serviceParticipants.count < [customAnnotation.service.capacity integerValue]/2)
+        {
+            UIImage *carImage = [UIImage imageNamed:@"bluecar"];
+            CGSize scaledSize = CGSizeMake(30, 20);
+            UIGraphicsBeginImageContext(scaledSize);
+            [carImage drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
+            UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            pinAnnotation.image = scaledImage;
+        }
+        else if (self.serviceParticipants.count >= [customAnnotation.service.capacity integerValue]/2 && self.serviceParticipants.count < [customAnnotation.service.capacity integerValue])
+        {
+            UIImage *carImage = [UIImage imageNamed:@"yellowcar"];
+            CGSize scaledSize = CGSizeMake(30, 20);
+            UIGraphicsBeginImageContext(scaledSize);
+            [carImage drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
+            UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            pinAnnotation.image = scaledImage;
+
+        }
+        else if (self.serviceParticipants.count == [customAnnotation.service.capacity integerValue])
+        {
+            UIImage *carImage = [UIImage imageNamed:@"redcar"];
+            CGSize scaledSize = CGSizeMake(30, 20);
+            UIGraphicsBeginImageContext(scaledSize);
+            [carImage drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
+            UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            pinAnnotation.image = scaledImage;
+        }
+    }
+
     PFQuery *serviceQuery = [Service query];
     [serviceQuery includeKey:@"provider"];
     [serviceQuery getObjectInBackgroundWithId:customAnnotation.service.objectId block:^(PFObject *object, NSError *error) {
@@ -227,7 +287,13 @@
                     [image drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
                     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
                     UIGraphicsEndImageContext();
-                    UIImageView *imageView = [[UIImageView alloc]initWithImage:scaledImage];
+                    CustomImageView *imageView = [[CustomImageView alloc]initWithImage:scaledImage];
+                    imageView.userInteractionEnabled = YES;
+//                    imageView.service = service;
+                    imageView.user = service.provider;
+                    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onProfileImageTapped:)];
+                    tapGesture.delegate = self;
+                    [imageView addGestureRecognizer:tapGesture];
                     //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
                     //    imageView.image = scaledImage;
                     pinAnnotation.leftCalloutAccessoryView = imageView;
@@ -242,7 +308,13 @@
             [image drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
             UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:scaledImage];
+            CustomImageView *imageView = [[CustomImageView alloc]initWithImage:scaledImage];
+            imageView.userInteractionEnabled = YES;
+//            imageView.service = service;
+            imageView.user = service.provider;
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onProfileImageTapped:)];
+            tapGesture.delegate = self;
+            [imageView addGestureRecognizer:tapGesture];
             //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
             //    imageView.image = scaledImage;
             pinAnnotation.leftCalloutAccessoryView = imageView;
@@ -282,16 +354,6 @@
     [self zoom:&latitude :&longitude];
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    //    for (CLLocation *location in locations) {
-    //        if (location.verticalAccuracy < 100 && location.horizontalAccuracy < 100)
-    //        {
-    ////            [self.locationManager stopUpdatingLocation];
-    ////            [self findEventNearby:location];
-    //        }
-    //    }
-}
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
@@ -320,14 +382,6 @@
         ReviewPurchaseViewController *reviewPurchaseVC = reviewPurchaseNavVC.childViewControllers[0];
         reviewPurchaseVC.serviceId = annotation.service.objectId;
         [self presentViewController:reviewPurchaseNavVC animated:TRUE completion:nil];
-    }
-    
-    else if (control == view.leftCalloutAccessoryView)
-    {
-        UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"UserProfile" bundle:nil];
-        ParticipantsViewController *participantsVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"participantsVC"];
-        [self presentViewController:participantsVC animated:true completion:nil];
-        participantsVC.participants = self.serviceParticipants;
     }
 }
 
@@ -440,6 +494,18 @@
     [self presentViewController:editProfileVC animated:true completion:nil];
 }
 
+- (void)onProfileImageTapped:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    UIStoryboard *userProfileStoryBoard = [UIStoryboard storyboardWithName:@"UserProfile" bundle:nil];
+    UIViewController *userProfileNavVC = [userProfileStoryBoard instantiateViewControllerWithIdentifier:@"profileNavVC"];
+    UserProfileViewController *userProfileVC = userProfileNavVC.childViewControllers[0];
+    [self presentViewController:userProfileNavVC animated:true completion:nil];
+    CustomImageView *imageView = (CustomImageView *)tapGestureRecognizer.view;
+//    userProfileVC.selectedUser = imageView.service.provider;
+    userProfileVC.selectedUser = imageView.user;
+
+}
+
 
 #pragma Mark - Unwind Segues
 
@@ -516,7 +582,7 @@
 
 
                 UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
-                ParticipantsViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
+                EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
                 [self presentViewController:editProfileVC animated:true completion:nil];
 
 

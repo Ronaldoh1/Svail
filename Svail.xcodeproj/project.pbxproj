@@ -40,6 +40,7 @@
 		3E8D28981AE30ED600D7D648 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8D28971AE30ED600D7D648 /* EditProfile.storyboard */; };
 		3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */; };
 		3E8D289F1AE382A800D7D648 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8D289E1AE382A800D7D648 /* UserProfile.storyboard */; };
+		3E968BD31AED9F2B009FB31F /* CustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E968BD21AED9F2B009FB31F /* CustomImageView.m */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
 		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
 		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
@@ -152,6 +153,8 @@
 		3E8D289B1AE381F900D7D648 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		3E8D289E1AE382A800D7D648 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		3E968BD11AED9F2B009FB31F /* CustomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImageView.h; sourceTree = "<group>"; };
+		3E968BD21AED9F2B009FB31F /* CustomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImageView.m; sourceTree = "<group>"; };
 		A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.release.xcconfig"; sourceTree = "<group>"; };
 		D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.debug.xcconfig"; sourceTree = "<group>"; };
 		F24B359D1ADB7E54006153EC /* Svail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Svail.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -452,6 +455,8 @@
 				3E4036DC1ADD882600C4A0A0 /* MapViewController.m */,
 				3E83BB8D1AE6B93C0064AE89 /* CustomPointAnnotation.h */,
 				3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */,
+				3E968BD11AED9F2B009FB31F /* CustomImageView.h */,
+				3E968BD21AED9F2B009FB31F /* CustomImageView.m */,
 				3E83BB901AE712D90064AE89 /* ZSPinAnnotation.h */,
 				3E83BB911AE712D90064AE89 /* ZSPinAnnotation.m */,
 				F24B36241ADC6AF1006153EC /* Map.storyboard */,
@@ -714,6 +719,7 @@
 				36EBB01E1AE68E260045AF92 /* CategoryViewController.m in Sources */,
 				36EBB0241AE80F550045AF92 /* ReviewPurchaseViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
+				3E968BD31AED9F2B009FB31F /* CustomImageView.m in Sources */,
 				364DF2F91AE98D0100E0DFF6 /* ServiceCategory.m in Sources */,
 				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
