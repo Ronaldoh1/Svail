@@ -27,6 +27,19 @@
     [self registerSubclass];
 }
 
+//-(void)getVerificationRecordWithCompletion:(void (^)())complete
+//{
+//    
+//    if (!self.verification) {
+//        self.verification = [Verification object];
+//        [self saveInBackground];
+//    } else {
+//        PFQuery *query = [User query];
+//        [query includeKey:@"verification.references"];
+//        [query getObjectInBackgroundWithId:self.objectId block:^(PFObject *user, NSError *error)
+//         {
+//    }
+//}
 
 
 @end

@@ -70,6 +70,10 @@
      {
          self.service = (Service *)object;
         if (!error) {
+            
+            self.participants = self.service.participants;
+            [self.participantsProfileCollectionView reloadData];
+            
             [self.service.provider.profileImage getDataInBackgroundWithBlock:^(NSData *data,
                                                                           NSError *error)
             {
@@ -113,18 +117,18 @@
          
      }];
     
-    PFQuery *participantQuery = [User query];
-    [participantQuery whereKey:@"objectId" containedIn:@[@"PsC2VK0FaM",@"U51R8iDsYR"]];
-    [participantQuery findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error)
-    {
-        if (!error) {
-            self.participants = results.mutableCopy;
-            [self.participantsProfileCollectionView reloadData];
-        } else {
-            NSLog(@"shit");
-        }
-        
-    }];
+//    PFQuery *participantQuery = [User query];
+//    [participantQuery whereKey:@"objectId" containedIn:@[@"PsC2VK0FaM",@"U51R8iDsYR"]];
+//    [participantQuery findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error)
+//    {
+//        if (!error) {
+//            self.participants = results.mutableCopy;
+//            [self.participantsProfileCollectionView reloadData];
+//        } else {
+//            NSLog(@"shit");
+//        }
+//        
+//    }];
     
 
 }

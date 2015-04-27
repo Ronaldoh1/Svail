@@ -54,46 +54,42 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     
     [super viewDidLoad];
      self.currentUser = [User currentUser];
+
+    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
     
-    self.view.hidden = YES;
-    [self.fbVerifyButton setNeedsDisplay];
-    [self.ttVerifyButton setNeedsDisplay];
-    [self.lkVerifyButton setNeedsDisplay];
     
     if (!self.currentUser.verification) {
-        self.view.hidden = NO;
         self.currentUser.verification = [Verification object];
         [self.currentUser saveInBackground];
-        [self showFBItems:NO];
-        [self showTTItems:NO];
-        [self showLKItems:NO];
+        [self setupFBItems:NO];
+        [self setupTTItems:NO];
+        [self setupLKItems:NO];
             
-        [self showPhoneNumberItems];
-        [self showSafetyLevelItems];
+        [self setupPhoneNumberItems];
+        [self setupSafetyLevelItems];
            
     } else {
         PFQuery *query = [User query];
         [query includeKey:@"verification.references"];
         [query getObjectInBackgroundWithId:self.currentUser.objectId block:^(PFObject *user, NSError *error)
         {
-            self.view.hidden = NO;
             self.currentUser = (User *)user;
             NSLog(@"%li",self.currentUser.verification.fbLevel);
             NSLog(@"%li",self.currentUser.verification.ttLevel);
             NSLog(@"%li",self.currentUser.verification.lkLevel);
             NSLog(@"%li",self.currentUser.verification.references.count);
-            [self showFBItems:self.currentUser.verification.fbLevel > 0];
-            [self showTTItems:self.currentUser.verification.ttLevel > 0];
-            [self showLKItems:self.currentUser.verification.lkLevel > 0];
+            [self setupFBItems:self.currentUser.verification.fbLevel > 0];
+            [self setupTTItems:self.currentUser.verification.ttLevel > 0];
+            [self setupLKItems:self.currentUser.verification.lkLevel > 0];
             
-            [self showPhoneNumberItems];
-            [self showSafetyLevelItems];
+            [self setupPhoneNumberItems];
+            [self setupSafetyLevelItems];
         }];
     }
 }
 
 
--(void)showSafetyLevelItems
+-(void)setupSafetyLevelItems
 {
     if (self.currentUser.verification.hasReachedSafeLevel) {
         self.safetyCheckmark.alpha = 1.0;
@@ -115,7 +111,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     [verification saveInBackground];
 }
 
--(void)showFBItems:(BOOL)isVerified
+-(void)setupFBItems:(BOOL)isVerified
 {
     if (isVerified) {
         self.fbCheckmark.hidden = NO;
@@ -128,7 +124,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     }
 }
 
--(void)showTTItems:(BOOL)isVerified
+-(void)setupTTItems:(BOOL)isVerified
 {
     if (isVerified) {
         self.ttCheckmark.hidden = NO;
@@ -141,7 +137,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     }
 }
 
--(void)showLKItems:(BOOL)isVerified
+-(void)setupLKItems:(BOOL)isVerified
 {
     if (isVerified) {
         self.lkCheckmark.hidden = NO;
@@ -154,7 +150,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     }
 }
 
--(void)showPhoneNumberItems
+-(void)setupPhoneNumberItems
 {
     for (UIImageView *phoneNumberCheckmark in self.phoneNumberCheckmarks) {
         phoneNumberCheckmark.hidden = YES;
@@ -234,8 +230,8 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                              NSLog(@"facebook friends count : %li", friendsCount);
                              self.currentUser.verification.fbLevel = [Verification getFBLevelWithNumOfFriends:friendsCount];
                              [self.currentUser saveInBackground];
-                             [self showFBItems:self.currentUser.verification.fbLevel > 0];
-                             [self showSafetyLevelItems];
+                             [self setupFBItems:self.currentUser.verification.fbLevel > 0];
+                             [self setupSafetyLevelItems];
                             
                          }
                      }];
@@ -308,8 +304,8 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                  NSLog(@"Twitter followers count : %li",followersCount);
                  self.currentUser.verification.ttLevel = [Verification getTTLevelWithNumOfFollowers:followersCount];
                  [self.currentUser saveInBackground];
-                 [self showTTItems:self.currentUser.verification.ttLevel > 0];
-                 [self showSafetyLevelItems];
+                 [self setupTTItems:self.currentUser.verification.ttLevel > 0];
+                 [self setupSafetyLevelItems];
 
              }
              else {
@@ -351,10 +347,10 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     {
         NSLog(@"LinkedIn connection count : %@", result[@"numConnections"]);
         NSInteger numOfConnections = [result[@"numConnections"] integerValue];
-        self.currentUser.verification.lkLevel = [Verification getTTLevelWithNumOfFollowers:numOfConnections];
+        self.currentUser.verification.lkLevel = [Verification getLKLevelWithNumOfConnections:numOfConnections];
         [self.currentUser saveInBackground];
-        [self showLKItems:self.currentUser.verification.lkLevel > 0];
-        [self showSafetyLevelItems];
+        [self setupLKItems:self.currentUser.verification.lkLevel > 0];
+        [self setupSafetyLevelItems];
         
     }   failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
@@ -376,7 +372,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 - (IBAction)onDoneButtonTapped:(UIBarButtonItem *)sender
 {
     UIStoryboard *mapStoryBoard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
-    UIViewController *mapVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MapNavVC"];
+    UIViewController *mapVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
     [self presentViewController:mapVC animated:true completion:nil];
     
 }
@@ -384,7 +380,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 - (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
 {
     UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
-    UIViewController *MapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MapNavVC"];
+    UIViewController *MapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
     [self presentViewController:MapNavVC animated:true completion:nil];
 }
 

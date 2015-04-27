@@ -123,7 +123,7 @@
     self.service.serviceDescription = self.serviceDescription.text;
     self.service.category = self.serviceCategory.text;
     self.service.capacity = @([self.serviceCapacity.text integerValue]);
-    self.service.price = @([self.price.text integerValue]);
+    self.service.price = @([self.price.text floatValue]);
     self.service.serviceLocationAddress = self.location.text;
     
 //     self.service.startDate = [self.startPickerDate date];
