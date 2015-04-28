@@ -10,6 +10,7 @@
 #import "PTKView.h"
 #import "Stripe+ApplePay.h"
 #import <Parse/Parse.h>
+#import "User.h"
 
 
 @interface ConfirmPurchaseViewController () <PTKViewDelegate, PKPaymentAuthorizationViewControllerDelegate>
@@ -68,18 +69,15 @@ static float oneYearPrice = 1.99;
                                               if (!error) {
                                                   NSLog(@"from Cloud Code Res: %@",result);
 
-
-                                                  // Create our Installation query
-                                                  PFQuery *pushQuery = [PFInstallation query];
-                                                  [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
-
-                                                  // Send push notification to query
-                                                  [PFPush sendPushMessageToQueryInBackground:pushQuery 
-                                                                                 withMessage:@"Service has been requested"];
+                                                  [User currentUser].isPremium = true;
+                                                  [[User currentUser] saveInBackground];
 
                                                   [self paymentSucceeded];
 
-                                                   [self performSegueWithIdentifier:@"toServiceHistoryNavVC" sender:self];
+                                                  UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                                  UITabBarController *rootTabVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+                                                  rootTabVC.selectedIndex = 0;
+                                                  [self presentViewController:rootTabVC animated:true completion:nil];
 
                                               }
                                               else{
@@ -153,6 +151,8 @@ static float oneYearPrice = 1.99;
                                                                  completion(PKPaymentAuthorizationStatusSuccess);
 
 
+
+
                                                                              }
 
                                                                          }];
@@ -179,6 +179,13 @@ static float oneYearPrice = 1.99;
 
      */
 
+    [User currentUser].isPremium = true;
+    [[User currentUser] saveInBackground];
+
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITabBarController *rootTabVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+    rootTabVC.selectedIndex = 0;
+    [self presentViewController:rootTabVC animated:true completion:nil];
 
 
     [self handlePaymentAuthorizationWithPayment:payment completion:completion];
