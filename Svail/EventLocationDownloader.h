@@ -13,6 +13,6 @@
 
 @interface EventLocationDownloader : NSObject <MKMapViewDelegate>
 
-+(void)downloadEventLocation:(void (^)(NSArray *))complete;
++(void)downloadEventLocationForLocation:(CLLocation *)location withCompletion:(void (^)(NSArray *))complete;
 
 @end

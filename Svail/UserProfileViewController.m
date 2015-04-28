@@ -9,7 +9,7 @@
 #import "UserProfileViewController.h"
 #import "Verification.h"
 
-@interface UserProfileViewController ()
+@interface UserProfileViewController () <UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *fullnameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
@@ -31,9 +31,9 @@
     self.emailLabel.text = self.selectedUser.username;
 
     self.phoneLabel.text = self.selectedUser.phoneNumber;
-    self.phoneLabel.userInteractionEnabled = YES;
-    UITapGestureRecognizer *onPhoneNumberTapped = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(callPhoneNumber)];
-    [self.phoneLabel addGestureRecognizer:onPhoneNumberTapped];
+//    self.phoneLabel.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *onPhoneNumberTapped = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(callPhoneNumber)];
+//    [self.phoneLabel addGestureRecognizer:onPhoneNumberTapped];
 
     self.stateLabel.text = self.selectedUser.state;
     self.occupationLabel.text = self.selectedUser.occupation;
@@ -73,6 +73,11 @@
     NSString *phoneNumber = self.selectedUser.phoneNumber;
     NSString *phoneString = [NSString stringWithFormat:@"telprompt://%@",phoneNumber];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneString]];
+}
+- (IBAction)onPhoneButtonPressed:(UIButton *)sender
+{
+
+    [self callPhoneNumber];
 }
 
 - (IBAction)onDoneButtonPressed:(UIBarButtonItem *)sender

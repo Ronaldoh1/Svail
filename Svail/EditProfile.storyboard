@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
-        <!--Edit Profile-->
+        <!--Profile-->
         <scene sceneID="5hd-Rf-b9F">
             <objects>
                 <viewController id="xR8-dY-6vx" customClass="EditProfileViewController" sceneMemberID="viewController">
@@ -136,6 +136,46 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5T-Wq-7hP">
+                                <rect key="frame" x="46" y="289" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MU7-cR-z21"/>
+                                    <constraint firstAttribute="width" constant="60" id="Qag-1m-eCb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSignInButtonPressed:" destination="xR8-dY-6vx" eventType="touchUpInside" id="uB2-yK-an5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkh-3U-Yuk">
+                                <rect key="frame" x="214" y="289" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="lmL-i7-fpz"/>
+                                    <constraint firstAttribute="width" constant="60" id="pmd-qj-AQ6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSignUpButtonPressed:" destination="xR8-dY-6vx" eventType="touchUpInside" id="FMK-RJ-kV1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please sign in/sign up to see your profile." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21z-G6-HTC">
+                                <rect key="frame" x="11" y="170" width="299" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Pgk-Qe-1JJ"/>
+                                    <constraint firstAttribute="width" constant="299" id="UvO-ih-dBu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -144,10 +184,14 @@
                             <constraint firstItem="USd-mv-u2o" firstAttribute="top" secondItem="yIm-eo-YDe" secondAttribute="bottom" constant="8" id="57Y-dA-l9I"/>
                             <constraint firstAttribute="centerX" secondItem="yIm-eo-YDe" secondAttribute="centerX" id="5IY-vk-oCk"/>
                             <constraint firstItem="tVi-vM-ikA" firstAttribute="top" secondItem="tcM-GW-LnY" secondAttribute="bottom" constant="15" id="75a-GJ-kti"/>
+                            <constraint firstAttribute="centerX" secondItem="b5T-Wq-7hP" secondAttribute="centerX" constant="84" id="8a9-7n-Yoh"/>
                             <constraint firstAttribute="centerX" secondItem="kWi-xM-fuo" secondAttribute="centerX" constant="58" id="8o5-Hk-uvb"/>
+                            <constraint firstAttribute="centerX" secondItem="21z-G6-HTC" secondAttribute="centerX" id="EII-zQ-Ee2"/>
                             <constraint firstAttribute="centerX" secondItem="tcM-GW-LnY" secondAttribute="centerX" id="EsY-8O-Xc2"/>
                             <constraint firstItem="jjv-7k-kOL" firstAttribute="top" secondItem="df9-Jo-bkx" secondAttribute="bottom" constant="8" id="JJ7-qa-DuI"/>
                             <constraint firstAttribute="centerX" secondItem="USd-mv-u2o" secondAttribute="centerX" id="MTt-P2-JwF"/>
+                            <constraint firstAttribute="centerX" secondItem="qkh-3U-Yuk" secondAttribute="centerX" constant="-84" id="NDs-P3-4iX"/>
+                            <constraint firstAttribute="centerY" secondItem="21z-G6-HTC" secondAttribute="centerY" constant="103.5" id="NPH-14-SJl"/>
                             <constraint firstAttribute="centerX" secondItem="ege-Aj-o1l" secondAttribute="centerX" id="Tu0-zb-rqQ"/>
                             <constraint firstAttribute="centerX" secondItem="df9-Jo-bkx" secondAttribute="centerX" id="TwR-gm-W1t"/>
                             <constraint firstItem="tcM-GW-LnY" firstAttribute="top" secondItem="rG2-RI-YiP" secondAttribute="bottom" constant="8" id="WbE-S2-3uv"/>
@@ -157,23 +201,36 @@
                             <constraint firstItem="GaB-ha-u6i" firstAttribute="top" secondItem="tcM-GW-LnY" secondAttribute="bottom" constant="48" id="duI-A4-d5B"/>
                             <constraint firstItem="rG2-RI-YiP" firstAttribute="top" secondItem="jjv-7k-kOL" secondAttribute="bottom" constant="8" id="ewy-Hp-7zt"/>
                             <constraint firstItem="yIm-eo-YDe" firstAttribute="top" secondItem="U0S-X7-1xR" secondAttribute="bottom" constant="8" id="f16-KB-xNI"/>
+                            <constraint firstAttribute="centerY" secondItem="b5T-Wq-7hP" secondAttribute="centerY" constant="-35" id="geC-bZ-1pz"/>
                             <constraint firstItem="kWi-xM-fuo" firstAttribute="top" secondItem="tcM-GW-LnY" secondAttribute="bottom" constant="15" id="iAY-Aa-FNI"/>
                             <constraint firstAttribute="centerX" secondItem="GaB-ha-u6i" secondAttribute="centerX" constant="-0.5" id="nOR-Db-nHL"/>
                             <constraint firstAttribute="centerY" secondItem="ege-Aj-o1l" secondAttribute="centerY" constant="167" id="rxV-OS-4yq"/>
                             <constraint firstItem="U0S-X7-1xR" firstAttribute="top" secondItem="ege-Aj-o1l" secondAttribute="bottom" constant="8" id="uoq-9V-cM7"/>
+                            <constraint firstAttribute="centerY" secondItem="qkh-3U-Yuk" secondAttribute="centerY" constant="-35" id="wtM-Me-xbm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Profile" id="fdY-MV-vQb"/>
+                    <navigationItem key="navigationItem" title="Profile" id="fdY-MV-vQb">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="mZB-rf-Yee">
+                            <connections>
+                                <action selector="logOUtButtonPressed:" destination="xR8-dY-6vx" id="2e7-QG-vrA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="cancelButton" destination="kWi-xM-fuo" id="PaQ-Kk-5A3"/>
+                        <outlet property="changeImageButton" destination="U0S-X7-1xR" id="u7u-HC-6do"/>
                         <outlet property="emailTextField" destination="USd-mv-u2o" id="drE-bd-mwl"/>
                         <outlet property="fullnameTextField" destination="yIm-eo-YDe" id="8Vi-vp-UHp"/>
+                        <outlet property="logOutButton" destination="mZB-rf-Yee" id="VES-Uz-7qK"/>
                         <outlet property="occupationTextField" destination="rG2-RI-YiP" id="aQG-sU-GuQ"/>
                         <outlet property="passwordTextField" destination="tcM-GW-LnY" id="M9s-f2-yvu"/>
                         <outlet property="phoneTextField" destination="df9-Jo-bkx" id="Sgv-7Z-BCh"/>
+                        <outlet property="pleaseSignInLabel" destination="21z-G6-HTC" id="EE3-py-rl4"/>
                         <outlet property="profileImage" destination="ege-Aj-o1l" id="b5L-6o-JWw"/>
                         <outlet property="saveButton" destination="tVi-vM-ikA" id="8ZS-Eg-KZ7"/>
+                        <outlet property="signInButton" destination="b5T-Wq-7hP" id="ddW-nH-hdR"/>
+                        <outlet property="signUpButton" destination="qkh-3U-Yuk" id="KxW-DV-fjv"/>
                         <outlet property="stateTextField" destination="jjv-7k-kOL" id="udJ-6d-DAT"/>
                         <outlet property="verifyButton" destination="GaB-ha-u6i" id="BsU-ea-Dlb"/>
                     </connections>

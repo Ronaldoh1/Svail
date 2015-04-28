@@ -26,6 +26,7 @@
 		36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB01A1AE5F6D50045AF92 /* Reference.m */; };
 		36EBB0241AE80F550045AF92 /* ReviewPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0231AE80F550045AF92 /* ReviewPurchaseViewController.m */; };
 		36EBB0271AE822A80045AF92 /* ConfirmPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */; };
+		3E02B6E01AEF62CD00AF11FD /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02B6DF1AEF62CD00AF11FD /* TabBarViewController.m */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
 		3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E80C4951AE4C85800405828 /* ParticipantsViewController.m */; };
@@ -127,6 +128,8 @@
 		36EBB0231AE80F550045AF92 /* ReviewPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewPurchaseViewController.m; sourceTree = "<group>"; };
 		36EBB0251AE822A80045AF92 /* ConfirmPurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPurchaseViewController.h; sourceTree = "<group>"; };
 		36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPurchaseViewController.m; sourceTree = "<group>"; };
+		3E02B6DE1AEF62CD00AF11FD /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		3E02B6DF1AEF62CD00AF11FD /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		3E4036DB1ADD882600C4A0A0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
@@ -461,6 +464,8 @@
 			children = (
 				3E4036DB1ADD882600C4A0A0 /* MapViewController.h */,
 				3E4036DC1ADD882600C4A0A0 /* MapViewController.m */,
+				3E02B6DE1AEF62CD00AF11FD /* TabBarViewController.h */,
+				3E02B6DF1AEF62CD00AF11FD /* TabBarViewController.m */,
 				3E83BB8D1AE6B93C0064AE89 /* CustomPointAnnotation.h */,
 				3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */,
 				3E968BD11AED9F2B009FB31F /* CustomImageView.h */,
@@ -725,7 +730,6 @@
 				36EBB0241AE80F550045AF92 /* ReviewPurchaseViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
 				3E968BD31AED9F2B009FB31F /* CustomImageView.m in Sources */,
-				364DF2F91AE98D0100E0DFF6 /* ServiceCategory.m in Sources */,
 				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
 				364DF30C1AEDA2F600E0DFF6 /* CustomViewUtilities.m in Sources */,
@@ -735,14 +739,13 @@
 				F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */,
 				360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */,
 				3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */,
+				3E02B6E01AEF62CD00AF11FD /* TabBarViewController.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				364DF2FC1AECDAFD00E0DFF6 /* RatingViewController.m in Sources */,
 				36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */,
-				F232741E1AECF3E10019CE62 /* SelectTimeSlotsViewController.m in Sources */,
 				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
-				F23274211AED59CB0019CE62 /* CustomSelectTimeCell.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
 				F262CB641AE97DAB00988E5B /* PayViewController.swift in Sources */,

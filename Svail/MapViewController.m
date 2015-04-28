@@ -20,8 +20,6 @@
 #import "EditProfileViewController.h"
 #import "CustomImageView.h"
 
-//SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
-
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -47,17 +45,10 @@
     [super viewDidLoad];
     
 
-//    UIStoryboard *purchaseStoryboard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
-//    UIViewController *purchaseHistoryVC = [purchaseStoryboard instantiateViewControllerWithIdentifier:@"PurchaseHistoryVC"];
-//    [self.tabBarController addChildViewController:purchaseHistoryVC];
-//    
-    
     self.locationManager = [CLLocationManager new];
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = YES;
-    
-
-
+    CLLocation *currentLocation = self.locationManager.location;
 
     //setting today's date and the next days of the week for segmented control's titles
     NSDate *currentDate = [NSDate date];
@@ -90,7 +81,7 @@
     [self.view addGestureRecognizer:tap];
 
     //download Services from Parse and filter it according to today's event
-    [EventLocationDownloader downloadEventLocation:^(NSArray *array)
+    [EventLocationDownloader downloadEventLocationForLocation:currentLocation withCompletion:^(NSArray *array)
      {
          self.eventsArray = [NSMutableArray arrayWithArray:array];
          [self filterEventsForDate:self.segmentedControl];
@@ -125,11 +116,6 @@
 
          }
      }];
-}
-
-
-- (IBAction)OnLogOutButtonTapped:(UIButton *)sender {
-    [User logOut];
 }
 
 #pragma Mark - Dismiss Keyboard Method
@@ -189,30 +175,6 @@
     [self.mapView setRegion:region animated:YES];
 }
 
-//#pragma Mark - CLLocation Methods
-//
-//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-//{
-//    for (CLLocation *location in locations) {
-//        if (location.verticalAccuracy < 100 && location.horizontalAccuracy < 100)
-//        {
-//            //            [self.locationManager stopUpdatingLocation];
-//                        [self findServicesNearby:location];
-//        }
-//    }
-//}
-//
-//-(void)findServicesNearby:(CLLocation *)location
-//{
-//    MKLocalSearchRequest *request = [MKLocalSearchRequest new];
-//    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(10, 10));
-//    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
-//    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
-//        self.locationArray = response.mapItems;
-//
-//    }];
-//}
-
 #pragma Mark - MKMapView Delegate Methods
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -232,7 +194,19 @@
     //    }
 
     pinAnnotation.canShowCallout = YES;
-    pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
+
+    if (!(self.serviceParticipants.count == [customAnnotation.service.capacity integerValue]))
+    {
+        UIButton *requestButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        requestButton.frame = CGRectMake(0, 0, 70, 20);
+        [requestButton setTitle:@"Request" forState:UIControlStateNormal];
+        [requestButton setTitleColor:[UIColor colorWithRed:247/255.0 green:93/255.0 blue:89/255.0 alpha:1.0] forState:UIControlStateNormal];
+        requestButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        [requestButton.layer setBorderWidth:1];
+        [requestButton.layer setBorderColor:[UIColor colorWithRed:247/255.0 green:93/255.0 blue:89/255.0 alpha:1.0].CGColor];
+        pinAnnotation.rightCalloutAccessoryView = requestButton;
+    }
+
     pinAnnotation.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     pinAnnotation.annotationType = ZSPinAnnotationTypeTagStroke;
     pinAnnotation.annotationColor = customAnnotation.color;
@@ -295,6 +269,11 @@
                     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
                     UIGraphicsEndImageContext();
                     CustomImageView *imageView = [[CustomImageView alloc]initWithImage:scaledImage];
+                    imageView.layer.cornerRadius = imageView.frame.size.height / 2;
+                    imageView.layer.masksToBounds = YES;
+                    imageView.layer.borderWidth = 1.5;
+                    imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+                    imageView.clipsToBounds = YES;
                     imageView.userInteractionEnabled = YES;
 //                    imageView.service = service;
                     imageView.user = service.provider;
@@ -587,10 +566,13 @@
 
                 //we also need to retrieve his profile picture.
 
+                [self.navigationController reloadInputViews];
+           
 
-                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
-                EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
-                [self presentViewController:editProfileVC animated:true completion:nil];
+
+//                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
+//                EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
+//                [self presentViewController:editProfileVC animated:true completion:nil];
 
 
 
