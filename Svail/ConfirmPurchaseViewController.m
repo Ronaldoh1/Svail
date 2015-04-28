@@ -14,13 +14,12 @@
 
 @interface ConfirmPurchaseViewController () <PTKViewDelegate, PKPaymentAuthorizationViewControllerDelegate>
 @property (nonatomic) PTKView *paymentView;
-@property NSNumber *amount;
-@property NSString *titled;
-
 
 @end
 
 @implementation ConfirmPurchaseViewController
+
+static float oneYearPrice = 1.99;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,10 +27,9 @@
 
     [super viewDidLoad];
 
-    self.amount = @5;
-    self.titled = @"Cooking for you";
+
     //set the navigationbar title to the price.
-    self.navigationItem.title = [NSString stringWithFormat:@"Total: $%@", self.serviceToPurchase.price];
+    self.navigationItem.title = @"Total = $1.99";
 
     //set the paymentviewform.
     self.paymentView = [[PTKView alloc] initWithFrame:CGRectMake(15,20,290,55)];
@@ -65,15 +63,12 @@
           } else {
               NSString *myVal = token.tokenId;
               NSLog(@"%@",token);
-              [PFCloud callFunctionInBackground:@"stripeCharge" withParameters:@{@"token":myVal, @"amount":self.serviceToPurchase.price}
+              [PFCloud callFunctionInBackground:@"stripeCharge" withParameters:@{@"token":myVal, @"amount":@(oneYearPrice)}
                                           block:^(NSString *result, NSError *error) {
                                               if (!error) {
                                                   NSLog(@"from Cloud Code Res: %@",result);
 
-                                                  //adding user to participants
 
-                                                  [self.serviceToPurchase.participants addObject:[User currentUser]];
-                                                  [self.serviceToPurchase saveInBackground];
                                                   // Create our Installation query
                                                   PFQuery *pushQuery = [PFInstallation query];
                                                   [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
@@ -107,10 +102,10 @@
                                  paymentRequestWithMerchantIdentifier:@"merchant.com.Svail.Svail"];
 
     //TO-DO - NEED TO SET THE TITLE OF SERVICE HERE.
-    NSString *label = [NSString stringWithFormat:@"for %@", self.serviceToPurchase.title]; //This text will be displayed in the Apple Pay authentication view after the word "Pay"
+    NSString *label = [NSString stringWithFormat:@"for %@", @"One Year Premium Svail Subscription"]; //This text will be displayed in the Apple Pay authentication view after the word "Pay"
 
-    //change the ammount to be displayed to the user of the item he/she is purchasing.
-    NSDecimalNumber *amount = self.serviceToPurchase.price; //Can change to any amount
+    //The amount of the yearly subscription
+    NSDecimalNumber *amount = [[NSDecimalNumber alloc]initWithFloat:oneYearPrice]; //Can change to any amount
 
     request.paymentSummaryItems = @[
                                     [PKPaymentSummaryItem summaryItemWithLabel:label
@@ -147,7 +142,7 @@
 
                                               */
                                              NSString *someToken = [NSString stringWithFormat:@"%@",token.tokenId];
-                                             NSDictionary *chargeParams = @{@"token": someToken, @"amount": self.serviceToPurchase.price};
+                                             NSDictionary *chargeParams = @{@"token": someToken, @"amount": @(oneYearPrice)};
 
                                              [PFCloud callFunctionInBackground:@"applePayCharge"
                                                                 withParameters:chargeParams
@@ -184,24 +179,11 @@
 
      */
 
-    //save the participants to the service.
-    
-    [self.serviceToPurchase.participants addObject:[User currentUser]];
-    [self.serviceToPurchase saveInBackground];
 
-
-    //Create our Installation query
-    PFQuery *pushQuery = [PFInstallation query];
-    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
-
-    // Send push notification to query
-    [PFPush sendPushMessageToQueryInBackground:pushQuery
-                                   withMessage:@"Service has been requested"];
 
     [self handlePaymentAuthorizationWithPayment:payment completion:completion];
     //after sending the push notification - segue to the service history vc.
 
-    [self performSegueWithIdentifier:@"toServiceHistoryNavVC" sender:self];
 
 }
 //payment authorization vc delegate method - dismisses payment vc.

@@ -30,6 +30,7 @@
 @dynamic startTimes;
 @dynamic durationTime;
 
+
 + (void)load{
     [self registerSubclass];
 }

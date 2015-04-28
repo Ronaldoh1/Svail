@@ -92,7 +92,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Svail" id="xkR-at-N3g">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="U7w-NT-sOs">
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="U7w-NT-sOs">
                             <connections>
                                 <action selector="onAddServiceButtonTapped:" destination="iuj-oN-AdL" id="9Fn-fy-ulP"/>
                             </connections>
@@ -154,8 +154,6 @@
     </scenes>
     <resources>
         <image name="currentlocationarrow" width="43" height="43"/>
-    </resources>
-    <resources>
         <image name="mapicon.png" width="128" height="128"/>
     </resources>
 </document>

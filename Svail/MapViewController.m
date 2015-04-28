@@ -22,7 +22,7 @@
 
 //SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
 
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -384,11 +384,11 @@
 
 //        [self.serviceParticipants addObject:[User currentUser]];
 //        [annotation.service saveInBackground];
-        UIStoryboard *purchaseStoryboard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
-        UIViewController *reviewPurchaseNavVC = [purchaseStoryboard instantiateViewControllerWithIdentifier:@"ReviewPurchaseNavVC"];
-        ReviewPurchaseViewController *reviewPurchaseVC = reviewPurchaseNavVC.childViewControllers[0];
-        reviewPurchaseVC.serviceId = annotation.service.objectId;
-        [self presentViewController:reviewPurchaseNavVC animated:TRUE completion:nil];
+        UIStoryboard *reservationStoryboard = [UIStoryboard storyboardWithName:@"Reservation" bundle:nil];
+        UIViewController *reviewReservationNavVC = [reservationStoryboard instantiateViewControllerWithIdentifier:@"ReviewReservationNavVC"];
+        ReviewPurchaseViewController *reviewReservationVC = reviewReservationNavVC.childViewControllers[0];
+        reviewReservationVC.serviceId = annotation.service.objectId;
+        [self presentViewController:reviewReservationNavVC animated:TRUE completion:nil];
     }
 }
 
@@ -465,6 +465,14 @@
 
     if ([User currentUser] != nil){
 
+        //if the user has 14 or less posts allow him to post.
+        if(([User currentUser].numberOfPosts <= 14) || ([User currentUser].isPremium == true)){
+
+
+            NSLog(@"%d number of posts", [User currentUser].numberOfPosts);
+
+
+
         NSLog(@"the user is loggged in");
 
         UIStoryboard *postStoryBoard = [UIStoryboard storyboardWithName:@"Post" bundle:nil];
@@ -472,6 +480,14 @@
         UIViewController *postVC = [postStoryBoard instantiateViewControllerWithIdentifier:@"PostNavBar"];
 
         [self presentViewController:postVC animated:true completion:nil];
+
+
+        }else{
+        //else if the user has more than 14 posts - then present an alert view controller and allow him to purchase paid version of our app.
+              [self displayNeedPremiumAlert];
+
+
+        }
 
     }else {
 
@@ -667,12 +683,34 @@
                                                              delegate:self
                                   
                                                     cancelButtonTitle:@"Cancel"destructiveButtonTitle:nil otherButtonTitles:@"Sign in", @"Sign Up", @"Login With Facebook", nil];
-    
-    
+
     //present the action sheet.
     [actionSheet showInView:self.view];
     
 }
+//Helper method to display error to user.
+-(void)displayNeedPremiumAlert{
+
+
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Your have posted 14 services for free" message:@"Would you like to keep posting? Go Premium!" delegate:self cancelButtonTitle:@"No, Thank You" otherButtonTitles:@"Let's Do it", nil];
+
+    [alertView show];
+    
+}
+
+//actionsheet delegate method.
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    if (buttonIndex == [alertView cancelButtonIndex]){
+
+    }else{
+        UIStoryboard *purchaseStoryBoard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
+        UIViewController *confirmPurchase = [purchaseStoryBoard instantiateViewControllerWithIdentifier:@"purchasePremiumNavVC"];
+        [self presentViewController:confirmPurchase animated:true completion:nil];
+    }
+
+}
+
 
 
 @end
