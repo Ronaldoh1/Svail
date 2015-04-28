@@ -17,7 +17,6 @@
 		364DF30C1AEDA2F600E0DFF6 /* CustomViewUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF30B1AEDA2F600E0DFF6 /* CustomViewUtilities.m */; };
 		364DF30F1AEF30AF00E0DFF6 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 364DF30E1AEF30AF00E0DFF6 /* History.storyboard */; };
 		364DF3121AEF344400E0DFF6 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF3111AEF344400E0DFF6 /* HistoryViewController.m */; };
-		364DF3181AEF4CB300E0DFF6 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF3171AEF4CB300E0DFF6 /* PostTableViewCell.m */; };
 		364DF31B1AEF4CEA00E0DFF6 /* PurchaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF31A1AEF4CEA00E0DFF6 /* PurchaseTableViewCell.m */; };
 		364DF31E1AEF566700E0DFF6 /* ParticipantsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF31D1AEF566700E0DFF6 /* ParticipantsCollectionViewCell.m */; };
 		3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */; };
@@ -533,8 +532,6 @@
 				F24B36281ADC6B28006153EC /* Reservation.storyboard */,
 				360CBE271AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.h */,
 				360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */,
-				36EBB0251AE822A80045AF92 /* ConfirmPurchaseViewController.h */,
-				36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */,
 				360CBE1E1AE8271400A1F8CF /* PurchaseHistoryViewController.h */,
 				360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */,
 				36EBB0221AE80F550045AF92 /* ReviewPurchaseViewController.h */,
@@ -934,8 +931,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -948,7 +945,7 @@
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b49a60af-efd5-4907-8ef8-174d9d05ad23";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -962,8 +959,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -976,7 +973,7 @@
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b49a60af-efd5-4907-8ef8-174d9d05ad23";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

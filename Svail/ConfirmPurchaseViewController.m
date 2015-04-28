@@ -74,10 +74,7 @@ static float oneYearPrice = 1.99;
 
                                                   [self paymentSucceeded];
 
-                                                  UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                                  UITabBarController *rootTabVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-                                                  rootTabVC.selectedIndex = 0;
-                                                  [self presentViewController:rootTabVC animated:true completion:nil];
+                                                  [self.parentViewController.presentingViewController dismissViewControllerAnimated:true completion:nil];
 
                                               }
                                               else{
@@ -151,8 +148,6 @@ static float oneYearPrice = 1.99;
                                                                  completion(PKPaymentAuthorizationStatusSuccess);
 
 
-
-
                                                                              }
 
                                                                          }];
@@ -182,11 +177,7 @@ static float oneYearPrice = 1.99;
     [User currentUser].isPremium = true;
     [[User currentUser] saveInBackground];
 
-    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UITabBarController *rootTabVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-    rootTabVC.selectedIndex = 0;
-    [self presentViewController:rootTabVC animated:true completion:nil];
-
+    
 
     [self handlePaymentAuthorizationWithPayment:payment completion:completion];
     //after sending the push notification - segue to the service history vc.
@@ -196,8 +187,16 @@ static float oneYearPrice = 1.99;
 //payment authorization vc delegate method - dismisses payment vc.
 
 - (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.parentViewController.presentingViewController dismissViewControllerAnimated:true completion:nil];
+    }];
 }
+
+- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender {
+
+  [self.parentViewController.presentingViewController dismissViewControllerAnimated:true completion:nil];
+}
+
 
 - (void)presentError:(NSError *)error {
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:nil
