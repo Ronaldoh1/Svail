@@ -77,7 +77,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Svail" id="xkR-at-N3g">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="U7w-NT-sOs">
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="U7w-NT-sOs">
                             <connections>
                                 <action selector="onAddServiceButtonTapped:" destination="iuj-oN-AdL" id="9Fn-fy-ulP"/>
                             </connections>

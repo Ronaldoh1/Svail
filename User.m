@@ -21,7 +21,8 @@
 @dynamic gender;
 @dynamic verification;
 @dynamic isFbUser;
-
+@dynamic numberOfPosts;
+@dynamic isPremium;
 
 + (void)load {
     [self registerSubclass];
