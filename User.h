@@ -24,7 +24,8 @@
 @property NSString *gender;
 @property BOOL isFbUser;
 @property (nonatomic) Verification *verification;
-
+@property int numberOfPosts;
+@property BOOL isPremium;
 -(void)getVerificationInfoWithCompletion:(void (^)(NSError *))complete;
 
 @end

@@ -33,6 +33,7 @@
 		36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB01A1AE5F6D50045AF92 /* Reference.m */; };
 		36EBB0241AE80F550045AF92 /* ReviewPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0231AE80F550045AF92 /* ReviewPurchaseViewController.m */; };
 		36EBB0271AE822A80045AF92 /* ConfirmPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */; };
+		3E02B6E01AEF62CD00AF11FD /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02B6DF1AEF62CD00AF11FD /* TabBarViewController.m */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
 		3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E80C4951AE4C85800405828 /* ParticipantsViewController.m */; };
@@ -64,7 +65,7 @@
 		F24B36231ADC6AE0006153EC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36221ADC6AE0006153EC /* Login.storyboard */; };
 		F24B36251ADC6AF1006153EC /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36241ADC6AF1006153EC /* Map.storyboard */; };
 		F24B36271ADC6B16006153EC /* Service.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36261ADC6B16006153EC /* Service.storyboard */; };
-		F24B36291ADC6B28006153EC /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36281ADC6B28006153EC /* Purchase.storyboard */; };
+		F24B36291ADC6B28006153EC /* Reservation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36281ADC6B28006153EC /* Reservation.storyboard */; };
 		F24B362B1ADC6B3C006153EC /* Verification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362A1ADC6B3C006153EC /* Verification.storyboard */; };
 		F24B362D1ADC6B4B006153EC /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362C1ADC6B4B006153EC /* Post.storyboard */; };
 		F24B36311ADC6EDD006153EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B36301ADC6EDD006153EC /* MapKit.framework */; };
@@ -80,12 +81,12 @@
 		F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36561ADD4FDB006153EC /* PostDetailViewController.m */; };
 		F24B365C1ADDA923006153EC /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365B1ADDA923006153EC /* Service.m */; };
 		F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365E1ADE2015006153EC /* SelectImageViewController.m */; };
-		F262CB641AE97DAB00988E5B /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F262CB631AE97DAB00988E5B /* PayViewController.swift */; };
 		F262CB691AEACAED00988E5B /* mapicon.png in Resources */ = {isa = PBXBuildFile; fileRef = F262CB681AEACAED00988E5B /* mapicon.png */; };
 		F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B4981AE4D6D9008F2370 /* fbloginButton.png */; };
 		F268B49B1AE4D72D008F2370 /* connect.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B49A1AE4D72D008F2370 /* connect.png */; };
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
 		F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */; };
+		F2F1C5B41AEF6394000C4BEF /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */; };
 		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
 		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
 		F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */; };
@@ -146,6 +147,8 @@
 		36EBB0231AE80F550045AF92 /* ReviewPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewPurchaseViewController.m; sourceTree = "<group>"; };
 		36EBB0251AE822A80045AF92 /* ConfirmPurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPurchaseViewController.h; sourceTree = "<group>"; };
 		36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPurchaseViewController.m; sourceTree = "<group>"; };
+		3E02B6DE1AEF62CD00AF11FD /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		3E02B6DF1AEF62CD00AF11FD /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		3E4036DB1ADD882600C4A0A0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
@@ -196,7 +199,7 @@
 		F24B36221ADC6AE0006153EC /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F24B36241ADC6AF1006153EC /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		F24B36261ADC6B16006153EC /* Service.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Service.storyboard; sourceTree = "<group>"; };
-		F24B36281ADC6B28006153EC /* Purchase.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Purchase.storyboard; sourceTree = "<group>"; };
+		F24B36281ADC6B28006153EC /* Reservation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reservation.storyboard; sourceTree = "<group>"; };
 		F24B362A1ADC6B3C006153EC /* Verification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Verification.storyboard; sourceTree = "<group>"; };
 		F24B362C1ADC6B4B006153EC /* Post.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
 		F24B36301ADC6EDD006153EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -224,8 +227,6 @@
 		F24B365B1ADDA923006153EC /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
 		F24B365D1ADE2015006153EC /* SelectImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectImageViewController.h; sourceTree = "<group>"; };
 		F24B365E1ADE2015006153EC /* SelectImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageViewController.m; sourceTree = "<group>"; };
-		F262CB631AE97DAB00988E5B /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
-		F262CB671AEAA6A600988E5B /* Svail_Team_Distribution_Profile.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = Svail_Team_Distribution_Profile.mobileprovision; sourceTree = "<group>"; };
 		F262CB681AEACAED00988E5B /* mapicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapicon.png; sourceTree = "<group>"; };
 		F268B4981AE4D6D9008F2370 /* fbloginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbloginButton.png; sourceTree = "<group>"; };
 		F268B49A1AE4D72D008F2370 /* connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect.png; sourceTree = "<group>"; };
@@ -234,6 +235,8 @@
 		F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Svail.entitlements; sourceTree = "<group>"; };
 		F2F1C5A51AEEA773000C4BEF /* GenerateTimeSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTimeSlot.h; sourceTree = "<group>"; };
 		F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTimeSlot.m; sourceTree = "<group>"; };
+		F2F1C5A81AEEF1DD000C4BEF /* Svail_Team_Distribution_Profile (1).mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Svail_Team_Distribution_Profile (1).mobileprovision"; sourceTree = "<group>"; };
+		F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Purchase.storyboard; sourceTree = "<group>"; };
 		F2F94D281AE785BA0092C583 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		F2F94D2A1AE785C00092C583 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-share-buttons.png"; sourceTree = "<group>"; };
@@ -348,7 +351,7 @@
 		F24B35941ADB7E53006153EC = {
 			isa = PBXGroup;
 			children = (
-				F262CB671AEAA6A600988E5B /* Svail_Team_Distribution_Profile.mobileprovision */,
+				F2F1C5A81AEEF1DD000C4BEF /* Svail_Team_Distribution_Profile (1).mobileprovision */,
 				3EC9D3D51AE16DC500071FF3 /* Cosmetic */,
 				F24B35CA1ADB9569006153EC /* Frameworks */,
 				F24B35C91ADB953D006153EC /* Data Model */,
@@ -377,8 +380,9 @@
 				3E8D28911AE30E0400D7D648 /* Profile */,
 				F24B36201ADC6A7B006153EC /* PostService */,
 				F24B361E1ADC69BB006153EC /* Verification */,
-				F24B361D1ADC6970006153EC /* Purchase */,
+				F24B361D1ADC6970006153EC /* Reservation */,
 				F24B361C1ADC695C006153EC /* ServiceList */,
+				F2F1C5B21AEF60CA000C4BEF /* Purchase */,
 				F24B361B1ADC6907006153EC /* Map */,
 				F24B361A1ADC68E9006153EC /* Login */,
 				F24B35A41ADB7E54006153EC /* AppDelegate.h */,
@@ -500,6 +504,8 @@
 			children = (
 				3E4036DB1ADD882600C4A0A0 /* MapViewController.h */,
 				3E4036DC1ADD882600C4A0A0 /* MapViewController.m */,
+				3E02B6DE1AEF62CD00AF11FD /* TabBarViewController.h */,
+				3E02B6DF1AEF62CD00AF11FD /* TabBarViewController.m */,
 				3E83BB8D1AE6B93C0064AE89 /* CustomPointAnnotation.h */,
 				3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */,
 				3E968BD11AED9F2B009FB31F /* CustomImageView.h */,
@@ -521,10 +527,10 @@
 			name = ServiceList;
 			sourceTree = "<group>";
 		};
-		F24B361D1ADC6970006153EC /* Purchase */ = {
+		F24B361D1ADC6970006153EC /* Reservation */ = {
 			isa = PBXGroup;
 			children = (
-				F24B36281ADC6B28006153EC /* Purchase.storyboard */,
+				F24B36281ADC6B28006153EC /* Reservation.storyboard */,
 				360CBE271AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.h */,
 				360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */,
 				36EBB0251AE822A80045AF92 /* ConfirmPurchaseViewController.h */,
@@ -533,11 +539,10 @@
 				360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */,
 				36EBB0221AE80F550045AF92 /* ReviewPurchaseViewController.h */,
 				36EBB0231AE80F550045AF92 /* ReviewPurchaseViewController.m */,
-				F262CB631AE97DAB00988E5B /* PayViewController.swift */,
 				364DF2FA1AECDAFD00E0DFF6 /* RatingViewController.h */,
 				364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */,
 			);
-			name = Purchase;
+			name = Reservation;
 			sourceTree = "<group>";
 		};
 		F24B361E1ADC69BB006153EC /* Verification */ = {
@@ -572,6 +577,16 @@
 				F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */,
 			);
 			name = PostService;
+			sourceTree = "<group>";
+		};
+		F2F1C5B21AEF60CA000C4BEF /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */,
+				36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */,
+				36EBB0251AE822A80045AF92 /* ConfirmPurchaseViewController.h */,
+			);
+			name = Purchase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -673,12 +688,13 @@
 				F24B36231ADC6AE0006153EC /* Login.storyboard in Resources */,
 				F2F94D2F1AE7FD240092C583 /* TweetIt.png in Resources */,
 				F24B362D1ADC6B4B006153EC /* Post.storyboard in Resources */,
+				F2F1C5B41AEF6394000C4BEF /* Purchase.storyboard in Resources */,
 				F24B36251ADC6AF1006153EC /* Map.storyboard in Resources */,
 				3E8D28981AE30ED600D7D648 /* EditProfile.storyboard in Resources */,
 				360CBE261AE8493C00A1F8CF /* Images.xcassets in Resources */,
 				3E8D289F1AE382A800D7D648 /* UserProfile.storyboard in Resources */,
 				F24B35B41ADB7E54006153EC /* LaunchScreen.xib in Resources */,
-				F24B36291ADC6B28006153EC /* Purchase.storyboard in Resources */,
+				F24B36291ADC6B28006153EC /* Reservation.storyboard in Resources */,
 				F24B36511ADCDD70006153EC /* camera.png in Resources */,
 				F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */,
 				364CBE991AEF7B3900754D9C /* Main.storyboard in Resources */,
@@ -777,6 +793,7 @@
 				F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */,
 				360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */,
 				3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */,
+				3E02B6E01AEF62CD00AF11FD /* TabBarViewController.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				364DF2FC1AECDAFD00E0DFF6 /* RatingViewController.m in Sources */,
@@ -786,8 +803,6 @@
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
-				364DF3181AEF4CB300E0DFF6 /* PostTableViewCell.m in Sources */,
-				F262CB641AE97DAB00988E5B /* PayViewController.swift in Sources */,
 				3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,

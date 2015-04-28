@@ -31,6 +31,7 @@
 @property NSMutableArray *participants;
 @property double durationTime;
 
+
 +(NSString *)parseClassName;
 
 

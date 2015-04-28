@@ -10,11 +10,11 @@
 
 @implementation EventLocationDownloader 
 
-+(void)downloadEventLocation:(void (^)(NSArray *))complete
++(void)downloadEventLocationForLocation:(CLLocation *)location withCompletion:(void (^)(NSArray *))complete
 {
-    NSArray *emptyArray = @[];
+    PFGeoPoint *newGeoPoint= [PFGeoPoint geoPointWithLocation:location];
     PFQuery *newQuery=[Service query];
-    [newQuery whereKey:@"startDate" notContainedIn:emptyArray];
+    [newQuery whereKey:@"theServiceGeoPoint" nearGeoPoint:newGeoPoint];
     newQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [newQuery findObjectsInBackgroundWithBlock:^(NSArray *services, NSError *error) {
 

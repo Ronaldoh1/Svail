@@ -26,6 +26,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *occupationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UIButton *signInButton;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+@property (weak, nonatomic) IBOutlet UIButton *changeImageButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
+@property (weak, nonatomic) IBOutlet UILabel *pleaseSignInLabel;
 
 @property User *currentUser;
 
@@ -35,6 +40,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    if ([User currentUser] == nil)
+    {
+        self.signInButton.enabled = YES;
+        self.signInButton.hidden = NO;
+        self.signUpButton.enabled = YES;
+        self.signUpButton.hidden = NO;
+        self.pleaseSignInLabel.hidden = NO;
+
+        self.saveButton.enabled = NO;
+        self.saveButton.hidden = YES;
+        self.verifyButton.enabled = NO;
+        self.verifyButton.hidden = YES;
+        self.cancelButton.enabled = NO;
+        self.cancelButton.hidden = YES;
+        self.changeImageButton.enabled = NO;
+        self.changeImageButton.hidden = YES;
+        self.logOutButton.enabled = NO;
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor clearColor];
+        self.fullnameTextField.hidden = YES;
+        self.emailTextField.hidden = YES;
+        self.passwordTextField.hidden = YES;
+        self.stateTextField.hidden = YES;
+        self.occupationTextField.hidden = YES;
+        self.phoneTextField.hidden = YES;
+        self.profileImage.hidden = YES;
+    }
+
+    self.signInButton.enabled = NO;
+    self.signInButton.hidden = YES;
+    self.signUpButton.enabled = NO;
+    self.signUpButton.hidden = YES;
+    self.pleaseSignInLabel.hidden = YES;
 
     self.cancelButton.clipsToBounds = true;
     self.cancelButton.layer.cornerRadius = 40/2.0;
@@ -46,6 +84,13 @@
     self.verifyButton.clipsToBounds = true;
     self.verifyButton.layer.cornerRadius = 40/2.0;
     self.verifyButton.backgroundColor = [UIColor colorWithRed:247/255.0 green:93/255.0 blue:89/255.0 alpha:1.0];
+
+    self.signInButton.clipsToBounds = true;
+    self.signInButton.layer.cornerRadius = 60/2.0;
+    self.signInButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+    self.signUpButton.clipsToBounds = true;
+    self.signUpButton.layer.cornerRadius = 60/2.0;
+    self.signUpButton.backgroundColor = [UIColor colorWithRed:59/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
 
     self.currentUser = [User currentUser];
 
@@ -198,6 +243,37 @@
     [self.phoneTextField resignFirstResponder];
 
 
+}
+- (IBAction)logOUtButtonPressed:(UIBarButtonItem *)sender
+{
+    [User logOut];
+    self.fullnameTextField.text = [NSString stringWithFormat:@""];
+    self.emailTextField.text = [NSString stringWithFormat:@""];
+    self.passwordTextField.text = [NSString stringWithFormat:@""];
+    self.stateTextField.text = [NSString stringWithFormat:@""];
+    self.occupationTextField.text = [NSString stringWithFormat:@""];
+    self.phoneTextField.text = [NSString stringWithFormat:@""];
+    self.profileImage.image = [UIImage imageNamed:@"defaultimage"];
+    self.saveButton.enabled = NO;
+    [self.view reloadInputViews];
+
+}
+- (IBAction)onSignInButtonPressed:(UIButton *)sender
+{
+    UIStoryboard *loginStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+
+    UIViewController *loginVC = [loginStoryBoard instantiateViewControllerWithIdentifier:@"LoginNavVC"];
+
+    [self presentViewController:loginVC animated:true completion:nil];
+}
+
+- (IBAction)onSignUpButtonPressed:(UIButton *)sender
+{
+    UIStoryboard *signUpStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+
+    UIViewController *signUpVC = [signUpStoryBoard instantiateViewControllerWithIdentifier:@"SignUpNavVC"];
+
+    [self presentViewController:signUpVC animated:true completion:nil];
 }
 
 @end

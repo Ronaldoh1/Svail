@@ -20,9 +20,7 @@
 #import "EditProfileViewController.h"
 #import "CustomImageView.h"
 
-//SEARCH SERVICE ONLY AROUND THE CURRENT LOCATION OR DRAGGED LOCATION
-
-@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
+@interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -46,14 +44,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   
-    
+
     self.locationManager = [CLLocationManager new];
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = YES;
-    
-
-
+    CLLocation *currentLocation = self.locationManager.location;
 
     //setting today's date and the next days of the week for segmented control's titles
     NSDate *currentDate = [NSDate date];
@@ -86,7 +81,7 @@
     [self.view addGestureRecognizer:tap];
 
     //download Services from Parse and filter it according to today's event
-    [EventLocationDownloader downloadEventLocation:^(NSArray *array)
+    [EventLocationDownloader downloadEventLocationForLocation:currentLocation withCompletion:^(NSArray *array)
      {
          self.eventsArray = [NSMutableArray arrayWithArray:array];
          [self filterEventsForDate:self.segmentedControl];
@@ -121,11 +116,6 @@
 
          }
      }];
-}
-
-
-- (IBAction)OnLogOutButtonTapped:(UIButton *)sender {
-    [User logOut];
 }
 
 #pragma Mark - Dismiss Keyboard Method
@@ -185,30 +175,6 @@
     [self.mapView setRegion:region animated:YES];
 }
 
-//#pragma Mark - CLLocation Methods
-//
-//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-//{
-//    for (CLLocation *location in locations) {
-//        if (location.verticalAccuracy < 100 && location.horizontalAccuracy < 100)
-//        {
-//            //            [self.locationManager stopUpdatingLocation];
-//                        [self findServicesNearby:location];
-//        }
-//    }
-//}
-//
-//-(void)findServicesNearby:(CLLocation *)location
-//{
-//    MKLocalSearchRequest *request = [MKLocalSearchRequest new];
-//    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(10, 10));
-//    MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
-//    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
-//        self.locationArray = response.mapItems;
-//
-//    }];
-//}
-
 #pragma Mark - MKMapView Delegate Methods
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -228,7 +194,19 @@
     //    }
 
     pinAnnotation.canShowCallout = YES;
-    pinAnnotation.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
+
+    if (!(self.serviceParticipants.count == [customAnnotation.service.capacity integerValue]))
+    {
+        UIButton *requestButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        requestButton.frame = CGRectMake(0, 0, 70, 20);
+        [requestButton setTitle:@"Request" forState:UIControlStateNormal];
+        [requestButton setTitleColor:[UIColor colorWithRed:247/255.0 green:93/255.0 blue:89/255.0 alpha:1.0] forState:UIControlStateNormal];
+        requestButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        [requestButton.layer setBorderWidth:1];
+        [requestButton.layer setBorderColor:[UIColor colorWithRed:247/255.0 green:93/255.0 blue:89/255.0 alpha:1.0].CGColor];
+        pinAnnotation.rightCalloutAccessoryView = requestButton;
+    }
+
     pinAnnotation.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     pinAnnotation.annotationType = ZSPinAnnotationTypeTagStroke;
     pinAnnotation.annotationColor = customAnnotation.color;
@@ -291,6 +269,11 @@
                     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
                     UIGraphicsEndImageContext();
                     CustomImageView *imageView = [[CustomImageView alloc]initWithImage:scaledImage];
+                    imageView.layer.cornerRadius = imageView.frame.size.height / 2;
+                    imageView.layer.masksToBounds = YES;
+                    imageView.layer.borderWidth = 1.5;
+                    imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+                    imageView.clipsToBounds = YES;
                     imageView.userInteractionEnabled = YES;
 //                    imageView.service = service;
                     imageView.user = service.provider;
@@ -380,11 +363,11 @@
 
 //        [self.serviceParticipants addObject:[User currentUser]];
 //        [annotation.service saveInBackground];
-        UIStoryboard *purchaseStoryboard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
-        UIViewController *reviewPurchaseNavVC = [purchaseStoryboard instantiateViewControllerWithIdentifier:@"ReviewPurchaseNavVC"];
-        ReviewPurchaseViewController *reviewPurchaseVC = reviewPurchaseNavVC.childViewControllers[0];
-        reviewPurchaseVC.serviceId = annotation.service.objectId;
-        [self presentViewController:reviewPurchaseNavVC animated:TRUE completion:nil];
+        UIStoryboard *reservationStoryboard = [UIStoryboard storyboardWithName:@"Reservation" bundle:nil];
+        UIViewController *reviewReservationNavVC = [reservationStoryboard instantiateViewControllerWithIdentifier:@"ReviewReservationNavVC"];
+        ReviewPurchaseViewController *reviewReservationVC = reviewReservationNavVC.childViewControllers[0];
+        reviewReservationVC.serviceId = annotation.service.objectId;
+        [self presentViewController:reviewReservationNavVC animated:TRUE completion:nil];
     }
 }
 
@@ -461,6 +444,14 @@
 
     if ([User currentUser] != nil){
 
+        //if the user has 14 or less posts allow him to post.
+        if(([User currentUser].numberOfPosts <= 14) || ([User currentUser].isPremium == true)){
+
+
+            NSLog(@"%d number of posts", [User currentUser].numberOfPosts);
+
+
+
         NSLog(@"the user is loggged in");
 
         UIStoryboard *postStoryBoard = [UIStoryboard storyboardWithName:@"Post" bundle:nil];
@@ -468,6 +459,14 @@
         UIViewController *postVC = [postStoryBoard instantiateViewControllerWithIdentifier:@"PostNavBar"];
 
         [self presentViewController:postVC animated:true completion:nil];
+
+
+        }else{
+        //else if the user has more than 14 posts - then present an alert view controller and allow him to purchase paid version of our app.
+              [self displayNeedPremiumAlert];
+
+
+        }
 
     }else {
 
@@ -583,10 +582,13 @@
 
                 //we also need to retrieve his profile picture.
 
+                [self.navigationController reloadInputViews];
+           
 
-                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
-                EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
-                [self presentViewController:editProfileVC animated:true completion:nil];
+
+//                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
+//                EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
+//                [self presentViewController:editProfileVC animated:true completion:nil];
 
 
 
@@ -663,12 +665,34 @@
                                                              delegate:self
                                   
                                                     cancelButtonTitle:@"Cancel"destructiveButtonTitle:nil otherButtonTitles:@"Sign in", @"Sign Up", @"Login With Facebook", nil];
-    
-    
+
     //present the action sheet.
     [actionSheet showInView:self.view];
     
 }
+//Helper method to display error to user.
+-(void)displayNeedPremiumAlert{
+
+
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Your have posted 14 services for free" message:@"Would you like to keep posting? Go Premium!" delegate:self cancelButtonTitle:@"No, Thank You" otherButtonTitles:@"Let's Do it", nil];
+
+    [alertView show];
+    
+}
+
+//actionsheet delegate method.
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    if (buttonIndex == [alertView cancelButtonIndex]){
+
+    }else{
+        UIStoryboard *purchaseStoryBoard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
+        UIViewController *confirmPurchase = [purchaseStoryBoard instantiateViewControllerWithIdentifier:@"purchasePremiumNavVC"];
+        [self presentViewController:confirmPurchase animated:true completion:nil];
+    }
+
+}
+
 
 
 @end

@@ -61,6 +61,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                     self.getFacebookUserData()
 
                     user.isFbUser = true
+
+                    //set the number of post;
+                    user.numberOfPosts = 0
+
                     user.saveInBackgroundWithBlock {
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {
@@ -127,6 +131,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         user.username = user.email
         user.password = passwordTextField.text
         user.isFbUser = false
+        user.numberOfPosts = 0
         // other fields can be set just like with PFObject
         user["phoneNumber"] = phoneNumberTextField.text
 

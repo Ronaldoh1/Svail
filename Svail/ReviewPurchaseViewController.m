@@ -256,8 +256,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    ConfirmPurchaseViewController *confirmVC = [segue destinationViewController];
-//    confirmVC.serviceToPurchase = self.service;
+
     RatingViewController *ratingVC = [segue destinationViewController];
     ratingVC.service = self.service;
 }
