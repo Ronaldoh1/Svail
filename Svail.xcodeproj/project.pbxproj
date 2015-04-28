@@ -13,6 +13,11 @@
 		360CBE291AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */; };
 		364DF2FC1AECDAFD00E0DFF6 /* RatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */; };
 		364DF30C1AEDA2F600E0DFF6 /* CustomViewUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF30B1AEDA2F600E0DFF6 /* CustomViewUtilities.m */; };
+		364DF30F1AEF30AF00E0DFF6 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 364DF30E1AEF30AF00E0DFF6 /* History.storyboard */; };
+		364DF3121AEF344400E0DFF6 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF3111AEF344400E0DFF6 /* HistoryViewController.m */; };
+		364DF3181AEF4CB300E0DFF6 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF3171AEF4CB300E0DFF6 /* PostTableViewCell.m */; };
+		364DF31B1AEF4CEA00E0DFF6 /* PurchaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF31A1AEF4CEA00E0DFF6 /* PurchaseTableViewCell.m */; };
+		364DF31E1AEF566700E0DFF6 /* ParticipantsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF31D1AEF566700E0DFF6 /* ParticipantsCollectionViewCell.m */; };
 		3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */; };
 		3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */; };
 		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
@@ -110,6 +115,15 @@
 		364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingViewController.m; sourceTree = "<group>"; };
 		364DF30A1AEDA2F600E0DFF6 /* CustomViewUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewUtilities.h; sourceTree = "<group>"; };
 		364DF30B1AEDA2F600E0DFF6 /* CustomViewUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewUtilities.m; sourceTree = "<group>"; };
+		364DF30E1AEF30AF00E0DFF6 /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		364DF3101AEF344400E0DFF6 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		364DF3111AEF344400E0DFF6 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		364DF3161AEF4CB300E0DFF6 /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
+		364DF3171AEF4CB300E0DFF6 /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
+		364DF3191AEF4CEA00E0DFF6 /* PurchaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseTableViewCell.h; sourceTree = "<group>"; };
+		364DF31A1AEF4CEA00E0DFF6 /* PurchaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseTableViewCell.m; sourceTree = "<group>"; };
+		364DF31C1AEF566700E0DFF6 /* ParticipantsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantsCollectionViewCell.h; sourceTree = "<group>"; };
+		364DF31D1AEF566700E0DFF6 /* ParticipantsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsCollectionViewCell.m; sourceTree = "<group>"; };
 		3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -279,6 +293,22 @@
 			name = "Custom View";
 			sourceTree = "<group>";
 		};
+		364DF30D1AEF2A0E00E0DFF6 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				364DF30E1AEF30AF00E0DFF6 /* History.storyboard */,
+				364DF3101AEF344400E0DFF6 /* HistoryViewController.h */,
+				364DF3111AEF344400E0DFF6 /* HistoryViewController.m */,
+				364DF3161AEF4CB300E0DFF6 /* PostTableViewCell.h */,
+				364DF3171AEF4CB300E0DFF6 /* PostTableViewCell.m */,
+				364DF3191AEF4CEA00E0DFF6 /* PurchaseTableViewCell.h */,
+				364DF31A1AEF4CEA00E0DFF6 /* PurchaseTableViewCell.m */,
+				364DF31C1AEF566700E0DFF6 /* ParticipantsCollectionViewCell.h */,
+				364DF31D1AEF566700E0DFF6 /* ParticipantsCollectionViewCell.m */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
 		3E8D28911AE30E0400D7D648 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */,
+				364DF30D1AEF2A0E00E0DFF6 /* History */,
 				3E8D28911AE30E0400D7D648 /* Profile */,
 				F24B36201ADC6A7B006153EC /* PostService */,
 				F24B361E1ADC69BB006153EC /* Verification */,
@@ -488,10 +519,10 @@
 				F24B36281ADC6B28006153EC /* Purchase.storyboard */,
 				360CBE271AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.h */,
 				360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */,
-				360CBE1E1AE8271400A1F8CF /* PurchaseHistoryViewController.h */,
-				360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */,
 				36EBB0251AE822A80045AF92 /* ConfirmPurchaseViewController.h */,
 				36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */,
+				360CBE1E1AE8271400A1F8CF /* PurchaseHistoryViewController.h */,
+				360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */,
 				36EBB0221AE80F550045AF92 /* ReviewPurchaseViewController.h */,
 				36EBB0231AE80F550045AF92 /* ReviewPurchaseViewController.m */,
 				F262CB631AE97DAB00988E5B /* PayViewController.swift */,
@@ -519,16 +550,16 @@
 				F232741C1AECF3E00019CE62 /* SelectTimeSlotsViewController.h */,
 				F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */,
 				F24B365E1ADE2015006153EC /* SelectImageViewController.m */,
+				F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */,
+				F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */,
+				F24B36551ADD4FDB006153EC /* PostDetailViewController.h */,
+				F24B36561ADD4FDB006153EC /* PostDetailViewController.m */,
 				F24B364D1ADCD911006153EC /* PostViewController.h */,
 				F24B364E1ADCD911006153EC /* PostViewController.m */,
 				F232741F1AED59CB0019CE62 /* CustomSelectTimeCell.h */,
 				F23274201AED59CB0019CE62 /* CustomSelectTimeCell.m */,
 				F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */,
 				F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */,
-				F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */,
-				F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */,
-				F24B36551ADD4FDB006153EC /* PostDetailViewController.h */,
-				F24B36561ADD4FDB006153EC /* PostDetailViewController.m */,
 				F2F1C5A51AEEA773000C4BEF /* GenerateTimeSlot.h */,
 				F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */,
 			);
@@ -642,6 +673,7 @@
 				F24B36291ADC6B28006153EC /* Purchase.storyboard in Resources */,
 				F24B36511ADCDD70006153EC /* camera.png in Resources */,
 				F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */,
+				364DF30F1AEF30AF00E0DFF6 /* History.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,11 +757,12 @@
 				36EBB0241AE80F550045AF92 /* ReviewPurchaseViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
 				3E968BD31AED9F2B009FB31F /* CustomImageView.m in Sources */,
-				364DF2F91AE98D0100E0DFF6 /* ServiceCategory.m in Sources */,
 				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
+				364DF31E1AEF566700E0DFF6 /* ParticipantsCollectionViewCell.m in Sources */,
 				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
 				364DF30C1AEDA2F600E0DFF6 /* CustomViewUtilities.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
+				364DF3121AEF344400E0DFF6 /* HistoryViewController.m in Sources */,
 				F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
 				F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */,
@@ -739,16 +772,16 @@
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				364DF2FC1AECDAFD00E0DFF6 /* RatingViewController.m in Sources */,
 				36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */,
-				F232741E1AECF3E10019CE62 /* SelectTimeSlotsViewController.m in Sources */,
 				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
-				F23274211AED59CB0019CE62 /* CustomSelectTimeCell.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
+				364DF3181AEF4CB300E0DFF6 /* PostTableViewCell.m in Sources */,
 				F262CB641AE97DAB00988E5B /* PayViewController.swift in Sources */,
 				3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,
+				364DF31B1AEF4CEA00E0DFF6 /* PurchaseTableViewCell.m in Sources */,
 				F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */,
 				F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */,
 				360CBE291AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m in Sources */,
@@ -876,8 +909,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -890,7 +923,7 @@
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "b49a60af-efd5-4907-8ef8-174d9d05ad23";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -904,8 +937,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -918,7 +951,7 @@
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "b49a60af-efd5-4907-8ef8-174d9d05ad23";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

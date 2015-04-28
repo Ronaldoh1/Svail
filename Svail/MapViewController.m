@@ -47,10 +47,10 @@
     [super viewDidLoad];
     
 
-//    UIStoryboard *purchaseStoryboard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
-//    UIViewController *purchaseHistoryVC = [purchaseStoryboard instantiateViewControllerWithIdentifier:@"PurchaseHistoryVC"];
-//    [self.tabBarController addChildViewController:purchaseHistoryVC];
-//    
+    UIStoryboard *purchaseStoryboard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
+    UIViewController *purchaseHistoryVC = [purchaseStoryboard instantiateViewControllerWithIdentifier:@"PurchaseHistoryVC"];
+    [self.tabBarController addChildViewController:purchaseHistoryVC];
+    
     
     self.locationManager = [CLLocationManager new];
     [self.locationManager requestWhenInUseAuthorization];

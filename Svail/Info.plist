@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>User Location Required</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -41,9 +39,9 @@
 				<key>KitInfo</key>
 				<dict>
 					<key>consumerKey</key>
-					<string>5Xqp6fiPgYiidwH0h8HvJ93eG</string>
+					<string>z8OLS1BfTzF8zQOpi3wzDOaxu</string>
 					<key>consumerSecret</key>
-					<string>IzI5ST8wmJDEn0CSOnPM0lAJVYia2qGioGaATOq4wpJ7AtXJ9a</string>
+					<string>hbSgo9A6mBzbCcdHmmgXGTbCQiAm0h8lNLttZFi2YMD8iLvHN1</string>
 				</dict>
 				<key>KitName</key>
 				<string>Twitter</string>
@@ -62,6 +60,8 @@
 	<string>Svail</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>User Location Required</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
