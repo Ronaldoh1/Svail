@@ -11,6 +11,8 @@
 		360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */; };
 		360CBE261AE8493C00A1F8CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 360CBE251AE8493C00A1F8CF /* Images.xcassets */; };
 		360CBE291AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */; };
+		364CBE991AEF7B3900754D9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 364CBE981AEF7B3900754D9C /* Main.storyboard */; };
+		364CBE9C1AEF7FC200754D9C /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364CBE9B1AEF7FC200754D9C /* RootTabBarController.m */; };
 		364DF2FC1AECDAFD00E0DFF6 /* RatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */; };
 		364DF30C1AEDA2F600E0DFF6 /* CustomViewUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF30B1AEDA2F600E0DFF6 /* CustomViewUtilities.m */; };
 		364DF30F1AEF30AF00E0DFF6 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 364DF30E1AEF30AF00E0DFF6 /* History.storyboard */; };
@@ -111,6 +113,9 @@
 		360CBE251AE8493C00A1F8CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		360CBE271AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantPurchaseCVCell.h; sourceTree = "<group>"; };
 		360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantPurchaseCVCell.m; sourceTree = "<group>"; };
+		364CBE981AEF7B3900754D9C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		364CBE9A1AEF7FC200754D9C /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
+		364CBE9B1AEF7FC200754D9C /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
 		364DF2FA1AECDAFD00E0DFF6 /* RatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingViewController.h; sourceTree = "<group>"; };
 		364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingViewController.m; sourceTree = "<group>"; };
 		364DF30A1AEDA2F600E0DFF6 /* CustomViewUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewUtilities.h; sourceTree = "<group>"; };
@@ -378,6 +383,9 @@
 				F24B361A1ADC68E9006153EC /* Login */,
 				F24B35A41ADB7E54006153EC /* AppDelegate.h */,
 				F24B35A51ADB7E54006153EC /* AppDelegate.m */,
+				364CBE981AEF7B3900754D9C /* Main.storyboard */,
+				364CBE9A1AEF7FC200754D9C /* RootTabBarController.h */,
+				364CBE9B1AEF7FC200754D9C /* RootTabBarController.m */,
 				F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */,
 				F2F94D2E1AE7FD240092C583 /* TweetIt.png */,
 				F268B49A1AE4D72D008F2370 /* connect.png */,
@@ -673,6 +681,7 @@
 				F24B36291ADC6B28006153EC /* Purchase.storyboard in Resources */,
 				F24B36511ADCDD70006153EC /* camera.png in Resources */,
 				F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */,
+				364CBE991AEF7B3900754D9C /* Main.storyboard in Resources */,
 				364DF30F1AEF30AF00E0DFF6 /* History.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -771,6 +780,7 @@
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
 				F24B363D1ADCA6D0006153EC /* User.m in Sources */,
 				364DF2FC1AECDAFD00E0DFF6 /* RatingViewController.m in Sources */,
+				364CBE9C1AEF7FC200754D9C /* RootTabBarController.m in Sources */,
 				36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */,
 				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,

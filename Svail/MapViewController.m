@@ -46,13 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
-    UITabBarController *tabBarVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-
-    UIStoryboard *purchaseStoryboard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
-    UIViewController *purchaseHistoryVC = [purchaseStoryboard instantiateViewControllerWithIdentifier:@"PurchaseHistoryVC"];
-    [tabBarVC addChildViewController:purchaseHistoryVC];
-    
+   
     
     self.locationManager = [CLLocationManager new];
     [self.locationManager requestWhenInUseAuthorization];
