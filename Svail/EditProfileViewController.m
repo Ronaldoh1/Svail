@@ -53,8 +53,6 @@
         self.saveButton.hidden = YES;
         self.verifyButton.enabled = NO;
         self.verifyButton.hidden = YES;
-        self.cancelButton.enabled = NO;
-        self.cancelButton.hidden = YES;
         self.changeImageButton.enabled = NO;
         self.changeImageButton.hidden = YES;
         self.logOutButton.enabled = NO;
@@ -66,25 +64,36 @@
         self.occupationTextField.hidden = YES;
         self.phoneTextField.hidden = YES;
         self.profileImage.hidden = YES;
+    }else
+    {
+        self.signInButton.enabled = NO;
+        self.signInButton.hidden = YES;
+        self.signUpButton.enabled = NO;
+        self.signUpButton.hidden = YES;
+        self.pleaseSignInLabel.hidden = YES;
+
+        self.saveButton.enabled = YES;
+        self.saveButton.hidden = NO;
+        self.verifyButton.enabled = YES;
+        self.verifyButton.hidden = NO;
+        self.changeImageButton.enabled = YES;
+        self.changeImageButton.hidden = NO;
+        self.logOutButton.enabled = YES;
+        self.fullnameTextField.hidden = NO;
+        self.emailTextField.hidden = NO;
+        self.passwordTextField.hidden = NO;
+        self.stateTextField.hidden = NO;
+        self.occupationTextField.hidden = NO;
+        self.phoneTextField.hidden = NO;
+        self.profileImage.hidden = NO;
     }
-
-    self.signInButton.enabled = NO;
-    self.signInButton.hidden = YES;
-    self.signUpButton.enabled = NO;
-    self.signUpButton.hidden = YES;
-    self.pleaseSignInLabel.hidden = YES;
-
-    self.cancelButton.clipsToBounds = true;
-    self.cancelButton.layer.cornerRadius = 40/2.0;
-    self.cancelButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
-    self.saveButton.clipsToBounds = true;
-    self.saveButton.layer.cornerRadius = 40/2.0;
-    self.saveButton.backgroundColor = [UIColor colorWithRed:59/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
 
     self.verifyButton.clipsToBounds = true;
     self.verifyButton.layer.cornerRadius = 40/2.0;
-    self.verifyButton.backgroundColor = [UIColor colorWithRed:247/255.0 green:93/255.0 blue:89/255.0 alpha:1.0];
-
+    self.verifyButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+    self.saveButton.clipsToBounds = true;
+    self.saveButton.layer.cornerRadius = 40/2.0;
+    self.saveButton.backgroundColor = [UIColor colorWithRed:59/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
     self.signInButton.clipsToBounds = true;
     self.signInButton.layer.cornerRadius = 60/2.0;
     self.signInButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
@@ -191,7 +200,7 @@
         UIAlertView  *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter 10 digits phone number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     } else {
-        [self dismissViewControllerAnimated:YES completion:nil];
+//        [self dismissViewControllerAnimated:YES completion:nil];
     }
 
 
@@ -204,11 +213,6 @@
     UIStoryboard *veriStoryboard = [UIStoryboard storyboardWithName:@"Verification" bundle:nil];
     UIViewController *veriNavVC = [veriStoryboard instantiateViewControllerWithIdentifier:@"VeriNavVC"];
     [self presentViewController:veriNavVC animated:YES completion:nil];
-}
-
-- (IBAction)onCancelButtonPressed:(UIButton *)sender
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -254,7 +258,27 @@
     self.occupationTextField.text = [NSString stringWithFormat:@""];
     self.phoneTextField.text = [NSString stringWithFormat:@""];
     self.profileImage.image = [UIImage imageNamed:@"defaultimage"];
+    self.signInButton.enabled = YES;
+    self.signInButton.hidden = NO;
+    self.signUpButton.enabled = YES;
+    self.signUpButton.hidden = NO;
+    self.pleaseSignInLabel.hidden = NO;
+
     self.saveButton.enabled = NO;
+    self.saveButton.hidden = YES;
+    self.verifyButton.enabled = NO;
+    self.verifyButton.hidden = YES;
+    self.changeImageButton.enabled = NO;
+    self.changeImageButton.hidden = YES;
+    self.logOutButton.enabled = NO;
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor clearColor];
+    self.fullnameTextField.hidden = YES;
+    self.emailTextField.hidden = YES;
+    self.passwordTextField.hidden = YES;
+    self.stateTextField.hidden = YES;
+    self.occupationTextField.hidden = YES;
+    self.phoneTextField.hidden = YES;
+    self.profileImage.hidden = YES;
     [self.view reloadInputViews];
 
 }

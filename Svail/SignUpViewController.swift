@@ -71,7 +71,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                             self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
 
                         } else {
-                            println("CANNOT FUCKING SEGUE")
+
                         }
                     }//                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
 //                    let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UINavigationController
@@ -81,9 +81,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                 } else {
                     println("User logged in through Facebook!")
 
-                    let mapStoryboard = UIStoryboard(name: "Map", bundle: nil)
-                    let mapVCTab = mapStoryboard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UITabBarController
-                    self.presentViewController(mapVCTab, animated: true, completion: nil)
+                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainVCTab = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UITabBarController
+                    self.presentViewController(mainVCTab, animated: true, completion: nil)
 
                 }
             } else {
