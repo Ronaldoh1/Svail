@@ -18,6 +18,9 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.tintColor = UIColor.orangeColor()
+        self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.orangeColor(), forKey: NSForegroundColorAttributeName) as [NSObject : AnyObject]
+
         //Dismiss keyboard
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
@@ -27,7 +30,7 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
 
         self.view.userInteractionEnabled = true
 
-        self.view.backgroundColor = UIColor(red: 240/255.0, green: 248/255.0, blue: 255/255.0, alpha: 1.0)
+//        self.view.backgroundColor = UIColor(red: 240/255.0, green: 248/255.0, blue: 255/255.0, alpha: 1.0)
 
         //making the buttons round
         self.cancelButton.clipsToBounds = true

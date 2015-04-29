@@ -18,12 +18,12 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Services Nearby" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaW-ex-ERT">
-                    <rect key="frame" x="133" y="192" width="215" height="21"/>
+                    <rect key="frame" x="133" y="181" width="215" height="36"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="215" id="giq-0e-FNh"/>
-                        <constraint firstAttribute="height" constant="21" id="i7x-9g-XeP"/>
+                        <constraint firstAttribute="height" constant="36" id="i7x-9g-XeP"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="20"/>
                     <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -38,11 +38,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="VX8-xM-Zge" secondAttribute="centerY" constant="-129" id="AZJ-2e-tbT"/>
-                <constraint firstItem="vaW-ex-ERT" firstAttribute="top" secondItem="5MS-DP-Dxw" secondAttribute="bottom" constant="32" id="GHb-sy-j57"/>
+                <constraint firstAttribute="centerX" secondItem="vaW-ex-ERT" secondAttribute="centerX" id="DoE-l2-woY"/>
+                <constraint firstItem="vaW-ex-ERT" firstAttribute="top" secondItem="5MS-DP-Dxw" secondAttribute="bottom" constant="21" id="GHb-sy-j57"/>
                 <constraint firstAttribute="centerX" secondItem="VX8-xM-Zge" secondAttribute="centerX" id="JBa-kZ-X89"/>
                 <constraint firstAttribute="centerY" secondItem="5MS-DP-Dxw" secondAttribute="centerY" constant="121" id="WGQ-hW-txD"/>
                 <constraint firstAttribute="centerX" secondItem="5MS-DP-Dxw" secondAttribute="centerX" id="ZNw-He-mgx"/>
-                <constraint firstAttribute="centerX" secondItem="vaW-ex-ERT" secondAttribute="centerX" id="pZk-Ls-nOW"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

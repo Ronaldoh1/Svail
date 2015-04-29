@@ -25,7 +25,7 @@
     squareImageView.layer.cornerRadius = squareImageView.frame.size.height / 2;
     squareImageView.layer.masksToBounds = YES;
     squareImageView.layer.borderWidth = 2.0;
-    squareImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    squareImageView.layer.borderColor = [UIColor orangeColor].CGColor;
 }
 
 -(void)handleTapOnProfileImageView:(UITapGestureRecognizer *)tapGesture

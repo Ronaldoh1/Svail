@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PGO-H9-GA0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PGO-H9-GA0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="UYU-eC-vL9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="i6w-dN-Dpf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter phone number " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4vj-75-PRR">
@@ -31,8 +31,7 @@
                                         <exclude reference="r3o-20-yFc"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="127" y="363" width="148" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="E0l-FR-5py"/>
                                         <include reference="r3o-20-yFc"/>
@@ -127,8 +126,7 @@
                                         <exclude reference="tYa-Xo-soz"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="283" y="366" width="30" height="24"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="QDf-K3-kPD"/>
                                         <include reference="tYa-Xo-soz"/>
@@ -438,19 +436,39 @@
                             <constraint firstAttribute="centerX" secondItem="acF-JQ-txq" secondAttribute="centerX" id="3sY-9Q-qQQ"/>
                             <constraint firstAttribute="centerX" secondItem="7mt-2m-Pb2" secondAttribute="centerX" id="40t-3i-V9z"/>
                             <constraint firstAttribute="centerX" secondItem="wAt-4U-dpy" secondAttribute="centerX" id="53P-9d-daa"/>
-                            <constraint firstItem="uma-9T-D9X" firstAttribute="top" secondItem="jhm-57-MDv" secondAttribute="bottom" constant="32" id="84I-Gh-Plg"/>
-                            <constraint firstItem="ctQ-Y5-Kak" firstAttribute="top" secondItem="yWB-a5-w5H" secondAttribute="bottom" constant="29" id="9wA-4c-uwr"/>
-                            <constraint firstItem="7mt-2m-Pb2" firstAttribute="top" secondItem="iyb-lJ-vxZ" secondAttribute="bottom" constant="37" id="GVR-aA-b1d"/>
-                            <constraint firstItem="wAt-4U-dpy" firstAttribute="top" secondItem="u8t-I3-zfX" secondAttribute="bottom" constant="26" id="H9B-E7-mmN"/>
-                            <constraint firstItem="4vj-75-PRR" firstAttribute="top" secondItem="yWB-a5-w5H" secondAttribute="bottom" constant="26" id="L7r-tv-pTf"/>
+                            <constraint firstItem="uma-9T-D9X" firstAttribute="top" secondItem="jhm-57-MDv" secondAttribute="bottom" constant="32" id="84I-Gh-Plg">
+                                <variation key="widthClass=compact" constant="14"/>
+                            </constraint>
+                            <constraint firstItem="ctQ-Y5-Kak" firstAttribute="top" secondItem="yWB-a5-w5H" secondAttribute="bottom" constant="29" id="9wA-4c-uwr">
+                                <variation key="widthClass=compact" constant="25"/>
+                            </constraint>
+                            <constraint firstItem="7mt-2m-Pb2" firstAttribute="top" secondItem="iyb-lJ-vxZ" secondAttribute="bottom" constant="37" id="GVR-aA-b1d">
+                                <variation key="widthClass=compact" constant="16"/>
+                            </constraint>
+                            <constraint firstItem="wAt-4U-dpy" firstAttribute="top" secondItem="u8t-I3-zfX" secondAttribute="bottom" constant="26" id="H9B-E7-mmN">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="4vj-75-PRR" firstAttribute="top" secondItem="yWB-a5-w5H" secondAttribute="bottom" constant="26" id="L7r-tv-pTf">
+                                <variation key="widthClass=compact" constant="22"/>
+                            </constraint>
                             <constraint firstItem="uma-9T-D9X" firstAttribute="leading" secondItem="wAt-4U-dpy" secondAttribute="trailing" constant="8" id="QXE-lI-J5X"/>
-                            <constraint firstItem="u8t-I3-zfX" firstAttribute="top" secondItem="4vj-75-PRR" secondAttribute="bottom" constant="25" id="Qvu-AW-C7g"/>
-                            <constraint firstItem="yWB-a5-w5H" firstAttribute="top" secondItem="bqn-6M-5K4" secondAttribute="bottom" constant="36" id="Stw-7d-FR3"/>
-                            <constraint firstItem="bqn-6M-5K4" firstAttribute="top" secondItem="7mt-2m-Pb2" secondAttribute="bottom" constant="19" id="Yvm-jk-zBB"/>
-                            <constraint firstItem="jhm-57-MDv" firstAttribute="top" secondItem="ctQ-Y5-Kak" secondAttribute="bottom" constant="31" id="hxb-Ei-Lq1"/>
+                            <constraint firstItem="u8t-I3-zfX" firstAttribute="top" secondItem="4vj-75-PRR" secondAttribute="bottom" constant="25" id="Qvu-AW-C7g">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="yWB-a5-w5H" firstAttribute="top" secondItem="bqn-6M-5K4" secondAttribute="bottom" constant="36" id="Stw-7d-FR3">
+                                <variation key="widthClass=compact" constant="14"/>
+                            </constraint>
+                            <constraint firstItem="bqn-6M-5K4" firstAttribute="top" secondItem="7mt-2m-Pb2" secondAttribute="bottom" constant="19" id="Yvm-jk-zBB">
+                                <variation key="widthClass=compact" constant="10"/>
+                            </constraint>
+                            <constraint firstItem="jhm-57-MDv" firstAttribute="top" secondItem="ctQ-Y5-Kak" secondAttribute="bottom" constant="31" id="hxb-Ei-Lq1">
+                                <variation key="widthClass=compact" constant="14"/>
+                            </constraint>
                             <constraint firstAttribute="centerX" secondItem="yWB-a5-w5H" secondAttribute="centerX" id="jag-Nh-7Z0"/>
                             <constraint firstItem="ctQ-Y5-Kak" firstAttribute="leading" secondItem="4vj-75-PRR" secondAttribute="trailing" constant="8" id="kJg-xu-pkz"/>
-                            <constraint firstItem="acF-JQ-txq" firstAttribute="top" secondItem="wAt-4U-dpy" secondAttribute="bottom" constant="27" id="lJb-ep-xXI"/>
+                            <constraint firstItem="acF-JQ-txq" firstAttribute="top" secondItem="wAt-4U-dpy" secondAttribute="bottom" constant="27" id="lJb-ep-xXI">
+                                <variation key="widthClass=compact" constant="12"/>
+                            </constraint>
                             <constraint firstAttribute="centerX" secondItem="u8t-I3-zfX" secondAttribute="centerX" id="n2t-km-r1e"/>
                             <constraint firstAttribute="centerX" secondItem="4vj-75-PRR" secondAttribute="centerX" id="tvj-25-oIw"/>
                             <constraint firstAttribute="centerX" secondItem="bqn-6M-5K4" secondAttribute="centerX" id="ulK-Jr-nHv"/>
@@ -541,6 +559,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="fbCheckmark" destination="cTf-PS-gUX" id="Ync-Jj-wvg"/>
                         <outlet property="fbVerifyButton" destination="FAu-0R-IWW" id="Yk1-oh-zWV"/>
@@ -567,6 +586,7 @@
             <objects>
                 <navigationController storyboardIdentifier="VeriNavVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PGO-H9-GA0" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="icy-Ov-AKD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

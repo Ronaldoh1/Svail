@@ -20,20 +20,20 @@
     UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
     UITabBarController *mapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MapNavVC"];
     [self addChildViewController:mapNavVC];
-    mapNavVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"mapicon"] scaledToSize:CGSizeMake(40, 40)];
+    mapNavVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"mapicon"] scaledToSize:CGSizeMake(35, 35)];
     
 
     
     UIStoryboard *editProfileStoryboard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
     UIViewController *editProfileVC = [editProfileStoryboard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
     [self addChildViewController:editProfileVC];
-    editProfileVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"profile3"] scaledToSize:CGSizeMake(40, 40)];
+    editProfileVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"profile3"] scaledToSize:CGSizeMake(35, 35)];
 
 
     UIStoryboard *historyStoryboard = [UIStoryboard storyboardWithName:@"History" bundle:nil];
     UIViewController *historyVC = [historyStoryboard instantiateViewControllerWithIdentifier:@"HistoryNavVC"];
     [self addChildViewController:historyVC];
-    historyVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"historyicon"] scaledToSize:CGSizeMake(40, 40)];
+    historyVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"history2"] scaledToSize:CGSizeMake(35, 35)];
     
     
 
@@ -42,7 +42,7 @@
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    [image drawInRect:CGRectMake(0, 1, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;

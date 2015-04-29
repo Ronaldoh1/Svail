@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -27,7 +27,7 @@
                                     <segment title="Post"/>
                                     <segment title="Purchase"/>
                                 </segments>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="tur-eB-9sF"/>
@@ -109,6 +109,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="3Ym-5v-96a"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zq0-tn-ijf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,7 +168,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="8" width="304" height="16"/>
+                                                        <rect key="frame" x="8" y="8" width="384" height="16"/>
                                                         <mask key="constraints">
                                                             <include reference="BI3-mf-M9Q"/>
                                                         </mask>
@@ -209,7 +210,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="198" y="39" width="114" height="16"/>
+                                                        <rect key="frame" x="198" y="39" width="194" height="16"/>
                                                         <mask key="constraints">
                                                             <include reference="kgx-p8-LMZ"/>
                                                         </mask>
@@ -251,7 +252,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="101" width="304" height="16"/>
+                                                        <rect key="frame" x="8" y="101" width="384" height="16"/>
                                                         <mask key="constraints">
                                                             <exclude reference="vIN-vC-EM0"/>
                                                         </mask>
@@ -323,7 +324,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="-8" y="137" width="336" height="100"/>
+                                                        <rect key="frame" x="-8" y="137" width="416" height="100"/>
                                                         <mask key="constraints">
                                                             <include reference="IHf-rV-pEH"/>
                                                         </mask>
@@ -347,7 +348,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="198" y="70" width="114" height="16"/>
+                                                        <rect key="frame" x="198" y="70" width="194" height="16"/>
                                                         <mask key="constraints">
                                                             <include reference="fEN-Ga-rCs"/>
                                                         </mask>
@@ -518,6 +519,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="servicesTableView" destination="lkn-FN-3ND" id="AzJ-U9-8ql"/>
                     </connections>
@@ -542,7 +544,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIN-XL-oHw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4014" y="-1503.5"/>
+            <point key="canvasLocation" x="4008" y="-1496"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QT9-wS-flh">
