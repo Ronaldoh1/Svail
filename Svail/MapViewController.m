@@ -35,6 +35,8 @@
 @property NSArray *annotationArray;
 @property NSMutableArray *serviceParticipants;
 @property (weak, nonatomic) IBOutlet UIButton *currentLocationButton;
+@property BOOL didGetUserLocation;
+
 
 
 @end
@@ -44,17 +46,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupProfileButton];
+
+    //initially we should set the didGetUserLocation to false;
+
+    self.didGetUserLocation = false;
+
 
     self.locationManager = [CLLocationManager new];
+    self.locationManager.delegate = self;
+    self.mapView.delegate = self;
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = YES;
 
     CLLocation *currentLocation = self.locationManager.location;
 
-    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+    
 
-    self.segmentedControl.tintColor = [UIColor orangeColor];
+    self.segmentedControl.tintColor = //setup color tint
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
 
     //setting image to Navigation Bar's title
     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
@@ -107,9 +117,20 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.mapView.showsUserLocation = YES;
-    [self setupProfileButton];
+
+
+
+    //zooming map to current location at startup
+    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
+
+
 }
+-(void)viewDidAppear:(BOOL)animated{
+    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
+    // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
+
+}
+
 
 - (void)setupProfileButton
 {
@@ -370,13 +391,18 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    if(!self.didGetUserLocation){
+
     //zooming map to current location at startup
+        
     double latitude = self.locationManager.location.coordinate.latitude;
     double longitude = self.locationManager.location.coordinate.longitude;
     [self.locationManager stopUpdatingLocation];
 
     [self zoom:&latitude :&longitude];
 
+        self.didGetUserLocation = true;
+    }
 }
 
 

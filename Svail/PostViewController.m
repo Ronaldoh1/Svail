@@ -46,7 +46,7 @@
 
 @property User *currentUser;
 
-
+@property (nonatomic) UITapGestureRecognizer *tapRecognizer;
 
 @end
 
@@ -72,14 +72,30 @@
     //set delegates for textfields
     [self setDelegatesForTextFields];
 
-    //change the navbartitle color
+//    //change the navbartitle color
+//
+    self.navigationController.navigationBar.tintColor = self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+    
+//    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
 
-    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+    //setting image to Navigation Bar's title
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    titleView.font = [UIFont fontWithName:@"Noteworthy" size:20];
+    titleView.text = @"Post Service";
+    titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
+    [self.navigationItem setTitleView:titleView];
+
+    self.
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onChooseStartDate:)];
+    self.tapRecognizer.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:self.tapRecognizer];
 
 
-
-
+}
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender
+{
+    [self.view endEditing:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -188,14 +204,19 @@
 //
 - (IBAction)onChooseStartDate:(UITextField *)sender {
 
-    self.secondaryView.hidden = false;
 
-    [self.startDateTextField resignFirstResponder];
-    self.selectStartorEndDateLabel.text = @"Select A Start Date";
-    self.startDateTapped = true;
+        self.secondaryView.hidden = false;
+
+
+        [self.view endEditing:YES];
+        [self.startDateTextField resignFirstResponder];
+        self.selectStartorEndDateLabel.text = @"Select A Start Date";
+        self.startDateTapped = true;
+
 
 
 }
+
 
 
 - (IBAction)onDonePickingDate:(UIButton *)sender {
@@ -267,10 +288,12 @@
 
 - (IBAction)onLocationLabelTapped:(UITextField *)sender {
      [self performSegueWithIdentifier:@"toSelectLocationFromMap" sender:self];
+     [self.location resignFirstResponder];
 }
 
 - (IBAction)onTappedButtonSetLocation:(UIButton *)sender {
         [self performSegueWithIdentifier:@"toSelectLocationFromMap" sender:self];
+         [self resignFirstResponder];
 }
 
 //hide keyboard when user touches outside.
@@ -322,6 +345,10 @@
     self.serviceCategory.delegate = self;
     self.serviceCapacity.delegate = self;
     self.location.delegate = self;
+    self.startDateTextField.delegate = self;
+
+    //Set the startdate textfield initially to true
+    self.startDateTextField.enabled = true;
 
     
 }

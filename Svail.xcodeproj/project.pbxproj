@@ -30,7 +30,6 @@
 		36BBC47D1AE435E0007960F1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47C1AE435E0007960F1 /* Parse.framework */; };
 		36BBC47F1AE43969007960F1 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47E1AE43969007960F1 /* Bolts.framework */; };
 		36C8501C1AF0B3D000235A87 /* ReservationHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C8501B1AF0B3D000235A87 /* ReservationHistoryViewController.m */; };
-		36D1861D1AF03F9A0095DD9F /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D1861C1AF03F9A0095DD9F /* HistoryViewController.m */; };
 		36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE95591ADDC93900ABDB93 /* TwitterKit.framework */; };
 		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
@@ -68,7 +67,6 @@
 		F24B35E41ADB961E006153EC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35E31ADB961E006153EC /* AudioToolbox.framework */; };
 		F24B36231ADC6AE0006153EC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36221ADC6AE0006153EC /* Login.storyboard */; };
 		F24B36251ADC6AF1006153EC /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36241ADC6AF1006153EC /* Map.storyboard */; };
-		F24B36271ADC6B16006153EC /* Service.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36261ADC6B16006153EC /* Service.storyboard */; };
 		F24B36291ADC6B28006153EC /* Reservation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36281ADC6B28006153EC /* Reservation.storyboard */; };
 		F24B362B1ADC6B3C006153EC /* Verification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362A1ADC6B3C006153EC /* Verification.storyboard */; };
 		F24B362D1ADC6B4B006153EC /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362C1ADC6B4B006153EC /* Post.storyboard */; };
@@ -88,6 +86,7 @@
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
 		F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */; };
 		F2F1C5B41AEF6394000C4BEF /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */; };
+		F2F1C5B91AF102E7000C4BEF /* PostSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36531ADD4FBF006153EC /* PostSummaryViewController.m */; };
 		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
 		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
 		F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */; };
@@ -143,8 +142,6 @@
 		36BBC47E1AE43969007960F1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		36C8501A1AF0B3D000235A87 /* ReservationHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationHistoryViewController.h; sourceTree = "<group>"; };
 		36C8501B1AF0B3D000235A87 /* ReservationHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationHistoryViewController.m; sourceTree = "<group>"; };
-		36D1861B1AF03F9A0095DD9F /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
-		36D1861C1AF03F9A0095DD9F /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		36DE95591ADDC93900ABDB93 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -205,7 +202,6 @@
 		F24B35E31ADB961E006153EC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F24B36221ADC6AE0006153EC /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F24B36241ADC6AF1006153EC /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
-		F24B36261ADC6B16006153EC /* Service.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Service.storyboard; sourceTree = "<group>"; };
 		F24B36281ADC6B28006153EC /* Reservation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reservation.storyboard; sourceTree = "<group>"; };
 		F24B362A1ADC6B3C006153EC /* Verification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Verification.storyboard; sourceTree = "<group>"; };
 		F24B362C1ADC6B4B006153EC /* Post.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
@@ -383,7 +379,6 @@
 				F24B36201ADC6A7B006153EC /* PostService */,
 				F24B361E1ADC69BB006153EC /* Verification */,
 				F24B361D1ADC6970006153EC /* Reservation */,
-				F24B361C1ADC695C006153EC /* ServiceList */,
 				F2F1C5B21AEF60CA000C4BEF /* Purchase */,
 				F24B361B1ADC6907006153EC /* Map */,
 				F24B361A1ADC68E9006153EC /* Login */,
@@ -516,14 +511,6 @@
 				3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */,
 			);
 			name = Map;
-			sourceTree = "<group>";
-		};
-		F24B361C1ADC695C006153EC /* ServiceList */ = {
-			isa = PBXGroup;
-			children = (
-				F24B36261ADC6B16006153EC /* Service.storyboard */,
-			);
-			name = ServiceList;
 			sourceTree = "<group>";
 		};
 		F24B361D1ADC6970006153EC /* Reservation */ = {
@@ -674,7 +661,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F24B36271ADC6B16006153EC /* Service.storyboard in Resources */,
 				F262CB691AEACAED00988E5B /* mapicon.png in Resources */,
 				F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */,
 				36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */,
@@ -769,6 +755,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F1C5B91AF102E7000C4BEF /* PostSummaryViewController.m in Sources */,
 				3613DBF01AF0759C002B5251 /* CustomSelectTimeCell.m in Sources */,
 				3613DBEF1AF07584002B5251 /* SelectTimeSlotsViewController.m in Sources */,
 				3613DBEE1AF06FA7002B5251 /* EditPostViewController.m in Sources */,
