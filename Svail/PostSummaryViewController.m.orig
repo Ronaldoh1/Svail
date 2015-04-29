@@ -1,0 +1,138 @@
+//
+//  HistoryViewController.m
+//  Svail
+//
+//  Created by zhenduo zhu on 4/27/15.
+//  Copyright (c) 2015 Svail. All rights reserved.
+//
+
+<<<<<<< HEAD:Svail/PostHistoryViewController.m
+#import "PostHistoryViewController.h"
+=======
+#import "PostSummaryViewController.h"
+
+#import <Parse/Parse.h>
+>>>>>>> 5600e660022f731bca5e16a780f95da95b68a4e3:Svail/PostSummaryViewController.m
+#import "Service.h"
+#import "User.h"
+#import "PostTableViewCell.h"
+#import "EditPostViewController.h"
+
+<<<<<<< HEAD:Svail/PostHistoryViewController.m
+@interface PostHistoryViewController () <UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic) NSMutableArray *services;
+@property (nonatomic) User *currentUser;
+@property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
+=======
+@interface PostSummaryViewController ()<UITableViewDataSource, UITableViewDelegate>
+>>>>>>> 5600e660022f731bca5e16a780f95da95b68a4e3:Svail/PostSummaryViewController.m
+
+@end
+
+@implementation PostSummaryViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+<<<<<<< HEAD:Svail/PostHistoryViewController.m
+    
+    self.currentUser = [User currentUser];
+    
+    PFQuery *serviceQuery = [Service query];
+    [serviceQuery whereKey:@"provider" equalTo:self.currentUser];
+    [serviceQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
+                                                 NSError *error)
+     {
+         if (!error)
+         {
+             self.services = objects.mutableCopy;
+             [self.servicesTableView reloadData];
+         }
+     }];
+=======
+    // Do any additional setup after loading the view.
+
+    self.serviceFromParse = [Service new];
+
+    self.navigationItem.hidesBackButton = true;
+   PFQuery *query = [Service query];
+    [query whereKey:@"provider" equalTo:[User currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu objects.", (unsigned long)objects.count);
+
+            self.arrayOfServiceObjects = objects.mutableCopy;
+
+           [self.tableView reloadData];
+
+
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
+    //setup color tint and title color
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+
+
+}
+
+
+
+- (IBAction)onDoneButtonTapped:(UIBarButtonItem *)sender {
+
+    UIStoryboard *mapStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *mapTabVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+    [self presentViewController:mapTabVC animated:true completion:nil];
+
+>>>>>>> 5600e660022f731bca5e16a780f95da95b68a4e3:Svail/PostSummaryViewController.m
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSLog(@"%lu",self.services.count);
+    return self.services.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    cell.service = self.services[indexPath.row];
+    cell.tag = indexPath.row;
+    [cell awakeFromNib];
+    return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender
+{
+    if ([segue.identifier isEqualToString:@"PostHistoryToEditPostSegue"]) {
+        EditPostViewController *editPostVC = segue.destinationViewController;
+        editPostVC.service = self.services[sender.tag];
+    }
+    
+}
+
+<<<<<<< HEAD:Svail/PostHistoryViewController.m
+=======
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+    return self.arrayOfServiceObjects.count;
+}
+
+
+-(IBAction)unwindSegueFromPostDetailViewController:(UIStoryboardSegue *)segue{
+
+}
+
+#pragma Marks - Helper Methods. 
+
+-(void) displayAlert{
+>>>>>>> 5600e660022f731bca5e16a780f95da95b68a4e3:Svail/PostSummaryViewController.m
+
+
+
+@end

@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 
-#import "PostHistoryViewController.h"
+#import "NewPostHistoryViewController.h"
 #import "Service.h"
 #import "User.h"
 #import "PostTableViewCell.h"
 #import "EditPostViewController.h"
 
-@interface PostHistoryViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface NewPostHistoryViewController () <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic) NSMutableArray *services;
 @property (nonatomic) User *currentUser;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation PostHistoryViewController
+@implementation NewPostHistoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
