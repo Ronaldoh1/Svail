@@ -28,11 +28,13 @@
     UIViewController *editProfileVC = [editProfileStoryboard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
     [self addChildViewController:editProfileVC];
     editProfileVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"profile3"] scaledToSize:CGSizeMake(40, 40)];
-    
+
+
     UIStoryboard *historyStoryboard = [UIStoryboard storyboardWithName:@"History" bundle:nil];
     UIViewController *historyVC = [historyStoryboard instantiateViewControllerWithIdentifier:@"HistoryNavVC"];
     [self addChildViewController:historyVC];
-    historyVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"profile3"] scaledToSize:CGSizeMake(40, 40)];
+    historyVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"historyicon"] scaledToSize:CGSizeMake(40, 40)];
+    
     
 
     

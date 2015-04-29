@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ohV-LM-Xyw">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Confirm Purchase View Controller-->
@@ -13,6 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="By1-L8-nah"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JOh-3c-BbW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ws5-PN-i3M">
@@ -93,6 +95,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="gb9-P8-es8">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="G0w-Av-i8f">
+                            <connections>
+                                <action selector="onCancelButtonTapped:" destination="n1l-X9-Oo4" id="G1F-RS-B62"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Pay" id="fJp-Gd-tVI">
                             <connections>
                                 <action selector="onPayButtonTapped:" destination="n1l-X9-Oo4" id="avV-ps-LSH"/>
@@ -116,7 +123,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDy-Yf-iLb">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDy-Yf-iLb">
                                 <rect key="frame" x="137" y="401" width="140" height="42"/>
                                 <state key="normal" backgroundImage="ApplePayBTN_42pt__black_textLogo_">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,7 +132,7 @@
                                     <action selector="purchaseWithApplePayButton:" destination="YSt-Ta-dF7" eventType="touchUpInside" id="zq1-HV-jep"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sho-cg-9no">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="OR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sho-cg-9no">
                                 <rect key="frame" x="195" y="362" width="25" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -160,80 +167,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <connections>
-                        <segue destination="0D7-9g-JEu" kind="show" identifier="toServiceHistoryNavVC" id="nT6-Ki-Oyz"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="px9-BU-7ZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1812" y="332"/>
-        </scene>
-        <!--Service Request History-->
-        <scene sceneID="E4h-Ps-5Ea">
-            <objects>
-                <viewController storyboardIdentifier="PurchaseHistoryVC" id="lhV-T6-Qxe" customClass="PurchaseHistoryViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Q4l-p2-fNS"/>
-                        <viewControllerLayoutGuide type="bottom" id="cDM-zc-6wd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2df-e6-FV8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xoh-Iw-Seh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellID" textLabel="efR-GT-MeD" detailTextLabel="cEQ-wY-i7B" style="IBUITableViewCellStyleSubtitle" id="fAt-rO-lEY">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fAt-rO-lEY" id="TNd-5K-kl9">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="efR-GT-MeD">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cEQ-wY-i7B">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="lhV-T6-Qxe" id="NI1-W9-VAB"/>
-                                    <outlet property="delegate" destination="lhV-T6-Qxe" id="Awe-Ku-7Ns"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="xoh-Iw-Seh" firstAttribute="top" secondItem="2df-e6-FV8" secondAttribute="topMargin" id="VcS-60-pXv"/>
-                            <constraint firstItem="xoh-Iw-Seh" firstAttribute="leading" secondItem="2df-e6-FV8" secondAttribute="leadingMargin" constant="-16" id="nL4-Rg-WiY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xoh-Iw-Seh" secondAttribute="trailing" constant="-16" id="ph8-2c-Yt4"/>
-                            <constraint firstItem="cDM-zc-6wd" firstAttribute="top" secondItem="xoh-Iw-Seh" secondAttribute="bottom" id="z73-4e-iX3"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Service Request History" id="K4J-i0-Zvg">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="Le9-mx-HJU">
-                            <connections>
-                                <action selector="onDoneButtonTapped:" destination="lhV-T6-Qxe" id="eM5-Nn-ukM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="tableView" destination="xoh-Iw-Seh" id="dUt-jg-QIr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q41-Kp-oBu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3308" y="332"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gpM-fo-PY5">

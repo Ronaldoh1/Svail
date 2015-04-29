@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 
-#import "OldPostHistoryViewController.h"
-#import "PostDetailViewController.h"
+#import "PostSummaryViewController.h"
+
 #import <Parse/Parse.h>
 #import "Service.h"
 
-@interface OldPostHistoryViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface PostSummaryViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *arrayOfServiceObjects;
@@ -20,7 +20,7 @@
 @property NSIndexPath *itemToDeletIndexPath;
 @end
 
-@implementation OldPostHistoryViewController
+@implementation PostSummaryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,7 +48,10 @@
         }
     }];
 
-    
+    //setup color tint and title color
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+
 
 }
 
@@ -56,9 +59,10 @@
 
 - (IBAction)onDoneButtonTapped:(UIBarButtonItem *)sender {
 
-    UIStoryboard *mapStoryBoard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
+    UIStoryboard *mapStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *mapTabVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
     [self presentViewController:mapTabVC animated:true completion:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,15 +135,7 @@
     return self.arrayOfServiceObjects.count;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
-    PostDetailViewController *postDetailVC = segue.destinationViewController;
-
-     self.serviceSelected =
-    postDetailVC.serviceToViewEdit = ((Service *)self.arrayOfServiceObjects[[self.tableView indexPathForSelectedRow].row]);
-
-
-}
 -(IBAction)unwindSegueFromPostDetailViewController:(UIStoryboardSegue *)segue{
 
 }

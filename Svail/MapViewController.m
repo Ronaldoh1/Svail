@@ -50,6 +50,21 @@
     self.mapView.showsUserLocation = YES;
     CLLocation *currentLocation = self.locationManager.location;
 
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+
+    //setting image to Navigation Bar's title
+    UIImageView *titleView = (UIImageView *)self.navigationItem.titleView;
+    titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+    UIImage *svailNameImage = [UIImage imageNamed:@"SvailName"];
+    CGSize scaledSize = CGSizeMake(50, 20);
+    UIGraphicsBeginImageContext(scaledSize);
+    [svailNameImage drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    titleView.image = scaledImage;
+    [self.navigationItem setTitleView:titleView];
+
     //setting today's date and the next days of the week for segmented control's titles
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -73,6 +88,9 @@
         [self.segmentedControl setTitle:nextDayDate forSegmentAtIndex:i];
     }
 
+    //change tint for the map view controller
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    
     //making segmentedcontrol selected when the view loads
     self.segmentedControl.selected = YES;
 
@@ -105,13 +123,14 @@
              
             [CustomViewUtilities transformToCircleViewFromSquareView:button];
 
-            [button addTarget:self action:@selector(onProfileButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+//            [button addTarget:self action:@selector(onProfileButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
             [button setImage:profileImage forState:UIControlStateNormal];
 
              UIView *profileButtonView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
              profileButtonView.bounds = CGRectOffset(profileButtonView.bounds, 10, 0);
              [profileButtonView addSubview:button];
              UIBarButtonItem *profileButtonItem= [[UIBarButtonItem alloc] initWithCustomView:profileButtonView];
+             profileButtonItem.enabled = NO;
              self.navigationItem.leftBarButtonItem=profileButtonItem;
 
          }
@@ -200,11 +219,18 @@
         UIButton *requestButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         requestButton.frame = CGRectMake(0, 0, 70, 20);
         [requestButton setTitle:@"Request" forState:UIControlStateNormal];
-        [requestButton setTitleColor:[UIColor colorWithRed:247/255.0 green:93/255.0 blue:89/255.0 alpha:1.0] forState:UIControlStateNormal];
+        [requestButton setTitleColor:[UIColor colorWithRed:100/255.0 green:233/255.0 blue:134/255.0 alpha:1.0] forState:UIControlStateNormal];
         requestButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
         [requestButton.layer setBorderWidth:1];
-        [requestButton.layer setBorderColor:[UIColor colorWithRed:247/255.0 green:93/255.0 blue:89/255.0 alpha:1.0].CGColor];
+        [requestButton.layer setBorderColor:[UIColor colorWithRed:100/255.0 green:233/255.0 blue:134/255.0 alpha:1.0].CGColor];
         pinAnnotation.rightCalloutAccessoryView = requestButton;
+    }else if (self.serviceParticipants.count == [customAnnotation.service.capacity integerValue])
+    {
+        UILabel *fullLabel = [UILabel new];
+        fullLabel.frame = CGRectMake(0, 0, 30, 20);
+        fullLabel.text = @"Full";
+        fullLabel.textColor = [UIColor colorWithRed:247/255.0 green:94/255.0 blue:89/255.0 alpha:1.0];
+        pinAnnotation.rightCalloutAccessoryView = fullLabel;
     }
 
     pinAnnotation.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -288,13 +314,18 @@
 
         }else
         {
-            UIImage *image = [UIImage imageNamed:@"facebook_logo"];
+            UIImage *image = [UIImage imageNamed:@"defaultimage"];
             CGSize scaledSize = CGSizeMake(40, 40);
             UIGraphicsBeginImageContext(scaledSize);
             [image drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
             UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             CustomImageView *imageView = [[CustomImageView alloc]initWithImage:scaledImage];
+            imageView.layer.cornerRadius = imageView.frame.size.height / 2;
+            imageView.layer.masksToBounds = YES;
+            imageView.layer.borderWidth = 1.5;
+            imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+            imageView.clipsToBounds = YES;
             imageView.userInteractionEnabled = YES;
 //            imageView.service = service;
             imageView.user = service.provider;
@@ -337,7 +368,9 @@
     //zooming map to current location at startup
     double latitude = self.locationManager.location.coordinate.latitude;
     double longitude = self.locationManager.location.coordinate.longitude;
+    [self.locationManager stopUpdatingLocation];
     [self zoom:&latitude :&longitude];
+
 }
 
 
@@ -485,16 +518,16 @@
 
 - (IBAction)onCurrentLocationButtonTapped:(UIButton *)sender
 {
-    [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
+    [self.mapView setCenterCoordinate:self.locationManager.location.coordinate animated:YES];
 }
 
 
-- (IBAction)onProfileButtonTapped:(UIBarButtonItem *)sender
-{
-    UIStoryboard *editProfileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
-    UIViewController *editProfileVC = [editProfileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
-    [self presentViewController:editProfileVC animated:true completion:nil];
-}
+//- (IBAction)onProfileButtonTapped:(UIBarButtonItem *)sender
+//{
+//    UIStoryboard *editProfileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
+//    UIViewController *editProfileVC = [editProfileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
+//    [self presentViewController:editProfileVC animated:true completion:nil];
+//}
 
 - (void)onProfileImageTapped:(UITapGestureRecognizer *)tapGestureRecognizer
 {

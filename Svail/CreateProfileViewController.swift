@@ -75,9 +75,9 @@ class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPi
 
     @IBAction func onSkipButtonPressed(sender: UIButton)
     {
-        let mapStoryBoard = UIStoryboard(name: "Map", bundle: nil)
-        let tabBarVC = mapStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
-        self.presentViewController(tabBarVC, animated: true, completion: nil)
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVCTab = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UITabBarController
+        self.presentViewController(mainVCTab, animated: true, completion: nil)
     }
 
     @IBAction func onFinishButtonPressed(sender: UIButton)

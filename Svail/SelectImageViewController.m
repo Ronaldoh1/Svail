@@ -38,6 +38,12 @@
     self.pickedImage2 = [Image object];
     self.pickedImage3 = [Image object];
     self.pickedImage4 = [Image object];
+
+    //setup color tint and title color
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:true];
@@ -135,10 +141,12 @@
         NSData *imageData = UIImagePNGRepresentation((UIImage *)self.imageArray[0]);
         PFFile *imageFile = [PFFile fileWithData:imageData];
         self.pickedImage1.imageFile = imageFile;
-        // self.pickedImage1.service = self.service;
+        self.pickedImage1.service = self.service;
         [imageTempArray addObject:self.pickedImage1];
 
         [self saveImagesInBackGround:imageTempArray];
+        [self.pickedImage1 saveInBackground];
+
 
 
 
@@ -154,16 +162,19 @@
         PFFile *imageFile = [PFFile fileWithData:imageData];
         self.pickedImage1.imageFile = imageFile;
         [imageTempArray addObject:self.pickedImage1];
+        [self.pickedImage1 saveInBackground];
 
         //image2
         NSData *imageData2 = UIImagePNGRepresentation((UIImage *)self.imageArray[1]);
         PFFile *imageFile2 = [PFFile fileWithData:imageData2];
         self.pickedImage2.imageFile = imageFile2;
-        //self.pickedImage2.service = self.service;
+        self.pickedImage2.service = self.service;
         [imageTempArray addObject:self.pickedImage2];
         //[self.pickedImage2 saveInBackground];
 
         [self saveImagesInBackGround:imageTempArray];
+        [self.pickedImage2 saveInBackground];
+
 
 
 
@@ -177,7 +188,9 @@
         NSData *imageData = UIImagePNGRepresentation((UIImage *)self.imageArray[0]);
         PFFile *imageFile = [PFFile fileWithData:imageData];
         self.pickedImage1.imageFile = imageFile;
+
         [imageTempArray addObject:self.pickedImage1];
+        [self.pickedImage1 saveInBackground];
 
         //image2
         NSData *imageData2 = UIImagePNGRepresentation((UIImage *)self.imageArray[1]);
@@ -185,6 +198,7 @@
         self.pickedImage2.imageFile = imageFile2;
         //self.pickedImage2.service = self.service;
         [imageTempArray addObject:self.pickedImage2];
+        [self.pickedImage2 saveInBackground];
 
         //Image3
         NSData *imageData3 = UIImagePNGRepresentation((UIImage *)self.imageArray[2]);
@@ -194,6 +208,7 @@
         [imageTempArray addObject:self.pickedImage3];
 
         [self saveImagesInBackGround:imageTempArray];
+        [self.pickedImage3 saveInBackground];
 
     } if(self.imageArray.count == 4){
         //define and NSMutable array to hold the image objects.
@@ -204,25 +219,29 @@
         PFFile *imageFile = [PFFile fileWithData:imageData];
         self.pickedImage1.imageFile = imageFile;
         [imageTempArray addObject:self.pickedImage1];
+        [self.pickedImage1 saveInBackground];
         //image2
         NSData *imageData2 = UIImagePNGRepresentation((UIImage *)self.imageArray[1]);
         PFFile *imageFile2 = [PFFile fileWithData:imageData2];
         self.pickedImage2.imageFile = imageFile2;
-        //self.pickedImage2.service = self.service;
+        self.pickedImage2.service = self.service;
         [imageTempArray addObject:self.pickedImage2];
+        [self.pickedImage2 saveInBackground];
 
         //Image3
         NSData *imageData3 = UIImagePNGRepresentation((UIImage *)self.imageArray[2]);
         PFFile *imageFile3 = [PFFile fileWithData:imageData3];
         self.pickedImage3.imageFile = imageFile3;
-        //self.pickedImage2.service = self.service;
+        self.pickedImage3.service = self.service;
         [imageTempArray addObject:self.pickedImage3];
+        [self.pickedImage3 saveInBackground];
         //Image4
         NSData *imageData4 = UIImagePNGRepresentation((UIImage *)self.imageArray[3]);
         PFFile *imageFile4 = [PFFile fileWithData:imageData4];
         self.pickedImage4.imageFile = imageFile4;
-        //self.pickedImage2.service = self.service;
+        self.pickedImage4.service = self.service;
         [imageTempArray addObject:self.pickedImage4];
+        [self.pickedImage4 saveInBackground];
 
         [self saveImagesInBackGround:imageTempArray];
 

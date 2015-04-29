@@ -1,5 +1,5 @@
 //
-//  PostDetailViewController.h
+//  PostHistoryViewController.h
 //  Svail
 //
 //  Created by Ronald Hernandez on 4/14/15.
@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Service.h"
 
-@interface PostDetailViewController : UIViewController
-@property Service *serviceToViewEdit;
+@interface PostSummaryViewController : UIViewController
 
 @end

@@ -59,18 +59,19 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
                     
                     self.getFacebookUserData()
 
-                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
-                    let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UINavigationController
-                    self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+//                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
+//                    let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UINavigationController
+//                    self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+                    self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
 
                 } else {
                     println("User logged in through Facebook!")
 
                     PFQuery.clearAllCachedResults();
                     
-                    let mapStoryboard = UIStoryboard(name: "Map", bundle: nil)
-                    let mapVCTab = mapStoryboard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UITabBarController
-                    self.presentViewController(mapVCTab, animated: true, completion: nil)
+                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainVCTab = mainStoryboard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UITabBarController
+                    self.presentViewController(mainVCTab, animated: true, completion: nil)
 
                 }
             } else {
@@ -210,11 +211,11 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
     
     //Helper methods to dismiss keyboard
     func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= 190
+        self.view.frame.origin.y -= 200
     }
     
     func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += 190
+        self.view.frame.origin.y += 200
     }
     
     func setUpTextFieldsForLogin(){
