@@ -28,6 +28,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //setup color tint and title color
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+
+
     if (self.editModeLocation == true) {
         //self.editModeLocation = false;
 
@@ -138,7 +143,7 @@
     CLLocationCoordinate2D newCoordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
     MKPointAnnotation *someAnnotation = [MKPointAnnotation new];
     someAnnotation.coordinate = newCoordinate;
-    someAnnotation.title = @"This is where your service will be performed";
+    someAnnotation.title = @"Service Location";
 
         self.serviceGeoPointFromMap = [PFGeoPoint new];
         self.serviceGeoPointFromMap.latitude = newCoordinate.latitude;

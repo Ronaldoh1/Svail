@@ -56,6 +56,10 @@ static NSString *const kReusableIdentifier = @"cell";
     self.navigationItem.hidesBackButton = YES;
 
 
+    //setup color tint and title color
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+
 
 }
 
@@ -189,5 +193,15 @@ static NSString *const kReusableIdentifier = @"cell";
 
     NSLog(@"cell has been tapped");
 }
+//Helper method to display success message to user.
+-(void)displaySuccessMessage:(NSString *)text{
+
+
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Success!" message:text delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+
+    [alertView show];
+    
+}
+
 
 @end

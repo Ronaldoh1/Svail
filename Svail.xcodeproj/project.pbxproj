@@ -75,8 +75,7 @@
 		F24B364C1ADCB645006153EC /* Verification.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B364B1ADCB645006153EC /* Verification.m */; };
 		F24B364F1ADCD911006153EC /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B364E1ADCD911006153EC /* PostViewController.m */; };
 		F24B36511ADCDD70006153EC /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F24B36501ADCDD70006153EC /* camera.png */; };
-		F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */; };
-		F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36561ADD4FDB006153EC /* PostDetailViewController.m */; };
+		F24B36541ADD4FBF006153EC /* PostSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36531ADD4FBF006153EC /* PostSummaryViewController.m */; };
 		F24B365C1ADDA923006153EC /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365B1ADDA923006153EC /* Service.m */; };
 		F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365E1ADE2015006153EC /* SelectImageViewController.m */; };
 		F262CB691AEACAED00988E5B /* mapicon.png in Resources */ = {isa = PBXBuildFile; fileRef = F262CB681AEACAED00988E5B /* mapicon.png */; };
@@ -85,6 +84,9 @@
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
 		F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */; };
 		F2F1C5B41AEF6394000C4BEF /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */; };
+		F2F1C5B61AF01626000C4BEF /* svailsmall.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F1C5B51AF01626000C4BEF /* svailsmall.png */; };
+		F2F1C5B71AF03C55000C4BEF /* SelectTimeSlotsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */; };
+		F2F1C5B81AF03C89000C4BEF /* CustomSelectTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23274201AED59CB0019CE62 /* CustomSelectTimeCell.m */; };
 		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
 		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
 		F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */; };
@@ -214,10 +216,8 @@
 		F24B364D1ADCD911006153EC /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		F24B364E1ADCD911006153EC /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		F24B36501ADCDD70006153EC /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
-		F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostHistoryViewController.h; sourceTree = "<group>"; };
-		F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostHistoryViewController.m; sourceTree = "<group>"; };
-		F24B36551ADD4FDB006153EC /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
-		F24B36561ADD4FDB006153EC /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
+		F24B36521ADD4FBF006153EC /* PostSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostSummaryViewController.h; sourceTree = "<group>"; };
+		F24B36531ADD4FBF006153EC /* PostSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostSummaryViewController.m; sourceTree = "<group>"; };
 		F24B36581ADD8116006153EC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F24B365A1ADDA923006153EC /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
 		F24B365B1ADDA923006153EC /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
@@ -233,6 +233,7 @@
 		F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTimeSlot.m; sourceTree = "<group>"; };
 		F2F1C5A81AEEF1DD000C4BEF /* Svail_Team_Distribution_Profile (1).mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Svail_Team_Distribution_Profile (1).mobileprovision"; sourceTree = "<group>"; };
 		F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Purchase.storyboard; sourceTree = "<group>"; };
+		F2F1C5B51AF01626000C4BEF /* svailsmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = svailsmall.png; sourceTree = "<group>"; };
 		F2F94D281AE785BA0092C583 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		F2F94D2A1AE785C00092C583 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-share-buttons.png"; sourceTree = "<group>"; };
@@ -392,6 +393,7 @@
 				F262CB681AEACAED00988E5B /* mapicon.png */,
 				F268B4981AE4D6D9008F2370 /* fbloginButton.png */,
 				F24B36501ADCDD70006153EC /* camera.png */,
+				F2F1C5B51AF01626000C4BEF /* svailsmall.png */,
 				F24B35B21ADB7E54006153EC /* LaunchScreen.xib */,
 				F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */,
 				360CBE251AE8493C00A1F8CF /* Images.xcassets */,
@@ -552,13 +554,11 @@
 			children = (
 				F24B362C1ADC6B4B006153EC /* Post.storyboard */,
 				F24B365D1ADE2015006153EC /* SelectImageViewController.h */,
+				F24B365E1ADE2015006153EC /* SelectImageViewController.m */,
 				F232741C1AECF3E00019CE62 /* SelectTimeSlotsViewController.h */,
 				F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */,
-				F24B365E1ADE2015006153EC /* SelectImageViewController.m */,
-				F24B36521ADD4FBF006153EC /* PostHistoryViewController.h */,
-				F24B36531ADD4FBF006153EC /* PostHistoryViewController.m */,
-				F24B36551ADD4FDB006153EC /* PostDetailViewController.h */,
-				F24B36561ADD4FDB006153EC /* PostDetailViewController.m */,
+				F24B36521ADD4FBF006153EC /* PostSummaryViewController.h */,
+				F24B36531ADD4FBF006153EC /* PostSummaryViewController.m */,
 				F24B364D1ADCD911006153EC /* PostViewController.h */,
 				F24B364E1ADCD911006153EC /* PostViewController.m */,
 				F232741F1AED59CB0019CE62 /* CustomSelectTimeCell.h */,
@@ -691,6 +691,7 @@
 				F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */,
 				364CBE991AEF7B3900754D9C /* Main.storyboard in Resources */,
 				364DF30F1AEF30AF00E0DFF6 /* History.storyboard in Resources */,
+				F2F1C5B61AF01626000C4BEF /* svailsmall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,6 +768,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F1C5B81AF03C89000C4BEF /* CustomSelectTimeCell.m in Sources */,
+				F2F1C5B71AF03C55000C4BEF /* SelectTimeSlotsViewController.m in Sources */,
 				3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */,
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
@@ -793,12 +796,11 @@
 				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
-				F24B36571ADD4FDB006153EC /* PostDetailViewController.m in Sources */,
 				3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,
 				364DF31B1AEF4CEA00E0DFF6 /* PurchaseTableViewCell.m in Sources */,
-				F24B36541ADD4FBF006153EC /* PostHistoryViewController.m in Sources */,
+				F24B36541ADD4FBF006153EC /* PostSummaryViewController.m in Sources */,
 				F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */,
 				360CBE291AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m in Sources */,
 				3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */,
@@ -925,8 +927,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -939,7 +941,7 @@
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b49a60af-efd5-4907-8ef8-174d9d05ad23";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -953,8 +955,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Svail/Svail.entitlements;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -967,7 +969,7 @@
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b49a60af-efd5-4907-8ef8-174d9d05ad23";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
