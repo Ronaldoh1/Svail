@@ -8,13 +8,13 @@
 
 #import <MapKit/MapKit.h>
 #import "Service.h"
-#import "ZSPinAnnotation.h"
+#import "CustomPinAnnotation.h"
 
 @interface CustomPointAnnotation : MKPointAnnotation
 @property Service *service;
 
 @property (nonatomic, strong) UIColor *color;
 
-@property (nonatomic) ZSPinAnnotationType type;
+@property (nonatomic) CustomPinAnnotationType type;
 
 @end

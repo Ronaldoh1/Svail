@@ -35,6 +35,7 @@
 @property NSArray *annotationArray;
 @property NSMutableArray *serviceParticipants;
 @property (weak, nonatomic) IBOutlet UIButton *currentLocationButton;
+@property BOOL didGetUserLocation;
 
 
 @end
@@ -49,7 +50,7 @@
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = YES;
 
-    CLLocation *currentLocation = self.locationManager.location;
+//    CLLocation *currentLocation = self.locationManager.location;
 
     self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
@@ -97,17 +98,28 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
 
-    //download Services from Parse and filter it according to today's event
-    [EventLocationDownloader downloadEventLocationForLocation:currentLocation withCompletion:^(NSArray *array)
-     {
-         self.eventsArray = [NSMutableArray arrayWithArray:array];
-         [self filterEventsForDate:self.segmentedControl];
-     }];
+//    //download Services from Parse and filter it according to today's event
+//    [EventLocationDownloader downloadEventLocationForLocation:currentLocation withCompletion:^(NSArray *array)
+//     {
+//         self.eventsArray = [NSMutableArray arrayWithArray:array];
+//         [self filterEventsForDate:self.segmentedControl];
+//     }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.mapView.showsUserLocation = YES;
+
+//    self.locationManager = [[CLLocationManager alloc] init];
+//    self.locationManager.delegate = self;
+//    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    [self.locationManager startUpdatingLocation];
+//    double latitude = self.locationManager.location.coordinate.latitude;
+//    double longitude = self.locationManager.location.coordinate.longitude;
+//    self.mapView.showsUserLocation = YES;
+//    [self zoom:&latitude :&longitude];
+
+//    [super viewWillAppear:animated];
     [self setupProfileButton];
 }
 
@@ -163,17 +175,17 @@
         if (self.serviceParticipants.count < [newAnnotation.service.capacity integerValue]/2)
         {
             newAnnotation.color = [UIColor colorWithRed:58/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
-            newAnnotation.type = ZSPinAnnotationTypeTag;
+            newAnnotation.type = CustomPinAnnotationTypeTag;
         }
         else if (self.serviceParticipants.count >= [newAnnotation.service.capacity integerValue]/2 && self.serviceParticipants.count < [newAnnotation.service.capacity integerValue])
         {
             newAnnotation.color = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:0/255.0 alpha:1.0];
-            newAnnotation.type = ZSPinAnnotationTypeTag;
+            newAnnotation.type = CustomPinAnnotationTypeTag;
         }
         else if (self.serviceParticipants.count == [newAnnotation.service.capacity integerValue])
         {
             newAnnotation.color = [UIColor redColor];
-            newAnnotation.type = ZSPinAnnotationTypeTag;
+            newAnnotation.type = CustomPinAnnotationTypeTag;
         }
 
         [self.mapView addAnnotation:newAnnotation];
@@ -205,7 +217,7 @@
 {
     CustomPointAnnotation *customAnnotation = (CustomPointAnnotation *)annotation;
 
-    ZSPinAnnotation *pinAnnotation = [[ZSPinAnnotation alloc]initWithAnnotation:annotation reuseIdentifier:nil];
+    CustomPinAnnotation *pinAnnotation = [[CustomPinAnnotation alloc]initWithAnnotation:annotation reuseIdentifier:nil];
 
     if (annotation == mapView.userLocation) {
         return nil;
@@ -239,7 +251,7 @@
     }
 
     pinAnnotation.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    pinAnnotation.annotationType = ZSPinAnnotationTypeTagStroke;
+    pinAnnotation.annotationType = CustomPinAnnotationTypeTagStroke;
     pinAnnotation.annotationColor = customAnnotation.color;
 
     if (customAnnotation.service.travel == true) {
@@ -371,13 +383,29 @@
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     //zooming map to current location at startup
-    double latitude = self.locationManager.location.coordinate.latitude;
-    double longitude = self.locationManager.location.coordinate.longitude;
-    [self.locationManager stopUpdatingLocation];
+    if (!self.didGetUserLocation) {
+        double latitude = self.locationManager.location.coordinate.latitude;
+        double longitude = self.locationManager.location.coordinate.longitude;
+        [self.locationManager stopUpdatingLocation];
 
-    [self zoom:&latitude :&longitude];
+        [self zoom:&latitude :&longitude];
+        self.didGetUserLocation = YES;
+
+        //download Services from Parse and filter it according to today's event
+        [EventLocationDownloader downloadEventLocationForLocation:userLocation withCompletion:^(NSArray *array)
+         {
+             self.eventsArray = [NSMutableArray arrayWithArray:array];
+             [self filterEventsForDate:self.segmentedControl];
+         }];
+    }
+
 
 }
+
+//- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation: (CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+//{
+//  CLLocationCoordinate2D zoomLocation = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+//}
 
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
