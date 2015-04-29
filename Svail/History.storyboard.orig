@@ -192,8 +192,12 @@
                                                             <exclude reference="kgx-p8-LMZ"/>
                                                         </mask>
                                                     </variation>
+<<<<<<< HEAD
+                                                    <variation key="widthClass=compact">
+=======
                                                     <variation key="widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="198" y="39" width="194" height="16"/>
+>>>>>>> 7f84e2c2eab8c21ce245b4c1fa1f8c16124d02c8
                                                         <mask key="constraints">
                                                             <include reference="kgx-p8-LMZ"/>
                                                         </mask>
@@ -234,8 +238,12 @@
                                                             <exclude reference="vIN-vC-EM0"/>
                                                         </mask>
                                                     </variation>
+<<<<<<< HEAD
+                                                    <variation key="widthClass=compact">
+=======
                                                     <variation key="widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="8" y="101" width="384" height="16"/>
+>>>>>>> 7f84e2c2eab8c21ce245b4c1fa1f8c16124d02c8
                                                         <mask key="constraints">
                                                             <exclude reference="vIN-vC-EM0"/>
                                                         </mask>
@@ -306,8 +314,12 @@
                                                             <exclude reference="IHf-rV-pEH"/>
                                                         </mask>
                                                     </variation>
+<<<<<<< HEAD
+                                                    <variation key="widthClass=compact">
+=======
                                                     <variation key="widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="-8" y="137" width="416" height="100"/>
+>>>>>>> 7f84e2c2eab8c21ce245b4c1fa1f8c16124d02c8
                                                         <mask key="constraints">
                                                             <include reference="IHf-rV-pEH"/>
                                                         </mask>
@@ -330,8 +342,12 @@
                                                             <exclude reference="fEN-Ga-rCs"/>
                                                         </mask>
                                                     </variation>
+<<<<<<< HEAD
+                                                    <variation key="widthClass=compact">
+=======
                                                     <variation key="widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="198" y="70" width="194" height="16"/>
+>>>>>>> 7f84e2c2eab8c21ce245b4c1fa1f8c16124d02c8
                                                         <mask key="constraints">
                                                             <include reference="fEN-Ga-rCs"/>
                                                         </mask>

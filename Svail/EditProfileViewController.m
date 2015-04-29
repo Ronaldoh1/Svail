@@ -41,6 +41,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+
     if ([User currentUser] == nil)
     {
         self.signInButton.enabled = YES;
@@ -103,7 +106,7 @@
 
     self.currentUser = [User currentUser];
 
-    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+//    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
 
     self.fullnameTextField.text = self.currentUser.name;
 

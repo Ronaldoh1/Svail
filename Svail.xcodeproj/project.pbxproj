@@ -37,6 +37,7 @@
 		36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB01A1AE5F6D50045AF92 /* Reference.m */; };
 		36EBB0241AE80F550045AF92 /* ReviewReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0231AE80F550045AF92 /* ReviewReservationViewController.m */; };
 		36EBB0271AE822A80045AF92 /* ConfirmPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */; };
+		3E13ED871AF0AAD700C0CB1C /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E13ED851AF0AAD700C0CB1C /* HistoryViewController.m */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
 		3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E80C4951AE4C85800405828 /* ParticipantsViewController.m */; };
@@ -84,11 +85,9 @@
 		F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B365E1ADE2015006153EC /* SelectImageViewController.m */; };
 		F262CB691AEACAED00988E5B /* mapicon.png in Resources */ = {isa = PBXBuildFile; fileRef = F262CB681AEACAED00988E5B /* mapicon.png */; };
 		F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B4981AE4D6D9008F2370 /* fbloginButton.png */; };
-		F268B49B1AE4D72D008F2370 /* connect.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B49A1AE4D72D008F2370 /* connect.png */; };
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
 		F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */; };
 		F2F1C5B41AEF6394000C4BEF /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */; };
-		F2F1C5B61AF01626000C4BEF /* svailsmall.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F1C5B51AF01626000C4BEF /* svailsmall.png */; };
 		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
 		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
 		F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */; };
@@ -155,6 +154,8 @@
 		36EBB0231AE80F550045AF92 /* ReviewReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewReservationViewController.m; sourceTree = "<group>"; };
 		36EBB0251AE822A80045AF92 /* ConfirmPurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPurchaseViewController.h; sourceTree = "<group>"; };
 		36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPurchaseViewController.m; sourceTree = "<group>"; };
+		3E13ED851AF0AAD700C0CB1C /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		3E13ED861AF0AAD700C0CB1C /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		3E4036DB1ADD882600C4A0A0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
@@ -233,7 +234,6 @@
 		F24B365E1ADE2015006153EC /* SelectImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageViewController.m; sourceTree = "<group>"; };
 		F262CB681AEACAED00988E5B /* mapicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapicon.png; sourceTree = "<group>"; };
 		F268B4981AE4D6D9008F2370 /* fbloginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbloginButton.png; sourceTree = "<group>"; };
-		F268B49A1AE4D72D008F2370 /* connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect.png; sourceTree = "<group>"; };
 		F2A4FBFF1ADEF1E30022AAB8 /* SelectLocationFromMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationFromMapViewController.h; sourceTree = "<group>"; };
 		F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLocationFromMapViewController.m; sourceTree = "<group>"; };
 		F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Svail.entitlements; sourceTree = "<group>"; };
@@ -241,7 +241,6 @@
 		F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTimeSlot.m; sourceTree = "<group>"; };
 		F2F1C5A81AEEF1DD000C4BEF /* Svail_Team_Distribution_Profile (1).mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Svail_Team_Distribution_Profile (1).mobileprovision"; sourceTree = "<group>"; };
 		F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Purchase.storyboard; sourceTree = "<group>"; };
-		F2F1C5B51AF01626000C4BEF /* svailsmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = svailsmall.png; sourceTree = "<group>"; };
 		F2F94D281AE785BA0092C583 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		F2F94D2A1AE785C00092C583 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-share-buttons.png"; sourceTree = "<group>"; };
@@ -318,8 +317,8 @@
 				364DF31A1AEF4CEA00E0DFF6 /* ReservationTableViewCell.m */,
 				364DF31C1AEF566700E0DFF6 /* ServiceImagesCollectionViewCell.h */,
 				364DF31D1AEF566700E0DFF6 /* ServiceImagesCollectionViewCell.m */,
-				36D1861B1AF03F9A0095DD9F /* HistoryViewController.h */,
-				36D1861C1AF03F9A0095DD9F /* HistoryViewController.m */,
+				3E13ED861AF0AAD700C0CB1C /* HistoryViewController.h */,
+				3E13ED851AF0AAD700C0CB1C /* HistoryViewController.m */,
 				3613DBEC1AF06FA7002B5251 /* EditPostViewController.h */,
 				3613DBED1AF06FA7002B5251 /* EditPostViewController.m */,
 				36C8501A1AF0B3D000235A87 /* ReservationHistoryViewController.h */,
@@ -343,13 +342,6 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		3EC9D3D51AE16DC500071FF3 /* Cosmetic */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Cosmetic;
-			sourceTree = "<group>";
-		};
 		B703C6E9E7BC9786448E02AE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,7 +355,6 @@
 			isa = PBXGroup;
 			children = (
 				F2F1C5A81AEEF1DD000C4BEF /* Svail_Team_Distribution_Profile (1).mobileprovision */,
-				3EC9D3D51AE16DC500071FF3 /* Cosmetic */,
 				F24B35CA1ADB9569006153EC /* Frameworks */,
 				F24B35C91ADB953D006153EC /* Data Model */,
 				F24B359F1ADB7E54006153EC /* Svail */,
@@ -403,11 +394,9 @@
 				364CBE9B1AEF7FC200754D9C /* RootTabBarController.m */,
 				F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */,
 				F2F94D2E1AE7FD240092C583 /* TweetIt.png */,
-				F268B49A1AE4D72D008F2370 /* connect.png */,
 				F262CB681AEACAED00988E5B /* mapicon.png */,
 				F268B4981AE4D6D9008F2370 /* fbloginButton.png */,
 				F24B36501ADCDD70006153EC /* camera.png */,
-				F2F1C5B51AF01626000C4BEF /* svailsmall.png */,
 				F24B35B21ADB7E54006153EC /* LaunchScreen.xib */,
 				F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */,
 				360CBE251AE8493C00A1F8CF /* Images.xcassets */,
@@ -686,7 +675,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F24B36271ADC6B16006153EC /* Service.storyboard in Resources */,
-				F268B49B1AE4D72D008F2370 /* connect.png in Resources */,
 				F262CB691AEACAED00988E5B /* mapicon.png in Resources */,
 				F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */,
 				36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */,
@@ -705,7 +693,6 @@
 				F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */,
 				364CBE991AEF7B3900754D9C /* Main.storyboard in Resources */,
 				364DF30F1AEF30AF00E0DFF6 /* History.storyboard in Resources */,
-				F2F1C5B61AF01626000C4BEF /* svailsmall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,11 +772,11 @@
 				3613DBF01AF0759C002B5251 /* CustomSelectTimeCell.m in Sources */,
 				3613DBEF1AF07584002B5251 /* SelectTimeSlotsViewController.m in Sources */,
 				3613DBEE1AF06FA7002B5251 /* EditPostViewController.m in Sources */,
+				3E13ED871AF0AAD700C0CB1C /* HistoryViewController.m in Sources */,
 				3613DBEB1AF04351002B5251 /* PostTableViewCell.m in Sources */,
 				3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */,
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
-				36D1861D1AF03F9A0095DD9F /* HistoryViewController.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
 				36EBB0241AE80F550045AF92 /* ReviewReservationViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,

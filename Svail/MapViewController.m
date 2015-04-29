@@ -48,21 +48,20 @@
     self.locationManager = [CLLocationManager new];
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = YES;
+
     CLLocation *currentLocation = self.locationManager.location;
 
     self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
 
+    self.segmentedControl.tintColor = [UIColor orangeColor];
+
     //setting image to Navigation Bar's title
-    UIImageView *titleView = (UIImageView *)self.navigationItem.titleView;
-    titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
-    UIImage *svailNameImage = [UIImage imageNamed:@"SvailName"];
-    CGSize scaledSize = CGSizeMake(50, 20);
-    UIGraphicsBeginImageContext(scaledSize);
-    [svailNameImage drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    titleView.image = scaledImage;
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+    titleView.font = [UIFont fontWithName:@"Noteworthy" size:20];
+    titleView.text = @"SVAIL";
+    titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
     [self.navigationItem setTitleView:titleView];
 
     //setting today's date and the next days of the week for segmented control's titles
@@ -108,6 +107,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.mapView.showsUserLocation = YES;
     [self setupProfileButton];
 }
 
@@ -185,13 +185,18 @@
 
 -(void)zoom:(double *)latitude :(double *)logitude
 {
-    MKCoordinateRegion region;
-    region.center.latitude = *latitude;
-    region.center.longitude = *logitude;
-    region.span.latitudeDelta = 0.05;
-    region.span.longitudeDelta = 0.05;
-    region = [self.mapView regionThatFits:region];
-    [self.mapView setRegion:region animated:YES];
+//    double delayInSeconds = 0.5;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+//        {
+            MKCoordinateRegion region;
+            region.center.latitude = *latitude;
+            region.center.longitude = *logitude;
+            region.span.latitudeDelta = 0.05;
+            region.span.longitudeDelta = 0.05;
+            region = [self.mapView regionThatFits:region];
+            [self.mapView setRegion:region animated:YES];
+//        });
 }
 
 #pragma Mark - MKMapView Delegate Methods
@@ -369,6 +374,7 @@
     double latitude = self.locationManager.location.coordinate.latitude;
     double longitude = self.locationManager.location.coordinate.longitude;
     [self.locationManager stopUpdatingLocation];
+
     [self zoom:&latitude :&longitude];
 
 }
