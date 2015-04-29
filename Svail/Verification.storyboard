@@ -31,8 +31,7 @@
                                         <exclude reference="r3o-20-yFc"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="127" y="363" width="148" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="E0l-FR-5py"/>
                                         <include reference="r3o-20-yFc"/>
@@ -127,8 +126,7 @@
                                         <exclude reference="tYa-Xo-soz"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="283" y="366" width="30" height="24"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="QDf-K3-kPD"/>
                                         <include reference="tYa-Xo-soz"/>

@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 
-#import "NewPostHistoryViewController.h"
+#import "PostHistoryViewController.h"
 #import "Service.h"
 #import "User.h"
 #import "PostTableViewCell.h"
 #import "EditPostViewController.h"
 
-@interface NewPostHistoryViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface PostHistoryViewController () <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic) NSMutableArray *services;
 @property (nonatomic) User *currentUser;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation NewPostHistoryViewController
+@implementation PostHistoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +29,7 @@
     
     PFQuery *serviceQuery = [Service query];
     [serviceQuery whereKey:@"provider" equalTo:self.currentUser];
+    serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [serviceQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                  NSError *error)
      {
