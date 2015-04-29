@@ -43,8 +43,8 @@
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
 		3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E80C4951AE4C85800405828 /* ParticipantsViewController.m */; };
+		3E8324971AF0FC4D00DDA24E /* CustomPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8324961AF0FC4D00DDA24E /* CustomPinAnnotation.m */; };
 		3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */; };
-		3E83BB921AE712D90064AE89 /* ZSPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E83BB911AE712D90064AE89 /* ZSPinAnnotation.m */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
 		3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */; };
 		3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D28931AE30E8C00D7D648 /* EditProfileViewController.m */; };
@@ -70,7 +70,6 @@
 		F24B35E41ADB961E006153EC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35E31ADB961E006153EC /* AudioToolbox.framework */; };
 		F24B36231ADC6AE0006153EC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36221ADC6AE0006153EC /* Login.storyboard */; };
 		F24B36251ADC6AF1006153EC /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36241ADC6AF1006153EC /* Map.storyboard */; };
-		F24B36271ADC6B16006153EC /* Service.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36261ADC6B16006153EC /* Service.storyboard */; };
 		F24B36291ADC6B28006153EC /* Reservation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B36281ADC6B28006153EC /* Reservation.storyboard */; };
 		F24B362B1ADC6B3C006153EC /* Verification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362A1ADC6B3C006153EC /* Verification.storyboard */; };
 		F24B362D1ADC6B4B006153EC /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24B362C1ADC6B4B006153EC /* Post.storyboard */; };
@@ -90,6 +89,7 @@
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
 		F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */; };
 		F2F1C5B41AEF6394000C4BEF /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */; };
+		F2F1C5B91AF102E7000C4BEF /* PostSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36531ADD4FBF006153EC /* PostSummaryViewController.m */; };
 		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
 		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
 		F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F94D2C1AE7FD0C0092C583 /* facebook-share-buttons.png */; };
@@ -166,10 +166,10 @@
 		3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationDownloader.m; sourceTree = "<group>"; };
 		3E80C4941AE4C85800405828 /* ParticipantsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantsViewController.h; sourceTree = "<group>"; };
 		3E80C4951AE4C85800405828 /* ParticipantsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsViewController.m; sourceTree = "<group>"; };
+		3E8324951AF0FC4D00DDA24E /* CustomPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPinAnnotation.h; sourceTree = "<group>"; };
+		3E8324961AF0FC4D00DDA24E /* CustomPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPinAnnotation.m; sourceTree = "<group>"; };
 		3E83BB8D1AE6B93C0064AE89 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
 		3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPointAnnotation.m; sourceTree = "<group>"; };
-		3E83BB901AE712D90064AE89 /* ZSPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPinAnnotation.h; sourceTree = "<group>"; };
-		3E83BB911AE712D90064AE89 /* ZSPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPinAnnotation.m; sourceTree = "<group>"; };
 		3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3E8A669F1ADCA9D800EF976F /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		3E8D28921AE30E8C00D7D648 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
@@ -209,7 +209,6 @@
 		F24B35E31ADB961E006153EC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F24B36221ADC6AE0006153EC /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F24B36241ADC6AF1006153EC /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
-		F24B36261ADC6B16006153EC /* Service.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Service.storyboard; sourceTree = "<group>"; };
 		F24B36281ADC6B28006153EC /* Reservation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reservation.storyboard; sourceTree = "<group>"; };
 		F24B362A1ADC6B3C006153EC /* Verification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Verification.storyboard; sourceTree = "<group>"; };
 		F24B362C1ADC6B4B006153EC /* Post.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
@@ -389,7 +388,6 @@
 				F24B36201ADC6A7B006153EC /* PostService */,
 				F24B361E1ADC69BB006153EC /* Verification */,
 				F24B361D1ADC6970006153EC /* Reservation */,
-				F24B361C1ADC695C006153EC /* ServiceList */,
 				F2F1C5B21AEF60CA000C4BEF /* Purchase */,
 				F24B361B1ADC6907006153EC /* Map */,
 				F24B361A1ADC68E9006153EC /* Login */,
@@ -517,21 +515,13 @@
 				3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */,
 				3E968BD11AED9F2B009FB31F /* CustomImageView.h */,
 				3E968BD21AED9F2B009FB31F /* CustomImageView.m */,
-				3E83BB901AE712D90064AE89 /* ZSPinAnnotation.h */,
-				3E83BB911AE712D90064AE89 /* ZSPinAnnotation.m */,
+				3E8324951AF0FC4D00DDA24E /* CustomPinAnnotation.h */,
+				3E8324961AF0FC4D00DDA24E /* CustomPinAnnotation.m */,
 				F24B36241ADC6AF1006153EC /* Map.storyboard */,
 				3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */,
 				3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */,
 			);
 			name = Map;
-			sourceTree = "<group>";
-		};
-		F24B361C1ADC695C006153EC /* ServiceList */ = {
-			isa = PBXGroup;
-			children = (
-				F24B36261ADC6B16006153EC /* Service.storyboard */,
-			);
-			name = ServiceList;
 			sourceTree = "<group>";
 		};
 		F24B361D1ADC6970006153EC /* Reservation */ = {
@@ -682,7 +672,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F24B36271ADC6B16006153EC /* Service.storyboard in Resources */,
 				F262CB691AEACAED00988E5B /* mapicon.png in Resources */,
 				F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */,
 				36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */,
@@ -778,6 +767,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36C8501D1AF0EAEE00235A87 /* ReservationTableViewCell.m in Sources */,
+				F2F1C5B91AF102E7000C4BEF /* PostSummaryViewController.m in Sources */,
 				3613DBF01AF0759C002B5251 /* CustomSelectTimeCell.m in Sources */,
 				3613DBEF1AF07584002B5251 /* SelectTimeSlotsViewController.m in Sources */,
 				3613DBEE1AF06FA7002B5251 /* EditPostViewController.m in Sources */,
@@ -786,6 +776,7 @@
 				3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */,
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
+				3E8324971AF0FC4D00DDA24E /* CustomPinAnnotation.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
 				36EBB0241AE80F550045AF92 /* ReviewReservationViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
@@ -820,7 +811,6 @@
 				3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */,
 				36EBB0271AE822A80045AF92 /* ConfirmPurchaseViewController.m in Sources */,
 				3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */,
-				3E83BB921AE712D90064AE89 /* ZSPinAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

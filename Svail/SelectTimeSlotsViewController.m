@@ -18,6 +18,7 @@
 @property NSMutableArray *selectedCellArray;
 @property GenerateTimeSlot *timeSlot;
 @property NSArray *timesArray;
+@property (weak, nonatomic) IBOutlet UILabel *directionsLabel;
 
 
 @end
@@ -28,7 +29,25 @@ static NSString *const kReusableIdentifier = @"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    //set navigation title color and text
+    //setting image to Navigation Bar's title
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+    titleView.font = [UIFont fontWithName:@"Noteworthy" size:20];
+    titleView.text = @"Time Slots";
+    titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
+    [self.navigationItem setTitleView:titleView];
+
+    //set the directions label color
+    self.directionsLabel.textColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+    //set the duration label color
+
+    self.durationLabel.textColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+
+    //set the slider color
+
+    self.durationSlider.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+    self.durationSlider.tintColor = [UIColor colorWithRed:59/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
     //set the nsdate
 
     self.timeForCell = [NSDate date];
@@ -71,6 +90,9 @@ static NSString *const kReusableIdentifier = @"cell";
 
 
 }
+- (IBAction)onCancelButton:(UIBarButtonItem *)sender {
+
+}
 
 
 
@@ -93,6 +115,9 @@ static NSString *const kReusableIdentifier = @"cell";
     cell.userInteractionEnabled = true;
 //    [cell.timeLabel addGestureRecognizer:tapGestureOnPhoto];
 
+    //set the text color for the label for each cell
+    cell.timeLabel.textColor = [UIColor colorWithRed:59/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
+
     NSInteger hours = [self.timesArray[indexPath.row] integerValue] / 3600;
 
     NSInteger  minutes = ([self.timesArray[indexPath.row]integerValue] - hours * 3600) / 60;
@@ -104,6 +129,8 @@ static NSString *const kReusableIdentifier = @"cell";
 
     }else{
          cell.timeLabel.text  = [NSString stringWithFormat:@"%ld:%ld",(long)hours, (long)minutes];
+
+        
     }
 
 
@@ -120,7 +147,7 @@ static NSString *const kReusableIdentifier = @"cell";
         if(((NSIndexPath *)(self.selectedCellArray[i])).row == indexPath.row){
 
           cell.userInteractionEnabled = false;
-            cell.backgroundColor = [UIColor blueColor];
+            cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
 
         }
     }
@@ -183,7 +210,7 @@ static NSString *const kReusableIdentifier = @"cell";
 
 
         [collectionView cellForItemAtIndexPath:someIndexPath].userInteractionEnabled = false;
-        [collectionView cellForItemAtIndexPath:someIndexPath].backgroundColor = [UIColor blueColor];
+        [collectionView cellForItemAtIndexPath:someIndexPath].backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
     }
 
 
