@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
+#import "SelectImageViewController.h"
 
 
 
@@ -31,6 +32,7 @@
 @property SLComposeViewController *mySL;
 
 @property (weak, nonatomic) IBOutlet UILabel *selectStartorEndDateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *slotSelectionButton;
 
 @property Service *service;
 
@@ -70,6 +72,10 @@
     //set delegates for textfields
     [self setDelegatesForTextFields];
 
+    //change the navbartitle color
+
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
 
 
 
@@ -201,7 +207,7 @@
         self.service.startDate = self.datePicker.date;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+     
 
         self.startDateTextField.text = [dateFormatter stringFromDate:self.datePicker.date];
 
@@ -356,11 +362,18 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
-    SelectTimeSlotsViewController *destVC = segue.destinationViewController;
+
 
     if ([segue.identifier isEqualToString:@"toSelectServiceTimes"]) {
 
+         SelectTimeSlotsViewController *destVC = segue.destinationViewController;
          destVC.service = self.service;
+
+    }else if([segue.identifier isEqualToString:@"toSelectImageVC"]){
+
+        SelectImageViewController *destVC = segue.destinationViewController;
+        destVC.service = self.service;
+
     }
 
     

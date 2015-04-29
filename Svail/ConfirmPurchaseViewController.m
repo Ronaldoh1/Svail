@@ -38,6 +38,10 @@ static float oneYearPrice = 1.99;
     self.paymentView.delegate = self;
     [self.view addSubview:self.paymentView];
 
+    //set the title color and tint
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+
 }
 
 //When pay button is tapped - we create a token and make a call to our server to run the cloud code that does the processing of payment.

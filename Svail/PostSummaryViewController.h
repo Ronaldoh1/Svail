@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PostHistoryViewController : UIViewController
+@interface PostSummaryViewController : UIViewController
 
 @end

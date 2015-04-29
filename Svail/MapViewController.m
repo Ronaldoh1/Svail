@@ -73,6 +73,9 @@
         [self.segmentedControl setTitle:nextDayDate forSegmentAtIndex:i];
     }
 
+    //change tint for the map view controller
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    
     //making segmentedcontrol selected when the view loads
     self.segmentedControl.selected = YES;
 
