@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ReviewPurchaseViewController : UIViewController
+@interface ReviewReservationViewController : UIViewController
 
 @property (nonatomic) NSString *serviceId;
 

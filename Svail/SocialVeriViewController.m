@@ -364,17 +364,17 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 
 - (IBAction)onDoneButtonTapped:(UIBarButtonItem *)sender
 {
-    UIStoryboard *mapStoryBoard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
-    UIViewController *mapVC = [mapStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-    [self presentViewController:mapVC animated:true completion:nil];
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *mainTabBarVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+    [self presentViewController:mainTabBarVC animated:true completion:nil];
     
 }
 
 - (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
 {
-    UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
-    UIViewController *MapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-    [self presentViewController:MapNavVC animated:true completion:nil];
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *mainTabBarVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+    [self presentViewController:mainTabBarVC animated:true completion:nil];
 }
 
 @end

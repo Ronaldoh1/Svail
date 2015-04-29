@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 
-#import "ReviewPurchaseViewController.h"
+#import "ReviewReservationViewController.h"
 #import "User.h"
 #import "Verification.h"
 #import "Service.h"
@@ -16,7 +16,7 @@
 #import "CustomViewUtilities.h"
 #import "RatingViewController.h"
 
-@interface ReviewPurchaseViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
+@interface ReviewReservationViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *providerProfileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *providerNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *safetyImageView;
@@ -36,7 +36,7 @@
 
 @end
 
-@implementation ReviewPurchaseViewController
+@implementation ReviewReservationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

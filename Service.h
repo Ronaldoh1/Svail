@@ -30,6 +30,7 @@
 @property MKPointAnnotation *annotation;
 @property NSMutableArray *participants;
 @property double durationTime;
+@property (nonatomic) NSArray *imageFiles;
 
 
 +(NSString *)parseClassName;

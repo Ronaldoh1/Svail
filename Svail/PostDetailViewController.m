@@ -8,7 +8,7 @@
 
 #import "PostDetailViewController.h"
 #import "SelectLocationFromMapViewController.h"
-#import "PostHistoryViewController.h"
+#import "OldPostHistoryViewController.h"
 
 @interface PostDetailViewController ()<UITextFieldDelegate>
 

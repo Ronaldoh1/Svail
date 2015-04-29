@@ -29,6 +29,7 @@
 @dynamic participants;
 @dynamic startTimes;
 @dynamic durationTime;
+@dynamic imageFiles;
 
 
 + (void)load{

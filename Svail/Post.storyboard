@@ -623,7 +623,7 @@
         <!--My Service History-->
         <scene sceneID="Jgq-hg-uCC">
             <objects>
-                <viewController storyboardIdentifier="PostHistoryVC" automaticallyAdjustsScrollViewInsets="NO" id="cbv-Gu-U1z" customClass="PostHistoryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostHistoryVC" automaticallyAdjustsScrollViewInsets="NO" id="cbv-Gu-U1z" customClass="OldPostHistoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lkr-ge-LmA"/>
                         <viewControllerLayoutGuide type="bottom" id="z7O-dn-rQs"/>

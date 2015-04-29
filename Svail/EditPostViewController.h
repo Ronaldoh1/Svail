@@ -1,18 +1,16 @@
 //
-//  PostTableViewCell.h
+//  EditPostViewController.h
 //  Svail
 //
-//  Created by zhenduo zhu on 4/27/15.
+//  Created by zhenduo zhu on 4/28/15.
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "Service.h"
 
-@interface PostTableViewCell : UITableViewCell
+@interface EditPostViewController : UIViewController
 
 @property (nonatomic) Service *service;
-
-
 
 @end

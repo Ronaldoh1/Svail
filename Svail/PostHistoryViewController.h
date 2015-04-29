@@ -1,8 +1,8 @@
 //
-//  PostHistoryViewController.h
+//  HistoryViewController.h
 //  Svail
 //
-//  Created by Ronald Hernandez on 4/14/15.
+//  Created by zhenduo zhu on 4/27/15.
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 

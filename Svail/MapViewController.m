@@ -14,7 +14,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "UserProfileViewController.h"
 #import "CustomPointAnnotation.h"
-#import "ReviewPurchaseViewController.h"
+#import "ReviewReservationViewController.h"
 #import "PurchaseHistoryViewController.h"
 #import "CustomViewUtilities.h"
 #import "EditProfileViewController.h"
@@ -365,7 +365,7 @@
 //        [annotation.service saveInBackground];
         UIStoryboard *reservationStoryboard = [UIStoryboard storyboardWithName:@"Reservation" bundle:nil];
         UIViewController *reviewReservationNavVC = [reservationStoryboard instantiateViewControllerWithIdentifier:@"ReviewReservationNavVC"];
-        ReviewPurchaseViewController *reviewReservationVC = reviewReservationNavVC.childViewControllers[0];
+        ReviewReservationViewController *reviewReservationVC = reviewReservationNavVC.childViewControllers[0];
         reviewReservationVC.serviceId = annotation.service.objectId;
         [self presentViewController:reviewReservationNavVC animated:TRUE completion:nil];
     }

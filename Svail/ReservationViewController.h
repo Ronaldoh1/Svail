@@ -1,5 +1,5 @@
 //
-//  HistoryViewController.h
+//  ReservationViewController.h
 //  Svail
 //
 //  Created by zhenduo zhu on 4/28/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HistoryViewController : UIViewController
+@interface ReservationViewController : UIViewController
 
 @end

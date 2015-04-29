@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 
-#import "PurchaseTableViewCell.h"
+#import "ReservationTableViewCell.h"
 
-@implementation PurchaseTableViewCell
+@implementation ReservationTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code

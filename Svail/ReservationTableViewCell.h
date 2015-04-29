@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PurchaseTableViewCell : UITableViewCell
+@interface ReservationTableViewCell : UITableViewCell
 
 @end

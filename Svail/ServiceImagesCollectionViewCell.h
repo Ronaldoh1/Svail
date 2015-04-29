@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ParticipantsCollectionViewCell : UICollectionViewCell
+@interface ServiceImagesCollectionViewCell : UICollectionViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *serviceImageView;
 
 @end

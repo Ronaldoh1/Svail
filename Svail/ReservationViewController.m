@@ -1,18 +1,18 @@
 //
-//  HistoryViewController.m
+//  ReservationViewController.m
 //  Svail
 //
 //  Created by zhenduo zhu on 4/28/15.
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 
-#import "HistoryViewController.h"
+#import "ReservationViewController.h"
 
-@interface HistoryViewController ()
+@interface ReservationViewController ()
 
 @end
 
-@implementation HistoryViewController
+@implementation ReservationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
