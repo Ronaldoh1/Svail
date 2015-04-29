@@ -36,8 +36,6 @@
     historyVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"history2"] scaledToSize:CGSizeMake(35, 35)];
     
     
-
-    
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {

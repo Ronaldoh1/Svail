@@ -30,7 +30,9 @@
 		36BBC47D1AE435E0007960F1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47C1AE435E0007960F1 /* Parse.framework */; };
 		36BBC47F1AE43969007960F1 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47E1AE43969007960F1 /* Bolts.framework */; };
 		36C8501C1AF0B3D000235A87 /* ReservationHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C8501B1AF0B3D000235A87 /* ReservationHistoryViewController.m */; };
-		36D1861D1AF03F9A0095DD9F /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D1861C1AF03F9A0095DD9F /* HistoryViewController.m */; };
+		36C8501D1AF0EAEE00235A87 /* ReservationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF31A1AEF4CEA00E0DFF6 /* ReservationTableViewCell.m */; };
+		36C850201AF0ED0300235A87 /* ParticipantCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C8501F1AF0ED0300235A87 /* ParticipantCollectionViewCell.m */; };
+		36C850231AF1615D00235A87 /* ServiceSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C850221AF1615D00235A87 /* ServiceSlot.m */; };
 		36DE955C1ADDC93900ABDB93 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE95591ADDC93900ABDB93 /* TwitterKit.framework */; };
 		36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */; };
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
@@ -143,8 +145,10 @@
 		36BBC47E1AE43969007960F1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		36C8501A1AF0B3D000235A87 /* ReservationHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationHistoryViewController.h; sourceTree = "<group>"; };
 		36C8501B1AF0B3D000235A87 /* ReservationHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationHistoryViewController.m; sourceTree = "<group>"; };
-		36D1861B1AF03F9A0095DD9F /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
-		36D1861C1AF03F9A0095DD9F /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		36C8501E1AF0ED0300235A87 /* ParticipantCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantCollectionViewCell.h; sourceTree = "<group>"; };
+		36C8501F1AF0ED0300235A87 /* ParticipantCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantCollectionViewCell.m; sourceTree = "<group>"; };
+		36C850211AF1615D00235A87 /* ServiceSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceSlot.h; sourceTree = "<group>"; };
+		36C850221AF1615D00235A87 /* ServiceSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceSlot.m; sourceTree = "<group>"; };
 		36DE95591ADDC93900ABDB93 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		36DE955A1ADDC93900ABDB93 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		36DE955B1ADDC93900ABDB93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -323,6 +327,8 @@
 				3613DBED1AF06FA7002B5251 /* EditPostViewController.m */,
 				36C8501A1AF0B3D000235A87 /* ReservationHistoryViewController.h */,
 				36C8501B1AF0B3D000235A87 /* ReservationHistoryViewController.m */,
+				36C8501E1AF0ED0300235A87 /* ParticipantCollectionViewCell.h */,
+				36C8501F1AF0ED0300235A87 /* ParticipantCollectionViewCell.m */,
 			);
 			name = History;
 			sourceTree = "<group>";
@@ -436,6 +442,8 @@
 			children = (
 				F24B363B1ADCA6D0006153EC /* User.h */,
 				F24B363C1ADCA6D0006153EC /* User.m */,
+				36C850211AF1615D00235A87 /* ServiceSlot.h */,
+				36C850221AF1615D00235A87 /* ServiceSlot.m */,
 				F24B365A1ADDA923006153EC /* Service.h */,
 				F24B365B1ADDA923006153EC /* Service.m */,
 				F24B36411ADCB0E8006153EC /* Purchase.h */,
@@ -769,6 +777,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36C8501D1AF0EAEE00235A87 /* ReservationTableViewCell.m in Sources */,
 				3613DBF01AF0759C002B5251 /* CustomSelectTimeCell.m in Sources */,
 				3613DBEF1AF07584002B5251 /* SelectTimeSlotsViewController.m in Sources */,
 				3613DBEE1AF06FA7002B5251 /* EditPostViewController.m in Sources */,
@@ -791,6 +800,7 @@
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
 				F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */,
 				360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */,
+				36C850201AF0ED0300235A87 /* ParticipantCollectionViewCell.m in Sources */,
 				3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */,
 				36C8501C1AF0B3D000235A87 /* ReservationHistoryViewController.m in Sources */,
 				F24B35A31ADB7E54006153EC /* main.m in Sources */,
@@ -806,6 +816,7 @@
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,
 				F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */,
 				360CBE291AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m in Sources */,
+				36C850231AF1615D00235A87 /* ServiceSlot.m in Sources */,
 				3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */,
 				36EBB0271AE822A80045AF92 /* ConfirmPurchaseViewController.m in Sources */,
 				3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */,

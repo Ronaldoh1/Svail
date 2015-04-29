@@ -42,9 +42,8 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     [self setupDateLabel];
     [self setupTimeLabel];
     
-//    [self.editButton addTarget:self action:@selector(onEditButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.deleteButton addTarget:self action:@selector(onDeleteButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     self.editButton.tag = self.tag;
+    self.deleteButton.tag = self.tag;
     
     self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
         for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
@@ -177,6 +176,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     
     return serviceImageCell;
 }
+
 
 
 @end

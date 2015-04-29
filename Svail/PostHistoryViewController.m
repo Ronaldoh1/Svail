@@ -9,14 +9,16 @@
 #import "PostHistoryViewController.h"
 #import "Service.h"
 #import "User.h"
+#import "Image.h"
 #import "PostTableViewCell.h"
 #import "EditPostViewController.h"
 
-@interface PostHistoryViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface PostHistoryViewController () <UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (nonatomic) NSMutableArray *services;
 @property (nonatomic) User *currentUser;
 @property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
+@property (nonatomic) Service *serviceToDelete;
 
 @end
 
@@ -29,6 +31,7 @@
     
     PFQuery *serviceQuery = [Service query];
     [serviceQuery whereKey:@"provider" equalTo:self.currentUser];
+    [serviceQuery orderByDescending:@"startDate"];
     serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [serviceQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                  NSError *error)
@@ -65,7 +68,38 @@
     
 }
 
+- (IBAction)onDeleteButtonTapped:(UIButton *)sender
+{
+    self.serviceToDelete = self.services[sender.tag];
+    NSString *message = [NSString stringWithFormat:@"Delete %@?", self.serviceToDelete.title];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    alert.tag = 1;
+    [alert show];
+}
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1) {
+        if (buttonIndex == 1) {
+            PFQuery *imageQuery = [Image query];
+            [imageQuery whereKey:@"service" equalTo:self.serviceToDelete];
+            [imageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
+                                                 NSError *error)
+             {
+                 if (!error) {
+                     for (Image *image in objects) {
+                         [image deleteInBackground];
+                     }
+                 }
+             }];
+            
+            [self.serviceToDelete deleteInBackground];
+            [self.services removeObject:self.serviceToDelete];
+            [self.servicesTableView reloadData];
+        }
+        self.serviceToDelete = nil;
+    }
 
+}
 
 @end

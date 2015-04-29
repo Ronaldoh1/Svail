@@ -74,9 +74,10 @@
     serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [serviceQuery getObjectInBackgroundWithId:self.serviceId block:^(PFObject *object, NSError *error)
      {
-         self.service = (Service *)object;
+
         if (!error) {
             
+            self.service = (Service *)object;
             self.participants = self.service.participants;
             [self.participantsProfileCollectionView reloadData];
             
