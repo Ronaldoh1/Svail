@@ -38,6 +38,7 @@
 @property BOOL didGetUserLocation;
 
 
+
 @end
 
 @implementation MapViewController
@@ -45,6 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupProfileButton];
 
     self.locationManager = [CLLocationManager new];
     [self.locationManager requestWhenInUseAuthorization];
@@ -52,10 +54,10 @@
 
 //    CLLocation *currentLocation = self.locationManager.location;
 
-    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+    
 
-    self.segmentedControl.tintColor = [UIColor orangeColor];
+    self.segmentedControl.tintColor = //setup color tint
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
 
     //setting image to Navigation Bar's title
     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
@@ -122,6 +124,12 @@
 //    [super viewWillAppear:animated];
     [self setupProfileButton];
 }
+-(void)viewDidAppear:(BOOL)animated{
+    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
+    // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
+
+}
+
 
 - (void)setupProfileButton
 {

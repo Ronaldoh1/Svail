@@ -28,9 +28,18 @@ static float oneYearPrice = 1.99;
 
     [super viewDidLoad];
 
+    //setup color tint
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
 
-    //set the navigationbar title to the price.
-    self.navigationItem.title = @"Total = $1.99";
+    //setting image to Navigation Bar's title
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    titleView.font = [UIFont fontWithName:@"Noteworthy" size:20];
+    titleView.text = @"Total = $1.99";
+    titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
+    [self.navigationItem setTitleView:titleView];
+
+   
 
     //set the paymentviewform.
     self.paymentView = [[PTKView alloc] initWithFrame:CGRectMake(15,20,290,55)];

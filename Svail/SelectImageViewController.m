@@ -39,9 +39,22 @@
     self.pickedImage3 = [Image object];
     self.pickedImage4 = [Image object];
 
-    //setup color tint and title color
-    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+    //setup color tint
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+
+//    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+
+    //setting image to Navigation Bar's title
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    titleView.font = [UIFont fontWithName:@"Noteworthy" size:20];
+    titleView.text = @"Select Images";
+    titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
+    [self.navigationItem setTitleView:titleView];
+
+
+
+    
 
 
 }
@@ -251,7 +264,7 @@
 }
 - (IBAction)onSkipButtonTapped:(UIButton *)sender {
 
-    [self performSegueWithIdentifier:@"toServiceHistory"sender:self];
+    [self performSegueWithIdentifier:@"toPostSummary"sender:self];
 }
 
 //Helper method to save all images in background;

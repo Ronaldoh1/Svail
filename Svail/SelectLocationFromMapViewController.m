@@ -20,6 +20,7 @@
 @property PFGeoPoint *serviceGeoPoint;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
 @property NSString *latLong;
+@property BOOL didGetUserLocation;
 
 @end
 
@@ -28,9 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //initially we should set the didGetUserLocation to false;
+    self.didGetUserLocation = false;
+
     //setup color tint and title color
-    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+    self.navigationController.navigationBar.tintColor = //setup color tint
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+
 
 
     if (self.editModeLocation == true) {
@@ -129,8 +134,34 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
+   // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
 
+    //zooming map to current location at startup
+    double latitude = self.locationManager.location.coordinate.latitude;
+    double longitude = self.locationManager.location.coordinate.longitude;
+
+    [self zoom:&latitude :&longitude];
 }
+
+
+//helper method to zoom in
+
+-(void)zoom:(double *)latitude :(double *)logitude
+{
+    //    double delayInSeconds = 0.5;
+    //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    //    dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+    //        {
+    MKCoordinateRegion region;
+    region.center.latitude = *latitude;
+    region.center.longitude = *logitude;
+    region.span.latitudeDelta = 0.05;
+    region.span.longitudeDelta = 0.05;
+    region = [self.mapView regionThatFits:region];
+    [self.mapView setRegion:region animated:YES];
+    //        });
+}
+
 //helper method to recognize the user's tap.
 
 -(void)tapAction:(UIGestureRecognizer*)gestureRec{
@@ -186,8 +217,18 @@
 #pragma Mark - MapView Delegate Methods
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
-    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
+    
+    if(!self.didGetUserLocation){
 
+        //zooming map to current location at startup
+        double latitude = self.locationManager.location.coordinate.latitude;
+        double longitude = self.locationManager.location.coordinate.longitude;
+        [self.locationManager stopUpdatingLocation];
+
+        [self zoom:&latitude :&longitude];
+
+        self.didGetUserLocation = true;
+    }
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation

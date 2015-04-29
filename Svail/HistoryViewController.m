@@ -7,8 +7,14 @@
 //
 
 #import "HistoryViewController.h"
+#import "PostHistoryViewController.h"
+#import "ReservationHistoryViewController.h"
 
 @interface HistoryViewController ()
+
+@property (nonatomic) PostHistoryViewController *postHistoryVC;
+@property (nonatomic) ReservationHistoryViewController *reservationHistoryVC;
+@property (nonatomic) UIViewController *currentVC;
 
 @end
 
@@ -16,22 +22,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    
+    self.postHistoryVC = self.childViewControllers.lastObject;
+    self.reservationHistoryVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ReservationHistoryVC"];
+    
+    self.currentVC = self.postHistoryVC;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)onSegmentsTapped:(UISegmentedControl *)sender
+{
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            [self addChildViewController:self.postHistoryVC];
+            [self moveToNewController:self.postHistoryVC];
+            break;
+        case 1:
+            [self addChildViewController:self.reservationHistoryVC];
+            [self moveToNewController:self.reservationHistoryVC];
+            break;
+        default:
+            break;
+    }
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)moveToNewController:(UIViewController *)newController
+{
+    [self.currentVC willMoveToParentViewController:nil];
+    [self transitionFromViewController:self.currentVC toViewController:newController duration:0.6 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil
+                            completion:^(BOOL finished) {
+                                [self.currentVC removeFromParentViewController];
+                                [newController didMoveToParentViewController:self];
+                                self.currentVC = newController;
+                            }];
 }
-*/
 
 @end

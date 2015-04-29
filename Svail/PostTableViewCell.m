@@ -28,6 +28,8 @@
 
 @implementation PostTableViewCell
 
+static NSUInteger kMaxNumberOfServiceImages = 4;
+
 - (void)awakeFromNib
 {
     self.serviceImagesCollectionView.delegate = self;
@@ -44,7 +46,11 @@
 //    [self.deleteButton addTarget:self action:@selector(onDeleteButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     self.editButton.tag = self.tag;
     
-    self.serviceImageArray = [NSMutableArray new];
+    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
+        for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
+            self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
+        }
+    [self.serviceImagesCollectionView reloadData];
 }
 
 
@@ -135,12 +141,14 @@
                                                     NSError *error)
      {
          if (!error) {
-             for (PFFile *imageFile in objects) {
+             [self.serviceImagesCollectionView reloadData];
+             for (int i = 0;i < objects.count;i++) {
+                 PFFile *imageFile = objects[i];
                  [imageFile getDataInBackgroundWithBlock:^(NSData *data,
                                                            NSError *error)
                   {
                       if (!error) {
-                          [self.serviceImageArray addObject:[UIImage imageWithData:data]];
+                          self.serviceImageArray[i] = [UIImage imageWithData:data];
                           [self.serviceImagesCollectionView reloadData];
                       }
                   }];
@@ -161,7 +169,12 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ServiceImagesCollectionViewCell *serviceImageCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ServiceImageCell" forIndexPath:indexPath];
-    serviceImageCell.serviceImageView.image = self.serviceImageArray[indexPath.row];
+    if (self.serviceImageArray.count > indexPath.row) {
+        serviceImageCell.serviceImageView.image = self.serviceImageArray[indexPath.row];
+    } else {
+        serviceImageCell.serviceImageView.image = [UIImage imageNamed:@"image_placeholder"];
+    }
+    
     return serviceImageCell;
 }
 
