@@ -392,7 +392,7 @@
         self.didGetUserLocation = YES;
 
         //download Services from Parse and filter it according to today's event
-        [EventLocationDownloader downloadEventLocationForLocation:userLocation withCompletion:^(NSArray *array)
+        [EventLocationDownloader downloadEventLocationForLocation:userLocation.location withCompletion:^(NSArray *array)
          {
              self.eventsArray = [NSMutableArray arrayWithArray:array];
              [self filterEventsForDate:self.segmentedControl];
