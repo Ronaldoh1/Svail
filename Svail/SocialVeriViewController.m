@@ -170,9 +170,14 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+
 {
     NSUInteger index = [self.phoneNumberTextFields indexOfObject:textField];
     return ((UIImageView *)self.phoneNumberCheckmarks[index]).isHidden;
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return true;
 }
 
 - (IBAction)onRequestButtonTapped:(UIButton *)sender

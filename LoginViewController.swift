@@ -47,6 +47,8 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
     }
     @IBAction func onCancelButtonPressed(sender: UIButton) {
 
+       
+
     }
     @IBAction func onLogInWithFbButtonTapped(sender: AnyObject) {
 
