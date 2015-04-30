@@ -180,7 +180,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     
     NSString *message = [NSString stringWithFormat:@"Could you help your friend %@ complete a simple safety level check for using Svail?", [User currentUser].name];
     
-    for (int i = 0; i < 3 - self.currentUser.verification.references.count; i++) {
+    for (int i = (int)(self.currentUser.verification.references.count); i < 3; i++) {
         UITextField *textField = self.phoneNumberTextFields[i];
         if (![textField.text isEqualToString:@""]) {
             if (![textField.text isEqualToString:self.currentUser.phoneNumber]) {

@@ -57,7 +57,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-  //  [self getServiceImages];
+    [self getServiceImages];
 
     //setup color tint
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
@@ -91,7 +91,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     
     PFQuery *serviceQuery = [Service query];
     [serviceQuery includeKey:@"provider.verification"];
-    [serviceQuery includeKey:@"participants"];
+//    [serviceQuery includeKey:@"participants"];
     serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [serviceQuery getObjectInBackgroundWithId:self.service.objectId block:^(PFObject *object, NSError *error)
      {
@@ -100,7 +100,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
              self.service = (Service *)object;
 
              self.provider = self.service.provider;
-             self.participants = self.service.participants;
+
              [self.participantsCollectionView reloadData];
              
              self.providerNameLabel.text = self.service.provider.name;
@@ -161,12 +161,24 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
         [self setupTimeLabel];
     }
 
+    self.participantsLabel.hidden = true;
+    
     [self setupLocationLabel];
     [self setupDescriptionTextView];
     
     
     
 
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (self.serviceSlot) {
+        self.serviceTimeLabel.hidden = false;
+        [self setupTimeLabel];
+        self.participants = self.service.participants;
+        [self.participantsCollectionView reloadData];
+    }
 }
 
 -(void)getServiceImages
@@ -194,13 +206,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 }
 
 
-- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
-{
-    UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *mapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MapNavVC"];
-    [self presentViewController:mapNavVC animated:true completion:nil];
-    
-}
+
 
 -(void)setupTitleLabel
 {
@@ -218,8 +224,8 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 {
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     [dateFormatter setDateFormat:@"HH:MM"];
-    self.serviceTimeLabel.text = [NSString stringWithFormat:@"Time %@",
-                                  [self.serviceSlot getStartTimeString]];
+    self.serviceTimeLabel.text = [NSString stringWithFormat:@" %@",
+                                  [self.serviceSlot getTimeSlotString]];
     self.serviceTimeLabel.font = [UIFont fontWithName:@"Arial" size:15.0];
     NSRange range = [self.serviceTimeLabel.text rangeOfString:@"Time"];
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceTimeLabel.text];
@@ -270,6 +276,11 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 
 -(void)setupLocationLabel
 {
+    self.serviceLocationLabel.numberOfLines = 0;
+    if (self.service.travel) {
+        self.serviceLocationLabel.text = @"Travel";
+        return;
+    }
     self.serviceLocationLabel.numberOfLines = 0;
     self.serviceLocationLabel.text = [NSString stringWithFormat:@"Location %@",self.service.serviceLocationAddress];
     self.serviceLocationLabel.font = [UIFont fontWithName:@"Arial" size:15.0];
@@ -322,6 +333,9 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     if (collectionView == self.serviceImagesCollectionView) {
         return self.serviceImageArray.count;
     } else {
+        if (self.participants.count) {
+            self.participantsLabel.hidden = false;
+        }
         return self.participants.count;
     }
 }
@@ -355,18 +369,37 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     if ([segue.identifier isEqualToString:@"ToPickTimeSlotSegue"] ) {
         PickTimeSlotViewController *pickTimeSlotVC = segue.destinationViewController;
         pickTimeSlotVC.service = self.service;
+        pickTimeSlotVC.reviewVC = self;
     }
 }
 
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+
+- (IBAction)onConfirmButtonTapped:(UIBarButtonItem *)sender
 {
-    if (![self.service.participants containsObject:self.currentUser]) {
-        return YES;
+    if (![self.serviceSlot.participants containsObject:self.currentUser]) {
+        [self.serviceSlot.participants addObject:self.currentUser];
+        [self.serviceSlot saveInBackground];
+        [self returnToMainTabBarVC];
     } else {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"You already reserved the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
-        return NO;
     }
+
+
 }
+
+- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
+{
+   
+    [self returnToMainTabBarVC];
+}
+
+-(void)returnToMainTabBarVC
+{
+    UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *mapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+    [self presentViewController:mapNavVC animated:true completion:nil]; 
+}
+
 
 @end

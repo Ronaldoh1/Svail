@@ -41,6 +41,7 @@
 @property (nonatomic) User *provider;
 @property (nonatomic) NSMutableArray *participants;
 @property (nonatomic) NSMutableArray *serviceImageArray;
+@property (nonatomic) Service *service;
 
 @end
 
@@ -50,29 +51,43 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 
 -(void)awakeFromNib {
     
-    if (self.service) {
+    if (self.serviceSlot) {
+        
+
     
     self.participantsCollectionView.delegate = self;
     self.participantsCollectionView.dataSource = self;
     self.serviceImagesCollectionView.delegate = self;
     self.serviceImagesCollectionView.dataSource = self;
     
-    [self getServiceImages];
+
     
-    PFQuery *serviceQuery = [Service query];
-    [serviceQuery includeKey:@"provider.verification"];
-    [serviceQuery includeKey:@"participants"];
-    serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    [serviceQuery getObjectInBackgroundWithId:self.service.objectId block:^(PFObject *object, NSError *error)
+    PFQuery *serviceSlotQuery = [ServiceSlot query];
+    [serviceSlotQuery includeKey:@"service.provider.verification"];
+    [serviceSlotQuery includeKey:@"participants"];
+    [serviceSlotQuery addDescendingOrder:@"createdAt"];
+    serviceSlotQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    [serviceSlotQuery getObjectInBackgroundWithId:self.serviceSlot.objectId block:^(PFObject *object, NSError *error)
      {
 
          if (!error) {
-             self.service = (Service *)object;
-             self.provider = self.service.provider;
-             self.participants = self.service.participants;
+             self.serviceSlot = (ServiceSlot *)object;
+             self.service = self.serviceSlot.service;
+             self.provider = self.serviceSlot.service.provider;
+             self.participants = self.serviceSlot.participants;
              [self.participantsCollectionView reloadData];
              
-            self.providerNameLabel.text = self.service.provider.name;
+            [self getServiceImages];
+            [self setupTitleLabel];
+            [self setupPriceLabel];
+            [self setupCapacityLabel];
+            [self setupCategoryLabel];
+            [self setupDateLabel];
+            [self setupTimeLabel];
+            [self setupLocationLabel];
+            [self setupDescriptionTextView];
+                 
+            self.providerNameLabel.text = self.serviceSlot.service.provider.name;
              
              if ([[self.provider.verification objectForKey:@"safetyLevel"] integerValue] >= 5) {
                       self.safetyBadgeImageView.hidden = false;
@@ -86,11 +101,13 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
                        [CustomViewUtilities setupProfileImageView:self.providerImageView WithImage:[UIImage imageWithData:data]];
                  }
              }];
-                      
-              PFQuery *providerServicesQuery = [Service query];
-              [providerServicesQuery whereKey:@"provider" equalTo:self.service.provider];
-              providerServicesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-              [providerServicesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+             
+              PFQuery *providerServiceQuery = [Service query];
+             [providerServiceQuery whereKey:@"provider" equalTo:self.service.provider];
+              PFQuery *providerServiceSlotsQuery = [ServiceSlot query];
+              [providerServiceSlotsQuery whereKey:@"service" matchesQuery:providerServiceQuery];
+              providerServiceSlotsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+              [providerServiceSlotsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
               {
                    if (!error) {
                        self.servicesNumberLabel.text = [NSString stringWithFormat:@"%lu",objects.count];
@@ -120,14 +137,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
              
     
 
-    [self setupTitleLabel];
-    [self setupPriceLabel];
-    [self setupCapacityLabel];
-    [self setupCategoryLabel];
-    [self setupDateLabel];
-    [self setupTimeLabel];
-    [self setupLocationLabel];
-    [self setupDescriptionTextView];
+
     
     self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
     for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
@@ -180,9 +190,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 {
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     [dateFormatter setDateFormat:@"HH:MM"];
-    self.serviceTimeLabel.text = [NSString stringWithFormat:@"Time %@ --- %@",
-                           [dateFormatter stringFromDate:self.service.startDate],
-                           [dateFormatter stringFromDate:self.service.endDate]];
+    self.serviceTimeLabel.text = [NSString stringWithFormat:@"Time %@", [self.serviceSlot getTimeSlotString]];
     self.serviceTimeLabel.font = [UIFont fontWithName:@"Arial" size:13.0];
     NSRange range = [self.serviceTimeLabel.text rangeOfString:@"Time"];
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceTimeLabel.text];
@@ -233,6 +241,9 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 
 -(void)setupLocationLabel
 {
+    if (self.service.travel) {
+        self.serviceLocationLabel.text = @"Travel";
+    }
     self.serviceLocationLabel.numberOfLines = 0;
     self.serviceLocationLabel.text = [NSString stringWithFormat:@"Location %@",self.service.serviceLocationAddress];
     self.serviceLocationLabel.font = [UIFont fontWithName:@"Arial" size:13.0];

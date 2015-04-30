@@ -265,6 +265,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="backButton" destination="RJe-Ag-YgH" id="tgn-Dc-jDV"/>
                         <outlet property="datePicker" destination="Ajm-4A-eq2" id="4PZ-bQ-XI1"/>
                         <outlet property="location" destination="mVy-cJ-xD1" id="oEv-E5-W3m"/>
                         <outlet property="price" destination="6P9-IM-1Uj" id="JDZ-Ax-rQp"/>

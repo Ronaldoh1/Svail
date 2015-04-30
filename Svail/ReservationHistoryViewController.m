@@ -9,12 +9,13 @@
 #import "ReservationHistoryViewController.h"
 #import "User.h"
 #import "Service.h"
+#import "ServiceSlot.h"
 #import "ReservationTableViewCell.h"
 
 @interface ReservationHistoryViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
 @property (nonatomic) User *currentUser;
-@property (nonatomic) NSMutableArray *services;
+@property (nonatomic) NSMutableArray *serviceSlots;
 
 @end
 
@@ -25,7 +26,7 @@
     
     self.currentUser = [User currentUser];
     
-    PFQuery *serviceQuery = [Service query];
+    PFQuery *serviceQuery = [ServiceSlot query];
     [serviceQuery whereKey:@"participants" equalTo:self.currentUser];
     [serviceQuery orderByDescending:@"startDate"];
     serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
@@ -34,7 +35,7 @@
      {
          if (!error)
          {
-             self.services = objects.mutableCopy;
+             self.serviceSlots = objects.mutableCopy;
              [self.servicesTableView reloadData];
          }
      }];
@@ -42,14 +43,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%lu",self.services.count);
-    return self.services.count;
+    NSLog(@"%lu",self.serviceSlots.count);
+    return self.serviceSlots.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ReservationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReservationCell"];
-    cell.service = self.services[indexPath.row];
+    cell.serviceSlot = self.serviceSlots[indexPath.row];
     [cell awakeFromNib];
     return cell;
 }

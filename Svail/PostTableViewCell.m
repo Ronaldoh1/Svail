@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (nonatomic) NSMutableArray *serviceImageArray;
+@property (nonatomic) Service *service;
 
 @end
 
@@ -34,6 +35,8 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 {
     self.serviceImagesCollectionView.delegate = self;
     self.serviceImagesCollectionView.dataSource = self;
+    
+    self.service = self.serviceSlot.service;
     
     [self setupTitleLabel];
     [self setupLocationLabel];
@@ -69,9 +72,8 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 {
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     [dateFormatter setDateFormat:@"HH:MM"];
-    self.timeLabel.text = [NSString stringWithFormat:@"Time %@ --- %@",
-                                  [dateFormatter stringFromDate:self.service.startDate],
-                                  [dateFormatter stringFromDate:self.service.endDate]];
+    self.timeLabel.text = [NSString stringWithFormat:@"Time %@",
+                           [self.serviceSlot getTimeSlotString]];
     self.timeLabel.font = [UIFont fontWithName:@"Arial" size:13.0];
     NSRange range = [self.timeLabel.text rangeOfString:@"Time"];
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.timeLabel.text];
@@ -122,6 +124,10 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 
 -(void)setupLocationLabel
 {
+    if (self.service.travel) {
+        self.locationLabel.text = @"Travel";
+        return;
+    }
     self.locationLabel.numberOfLines = 0;
     self.locationLabel.text = [NSString stringWithFormat:@"Location %@",self.service.serviceLocationAddress];
     self.locationLabel.font = [UIFont fontWithName:@"Arial" size:13.0];

@@ -14,10 +14,12 @@
 @interface ServiceSlot : PFObject<PFSubclassing>
 
 @property (nonatomic) Service *service;
-@property (nonatomic) NSArray *participants;
+@property (nonatomic) NSMutableArray *participants;
+@property (nonatomic) NSDate *date;
 @property (nonatomic) NSNumber *startTime;
+@property (nonatomic) NSNumber *endTime;
 
 
--(NSString *)getStartTimeString;
+-(NSString *)getTimeSlotString;
 
 @end

@@ -8,10 +8,11 @@
 
 #import "PickTimeSlotViewController.h"
 #import "CustomSelectTimeCell.h"
-#import "ReviewReservationViewController.h"
 
 @interface PickTimeSlotViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *timeSlotsCollectionView;
+@property (nonatomic) NSArray *availableSlots;
+@property (nonatomic) ServiceSlot *serviceSlot;
 
 @end
 
@@ -20,6 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+   [self.service checkAvailableSlotsWithCompletion:^(NSArray *serviceSlots) {
+       self.availableSlots = [serviceSlots valueForKeyPath:@"startTime"];
+       [self.timeSlotsCollectionView reloadData];
+   }];
 }
 
 
@@ -32,25 +37,48 @@
 {
     CustomSelectTimeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TimeSlotCell" forIndexPath:indexPath];
     NSUInteger startTime = [self.service.startTimes[indexPath.row] integerValue];
-    NSUInteger hour = (floor)((double)startTime / 60. /60.);
-    NSUInteger minutes = (startTime - hour * 60 * 60)/60;
+    NSUInteger startHour = (floor)((double)startTime / 60. /60.);
+    NSUInteger startMinutes = (startTime - startHour * 60 * 60)/60;
+    
+    NSUInteger endTime = startTime + self.service.durationTime * 3600;
+    NSUInteger endHour = (floor)((double)endTime / 60. /60.);
+    NSUInteger endMinutes = (endTime - endHour * 60 * 60)/60;
                        
-    cell.timeLabel.text = [NSString stringWithFormat:@"%02lu:%02lu", hour,minutes];
+    cell.timeLabel.text = [NSString stringWithFormat:@"%02lu:%02lu -- %02lu:%02lu", startHour,startMinutes, endHour, endMinutes];
+    
+    cell.layer.borderWidth = 2.0f;
+    
+    if ([self.availableSlots containsObject:self.service.startTimes[indexPath.row]]) {
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.userInteractionEnabled = true;
+    } else {
+        cell.backgroundColor = [UIColor lightGrayColor];
+        cell.userInteractionEnabled = false;
+    }
     return cell;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([segue.identifier isEqualToString:@"BackToReviewSegue"]) {
-        ReviewReservationViewController *reviewVC = segue.destinationViewController;
-        NSUInteger indexOfTappedCell = [[self.timeSlotsCollectionView indexPathsForSelectedItems].lastObject row];
-        self.serviceSlot = [ServiceSlot object];
-        self.serviceSlot.service = self.service;
-        self.serviceSlot.startTime = self.service.startTimes[indexOfTappedCell];
-        [self.serviceSlot saveInBackground];
-        reviewVC.serviceSlot = self.serviceSlot;
-        reviewVC.service = self.service;
-    }
+    PFQuery *query = [ServiceSlot query];
+    [query whereKey:@"startTime" equalTo:self.service.startTimes[indexPath.row]];
+    [query whereKey:@"service" equalTo:self.service];
+    [query includeKey:@"service"];
+    [query includeKey:@"participants"];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            self.serviceSlot = (ServiceSlot *)object;
+            self.reviewVC.serviceSlot = self.serviceSlot;
+            [self.navigationController popViewControllerAnimated:YES];
+//            [self performSegueWithIdentifier:@"BackToReviewSegue" sender:self];
+        }
+    }];
+}
+
+
+- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

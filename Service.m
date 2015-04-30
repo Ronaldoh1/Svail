@@ -7,6 +7,7 @@
 //
 
 #import "Service.h"
+#import "ServiceSlot.h"
 #import <Parse/PFObject+Subclass.h>
 
 @implementation Service
@@ -41,7 +42,22 @@
 }
 
 
-
+-(void)checkAvailableSlotsWithCompletion:(void (^)(NSArray *))complete
+{
+    PFQuery *query = [ServiceSlot query];
+    [query whereKey:@"service" equalTo:self];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects,
+                                                 NSError *error)
+     {
+         if (!error) {
+             NSIndexSet *indexSet = [objects indexesOfObjectsPassingTest:^BOOL(ServiceSlot *obj, NSUInteger idx, BOOL *stop) {
+                 return obj.participants.count <= [self.capacity integerValue];
+             }];
+             complete([objects objectsAtIndexes:indexSet]);
+         }
+     }];
+    
+}
 
 
 

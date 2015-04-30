@@ -36,5 +36,6 @@
 
 +(NSString *)parseClassName;
 
+-(void)checkAvailableSlotsWithCompletion:(void (^)(NSArray *))complete;;
 
 @end

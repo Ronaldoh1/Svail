@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Service.h"
+#import "ServiceSlot.h"
 
 @interface PostTableViewCell : UITableViewCell
 
-@property (nonatomic) Service *service;
+@property (nonatomic) ServiceSlot *serviceSlot;
 
 
 

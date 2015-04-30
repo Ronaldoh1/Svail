@@ -13,7 +13,9 @@
 
 @dynamic service;
 @dynamic participants;
+@dynamic date;
 @dynamic startTime;
+@dynamic endTime;
 
 
 + (void)load{
@@ -23,11 +25,17 @@
     return @"ServiceSlot";
 }
 
--(NSString *)getStartTimeString
+-(NSString *)getTimeSlotString
 {
-    NSUInteger hour = (floor)((double)([self.startTime integerValue]) / 60. /60.);
-    NSUInteger minutes = ([self.startTime integerValue] - hour * 60 * 60)/60;
-    return [NSString stringWithFormat:@"%02lu : %02lu", hour,minutes];
+    NSUInteger startHour = (floor)((double)([self.startTime integerValue]) / 60. /60.);
+    NSUInteger startMinutes = ([self.startTime integerValue] - startHour * 60 * 60)/60;
+    
+    
+    NSUInteger endTime = [self.startTime integerValue] + self.service.durationTime * 3600;
+    NSUInteger endHour = (floor)((double)endTime / 60. /60.);
+    NSUInteger endMinutes = (endTime - endHour * 60 * 60)/60;
+    
+    return [NSString stringWithFormat:@"%02lu:%02lu -- %02lu:%02lu", startHour,startMinutes, endHour, endMinutes];
 }
 
 @end

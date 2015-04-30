@@ -15,7 +15,6 @@
 #import "UserProfileViewController.h"
 #import "CustomPointAnnotation.h"
 #import "ReviewReservationViewController.h"
-#import "PurchaseHistoryViewController.h"
 #import "CustomViewUtilities.h"
 #import "EditProfileViewController.h"
 #import "CustomImageView.h"

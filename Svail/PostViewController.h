@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "Service.h"
 
 @interface PostViewController : UIViewController
 
 @property PFGeoPoint *serviceGeoPoint;
+@property Service *service;
 
 @end

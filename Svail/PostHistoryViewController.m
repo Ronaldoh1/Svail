@@ -8,17 +8,19 @@
 
 #import "PostHistoryViewController.h"
 #import "Service.h"
+#import "ServiceSlot.h"
 #import "User.h"
 #import "Image.h"
 #import "PostTableViewCell.h"
 #import "EditPostViewController.h"
+#import "PostViewController.h"
 
 @interface PostHistoryViewController () <UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
-@property (nonatomic) NSMutableArray *services;
+@property (nonatomic) NSMutableArray *serviceSlots;
 @property (nonatomic) User *currentUser;
 @property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
-@property (nonatomic) Service *serviceToDelete;
+@property (nonatomic) Service *serviceSlotToDelete;
 
 @end
 
@@ -31,14 +33,18 @@
     
     PFQuery *serviceQuery = [Service query];
     [serviceQuery whereKey:@"provider" equalTo:self.currentUser];
-    [serviceQuery orderByDescending:@"startDate"];
-    serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    [serviceQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
+    PFQuery *serviceSlotQuery = [ServiceSlot query];
+    [serviceSlotQuery whereKey:@"service" matchesQuery:serviceQuery];
+    [serviceSlotQuery includeKey:@"service"];
+    [serviceSlotQuery includeKey:@"participants"];
+    [serviceSlotQuery orderByDescending:@"createdAt"];
+    serviceSlotQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    [serviceSlotQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                  NSError *error)
      {
          if (!error)
          {
-             self.services = objects.mutableCopy;
+             self.serviceSlots = objects.mutableCopy;
              [self.servicesTableView reloadData];
          }
      }];
@@ -46,14 +52,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%lu",self.services.count);
-    return self.services.count;
+    NSLog(@"%lu",self.serviceSlots.count);
+    return self.serviceSlots.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-    cell.service = self.services[indexPath.row];
+    cell.serviceSlot = self.serviceSlots[indexPath.row];
     cell.tag = indexPath.row;
     [cell awakeFromNib];
     return cell;
@@ -63,18 +69,27 @@
 {
     if ([segue.identifier isEqualToString:@"PostHistoryToEditPostSegue"]) {
         EditPostViewController *editPostVC = segue.destinationViewController;
-        editPostVC.service = self.services[sender.tag];
+        editPostVC.service = self.serviceSlots[sender.tag];
     }
     
 }
 
 - (IBAction)onDeleteButtonTapped:(UIButton *)sender
 {
-    self.serviceToDelete = self.services[sender.tag];
-    NSString *message = [NSString stringWithFormat:@"Delete %@?", self.serviceToDelete.title];
+    self.serviceSlotToDelete = self.serviceSlots[sender.tag];
+    NSString *message = [NSString stringWithFormat:@"Delete %@?", self.serviceSlotToDelete.title];
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
     alert.tag = 1;
     [alert show];
+}
+
+- (IBAction)onEditButtonTapped:(UIButton *)sender
+{
+    UIStoryboard *postStoryboard = [UIStoryboard storyboardWithName:@"Post" bundle:nil];
+    UINavigationController *postNavVC = [postStoryboard instantiateViewControllerWithIdentifier:@"PostNavBar"];
+    PostViewController *postVC =  postNavVC.childViewControllers[0];
+    postVC.service =  ((ServiceSlot *)self.serviceSlots[sender.tag]).service;
+    [self presentViewController:postNavVC animated:true completion:nil];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -82,7 +97,7 @@
     if (alertView.tag == 1) {
         if (buttonIndex == 1) {
             PFQuery *imageQuery = [Image query];
-            [imageQuery whereKey:@"service" equalTo:self.serviceToDelete];
+            [imageQuery whereKey:@"service" equalTo:self.serviceSlotToDelete];
             [imageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                  NSError *error)
              {
@@ -93,11 +108,11 @@
                  }
              }];
             
-            [self.serviceToDelete deleteInBackground];
-            [self.services removeObject:self.serviceToDelete];
+            [self.serviceSlotToDelete deleteInBackground];
+            [self.serviceSlots removeObject:self.serviceSlotToDelete];
             [self.servicesTableView reloadData];
         }
-        self.serviceToDelete = nil;
+        self.serviceSlotToDelete = nil;
     }
 
 }

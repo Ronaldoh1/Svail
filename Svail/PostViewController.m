@@ -10,6 +10,7 @@
 #import "Image.h"
 #import <Parse/Parse.h>
 #import "Service.h"
+#import "ServiceSlot.h"
 #import "User.h"
 #import "SelectLocationFromMapViewController.h"
 #import "SelectTimeSlotsViewController.h"
@@ -33,8 +34,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *selectStartorEndDateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *slotSelectionButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 
-@property Service *service;
+//@property Service *service;
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UIView *secondaryView;
@@ -48,6 +50,7 @@
 
 @property (nonatomic) UITapGestureRecognizer *tapRecognizer;
 
+
 @end
 
 @implementation PostViewController
@@ -55,13 +58,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 
     //center the title
     [self.slotSelectionButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     
     //Define the service
-    self.service = [Service new];
+    self.service = self.service?:[Service new];
+    
+    if (self.service) {
+        self.backButton.enabled = false;
+        [self.backButton setTintColor:[UIColor clearColor]];
+    }
 
+    self.serviceTitle.text = self.service?self.service.title:@"";
+    self.serviceDescription.text = self.service?self.service.serviceDescription:@"";
+    self.serviceCategory.text = self.service?self.service.category:@"";
+    if (self.service) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        self.startDateTextField.text = [dateFormatter stringFromDate:self.service.startDate];
+    } else {
+        self.startDateTextField.text = @"";
+    }
+    self.serviceCapacity.text = self.service?[self.service.capacity stringValue]:@"";
+    self.price.text = self.service?[self.service.price stringValue]:@"";
+    self.location.text = self.service?self.service.serviceLocationAddress:@"";
+    if (self.service) {
+        self.segmentedControlPicker.selectedSegmentIndex = self.service.travel?1:0;
+    }
+    
 
 
     //set the date picker
@@ -94,15 +120,21 @@
 
 
 }
+
+
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender
 {
     [self.view endEditing:YES];
 }
 
--(void)viewWillAppear:(BOOL)animated{
-
-
-}
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    if (self.service) {
+//        self.backButton = nil;
+//    }
+//
+//
+//}
 
 - (IBAction)onBackButtonTapped:(UIBarButtonItem *)sender {
 
@@ -153,7 +185,7 @@
     
 //     self.service.startDate = [self.startPickerDate date];
 //     self.service.endDate = [self.endPickerDate date];
-    self.service.participants = @[].mutableCopy;
+//    self.service.participants = @[].mutableCopy;
 
     if (self.segmentedControlPicker.selectedSegmentIndex == 0) {
         self.service.travel = false;
@@ -183,6 +215,18 @@
 
 
         if (!error) {
+            
+            for (NSNumber *startTime in self.service.startTimes) {
+                ServiceSlot *serviceSlot = [ServiceSlot object];
+                serviceSlot.service = self.service;
+                serviceSlot.date = self.service.startDate;
+                serviceSlot.startTime = startTime;
+                serviceSlot.endTime = @([startTime integerValue] + self.service.durationTime * 3600.0);
+                serviceSlot.participants = @[].mutableCopy;
+                [serviceSlot saveInBackground];
+            }
+            
+            
             [self displaySuccessMessage:@"You Service has been posted"];
 
             [self performSegueWithIdentifier:@"toSelectImageVC" sender:self];

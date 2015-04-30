@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3060ABBB5353AFCA3B670434 /* libPods-Svail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3587A31141F93B686E121083 /* libPods-Svail.a */; };
-		360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */; };
 		360CBE261AE8493C00A1F8CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 360CBE251AE8493C00A1F8CF /* Images.xcassets */; };
 		3613DBEB1AF04351002B5251 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF3171AEF4CB300E0DFF6 /* PostTableViewCell.m */; };
 		3613DBEE1AF06FA7002B5251 /* EditPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613DBED1AF06FA7002B5251 /* EditPostViewController.m */; };
@@ -112,8 +111,6 @@
 
 /* Begin PBXFileReference section */
 		3587A31141F93B686E121083 /* libPods-Svail.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Svail.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		360CBE1E1AE8271400A1F8CF /* PurchaseHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseHistoryViewController.h; sourceTree = "<group>"; };
-		360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseHistoryViewController.m; sourceTree = "<group>"; };
 		360CBE251AE8493C00A1F8CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3613DBEC1AF06FA7002B5251 /* EditPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPostViewController.h; sourceTree = "<group>"; };
 		3613DBED1AF06FA7002B5251 /* EditPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPostViewController.m; sourceTree = "<group>"; };
@@ -528,8 +525,6 @@
 			isa = PBXGroup;
 			children = (
 				F24B36281ADC6B28006153EC /* Reservation.storyboard */,
-				360CBE1E1AE8271400A1F8CF /* PurchaseHistoryViewController.h */,
-				360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */,
 				36EBB0221AE80F550045AF92 /* ReviewReservationViewController.h */,
 				36EBB0231AE80F550045AF92 /* ReviewReservationViewController.m */,
 				364DF2FA1AECDAFD00E0DFF6 /* RatingViewController.h */,
@@ -791,7 +786,6 @@
 				F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */,
 				3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */,
 				F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */,
-				360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */,
 				36C850201AF0ED0300235A87 /* ParticipantCollectionViewCell.m in Sources */,
 				3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */,
 				36C8501C1AF0B3D000235A87 /* ReservationHistoryViewController.m in Sources */,

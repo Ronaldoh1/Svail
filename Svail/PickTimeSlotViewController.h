@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Service.h"
 #import "ServiceSlot.h"
+#import "ReviewReservationViewController.h"
 
 @interface PickTimeSlotViewController : UIViewController
 
-@property (nonatomic) ServiceSlot *serviceSlot;
 @property (nonatomic) Service *service;
+@property (nonatomic) ReviewReservationViewController *reviewVC;
 
 @end
