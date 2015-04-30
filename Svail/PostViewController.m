@@ -55,6 +55,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    //center the title
+    [self.slotSelectionButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
     //Define the service
     self.service = [Service new];
 
@@ -86,10 +90,7 @@
     titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
     [self.navigationItem setTitleView:titleView];
 
-    self.
-    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onChooseStartDate:)];
-    self.tapRecognizer.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:self.tapRecognizer];
+    
 
 
 }
@@ -201,21 +202,17 @@
 
 //---Date Picker methods---//
 
-//
-- (IBAction)onChooseStartDate:(UITextField *)sender {
+- (IBAction)onPickStartDateButtonTapped:(UIButton *)sender {
 
+    self.secondaryView.hidden = false;
+    [self.view endEditing:YES];
+    [self.startDateTextField resignFirstResponder];
 
-        self.secondaryView.hidden = false;
-
-
-        [self.view endEditing:YES];
-        [self.startDateTextField resignFirstResponder];
-        self.selectStartorEndDateLabel.text = @"Select A Start Date";
-        self.startDateTapped = true;
-
-
+    self.selectStartorEndDateLabel.text = @"Select A Start Date";
+    self.startDateTapped = true;
 
 }
+//
 
 
 
@@ -240,6 +237,13 @@
 
 
 - (IBAction)onChooseTimeSlotButtonTapped:(id)sender {
+    self.slotSelectionButton.titleLabel.text = @"Reset Times";
+    if(!(self.service.startTimes.count == 0)){
+        [self.service.startTimes removeAllObjects];
+    }
+
+
+
 
 
 }
@@ -267,8 +271,10 @@
 }
 
 -(IBAction)unwindFromSelectTimesViewController:(UIStoryboardSegue *)segue{
+    self.slotSelectionButton.titleLabel.text = @"Reset Times";
 
-    
+
+
 }
 
 -(IBAction)unwindSegueFromSelectLocationFromMapViewController:(UIStoryboardSegue *)segue{
@@ -348,7 +354,8 @@
     self.startDateTextField.delegate = self;
 
     //Set the startdate textfield initially to true
-    self.startDateTextField.enabled = true;
+    self.startDateTextField.enabled = false;
+    self.startDateTextField.userInteractionEnabled = false;
 
     
 }
