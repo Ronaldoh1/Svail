@@ -15,6 +15,7 @@
 @property NSDate *timeForCell;
 @property double durationTime;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *clearTimeSlotButtons;
 @property NSMutableArray *selectedCellArray;
 @property GenerateTimeSlot *timeSlot;
 @property NSArray *timesArray;
@@ -29,7 +30,12 @@ static NSString *const kReusableIdentifier = @"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    //set the clear button color
+    self.clearTimeSlotButtons.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
     //set navigation title color and text
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+
     //setting image to Navigation Bar's title
     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
     titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
@@ -94,6 +100,22 @@ static NSString *const kReusableIdentifier = @"cell";
 
 }
 
+- (IBAction)onClearButtonPressed:(UIButton *)sender {
+
+    for(int i = 0; i < self.selectedCellArray.count; i++){
+
+        [self.collectionView cellForItemAtIndexPath:self.selectedCellArray[i]].userInteractionEnabled = true;
+        [self.collectionView cellForItemAtIndexPath:self.selectedCellArray[i]].backgroundColor = [UIColor whiteColor];
+
+
+    }
+
+    [self.selectedCellArray removeAllObjects];
+    [self.service.startTimes removeAllObjects];
+
+
+
+}
 
 
 #pragma marks - UICollectionView DataSource Methods
@@ -170,6 +192,12 @@ static NSString *const kReusableIdentifier = @"cell";
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
 
+    if ([self.selectedCellArray containsObject:indexPath]){
+
+        [collectionView cellForItemAtIndexPath:indexPath].userInteractionEnabled = false;
+        [collectionView cellForItemAtIndexPath:indexPath].backgroundColor = [UIColor redColor];
+    }
+
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
@@ -209,9 +237,11 @@ static NSString *const kReusableIdentifier = @"cell";
         NSIndexPath *someIndexPath = self.selectedCellArray[i];
 
 
-        [collectionView cellForItemAtIndexPath:someIndexPath].userInteractionEnabled = false;
+        //[collectionView cellForItemAtIndexPath:someIndexPath].userInteractionEnabled = false;
         [collectionView cellForItemAtIndexPath:someIndexPath].backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
     }
+
+
 
 
 }

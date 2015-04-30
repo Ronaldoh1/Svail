@@ -125,7 +125,7 @@
     [self setupProfileButton];
 }
 -(void)viewDidAppear:(BOOL)animated{
-    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
+    //[self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
     // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
 
 }

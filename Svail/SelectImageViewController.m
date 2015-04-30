@@ -162,9 +162,6 @@
 
 
 
-
-
-
     }else if(self.imageArray.count == 2){
 
         //define and NSMutable array to hold the image objects.
@@ -283,7 +280,7 @@
 
             if(!error){
                 //successfully saved image1.
-                [self performSegueWithIdentifier:@"toServiceHistory"sender:self];
+                [self performSegueWithIdentifier:@"toPostSummary"sender:self];
 
             }else {
                 [self displayErrorAlert:error.localizedDescription];
