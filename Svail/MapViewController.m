@@ -50,7 +50,7 @@
 
     self.locationManager = [CLLocationManager new];
     [self.locationManager requestWhenInUseAuthorization];
-    self.mapView.showsUserLocation = YES;
+   self.mapView.showsUserLocation = YES;
 
 //    CLLocation *currentLocation = self.locationManager.location;
 
@@ -391,6 +391,7 @@
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     //zooming map to current location at startup
+    
     if (!self.didGetUserLocation) {
         double latitude = self.locationManager.location.coordinate.latitude;
         double longitude = self.locationManager.location.coordinate.longitude;
@@ -441,7 +442,7 @@
         UIStoryboard *reservationStoryboard = [UIStoryboard storyboardWithName:@"Reservation" bundle:nil];
         UIViewController *reviewReservationNavVC = [reservationStoryboard instantiateViewControllerWithIdentifier:@"ReviewReservationNavVC"];
         ReviewReservationViewController *reviewReservationVC = reviewReservationNavVC.childViewControllers[0];
-        reviewReservationVC.serviceId = annotation.service.objectId;
+        reviewReservationVC.service = annotation.service;
         [self presentViewController:reviewReservationNavVC animated:TRUE completion:nil];
     }
 }

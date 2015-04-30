@@ -103,7 +103,7 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
                 //        let tabBarVC = mapStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
                 //        self.presentViewController(tabBarVC, animated: true, completion: nil)
                 //
-       //         PFQuery.clearAllCachedResults();
+                PFQuery.clearAllCachedResults();
                 let mapStoryBoard = UIStoryboard(name: "Verification", bundle: nil)
                 let veriVC = mapStoryBoard.instantiateViewControllerWithIdentifier("VeriNavVC") as! UIViewController
                 self.presentViewController(veriVC, animated: true, completion: nil)

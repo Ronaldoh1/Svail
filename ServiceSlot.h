@@ -8,13 +8,16 @@
 
 
 #import <Parse/Parse.h>
-#import <MapKit/MapKit.h>
 #import "User.h"
 #import "Service.h"
 
 @interface ServiceSlot : PFObject<PFSubclassing>
 
-@property  (nonatomic) Service *service;
+@property (nonatomic) Service *service;
+@property (nonatomic) NSArray *participants;
+@property (nonatomic) NSNumber *startTime;
 
+
+-(NSString *)getStartTimeString;
 
 @end

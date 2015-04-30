@@ -31,6 +31,7 @@
 @property NSMutableArray *participants;
 @property double durationTime;
 @property (nonatomic) NSArray *imageFiles;
+@property (nonatomic) NSArray *serviceSlots;
 
 
 +(NSString *)parseClassName;

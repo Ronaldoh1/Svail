@@ -30,6 +30,7 @@
 @dynamic startTimes;
 @dynamic durationTime;
 @dynamic imageFiles;
+@dynamic serviceSlots;
 
 
 + (void)load{

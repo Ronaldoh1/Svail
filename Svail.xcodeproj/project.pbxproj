@@ -10,7 +10,6 @@
 		3060ABBB5353AFCA3B670434 /* libPods-Svail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3587A31141F93B686E121083 /* libPods-Svail.a */; };
 		360CBE201AE8271400A1F8CF /* PurchaseHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */; };
 		360CBE261AE8493C00A1F8CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 360CBE251AE8493C00A1F8CF /* Images.xcassets */; };
-		360CBE291AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */; };
 		3613DBEB1AF04351002B5251 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF3171AEF4CB300E0DFF6 /* PostTableViewCell.m */; };
 		3613DBEE1AF06FA7002B5251 /* EditPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613DBED1AF06FA7002B5251 /* EditPostViewController.m */; };
 		3613DBEF1AF07584002B5251 /* SelectTimeSlotsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */; };
@@ -22,6 +21,7 @@
 		364DF30F1AEF30AF00E0DFF6 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 364DF30E1AEF30AF00E0DFF6 /* History.storyboard */; };
 		364DF3121AEF344400E0DFF6 /* PostHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF3111AEF344400E0DFF6 /* PostHistoryViewController.m */; };
 		364DF31E1AEF566700E0DFF6 /* ServiceImagesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF31D1AEF566700E0DFF6 /* ServiceImagesCollectionViewCell.m */; };
+		365847E31AF1AD6F00013A88 /* PickTimeSlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365847E21AF1AD6F00013A88 /* PickTimeSlotViewController.m */; };
 		3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */; };
 		3666FD8B1ADCE30100105272 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */; };
 		3666FD8D1ADCE31700105272 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */; };
@@ -115,8 +115,6 @@
 		360CBE1E1AE8271400A1F8CF /* PurchaseHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseHistoryViewController.h; sourceTree = "<group>"; };
 		360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseHistoryViewController.m; sourceTree = "<group>"; };
 		360CBE251AE8493C00A1F8CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		360CBE271AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantPurchaseCVCell.h; sourceTree = "<group>"; };
-		360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantPurchaseCVCell.m; sourceTree = "<group>"; };
 		3613DBEC1AF06FA7002B5251 /* EditPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPostViewController.h; sourceTree = "<group>"; };
 		3613DBED1AF06FA7002B5251 /* EditPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPostViewController.m; sourceTree = "<group>"; };
 		364CBE981AEF7B3900754D9C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -135,6 +133,8 @@
 		364DF31A1AEF4CEA00E0DFF6 /* ReservationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationTableViewCell.m; sourceTree = "<group>"; };
 		364DF31C1AEF566700E0DFF6 /* ServiceImagesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceImagesCollectionViewCell.h; sourceTree = "<group>"; };
 		364DF31D1AEF566700E0DFF6 /* ServiceImagesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceImagesCollectionViewCell.m; sourceTree = "<group>"; };
+		365847E11AF1AD6F00013A88 /* PickTimeSlotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickTimeSlotViewController.h; sourceTree = "<group>"; };
+		365847E21AF1AD6F00013A88 /* PickTimeSlotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickTimeSlotViewController.m; sourceTree = "<group>"; };
 		3666FD881ADCE2F000105272 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3666FD8A1ADCE30100105272 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3666FD8C1ADCE31700105272 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -528,14 +528,14 @@
 			isa = PBXGroup;
 			children = (
 				F24B36281ADC6B28006153EC /* Reservation.storyboard */,
-				360CBE271AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.h */,
-				360CBE281AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m */,
 				360CBE1E1AE8271400A1F8CF /* PurchaseHistoryViewController.h */,
 				360CBE1F1AE8271400A1F8CF /* PurchaseHistoryViewController.m */,
 				36EBB0221AE80F550045AF92 /* ReviewReservationViewController.h */,
 				36EBB0231AE80F550045AF92 /* ReviewReservationViewController.m */,
 				364DF2FA1AECDAFD00E0DFF6 /* RatingViewController.h */,
 				364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */,
+				365847E11AF1AD6F00013A88 /* PickTimeSlotViewController.h */,
+				365847E21AF1AD6F00013A88 /* PickTimeSlotViewController.m */,
 			);
 			name = Reservation;
 			sourceTree = "<group>";
@@ -779,6 +779,7 @@
 				3E8324971AF0FC4D00DDA24E /* CustomPinAnnotation.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
 				36EBB0241AE80F550045AF92 /* ReviewReservationViewController.m in Sources */,
+				365847E31AF1AD6F00013A88 /* PickTimeSlotViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
 				3E968BD31AED9F2B009FB31F /* CustomImageView.m in Sources */,
 				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
@@ -806,7 +807,6 @@
 				F24B36461ADCB320006153EC /* Image.m in Sources */,
 				F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */,
 				F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */,
-				360CBE291AE8EBB500A1F8CF /* ParticipantPurchaseCVCell.m in Sources */,
 				36C850231AF1615D00235A87 /* ServiceSlot.m in Sources */,
 				3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */,
 				36EBB0271AE822A80045AF92 /* ConfirmPurchaseViewController.m in Sources */,
