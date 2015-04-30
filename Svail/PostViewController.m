@@ -86,7 +86,7 @@
     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
     titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
     titleView.font = [UIFont fontWithName:@"Noteworthy" size:20];
-    titleView.text = @"Post Service";
+    titleView.text = @"Post a Service";
     titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
     [self.navigationItem setTitleView:titleView];
 
@@ -118,7 +118,7 @@
 
 
 
-    NSString *errorMessage = @"Error in from. Please note - All fields are required";
+    NSString *errorMessage = @"Please note - All fields are required";
 
 
 //    NSDate *startDate = [self.startPickerDate date];
@@ -130,12 +130,12 @@
 
 
 
-    // if ([self.serviceTitle.text isEqualToString:@""] || [self.serviceDescription.text isEqualToString:@""] || [self.serviceCategory.text isEqualToString:@""] || [self.serviceCapacity.text isEqualToString:@""] || [self.location.text isEqualToString:@""]) {
-    //
-    //        [self displayErrorAlert:errorMessage];
-    //
-    //
-    //    }else{
+     if ([self.serviceTitle.text isEqualToString:@""] || [self.serviceDescription.text isEqualToString:@""] || [self.serviceCategory.text isEqualToString:@""] || [self.serviceCapacity.text isEqualToString:@""] || [self.location.text isEqualToString:@""]) {
+    
+            [self displayErrorAlert:errorMessage];
+    
+    
+        }else{
 
     //MARK - Save Service information
     //    self.currentUser = [User new];
@@ -196,7 +196,7 @@
     });
 
 
-
+        }
 }
 
 

@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    var kbHeight: CGFloat!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,12 +39,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         self.registerButton.layer.borderColor = UIColor.redColor() as! CGColor;
         self.registerButton.layer.borderWidth = 2.0
 
-        //Dismiss keyboard
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+//        //Dismiss keyboard
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
 
         //setuptextfield delegates
         self.setUpTextFields()
+    }
+    override func viewWillAppear(animated:Bool) {
+        super.viewWillAppear(animated)
+
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
@@ -282,16 +294,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     }
 
     //Helper methods to dismiss keyboard
-    func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= 190
+    func textFieldDidBeginEditing(textField: UITextField) {
+        animateViewMoving(true, moveValue: 100)
     }
-    
-    func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += 190
+    func textFieldDidEndEditing(textField: UITextField) {
+        animateViewMoving(false, moveValue: 100)
     }
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
+
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        var movementDuration:NSTimeInterval = 0.3
+        var movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.commitAnimations()
     }
     func setUpTextFields(){
         

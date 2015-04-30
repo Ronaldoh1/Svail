@@ -29,6 +29,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+
+    //setting image to Navigation Bar's title
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    titleView.font = [UIFont fontWithName:@"Noteworthy" size:15];
+    titleView.text = @"Press & Hold to Select Location";
+    titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
+    [self.navigationItem setTitleView:titleView];
+
     //initially we should set the didGetUserLocation to false;
     self.didGetUserLocation = false;
 

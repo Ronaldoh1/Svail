@@ -22,8 +22,8 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
         self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.orangeColor(), forKey: NSForegroundColorAttributeName) as [NSObject : AnyObject]
 
         //Dismiss keyboard
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
 
         //setup textfield delegates
         self.setUpTextFieldsForLogin()
@@ -207,20 +207,24 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
         
     }
     //MARK - Delegate method to dismiss keyboard.
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
-    
+
     //Helper methods to dismiss keyboard
-    func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= 75
+    func textFieldDidBeginEditing(textField: UITextField) {
+        animateViewMoving(true, moveValue: 100)
     }
-    
-    func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += 75
+    func textFieldDidEndEditing(textField: UITextField) {
+        animateViewMoving(false, moveValue: 100)
     }
 
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        var movementDuration:NSTimeInterval = 0.3
+        var movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.commitAnimations()
+    }
     func setUpTextFieldsForLogin(){
         
         self.passwordTextField.delegate = self;

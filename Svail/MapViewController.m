@@ -701,8 +701,15 @@
                 //we also need to retrieve his profile picture.
 
                 [self.navigationController reloadInputViews];
+
+                //set the number of posts
+                [User currentUser].numberOfPosts = 0;
+                [User currentUser].isPremium = false;
            
 
+                [[PFInstallation currentInstallation] setObject:[User currentUser] forKey:@"user"];
+
+                [[PFInstallation currentInstallation] saveInBackground];
 
 //                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
 //                EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];

@@ -170,26 +170,29 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 }
 - (IBAction)onContinueButton:(UIBarButtonItem *)sender {
 
-    // Build a query to match users with a birthday today
-    PFQuery *innerQuery = [User query];
 
-    // Use hasPrefix: to only match against the month/date
+    [PFCloud callFunctionInBackground:@"sendSMS"
+                       withParameters:@{@"toNumber":self.service.provider.phoneNumber,
+                                        @"message": [NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested", self.serviceSlot.service.title, [self.serviceSlot getStartTimeString]]}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        // result is @"Hello world!"
+                                        NSLog(@"%@",result);
+                                    }
+                                }];
 
-    [innerQuery whereKey:@"username" equalTo:self.service.provider.username];
-   
-
-    // Build the actual push notification target query
-    PFQuery *query = [PFInstallation query];
-
-    // only return Installations that belong to a User that
-    // matches the innerQuery
-    [query whereKey:@"user" matchesQuery:innerQuery];
-
-    // Send the notification.
-    PFPush *push = [[PFPush alloc] init];
-    [push setQuery:query];
-    [push setMessage:@"Someone has requested your service!"];
-    [push sendPushInBackground];
+//    // Build the actual push notification target query
+//    PFQuery *query = [PFInstallation query];
+//
+//    // only return Installations that belong to a User that
+//    // matches the innerQuery
+//    [query whereKey:@"user" equalTo:self.service.provider];
+//
+//    // Send the notification.
+//    PFPush *push = [[PFPush alloc] init];
+//    [push setQuery:query];
+//    [push setMessage:@"Someone has requested your service!"];
+//    [push sendPushInBackground];
 }
 
 -(void)getServiceImages
