@@ -104,9 +104,9 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
                 //        self.presentViewController(tabBarVC, animated: true, completion: nil)
                 //
                 PFQuery.clearAllCachedResults();
-                let mapStoryBoard = UIStoryboard(name: "Verification", bundle: nil)
-                let veriVC = mapStoryBoard.instantiateViewControllerWithIdentifier("VeriNavVC") as! UIViewController
-                self.presentViewController(veriVC, animated: true, completion: nil)
+                let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+                let mainTabBarVC = mainStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
+                self.presentViewController(mainTabBarVC, animated: true, completion: nil)
 
             } else {
                 var errorString = error!.userInfo?["error"] as? NSString
@@ -214,13 +214,13 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
     
     //Helper methods to dismiss keyboard
     func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= 200
+        self.view.frame.origin.y -= 75
     }
     
     func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += 200
+        self.view.frame.origin.y += 75
     }
-    
+
     func setUpTextFieldsForLogin(){
         
         self.passwordTextField.delegate = self;

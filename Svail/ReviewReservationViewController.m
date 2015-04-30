@@ -168,6 +168,29 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     
 
 }
+- (IBAction)onContinueButton:(UIBarButtonItem *)sender {
+
+    // Build a query to match users with a birthday today
+    PFQuery *innerQuery = [User query];
+
+    // Use hasPrefix: to only match against the month/date
+
+    [innerQuery whereKey:@"username" equalTo:self.service.provider.username];
+   
+
+    // Build the actual push notification target query
+    PFQuery *query = [PFInstallation query];
+
+    // only return Installations that belong to a User that
+    // matches the innerQuery
+    [query whereKey:@"user" matchesQuery:innerQuery];
+
+    // Send the notification.
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    [push setMessage:@"Someone has requested your service!"];
+    [push sendPushInBackground];
+}
 
 -(void)getServiceImages
 {
@@ -197,7 +220,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 - (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
 {
     UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *mapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MapNavVC"];
+    UIViewController *mapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
     [self presentViewController:mapNavVC animated:true completion:nil];
     
 }

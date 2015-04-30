@@ -57,26 +57,36 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
 
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
             (user: PFUser?, error: NSError?) -> Void in
+
             if let user = user as? User{
                 if user.isNew {
                     println("User signed up and logged in through Facebook!")
 
-                    self.getFacebookUserData()
+                    PFQuery.clearAllCachedResults()
+
+
 
                     user.isFbUser = true
 
                     //set the number of post;
                     user.numberOfPosts = 0
 
-                    user.saveInBackgroundWithBlock {
-                        (success: Bool, error: NSError?) -> Void in
-                        if (success) {
-                            self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+                    self.getFacebookUserData()
 
-                        } else {
-
-                        }
-                    }//                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
+//                    user.saveInBackgroundWithBlock {
+//                        (success: Bool, error: NSError?) -> Void in
+//                        if (success) {
+//                            self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+//                            
+//
+//                        } else {
+//                            PFQuery.clearAllCachedResults();
+//                            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+//                            let mainTabBarVC = mainStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
+//                            self.presentViewController(mainTabBarVC, animated: true, completion: nil)
+//
+//                        }
+//                    }//                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
 //                    let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UINavigationController
 //                    self.presentViewController(editProfileNavVC, animated: true, completion: nil)
 
@@ -100,7 +110,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     {
         var signUpError = ""
 
-//        if (self.emailTextField.text == "" || self.passwordTextField.text == "" || self.confirmPasswordTextField.text == "" || self.phoneNumberTextField.text == "")
+        if (self.emailTextField.text == "" || self.passwordTextField.text == "" || self.confirmPasswordTextField.text == "" || self.phoneNumberTextField.text == ""){
         if (self.emailTextField.text == "" || self.passwordTextField.text == "" || self.confirmPasswordTextField.text == "")
         {
 
@@ -110,7 +120,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
 
             signUpError = "Passwords do not match, please try again.";
 
-        }else if (count(self.passwordTextField.text) < 1 || count(self.confirmPasswordTextField.text) < 1)
+        }else if (count(self.passwordTextField.text) < 6 || count(self.confirmPasswordTextField.text) < 6)
         {
 
             signUpError = "Password must be at least 1 characters long. Please try again."
@@ -119,6 +129,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
             self.signUp()
 
         }
+        }
+
 
         if (signUpError != "")
         {
@@ -207,6 +219,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
 
     //getFacebook Profile Image
 
+
+
     func getFbUserProfileImage(facebookID :String){
         // Get user profile pic
 
@@ -218,20 +232,36 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
 
             print(data);
 
+            let newUser = User.currentUser()
             // Display the image
             //let image = UIImage(data: data)
             // self.profilePic.image = image
 
             var file = PFFile(data: data)
 
-            User.currentUser()?.profileImage = file;
+            newUser!.profileImage = file;
 
-            User.currentUser()?.saveInBackground()
+           // User.currentUser()?.saveInBackground()
+            
+            newUser!.saveInBackgroundWithBlock {
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
 
 
+                } else {
+                    PFQuery.clearAllCachedResults();
+                    let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainTabBarVC = mainStoryBoard.instantiateViewControllerWithIdentifier("MainTabBarVC") as! UIViewController
+                    self.presentViewController(mainTabBarVC, animated: true, completion: nil)
+
+                }
+            }
         }
 
     }
+
+
 
     //helper method to show alert
     func showAlert(error:NSString)
