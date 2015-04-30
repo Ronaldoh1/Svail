@@ -58,7 +58,7 @@ class LoginViewController: UIViewController, UIAlertViewDelegate, UITextFieldDel
                 if user.isNew {
                     println("User signed up and logged in through Facebook!")
 
-                    PFQuery.clearAllCachedResults();
+                    PFQuery.clearAllCachedResults()
                     
                     self.getFacebookUserData()
 

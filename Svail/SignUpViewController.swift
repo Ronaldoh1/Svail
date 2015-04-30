@@ -61,22 +61,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                 if user.isNew {
                     println("User signed up and logged in through Facebook!")
 
-                    self.getFacebookUserData()
-
                     user.isFbUser = true
 
                     //set the number of post;
                     user.numberOfPosts = 0
 
-                    user.saveInBackgroundWithBlock {
-                        (success: Bool, error: NSError?) -> Void in
-                        if (success) {
-                            self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+                    self.getFacebookUserData()
 
-                        } else {
+//                    user.saveInBackgroundWithBlock {
+//                        (success: Bool, error: NSError?) -> Void in
+//                        if (success) {
+//                            self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+//
+//                        } else {
+//
+//                        }
+//                    }
 
-                        }
-                    }//                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
+                //                    let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
 //                    let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UINavigationController
 //                    self.presentViewController(editProfileNavVC, animated: true, completion: nil)
 
@@ -224,9 +226,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
 
             var file = PFFile(data: data)
 
-            User.currentUser()?.profileImage = file;
+            let newUser = User.currentUser()
 
-            User.currentUser()?.saveInBackground()
+//            User.currentUser()?.profileImage = file;
+            newUser?.profileImage = file;
+
+//            User.currentUser()?.saveInBackground()
+
+            newUser!.saveInBackgroundWithBlock {
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+
+                } else {
+
+                }
+            }
+
 
 
         }

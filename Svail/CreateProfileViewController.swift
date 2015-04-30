@@ -1,4 +1,4 @@
-//
+    //
 //  CreateProfileViewController.swift
 //  Svail
 //
@@ -28,7 +28,7 @@ class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPi
 
 //        self.view.backgroundColor = UIColor(red: 240/255.0, green: 248/255.0, blue: 255/255.0, alpha: 1.0)
 
-        self.profileImage.layer.cornerRadius = 90/2.0
+        self.profileImage.layer.cornerRadius = 120/2.0
         self.profileImage.clipsToBounds = true
         
         //making the buttons round
