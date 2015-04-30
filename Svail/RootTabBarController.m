@@ -7,6 +7,7 @@
 //
 
 #import "RootTabBarController.h"
+#import "User.h"
 
 @interface RootTabBarController ()
 
@@ -35,8 +36,12 @@
     UIStoryboard *historyStoryboard = [UIStoryboard storyboardWithName:@"History" bundle:nil];
     UIViewController *historyVC = [historyStoryboard instantiateViewControllerWithIdentifier:@"HistoryNavVC"];
     [self addChildViewController:historyVC];
-    historyVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"history2"] scaledToSize:CGSizeMake(35, 35)];
+
+    if ([User currentUser] == nil) {
+        historyVC.tabBarItem.enabled = NO;
+    }
     
+    historyVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"history2"] scaledToSize:CGSizeMake(35, 35)];
     
 }
 

@@ -52,7 +52,7 @@
     [self.locationManager requestWhenInUseAuthorization];
    self.mapView.showsUserLocation = YES;
 
-//    CLLocation *currentLocation = self.locationManager.location;
+    CLLocation *currentLocation = self.locationManager.location;
 
     
 
@@ -100,12 +100,12 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
 
-//    //download Services from Parse and filter it according to today's event
-//    [EventLocationDownloader downloadEventLocationForLocation:currentLocation withCompletion:^(NSArray *array)
-//     {
-//         self.eventsArray = [NSMutableArray arrayWithArray:array];
-//         [self filterEventsForDate:self.segmentedControl];
-//     }];
+    //download Services from Parse and filter it according to today's event
+    [EventLocationDownloader downloadEventLocationForLocation:currentLocation withCompletion:^(NSArray *array)
+     {
+         self.eventsArray = [NSMutableArray arrayWithArray:array];
+         [self filterEventsForDate:self.segmentedControl];
+     }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -388,26 +388,26 @@
 
 }
 
+
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     //zooming map to current location at startup
     
-    if (!self.didGetUserLocation) {
-        double latitude = self.locationManager.location.coordinate.latitude;
-        double longitude = self.locationManager.location.coordinate.longitude;
-        [self.locationManager stopUpdatingLocation];
+//    if (!self.didGetUserLocation) {
+//        double latitude = self.locationManager.location.coordinate.latitude;
+//        double longitude = self.locationManager.location.coordinate.longitude;
+//        [self.locationManager stopUpdatingLocation];
 
-        [self zoom:&latitude :&longitude];
-        self.didGetUserLocation = YES;
+//        [self zoom:&latitude :&longitude];
+//        self.didGetUserLocation = YES;
 
         //download Services from Parse and filter it according to today's event
-        [EventLocationDownloader downloadEventLocationForLocation:userLocation.location withCompletion:^(NSArray *array)
-         {
-             self.eventsArray = [NSMutableArray arrayWithArray:array];
-             [self filterEventsForDate:self.segmentedControl];
-         }];
-    }
-
+//        [EventLocationDownloader downloadEventLocationForLocation:userLocation.location withCompletion:^(NSArray *array)
+//         {
+//             self.eventsArray = [NSMutableArray arrayWithArray:array];
+//             [self filterEventsForDate:self.segmentedControl];
+//         }];
+//    }
 
 }
 

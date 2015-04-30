@@ -284,6 +284,10 @@
     self.profileImage.hidden = YES;
     [self.view reloadInputViews];
 
+    UIStoryboard *rootTabBarStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *rootTabBarVC = [rootTabBarStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+    [self presentViewController:rootTabBarVC animated:true completion:nil];
+    
 }
 - (IBAction)onSignInButtonPressed:(UIButton *)sender
 {
