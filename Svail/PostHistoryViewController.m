@@ -20,7 +20,7 @@
 @property (nonatomic) NSMutableArray *serviceSlots;
 @property (nonatomic) User *currentUser;
 @property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
-@property (nonatomic) Service *serviceSlotToDelete;
+@property (nonatomic) ServiceSlot *serviceSlotToDelete;
 
 @end
 
@@ -77,7 +77,7 @@
 - (IBAction)onDeleteButtonTapped:(UIButton *)sender
 {
     self.serviceSlotToDelete = self.serviceSlots[sender.tag];
-    NSString *message = [NSString stringWithFormat:@"Delete %@?", self.serviceSlotToDelete.title];
+    NSString *message = [NSString stringWithFormat:@"Delete %@?", self.serviceSlotToDelete.service.title];
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
     alert.tag = 1;
     [alert show];

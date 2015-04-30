@@ -1,4 +1,4 @@
-//
+    //
 //  CreateProfileViewController.swift
 //  Svail
 //
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
 
     @IBOutlet weak var finishButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
@@ -28,7 +28,7 @@ class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPi
 
 //        self.view.backgroundColor = UIColor(red: 240/255.0, green: 248/255.0, blue: 255/255.0, alpha: 1.0)
 
-        self.profileImage.layer.cornerRadius = 90/2.0
+        self.profileImage.layer.cornerRadius = 120/2.0
         self.profileImage.clipsToBounds = true
         
         //making the buttons round
@@ -48,6 +48,17 @@ class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPi
 
         self.currentUser = User.currentUser()!
 
+        //Dismiss keyboard
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+
+        //setuptextfield delegates
+        self.setUpTextFields()
+
+
+    }
+    override func viewWillAppear(animated: Bool) {
+        
         if (self.currentUser.isFbUser == true)
         {
             self.currentUser.profileImage.getDataInBackgroundWithBlock {
@@ -60,14 +71,14 @@ class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPi
                 }
             }
         }else
-            {
-                self.profileImage.image = UIImage(named:"defaultimage")
-                let image = UIImage(named:"defaultimage")
-                let imageData = UIImagePNGRepresentation(image)
-                let imageFile = PFFile(name:"image.png", data:imageData)
-                self.currentUser.profileImage = imageFile
-                currentUser.saveInBackground()
-            }
+        {
+            self.profileImage.image = UIImage(named:"defaultimage")
+            let image = UIImage(named:"defaultimage")
+            let imageData = UIImagePNGRepresentation(image)
+            let imageFile = PFFile(name:"image.png", data:imageData)
+            self.currentUser.profileImage = imageFile
+            currentUser.saveInBackground()
+        }
     }
 
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
@@ -167,5 +178,30 @@ class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPi
         self.profileImage.image = img
         self.currentUser.profileImage.saveInBackground()
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    //Helper methods to dismiss keyboard
+    func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y -= 190
+    }
+
+    func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y += 190
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    func setUpTextFields(){
+
+
+        self.occupationTextField.delegate = self
+        self.genderTextField.delegate = self
+        self.fullNameTextField.delegate = self
+        self.stateTextField.delegate = self
+
+
+
+
     }
 }

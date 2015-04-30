@@ -46,11 +46,21 @@
     [super viewDidLoad];
     
     [self setupProfileButton];
+//
+//    self.locationManager = [CLLocationManager new];
+//    [self.locationManager requestWhenInUseAuthorization];
+//   self.mapView.showsUserLocation = YES;
 
+
+    //initially we should set the didGetUserLocation to false;
+    self.didGetUserLocation = false;
+
+    
     self.locationManager = [CLLocationManager new];
+    self.locationManager.delegate = self;
+    self.mapView.delegate = self;
     [self.locationManager requestWhenInUseAuthorization];
-   self.mapView.showsUserLocation = YES;
-
+    self.mapView.showsUserLocation = true;
 //    CLLocation *currentLocation = self.locationManager.location;
 
     
@@ -109,6 +119,14 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
+    // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
+
+    //zooming map to current location at startup
+    double latitude = self.locationManager.location.coordinate.latitude;
+    double longitude = self.locationManager.location.coordinate.longitude;
+
+    [self zoom:&latitude :&longitude];
 
 //    self.locationManager = [[CLLocationManager alloc] init];
 //    self.locationManager.delegate = self;
@@ -121,7 +139,7 @@
 //    [self zoom:&latitude :&longitude];
 
 //    [super viewWillAppear:animated];
-    [self setupProfileButton];
+
 }
 -(void)viewDidAppear:(BOOL)animated{
     //[self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
@@ -390,22 +408,46 @@
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     //zooming map to current location at startup
-    
-    if (!self.didGetUserLocation) {
+
+
+
+
+//    self.mapView.centerCoordinate = self.mapView.userLocation.location.coordinate;
+//
+//    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
+
+    if(!self.didGetUserLocation){
+
+        //zooming map to current location at startup
         double latitude = self.locationManager.location.coordinate.latitude;
         double longitude = self.locationManager.location.coordinate.longitude;
         [self.locationManager stopUpdatingLocation];
 
         [self zoom:&latitude :&longitude];
-        self.didGetUserLocation = YES;
 
+        self.didGetUserLocation = true;
         //download Services from Parse and filter it according to today's event
-        [EventLocationDownloader downloadEventLocationForLocation:userLocation.location withCompletion:^(NSArray *array)
+        [EventLocationDownloader downloadEventLocationForLocation:self.mapView.userLocation.location withCompletion:^(NSArray *array)
          {
              self.eventsArray = [NSMutableArray arrayWithArray:array];
              [self filterEventsForDate:self.segmentedControl];
          }];
+
     }
+
+
+
+
+
+//    if (!self.didGetUserLocation) {
+//        double latitude = self.locationManager.location.coordinate.latitude;
+//        double longitude = self.locationManager.location.coordinate.longitude;
+//        [self.locationManager stopUpdatingLocation];
+//
+//        [self zoom:&latitude :&longitude];
+//        self.didGetUserLocation = YES;
+//
+//    }
 
 
 }
@@ -658,8 +700,15 @@
                 //we also need to retrieve his profile picture.
 
                 [self.navigationController reloadInputViews];
+
+                //set the number of posts
+                [User currentUser].numberOfPosts = 0;
+                [User currentUser].isPremium = false;
            
 
+                [[PFInstallation currentInstallation] setObject:[User currentUser] forKey:@"user"];
+
+                [[PFInstallation currentInstallation] saveInBackground];
 
 //                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
 //                EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
