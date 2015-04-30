@@ -260,6 +260,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
                 if (success) {
                     self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
 
+//            User.currentUser()?.saveInBackground()
 
                 } else {
                     PFQuery.clearAllCachedResults();
