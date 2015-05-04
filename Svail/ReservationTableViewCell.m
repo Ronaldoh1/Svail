@@ -160,8 +160,8 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
          if (!error) {
              [self.serviceImagesCollectionView reloadData];
              for (int i = 0;i < objects.count;i++) {
-                 PFFile *imageFile = objects[i];
-                 [imageFile getDataInBackgroundWithBlock:^(NSData *data,
+                 Image *image = objects[i];
+                 [image.imageFile getDataInBackgroundWithBlock:^(NSData *data,
                                                            NSError *error)
                   {
                       if (!error) {
