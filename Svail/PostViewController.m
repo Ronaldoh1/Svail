@@ -66,10 +66,7 @@
     //Define the service
     self.service = self.service?:[Service new];
     
-    if (self.service) {
-        self.backButton.enabled = false;
-        [self.backButton setTintColor:[UIColor clearColor]];
-    }
+
 
     self.serviceTitle.text = self.service?self.service.title:@"";
     self.serviceDescription.text = self.service?self.service.serviceDescription:@"";
@@ -127,14 +124,14 @@
     [self.view endEditing:YES];
 }
 
-//-(void)viewWillAppear:(BOOL)animated
-//{
+-(void)viewWillAppear:(BOOL)animated
+{
 //    if (self.service) {
-//        self.backButton = nil;
+//        self.backButton.enabled = false;
+//        [self.backButton setTintColor:[UIColor clearColor]];
 //    }
-//
-//
-//}
+
+}
 
 - (IBAction)onBackButtonTapped:(UIBarButtonItem *)sender {
 

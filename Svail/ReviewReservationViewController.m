@@ -177,13 +177,13 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     if (self.serviceSlot) {
         self.serviceTimeLabel.hidden = false;
         [self setupTimeLabel];
-        self.participants = self.service.participants;
+        self.participants = self.serviceSlot.participants;
         [self.participantsCollectionView reloadData];
     }
 }
 
 
-- (IBAction)onContinueButton:(UIBarButtonItem *)sender {
+- (IBAction)onConfirmButton:(UIBarButtonItem *)sender {
     [PFCloud callFunctionInBackground:@"sendSMS"
                        withParameters:@{@"toNumber":self.service.provider.phoneNumber,
                                         @"message": [NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested", self.serviceSlot.service.title, [self.serviceSlot getTimeSlotString]]}
@@ -194,6 +194,14 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
                                     }
                                 }];
 
+    if (![self.serviceSlot.participants containsObject:self.currentUser]) {
+        [self.serviceSlot.participants addObject:self.currentUser];
+        [self.serviceSlot saveInBackground];
+        [self returnToMainTabBarVC];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"You already reserved the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 //    // Build the actual push notification target query
 //    PFQuery *query = [PFInstallation query];
 //
@@ -399,19 +407,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 }
 
 
-- (IBAction)onConfirmButtonTapped:(UIBarButtonItem *)sender
-{
-    if (![self.serviceSlot.participants containsObject:self.currentUser]) {
-        [self.serviceSlot.participants addObject:self.currentUser];
-        [self.serviceSlot saveInBackground];
-        [self returnToMainTabBarVC];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"You already reserved the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
 
-
-}
 
 - (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
 {
