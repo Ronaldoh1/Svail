@@ -76,9 +76,9 @@ static NSString *const kReusableIdentifier = @"cell";
     }
 
     //HIDE BACK BUTTON ITEM
-
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.hidesBackButton = YES;
+//
+//    self.navigationItem.leftBarButtonItem = nil;
+//    self.navigationItem.hidesBackButton = YES;
 
 
     //setup color tint and title color
@@ -96,7 +96,10 @@ static NSString *const kReusableIdentifier = @"cell";
 
 
 }
+//on cancel go back to Post View Controller
 - (IBAction)onCancelButton:(UIBarButtonItem *)sender {
+
+
 
 }
 

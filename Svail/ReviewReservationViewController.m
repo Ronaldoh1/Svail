@@ -127,7 +127,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
                       self.numOfServicesLabel.text = [NSString stringWithFormat:@"%lu",objects.count];
                       
                   }
-                  
+
               }];
              
              PFQuery *providerRatingsQuery = [Rating query];
@@ -184,6 +184,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 
 
 - (IBAction)onConfirmButton:(UIBarButtonItem *)sender {
+    
     [PFCloud callFunctionInBackground:@"sendSMS"
                        withParameters:@{@"toNumber":self.service.provider.phoneNumber,
                                         @"message": [NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested", self.serviceSlot.service.title, [self.serviceSlot getTimeSlotString]]}
@@ -226,8 +227,8 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
          if (!error) {
              [self.serviceImagesCollectionView reloadData];
              for (int i = 0;i < objects.count;i++) {
-                 PFFile *imageFile = objects[i];
-                 [imageFile getDataInBackgroundWithBlock:^(NSData *data,
+                 Image *image = objects[i];
+                 [image.imageFile getDataInBackgroundWithBlock:^(NSData *data,
                                                            NSError *error)
                   {
                       if (!error) {

@@ -311,27 +311,7 @@
     return nil;
 }
 
--(IBAction)unwindFromSelectTimesViewController:(UIStoryboardSegue *)segue{
-    self.slotSelectionButton.titleLabel.text = @"Reset Times";
 
-
-
-}
-
--(IBAction)unwindSegueFromSelectLocationFromMapViewController:(UIStoryboardSegue *)segue{
-
-    if ([segue.sourceViewController isKindOfClass:[SelectLocationFromMapViewController class]]) {
-        SelectLocationFromMapViewController *selectLocationVC = [segue sourceViewController];
-        // if the user clicked Cancel, we don't want to change the color
-        self.serviceGeoPoint = [PFGeoPoint new];
-
-        self.serviceGeoPoint.latitude = selectLocationVC.serviceGeoPointFromMap.latitude;
-        self.serviceGeoPoint.longitude = selectLocationVC.serviceGeoPointFromMap.longitude;
-        self.location.text = selectLocationVC.userLocation;
-
-        NSLog(@"%f %f", self.serviceGeoPoint.longitude, self.serviceGeoPoint.latitude);
-    }
-}
 
 - (IBAction)onLocationLabelTapped:(UITextField *)sender {
      [self performSegueWithIdentifier:@"toSelectLocationFromMap" sender:self];
@@ -452,6 +432,31 @@
     }
 
     
+}
+
+#pragma marks - Unwind Methods
+
+-(IBAction)unwindFromSelectTimesViewController:(UIStoryboardSegue *)segue{
+    self.slotSelectionButton.titleLabel.text = @"Reset Times";
+
+}
+-(IBAction)unwindOnCancelFromSelectTimesViewController:(UIStoryboardSegue *)segue{
+
+
+}
+-(IBAction)unwindSegueFromSelectLocationFromMapViewController:(UIStoryboardSegue *)segue{
+
+    if ([segue.sourceViewController isKindOfClass:[SelectLocationFromMapViewController class]]) {
+        SelectLocationFromMapViewController *selectLocationVC = [segue sourceViewController];
+        // if the user clicked Cancel, we don't want to change the color
+        self.serviceGeoPoint = [PFGeoPoint new];
+
+        self.serviceGeoPoint.latitude = selectLocationVC.serviceGeoPointFromMap.latitude;
+        self.serviceGeoPoint.longitude = selectLocationVC.serviceGeoPointFromMap.longitude;
+        self.location.text = selectLocationVC.userLocation;
+
+        NSLog(@"%f %f", self.serviceGeoPoint.longitude, self.serviceGeoPoint.latitude);
+    }
 }
 
 
