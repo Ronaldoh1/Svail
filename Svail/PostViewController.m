@@ -58,14 +58,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
 
     //center the title
     [self.slotSelectionButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    
+
     //Define the service
     self.service = self.service?:[Service new];
-    
+
 
 
     self.serviceTitle.text = self.service?self.service.title:@"";
@@ -84,7 +84,7 @@
     if (self.service) {
         self.segmentedControlPicker.selectedSegmentIndex = self.service.travel?1:0;
     }
-    
+
 
 
     //set the date picker
@@ -93,17 +93,17 @@
     self.datePicker.datePickerMode = UIDatePickerModeDate; //set the date as date mode only
 
 
-//    self.startPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
-//    self.endPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
+    //    self.startPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
+    //    self.endPickerDate.transform = CGAffineTransformMakeScale(0.80, 0.65);
 
     //set delegates for textfields
     [self setDelegatesForTextFields];
 
-//    //change the navbartitle color
-//
+    //    //change the navbartitle color
+    //
     self.navigationController.navigationBar.tintColor = self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
-    
-//    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
+
+    //    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
 
     //setting image to Navigation Bar's title
     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
@@ -113,7 +113,7 @@
     titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
     [self.navigationItem setTitleView:titleView];
 
-    
+
 
 
 }
@@ -126,10 +126,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    if (self.service) {
-//        self.backButton.enabled = false;
-//        [self.backButton setTintColor:[UIColor clearColor]];
-//    }
+    //    if (self.service) {
+    //        self.backButton.enabled = false;
+    //        [self.backButton setTintColor:[UIColor clearColor]];
+    //    }
 
 }
 
@@ -137,7 +137,7 @@
 
     [self dismissViewControllerAnimated:YES completion:nil];
 
-    
+
 }
 
 
@@ -147,97 +147,81 @@
 
 
 
-    NSString *errorMessage = @"Please note - All fields are required";
+    NSString *errorMessage = @"Please note - All fields, Date & Times are required";
+
+    if ([self.serviceTitle.text isEqualToString:@""] || [self.serviceDescription.text isEqualToString:@""] || [self.serviceCategory.text isEqualToString:@""] || [self.serviceCapacity.text isEqualToString:@""] || [self.location.text isEqualToString:@""] || [self.slotSelectionButton.titleLabel.text isEqualToString:@"Set Times For Your Service"] || self.service.startTimes.count == 0 || self.service.startDate == nil) {
+
+        [self displayErrorAlert:errorMessage];
 
 
-//    NSDate *startDate = [self.startPickerDate date];
-//
-//
-//
-//    NSDate *endDate = [self.endPickerDate date];
+    }else{
+
+        //MARK - Save Service information
+
+        self.service.provider = [User currentUser];
+        self.service.title = self.serviceTitle.text;
+        self.service.serviceDescription = self.serviceDescription.text;
+        self.service.category = self.serviceCategory.text;
+        self.service.capacity = @([self.serviceCapacity.text integerValue]);
+        self.service.price = @([self.price.text floatValue]);
+        self.service.serviceLocationAddress = self.location.text;
+
+
+
+        if (self.segmentedControlPicker.selectedSegmentIndex == 0) {
+            self.service.travel = false;
+        }else if (self.segmentedControlPicker.selectedSegmentIndex == 1){
+            self.service.travel = true;
+        }
+        //save the geopoint
+        self.service.theServiceGeoPoint = self.serviceGeoPoint;
 
 
 
 
-     if ([self.serviceTitle.text isEqualToString:@""] || [self.serviceDescription.text isEqualToString:@""] || [self.serviceCategory.text isEqualToString:@""] || [self.serviceCapacity.text isEqualToString:@""] || [self.location.text isEqualToString:@""]) {
-    
-            [self displayErrorAlert:errorMessage];
-    
-    
-        }else{
 
-    //MARK - Save Service information
-    //    self.currentUser = [User new];
-    //    self.currentUser.username = @"bitchesBeLike";
-    //[self.currentUser setSessionToken:@"fsafsafafa"];
 
-    //  [self.currentUser save];
-    self.service.provider = [User currentUser];
-    self.service.title = self.serviceTitle.text;
-    self.service.serviceDescription = self.serviceDescription.text;
-    self.service.category = self.serviceCategory.text;
-    self.service.capacity = @([self.serviceCapacity.text integerValue]);
-    self.service.price = @([self.price.text floatValue]);
-    self.service.serviceLocationAddress = self.location.text;
-    
-//     self.service.startDate = [self.startPickerDate date];
-//     self.service.endDate = [self.endPickerDate date];
-//    self.service.participants = @[].mutableCopy;
 
-    if (self.segmentedControlPicker.selectedSegmentIndex == 0) {
-        self.service.travel = false;
-    }else if (self.segmentedControlPicker.selectedSegmentIndex == 1){
-        self.service.travel = true;
+
+        //Indicator starts annimating when user posts.
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.7 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+
+            [self.service saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+
+                //        //stop actiivity indication from annimating.
+                //        [activityIndicator stopAnimating];
+
+
+                if (!error) {
+
+                    for (NSNumber *startTime in self.service.startTimes) {
+                        ServiceSlot *serviceSlot = [ServiceSlot object];
+                        serviceSlot.service = self.service;
+                        serviceSlot.date = self.service.startDate;
+                        serviceSlot.startTime = startTime;
+                        serviceSlot.endTime = @([startTime integerValue] + self.service.durationTime * 3600.0);
+                        serviceSlot.participants = @[].mutableCopy;
+                        [serviceSlot saveInBackground];
+                    }
+
+
+                    [self displaySuccessMessage:@"You Service has been posted"];
+
+                    [self performSegueWithIdentifier:@"toSelectImageVC" sender:self];
+                }else{
+                    [self displayErrorAlert:error.localizedDescription];
+
+                }
+            }];
+
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+
+
     }
-    //save the geopoint
-    self.service.theServiceGeoPoint = self.serviceGeoPoint;
-
-
-
-
-
-
-
-
-    //Indicator starts annimating when user posts.
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.7 * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-
-
-    [self.service saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-
-//        //stop actiivity indication from annimating.
-//        [activityIndicator stopAnimating];
-
-
-        if (!error) {
-            
-            for (NSNumber *startTime in self.service.startTimes) {
-                ServiceSlot *serviceSlot = [ServiceSlot object];
-                serviceSlot.service = self.service;
-                serviceSlot.date = self.service.startDate;
-                serviceSlot.startTime = startTime;
-                serviceSlot.endTime = @([startTime integerValue] + self.service.durationTime * 3600.0);
-                serviceSlot.participants = @[].mutableCopy;
-                [serviceSlot saveInBackground];
-            }
-            
-            
-            [self displaySuccessMessage:@"You Service has been posted"];
-
-            [self performSegueWithIdentifier:@"toSelectImageVC" sender:self];
-        }else{
-            [self displayErrorAlert:error.localizedDescription];
-
-        }
-    }];
-
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    });
-
-
-        }
 }
 
 
@@ -260,17 +244,15 @@
 - (IBAction)onDonePickingDate:(UIButton *)sender {
 
 
-        self.secondaryView.hidden = true;
+    self.secondaryView.hidden = true;
 
     //set the service start date
-        self.service.startDate = self.datePicker.date;
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-     
-
-        self.startDateTextField.text = [dateFormatter stringFromDate:self.datePicker.date];
+    self.service.startDate = self.datePicker.date;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 
 
+    self.startDateTextField.text = [dateFormatter stringFromDate:self.datePicker.date];
 
 
 }
@@ -282,7 +264,6 @@
     if(!(self.service.startTimes.count == 0)){
         [self.service.startTimes removeAllObjects];
     }
-
 
 
 
@@ -311,37 +292,15 @@
     return nil;
 }
 
--(IBAction)unwindFromSelectTimesViewController:(UIStoryboardSegue *)segue{
-    self.slotSelectionButton.titleLabel.text = @"Reset Times";
 
-
-
-}
-
--(IBAction)unwindSegueFromSelectLocationFromMapViewController:(UIStoryboardSegue *)segue{
-
-    if ([segue.sourceViewController isKindOfClass:[SelectLocationFromMapViewController class]]) {
-        SelectLocationFromMapViewController *selectLocationVC = [segue sourceViewController];
-        // if the user clicked Cancel, we don't want to change the color
-        self.serviceGeoPoint = [PFGeoPoint new];
-
-        self.serviceGeoPoint.latitude = selectLocationVC.serviceGeoPointFromMap.latitude;
-        self.serviceGeoPoint.longitude = selectLocationVC.serviceGeoPointFromMap.longitude;
-        self.location.text = selectLocationVC.userLocation;
-
-        NSLog(@"%f %f", self.serviceGeoPoint.longitude, self.serviceGeoPoint.latitude);
-    }
-}
 
 - (IBAction)onLocationLabelTapped:(UITextField *)sender {
-     [self performSegueWithIdentifier:@"toSelectLocationFromMap" sender:self];
-     [self.location resignFirstResponder];
+    [self resignFirstResponder];
+    [self performSegueWithIdentifier:@"toSelectLocationFromMap" sender:self];
+
 }
 
-- (IBAction)onTappedButtonSetLocation:(UIButton *)sender {
-        [self performSegueWithIdentifier:@"toSelectLocationFromMap" sender:self];
-         [self resignFirstResponder];
-}
+
 
 //hide keyboard when user touches outside.
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -366,17 +325,17 @@
 
 
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Success!" message:text delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    
+
     [alertView show];
-    
+
 }
 
 #pragma Marks - hiding keyboard
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-     [textField resignFirstResponder];
+    [textField resignFirstResponder];
 
     [self.view endEditing:true];
-    return false;
+    return true;
 }
 
 
@@ -384,7 +343,7 @@
     [sender resignFirstResponder];
 
 }
-//set the delegate for textfields. 
+//set the delegate for textfields.
 //Helpers method to set the delegates of the textfields.
 -(void)setDelegatesForTextFields{
     self.serviceTitle.delegate = self;
@@ -398,7 +357,7 @@
     self.startDateTextField.enabled = false;
     self.startDateTextField.userInteractionEnabled = false;
 
-    
+
 }
 //share to facebook
 - (IBAction)sharetoFacebookButton:(UIButton *)sender {
@@ -414,7 +373,7 @@
 
     [self presentViewController:self.mySL animated:true completion:nil];
 
-    
+
 }
 
 //Share on Twitter
@@ -441,8 +400,8 @@
 
     if ([segue.identifier isEqualToString:@"toSelectServiceTimes"]) {
 
-         SelectTimeSlotsViewController *destVC = segue.destinationViewController;
-         destVC.service = self.service;
+        SelectTimeSlotsViewController *destVC = segue.destinationViewController;
+        destVC.service = self.service;
 
     }else if([segue.identifier isEqualToString:@"toSelectImageVC"]){
 
@@ -451,7 +410,32 @@
 
     }
 
+
+}
+
+#pragma marks - Unwind Methods
+
+-(IBAction)unwindFromSelectTimesViewController:(UIStoryboardSegue *)segue{
+    self.slotSelectionButton.titleLabel.text = @"Reset Times";
+
+}
+-(IBAction)unwindOnCancelFromSelectTimesViewController:(UIStoryboardSegue *)segue{
     
+    
+}
+-(IBAction)unwindSegueFromSelectLocationFromMapViewController:(UIStoryboardSegue *)segue{
+    
+    if ([segue.sourceViewController isKindOfClass:[SelectLocationFromMapViewController class]]) {
+        SelectLocationFromMapViewController *selectLocationVC = [segue sourceViewController];
+        // if the user clicked Cancel, we don't want to change the color
+        self.serviceGeoPoint = [PFGeoPoint new];
+        
+        self.serviceGeoPoint.latitude = selectLocationVC.serviceGeoPointFromMap.latitude;
+        self.serviceGeoPoint.longitude = selectLocationVC.serviceGeoPointFromMap.longitude;
+        self.location.text = selectLocationVC.userLocation;
+        
+        NSLog(@"%f %f", self.serviceGeoPoint.longitude, self.serviceGeoPoint.latitude);
+    }
 }
 
 

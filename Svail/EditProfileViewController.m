@@ -14,7 +14,7 @@
 
 #import "Verification.h"
 
-@interface EditProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIAlertViewDelegate, FBSDKGraphRequestConnectionDelegate>
+@interface EditProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIAlertViewDelegate, FBSDKGraphRequestConnectionDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *verifyButton;
@@ -40,6 +40,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self initialSetUp];
+
+
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+//    [self.view addGestureRecognizer:tap];
+
+}
+-(void)initialSetUp{
+
+    //set the delegate for each textfield to self.
+    [self setDelegatesForTextFields];
+
 
     self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
@@ -106,7 +119,7 @@
 
     self.currentUser = [User currentUser];
 
-//    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+    //    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
 
     self.fullnameTextField.text = self.currentUser.name;
 
@@ -133,10 +146,6 @@
             self.profileImage.clipsToBounds = YES;
         }
     }];
-
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-
 }
 
 - (IBAction)onChangeImageButtonPressed:(UIButton *)sender
@@ -241,13 +250,14 @@
 
 }
 
--(void)dismissKeyboard {
-    [self.fullnameTextField resignFirstResponder];
-    [self.emailTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
-    [self.stateTextField resignFirstResponder];
-    [self.occupationTextField resignFirstResponder];
-    [self.phoneTextField resignFirstResponder];
+-(void)setDelegatesForTextFields{
+
+    self.fullnameTextField.delegate = self;
+    self.emailTextField.delegate = self;
+    self.passwordTextField.delegate = self;
+    self.stateTextField.delegate = self;
+    self.occupationTextField.delegate = self;
+    self.phoneTextField.delegate = self;
 
 
 }
@@ -302,5 +312,19 @@
 
     [self presentViewController:signUpVC animated:true completion:nil];
 }
+
+#pragma Marks - hiding keyboard
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+
+    [self.view endEditing:true];
+    return true;
+}
+//hide keyboard when user touches outside.
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
 
 @end

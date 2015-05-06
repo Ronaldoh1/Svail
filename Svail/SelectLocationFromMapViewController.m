@@ -29,12 +29,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //initial setup
+    [self initialSetUp];
+
+
+
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
+   // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
+
+    //zooming map to current location at startup
+    double latitude = self.locationManager.location.coordinate.latitude;
+    double longitude = self.locationManager.location.coordinate.longitude;
+
+    [self zoom:&latitude :&longitude];
+}
+
+//Helper method for initial set up
+-(void)initialSetUp{
 
     //setting image to Navigation Bar's title
     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
     titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
     titleView.font = [UIFont fontWithName:@"Noteworthy" size:15];
-    titleView.text = @"Press & Hold to Select Location";
+    titleView.text = @"Press & Hold to Set Location";
     titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
     [self.navigationItem setTitleView:titleView];
 
@@ -72,16 +91,13 @@
             NSLog(@"%@", ((Service* )object));
         }];
 
-       // self.serviceGeoPointToEdit = [PFGeoPoint new];
+        // self.serviceGeoPointToEdit = [PFGeoPoint new];
 
         CLLocationCoordinate2D coordinate  = CLLocationCoordinate2DMake(self.serviceGeoPointToEdit.latitude, self.serviceGeoPointToEdit.longitude);
 
         MKPointAnnotation *someAnnotation = [MKPointAnnotation new];
         someAnnotation.coordinate = coordinate;
         someAnnotation.title = @"Old Location";
-
-
-
 
 
         [self.mapView addAnnotation:someAnnotation];
@@ -91,68 +107,32 @@
 
 
 
-    //set the current annotation to false
-    self.isAnnotationSet = false;
+        //set the current annotation to false
+        self.isAnnotationSet = false;
 
-    // Do any additional setup after loading the view.
-
-
-    self.locationManager = [CLLocationManager new];
-    self.locationManager.delegate = self;
-    self.mapView.delegate = self;
-    [self.locationManager requestWhenInUseAuthorization];
-    self.mapView.showsUserLocation = true;
+        // Do any additional setup after loading the view.
 
 
+        self.locationManager = [CLLocationManager new];
+        self.locationManager.delegate = self;
+        self.mapView.delegate = self;
+        [self.locationManager requestWhenInUseAuthorization];
+        self.mapView.showsUserLocation = true;
 
 
-     [self.mapView addAnnotation:self.servicePoint];
 
-    //set the goepoint
-     self.serviceGeoPoint = [PFGeoPoint new];
 
-    UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-    longPressRecognizer.minimumPressDuration = 1.0;
-    [self.mapView addGestureRecognizer:longPressRecognizer];
+        [self.mapView addAnnotation:self.servicePoint];
 
+        //set the goepoint
+        self.serviceGeoPoint = [PFGeoPoint new];
+        
+        UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+        longPressRecognizer.minimumPressDuration = 1.0;
+        [self.mapView addGestureRecognizer:longPressRecognizer];
+        
     }
-
-//    //zoom to region
-//    
-//    MKMapPoint annotationPoint = MKMapPointForCoordinate(self.mapView.userLocation.location.coordinate);
-//    MKMapRect zoomRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.5, 0.5);
-//    [self.mapView setVisibleMapRect:zoomRect animated:false];
-//
-//
-
-//    CLLocationCoordinate2D centerPointOfMap = CLLocationCoordinate2DMake(52.5, 13.4);
-//    MKCoordinateSpan sizeOfMapToShow = MKCoordinateSpanMake(30, 30);
-//    MKCoordinateRegion showMapRegion = MKCoordinateRegionMake(self.mapView.userLocation.location.coordinate, sizeOfMapToShow);
-//
-//    [self.mapView setRegion:showMapRegion animated:YES];
-
-//    MKCoordinateRegion region;
-//    region.center = self.mapView.userLocation.location.coordinate;
-//    MKCoordinateSpan span;
-//    span.latitudeDelta  = 1;
-//    span.longitudeDelta = 1;
-//    region.span = span;
-//    [self.mapView setRegion:region animated:YES];
-
-
 }
--(void)viewDidAppear:(BOOL)animated{
-    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
-   // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
-
-    //zooming map to current location at startup
-    double latitude = self.locationManager.location.coordinate.latitude;
-    double longitude = self.locationManager.location.coordinate.longitude;
-
-    [self zoom:&latitude :&longitude];
-}
-
-
 //helper method to zoom in
 
 -(void)zoom:(double *)latitude :(double *)logitude
@@ -183,7 +163,7 @@
     CLLocationCoordinate2D newCoordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
     MKPointAnnotation *someAnnotation = [MKPointAnnotation new];
     someAnnotation.coordinate = newCoordinate;
-    someAnnotation.title = @"Service Location";
+    someAnnotation.title = @"Press & Hold to Move";
 
         self.serviceGeoPointFromMap = [PFGeoPoint new];
         self.serviceGeoPointFromMap.latitude = newCoordinate.latitude;
