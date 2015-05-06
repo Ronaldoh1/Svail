@@ -9,7 +9,7 @@
 #import "SelectTimeSlotsViewController.h"
 #import "GenerateTimeSlot.h"
 
-@interface SelectTimeSlotsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface SelectTimeSlotsViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UISlider *durationSlider;
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 @property NSDate *timeForCell;
@@ -20,6 +20,7 @@
 @property GenerateTimeSlot *timeSlot;
 @property NSArray *timesArray;
 @property (weak, nonatomic) IBOutlet UILabel *directionsLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveTimesButton;
 
 
 @end
@@ -31,8 +32,20 @@ static NSString *const kReusableIdentifier = @"cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //set the clear button color
-    self.clearTimeSlotButtons.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+    [self performInitialSetUp];
+
+}
+//helper Method for initial set up
+-(void)performInitialSetUp{
+
+    //initially disable the save button
+    self.saveTimesButton.enabled = false;
+
+    //set the clear button color, background and roud
+    self.clearTimeSlotButtons.tintColor = [UIColor whiteColor];
+    self.clearTimeSlotButtons.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+
+
     //set navigation title color and text
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
 
@@ -50,9 +63,6 @@ static NSString *const kReusableIdentifier = @"cell";
 
     self.durationLabel.textColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
 
-    //set the slider color
-
-    self.durationSlider.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
     self.durationSlider.tintColor = [UIColor colorWithRed:59/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
     //set the nsdate
 
@@ -69,31 +79,32 @@ static NSString *const kReusableIdentifier = @"cell";
     self.timeSlot = [GenerateTimeSlot new];
     self.timesArray = [self.timeSlot generateTimesArrayInNSNumbers];
 
-    //check if the service start tiem is empty ....if it is instantiate it.
+    //check if the service start time is empty ....if it is instantiate it.
     if (self.service.startTimes == nil) {
 
-    self.service.startTimes = [NSMutableArray new];
+        self.service.startTimes = [NSMutableArray new];
     }
-
-    //HIDE BACK BUTTON ITEM
-//
-//    self.navigationItem.leftBarButtonItem = nil;
-//    self.navigationItem.hidesBackButton = YES;
 
 
     //setup color tint and title color
     self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
-
+    
 
 }
-
 //Getting the duration for each service
 - (IBAction)timeSlotSetter:(UISlider *)sender {
 
     self.durationTime = (double)(roundf(sender.value / 0.5f) * 0.5f);
-    self.durationLabel.text = [NSString stringWithFormat:@"%.01f hours",self.durationTime];
 
+    if (self.durationTime == 1) {
+        self.durationLabel.text = [NSString stringWithFormat:@"%.01f hour",self.durationTime];
+
+
+    }else {
+        self.durationLabel.text = [NSString stringWithFormat:@"%.01f hours",self.durationTime];
+
+    }
 
 }
 //on cancel go back to Post View Controller
@@ -112,11 +123,20 @@ static NSString *const kReusableIdentifier = @"cell";
 
 
     }
-
+    //remove all the indexPaths from the selected Cells Arrays
     [self.selectedCellArray removeAllObjects];
+
+    //remove all the start times from service
     [self.service.startTimes removeAllObjects];
 
+    //disable the save button as there are no times slots selected.
+    self.saveTimesButton.enabled = false;
 
+    //enable the slider again so the user can reselect new timeslot duration
+    self.durationSlider.enabled = true;
+
+}
+- (IBAction)onSaveButtonPressed:(UIBarButtonItem *)sender {
 
 }
 
@@ -127,18 +147,16 @@ static NSString *const kReusableIdentifier = @"cell";
     return 1;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 48;
+    return self.timesArray.count;
 }
 -(CustomSelectTimeCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     CustomSelectTimeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReusableIdentifier forIndexPath:indexPath];
 
-//    UITapGestureRecognizer  *tapGestureOnPhoto = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleCellTapped:)];
-//    tapGestureOnPhoto.numberOfTapsRequired = 1;
-//
-//    cell.timeLabel.userInteractionEnabled = YES;
+
+    //    cell.timeLabel.userInteractionEnabled = YES;
     cell.userInteractionEnabled = true;
-//    [cell.timeLabel addGestureRecognizer:tapGestureOnPhoto];
+    //    [cell.timeLabel addGestureRecognizer:tapGestureOnPhoto];
 
     //set the text color for the label for each cell
     cell.timeLabel.textColor = [UIColor colorWithRed:59/255.0 green:185/255.0 blue:255/255.0 alpha:1.0];
@@ -148,20 +166,18 @@ static NSString *const kReusableIdentifier = @"cell";
     NSInteger  minutes = ([self.timesArray[indexPath.row]integerValue] - hours * 3600) / 60;
 
     if (minutes == 0 && hours == 0) {
-         cell.timeLabel.text  = [NSString stringWithFormat:@"%ld:0%ld",(long)hours, (long)minutes];
+        cell.timeLabel.text  = [NSString stringWithFormat:@"%ld:0%ld",(long)hours, (long)minutes];
     }else if(minutes == 0){
-         cell.timeLabel.text  = [NSString stringWithFormat:@"%ld:0%ld",(long)hours, (long)minutes];
+        cell.timeLabel.text  = [NSString stringWithFormat:@"%ld:0%ld",(long)hours, (long)minutes];
 
     }else{
-         cell.timeLabel.text  = [NSString stringWithFormat:@"%ld:%ld",(long)hours, (long)minutes];
+        cell.timeLabel.text  = [NSString stringWithFormat:@"%ld:%ld",(long)hours, (long)minutes];
 
-        
+
     }
 
 
-
-
-        cell.layer.borderWidth = 2.0f;
+    cell.layer.borderWidth = 2.0f;
 
 
 
@@ -171,20 +187,11 @@ static NSString *const kReusableIdentifier = @"cell";
 
         if(((NSIndexPath *)(self.selectedCellArray[i])).row == indexPath.row){
 
-          cell.userInteractionEnabled = false;
+            cell.userInteractionEnabled = false;
             cell.backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
 
         }
     }
-
-//    for (int i = 0; i < self.selectedCellArray.count; i++) {
-//
-//        NSIndexPath *someIndexPath = self.selectedCellArray[i];
-//
-//
-//        [collectionView cellForItemAtIndexPath:someIndexPath].userInteractionEnabled = false;
-//        [collectionView cellForItemAtIndexPath:someIndexPath].backgroundColor = [UIColor blueColor];
-//    }
 
 
 
@@ -193,75 +200,137 @@ static NSString *const kReusableIdentifier = @"cell";
 
 #pragma marks - UICollectionView Delegate Methods.
 
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
 
-    if ([self.selectedCellArray containsObject:indexPath]){
-
-        [collectionView cellForItemAtIndexPath:indexPath].userInteractionEnabled = false;
-        [collectionView cellForItemAtIndexPath:indexPath].backgroundColor = [UIColor redColor];
-    }
-
-}
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
-    NSLog(@"%ld",(long)indexPath.row);
-
-
-//    [collectionView cellForItemAtIndexPath:indexPath].userInteractionEnabled = false;
-
-   // [collectionView cellForItemAtIndexPath:indexPath].userInteractionEnabled = false;
-
-    [self.selectedCellArray addObject:indexPath];
-
+    //get the number of cell to disable
     int numberOfCellsToDisable = (self.durationTime / .5);
 
-
+    //get the duration time and disable slider.
     self.service.durationTime = self.durationTime;
+    self.durationSlider.enabled = false;
 
-    [self.service.startTimes addObject:
-     self.timesArray[indexPath.row]];
+    [self.service.startTimes addObject: self.timesArray[indexPath.row]];
 
     NSLog(@"start times is at %@", self.service.startTimes);
 
     NSLog(@"%d",numberOfCellsToDisable);
 
-    for (int i = (int)(indexPath.row); i < (int)(indexPath.row) + numberOfCellsToDisable; i++) {
+    BOOL allDone = NO;
 
+    //calculate the cells to be set as selected.
+    for (int i = (int)(indexPath.row); i < (int)(indexPath.row) + numberOfCellsToDisable; i++) {
+        //get the indexPaths of the selected cells to be added to the selected cells arrays.
         NSIndexPath *someIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
 
-        [self.selectedCellArray addObject:someIndexPath];
+        if (self.selectedCellArray.count != 0){
 
-//        [collectionView cellForItemAtIndexPath:someIndexPath].userInteractionEnabled = false;
-//        [collectionView cellForItemAtIndexPath:someIndexPath].backgroundColor = [UIColor blueColor];
+        //check if the any of the indexPaths are already included in the selectedCellArray.
+        for (int j = 0; j<self.selectedCellArray.count; j++) {
+           // NSIndexPath *alreadySelectedIndexPath = self.selectedCellArray[j];
+
+            //if the indextPath has already been added to the selectedCellsArray ...print error
+            if ([self.selectedCellArray containsObject:someIndexPath]){
+
+
+
+                [self displayAlertWhenTimesOverlap];
+                allDone = true;
+                break;
+
+            //else add the indexpath to the cell
+            }else{
+                NSLog(@"adding cell to selected cell");
+
+
+                [self.selectedCellArray addObject:someIndexPath];
+                break;
+
+            }
+         }
+        }else{
+            NSLog(@"adding cell to selected cell");
+
+
+            [self.selectedCellArray addObject:someIndexPath];
+
+        }
+
+        if (allDone) {
+            break;
+        }
+
     }
 
+    //highlight the selected cells and also disable them.
     for (int i = 0; i < self.selectedCellArray.count; i++) {
 
         NSIndexPath *someIndexPath = self.selectedCellArray[i];
 
-
-        //[collectionView cellForItemAtIndexPath:someIndexPath].userInteractionEnabled = false;
         [collectionView cellForItemAtIndexPath:someIndexPath].backgroundColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+        [collectionView cellForItemAtIndexPath:someIndexPath].userInteractionEnabled = false;
     }
 
-
-
+    if (self.service.startTimes.count != 0){
+        self.saveTimesButton.enabled = true;
+    }
 
 }
 
--(void)handleCellTapped{
+#pragma marks - Alert View Delegate Method
 
-    NSLog(@"cell has been tapped");
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+
+        for(int i = 0; i < self.selectedCellArray.count; i++){
+
+            [self.collectionView cellForItemAtIndexPath:self.selectedCellArray[i]].userInteractionEnabled = true;
+            [self.collectionView cellForItemAtIndexPath:self.selectedCellArray[i]].backgroundColor = [UIColor whiteColor];
+            self.durationSlider.enabled = true;
+
+
+        }
+
+        [self.selectedCellArray removeAllObjects];
+        [self.service.startTimes removeAllObjects];
+    }
 }
+
+
+#pragma marks - alert messages
+
 //Helper method to display success message to user.
 -(void)displaySuccessMessage:(NSString *)text{
 
 
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Success!" message:text delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-
+    
     [alertView show];
     
 }
 
+//display message to successfully show that the user's times have been saved.
+-(void)displaySuccesfullTimeSelectionMessage{
+    
+    
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"Your time slots have been saved!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    
+    [alertView show];
+    
+}
+//display message when user user selects times that overlap.
+-(void)displayAlertWhenTimesOverlap{
+
+
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error in Times Selected!" message:@"Times Cannot Overlap - Please Try Again!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+
+    [alertView show];
+
+}
+-(void)displayAlertForNoTimesSelected{
+
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"No Times Selected" message:@"You must select at least one time slot" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alertView show];
+}
 
 @end

@@ -24,6 +24,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="UiV-xp-9I1"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Service Description" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DzA-uh-Jv6">
                                 <rect key="frame" x="16" y="110" width="382" height="30"/>
@@ -32,6 +35,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="iCd-3u-c9q"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Service Category" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HRL-xO-mg2">
                                 <rect key="frame" x="16" y="148" width="382" height="30"/>
@@ -40,6 +46,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="Mao-wV-jM4"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Capacity" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="BBP-wV-FkX">
                                 <rect key="frame" x="16" y="262" width="135" height="30"/>
@@ -47,7 +56,12 @@
                                     <constraint firstAttribute="width" constant="135" id="ujs-xd-012"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchDown" id="GQ9-cK-Ugi"/>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="qZ5-eu-W1Q"/>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchCancel" id="zV2-rD-L4d"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mVy-cJ-xD1">
                                 <rect key="frame" x="16" y="300" width="382" height="30"/>
@@ -58,7 +72,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchUpOutside" id="5Wh-o9-LKH"/>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchUpInside" id="Bkp-ZI-gsd"/>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchDown" id="FG5-H1-A5H"/>
                                     <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="VqF-kt-tbE"/>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchCancel" id="u6r-BD-aER"/>
                                     <action selector="onLocationLabelTapped:" destination="ZlP-UW-QQ6" eventType="editingDidBegin" id="MJe-zc-JjV"/>
                                 </connections>
                             </textField>
@@ -75,28 +93,19 @@
                                     <constraint firstAttribute="width" constant="135" id="1sl-Ka-anm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDc-qD-5xz">
-                                <rect key="frame" x="62" y="424" width="140" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="hOD-jv-Ys4"/>
-                                    <constraint firstAttribute="height" constant="35" id="l5w-Jm-t81"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="facebook-share-buttons">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
-                                    <action selector="sharetoFacebookButton:" destination="ZlP-UW-QQ6" eventType="touchUpInside" id="tYA-Yh-vOd"/>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="Ahg-Ka-X5V"/>
+                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEndOnExit" id="ppt-yM-KlS"/>
                                 </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start Date" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="B1D-Nb-50q">
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Service Date" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="B1D-Nb-50q">
                                 <rect key="frame" x="128" y="186" width="270" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdY-Mf-fnQ">
-                                <rect key="frame" x="212" y="424" width="140" height="35"/>
+                                <rect key="frame" x="137" y="424" width="140" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="d3K-gF-BZM"/>
                                     <constraint firstAttribute="width" constant="140" id="msw-Kg-obX"/>
@@ -108,7 +117,7 @@
                                     <action selector="tweetItButtonTapped:" destination="ZlP-UW-QQ6" eventType="touchUpInside" id="zjg-hx-q5G"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share your service with your networks!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzK-az-Yql">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share your service on Twitter!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzK-az-Yql">
                                 <rect key="frame" x="16" y="400" width="382" height="17"/>
                                 <color key="tintColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -200,15 +209,14 @@
                             <constraint firstItem="xdY-Mf-fnQ" firstAttribute="top" secondItem="VzK-az-Yql" secondAttribute="bottom" constant="7" id="3vJ-Qj-lMQ"/>
                             <constraint firstItem="vv0-FE-9j9" firstAttribute="top" secondItem="mVy-cJ-xD1" secondAttribute="bottom" constant="8" id="5Qs-Rt-cVS"/>
                             <constraint firstItem="HRL-xO-mg2" firstAttribute="top" secondItem="DzA-uh-Jv6" secondAttribute="bottom" constant="8" id="5Sy-C2-eAs"/>
-                            <constraint firstAttribute="centerX" secondItem="FDc-qD-5xz" secondAttribute="centerX" constant="75" id="8j4-v2-W9b"/>
                             <constraint firstItem="VzK-az-Yql" firstAttribute="leading" secondItem="gX2-I8-CXX" secondAttribute="leadingMargin" id="8t8-St-vOE"/>
+                            <constraint firstAttribute="centerX" secondItem="xdY-Mf-fnQ" secondAttribute="centerX" id="9g7-Qs-dmU"/>
                             <constraint firstItem="6P9-IM-1Uj" firstAttribute="trailing" secondItem="mVy-cJ-xD1" secondAttribute="trailing" id="BJt-om-c69"/>
                             <constraint firstItem="BBP-wV-FkX" firstAttribute="leading" secondItem="HRL-xO-mg2" secondAttribute="leading" id="CyU-WF-Mgf"/>
                             <constraint firstItem="e8n-mG-Ipq" firstAttribute="leading" secondItem="gX2-I8-CXX" secondAttribute="leadingMargin" id="Gwx-ht-qtw"/>
                             <constraint firstItem="BBP-wV-FkX" firstAttribute="top" secondItem="HRL-xO-mg2" secondAttribute="bottom" constant="84" id="IsA-PM-sr0"/>
                             <constraint firstItem="e8n-mG-Ipq" firstAttribute="trailing" secondItem="gX2-I8-CXX" secondAttribute="trailingMargin" id="LCl-sE-243"/>
                             <constraint firstItem="VzK-az-Yql" firstAttribute="top" secondItem="mVy-cJ-xD1" secondAttribute="bottom" constant="70" id="MaQ-bv-Mhi"/>
-                            <constraint firstItem="FDc-qD-5xz" firstAttribute="top" secondItem="VzK-az-Yql" secondAttribute="bottom" constant="7" id="Mbc-1B-H7E"/>
                             <constraint firstItem="HRL-xO-mg2" firstAttribute="top" secondItem="DzA-uh-Jv6" secondAttribute="bottom" constant="8" id="O0c-6u-ln3"/>
                             <constraint firstItem="B1D-Nb-50q" firstAttribute="top" secondItem="vv0-FE-9j9" secondAttribute="bottom" constant="-185" id="PGl-ko-U82"/>
                             <constraint firstAttribute="centerX" secondItem="xdY-Mf-fnQ" secondAttribute="centerX" constant="-75" id="PHi-Cl-OX2"/>
@@ -248,6 +256,7 @@
                                 <exclude reference="Gwx-ht-qtw"/>
                                 <exclude reference="TA8-pH-bwG"/>
                                 <exclude reference="YMH-DM-zfp"/>
+                                <exclude reference="PHi-Cl-OX2"/>
                             </mask>
                         </variation>
                     </view>
@@ -298,7 +307,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="9fc-7H-rcv">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.5" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="9fc-7H-rcv">
                                 <rect key="frame" x="14" y="101" width="272" height="31"/>
                                 <connections>
                                     <action selector="timeSlotSetter:" destination="KAG-s0-BKh" eventType="valueChanged" id="tec-PA-Jux"/>
@@ -310,10 +319,22 @@
                                     <constraint firstAttribute="height" constant="30" id="Cii-pf-c4C"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="0 hours">
+                                    <fragment content="0.5 ">
+                                        <attributes>
+                                            <font key="NSFont" size="12" name="Noteworthy-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="hour">
                                         <attributes>
                                             <font key="NSFont" size="13" name="Noteworthy-Light"/>
                                             <font key="NSOriginalFont" size="12" name="Noteworthy-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="s">
+                                        <attributes>
+                                            <font key="NSFont" size="12" name="Noteworthy-Light"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
@@ -370,7 +391,8 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOX-1y-tk3">
-                                <rect key="frame" x="352" y="101" width="37" height="30"/>
+                                <rect key="frame" x="363" y="101" width="43" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <state key="normal" title="Clear">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -390,11 +412,11 @@
                             <constraint firstItem="L09-fE-fGd" firstAttribute="top" secondItem="I5k-sA-wDr" secondAttribute="bottom" constant="23" id="Syn-c8-1Ay"/>
                             <constraint firstItem="CNo-aw-YYD" firstAttribute="top" secondItem="JGt-PC-5hl" secondAttribute="bottom" constant="8" id="Y7a-wh-aUP"/>
                             <constraint firstItem="9fc-7H-rcv" firstAttribute="leading" secondItem="YXg-NI-hW2" secondAttribute="leadingMargin" id="YKt-zo-x9x"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="MOX-1y-tk3" secondAttribute="trailing" constant="9" id="fqF-iV-vWE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MOX-1y-tk3" secondAttribute="trailing" constant="-8" id="fqF-iV-vWE"/>
                             <constraint firstItem="K1h-f2-Xo2" firstAttribute="top" secondItem="L09-fE-fGd" secondAttribute="bottom" id="iKV-df-P87"/>
                             <constraint firstItem="L09-fE-fGd" firstAttribute="leading" secondItem="YXg-NI-hW2" secondAttribute="leadingMargin" constant="-16" id="inX-7a-iKG"/>
                             <constraint firstItem="CNo-aw-YYD" firstAttribute="leading" secondItem="YXg-NI-hW2" secondAttribute="leadingMargin" id="lms-7B-T8C"/>
-                            <constraint firstItem="MOX-1y-tk3" firstAttribute="leading" secondItem="9fc-7H-rcv" secondAttribute="trailing" constant="68" id="lyq-pM-gn1"/>
+                            <constraint firstItem="MOX-1y-tk3" firstAttribute="leading" secondItem="9fc-7H-rcv" secondAttribute="trailing" constant="79" id="lyq-pM-gn1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CNo-aw-YYD" secondAttribute="trailing" id="oPk-nh-EpH"/>
                             <constraint firstItem="MOX-1y-tk3" firstAttribute="top" secondItem="CNo-aw-YYD" secondAttribute="bottom" constant="8" id="pBs-Sk-xF0"/>
                             <constraint firstItem="I5k-sA-wDr" firstAttribute="top" secondItem="JGt-PC-5hl" secondAttribute="bottom" constant="37" id="pha-2a-BKm"/>
@@ -410,7 +432,8 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="wcC-EJ-YP9">
                             <connections>
-                                <segue destination="S2I-e8-P6E" kind="unwind" unwindAction="unwindFromSelectTimesViewController:" id="nfb-qS-er8"/>
+                                <action selector="onSaveButtonPressed:" destination="KAG-s0-BKh" id="MDK-Rl-l8C"/>
+                                <segue destination="S2I-e8-P6E" kind="unwind" unwindAction="unwindFromSelectTimesViewController:" id="qBt-Py-etm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -421,6 +444,7 @@
                         <outlet property="directionsLabel" destination="CNo-aw-YYD" id="pfl-zj-g4a"/>
                         <outlet property="durationLabel" destination="I5k-sA-wDr" id="8NG-RN-Sbz"/>
                         <outlet property="durationSlider" destination="9fc-7H-rcv" id="EoD-xc-pld"/>
+                        <outlet property="saveTimesButton" destination="wcC-EJ-YP9" id="kOF-9f-a6b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiP-fs-Idg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -782,6 +806,5 @@
     <resources>
         <image name="TweetIt" width="580" height="113"/>
         <image name="camera.png" width="512" height="512"/>
-        <image name="facebook-share-buttons" width="224" height="42"/>
     </resources>
 </document>
