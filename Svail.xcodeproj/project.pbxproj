@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3060ABBB5353AFCA3B670434 /* libPods-Svail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3587A31141F93B686E121083 /* libPods-Svail.a */; };
+		360238EC1AF8518500E0ABCD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 360238EB1AF8518500E0ABCD /* StoreKit.framework */; };
 		360CBE261AE8493C00A1F8CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 360CBE251AE8493C00A1F8CF /* Images.xcassets */; };
 		3613DBEB1AF04351002B5251 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF3171AEF4CB300E0DFF6 /* PostTableViewCell.m */; };
 		3613DBEE1AF06FA7002B5251 /* EditPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613DBED1AF06FA7002B5251 /* EditPostViewController.m */; };
@@ -59,7 +60,6 @@
 		F24B35D01ADB95AA006153EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35CF1ADB95AA006153EC /* SystemConfiguration.framework */; };
 		F24B35D21ADB95BB006153EC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35D11ADB95BB006153EC /* libsqlite3.dylib */; };
 		F24B35D41ADB95C5006153EC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35D31ADB95C5006153EC /* libz.dylib */; };
-		F24B35D61ADB95CB006153EC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35D51ADB95CB006153EC /* StoreKit.framework */; };
 		F24B35D81ADB95D2006153EC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35D71ADB95D2006153EC /* Security.framework */; };
 		F24B35DA1ADB95DD006153EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35D91ADB95DD006153EC /* QuartzCore.framework */; };
 		F24B35DC1ADB95E4006153EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B35DB1ADB95E4006153EC /* MobileCoreServices.framework */; };
@@ -111,6 +111,7 @@
 
 /* Begin PBXFileReference section */
 		3587A31141F93B686E121083 /* libPods-Svail.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Svail.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		360238EB1AF8518500E0ABCD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		360CBE251AE8493C00A1F8CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3613DBEC1AF06FA7002B5251 /* EditPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPostViewController.h; sourceTree = "<group>"; };
 		3613DBED1AF06FA7002B5251 /* EditPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPostViewController.m; sourceTree = "<group>"; };
@@ -196,7 +197,6 @@
 		F24B35CF1ADB95AA006153EC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F24B35D11ADB95BB006153EC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		F24B35D31ADB95C5006153EC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		F24B35D51ADB95CB006153EC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F24B35D71ADB95D2006153EC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F24B35D91ADB95DD006153EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F24B35DB1ADB95E4006153EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -274,8 +274,8 @@
 				F24B35E01ADB95F8006153EC /* CoreLocation.framework in Frameworks */,
 				F24B35DC1ADB95E4006153EC /* MobileCoreServices.framework in Frameworks */,
 				36BBC47D1AE435E0007960F1 /* Parse.framework in Frameworks */,
+				360238EC1AF8518500E0ABCD /* StoreKit.framework in Frameworks */,
 				F24B35D81ADB95D2006153EC /* Security.framework in Frameworks */,
-				F24B35D61ADB95CB006153EC /* StoreKit.framework in Frameworks */,
 				F24B35D41ADB95C5006153EC /* libz.dylib in Frameworks */,
 				3666FD891ADCE2F000105272 /* FBSDKCoreKit.framework in Frameworks */,
 				F24B35D21ADB95BB006153EC /* libsqlite3.dylib in Frameworks */,
@@ -459,6 +459,7 @@
 		F24B35CA1ADB9569006153EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				360238EB1AF8518500E0ABCD /* StoreKit.framework */,
 				F2F94D361AE936640092C583 /* CoreText.framework */,
 				F2F94D341AE936570092C583 /* CoreTelephony.framework */,
 				F2F94D321AE8FA8A0092C583 /* Foundation.framework */,
@@ -483,7 +484,6 @@
 				F24B35DB1ADB95E4006153EC /* MobileCoreServices.framework */,
 				F24B35D91ADB95DD006153EC /* QuartzCore.framework */,
 				F24B35D71ADB95D2006153EC /* Security.framework */,
-				F24B35D51ADB95CB006153EC /* StoreKit.framework */,
 				F24B35D31ADB95C5006153EC /* libz.dylib */,
 				F24B35D11ADB95BB006153EC /* libsqlite3.dylib */,
 				F24B35CF1ADB95AA006153EC /* SystemConfiguration.framework */,
@@ -630,8 +630,14 @@
 				TargetAttributes = {
 					F24B359C1ADB7E54006153EC = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = A37GTC4NZF;
+						DevelopmentTeam = 75KYW377T5;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
 							com.apple.OMC = {
 								enabled = 1;
 							};
@@ -938,6 +944,7 @@
 				);
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1006,6 +1013,7 @@
 				);
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";

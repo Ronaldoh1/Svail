@@ -184,27 +184,24 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 
 
 - (IBAction)onConfirmButton:(UIBarButtonItem *)sender {
-//    [PFCloud callFunctionInBackground:@"sendSMS"
-//                       withParameters:@{@"toNumber":self.service.provider.phoneNumber,
-//                                        @"message": [NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested", self.serviceSlot.service.title, [self.serviceSlot getTimeSlotString]]}
-//                                block:^(NSString *result, NSError *error) {
-//                                    if (!error) {
-//                                        // result is @"Hello world!"
-//                                        NSLog(@"%@",result);
-//                                    }
-//                                }];
+    [PFCloud callFunctionInBackground:@"sendSMS"
+                       withParameters:@{@"toNumber":self.service.provider.phoneNumber,
+                                        @"message": [NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested", self.serviceSlot.service.title, [self.serviceSlot getTimeSlotString]]}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        // result is @"Hello world!"
+                                        NSLog(@"%@",result);
+                                    }
+                                }];
+
     if (![self.serviceSlot.participants containsObject:self.currentUser]) {
         [self.serviceSlot.participants addObject:self.currentUser];
-        [self.serviceSlot saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [self returnToMainTabBarVC];
-            }
-        }];
+        [self.serviceSlot saveInBackground];
+        [self returnToMainTabBarVC];
     } else {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"You already reserved the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
-
 //    // Build the actual push notification target query
 //    PFQuery *query = [PFInstallation query];
 //
@@ -408,6 +405,9 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
         pickTimeSlotVC.reviewVC = self;
     }
 }
+
+
+
 
 - (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
 {

@@ -170,19 +170,61 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     
 
 }
-- (IBAction)onContinueButton:(UIBarButtonItem *)sender {
 
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (self.serviceSlot) {
+        self.serviceTimeLabel.hidden = false;
+        [self setupTimeLabel];
+        self.participants = self.serviceSlot.participants;
+        [self.participantsCollectionView reloadData];
+    }
+}
+
+
+- (IBAction)onConfirmButton:(UIBarButtonItem *)sender {
+<<<<<<< HEAD
+//    [PFCloud callFunctionInBackground:@"sendSMS"
+//                       withParameters:@{@"toNumber":self.service.provider.phoneNumber,
+//                                        @"message": [NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested", self.serviceSlot.service.title, [self.serviceSlot getTimeSlotString]]}
+//                                block:^(NSString *result, NSError *error) {
+//                                    if (!error) {
+//                                        // result is @"Hello world!"
+//                                        NSLog(@"%@",result);
+//                                    }
+//                                }];
+    if (![self.serviceSlot.participants containsObject:self.currentUser]) {
+        [self.serviceSlot.participants addObject:self.currentUser];
+        [self.serviceSlot saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [self returnToMainTabBarVC];
+            }
+        }];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"You already reserved the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+=======
     [PFCloud callFunctionInBackground:@"sendSMS"
                        withParameters:@{@"toNumber":self.service.provider.phoneNumber,
-                                        @"message": [NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested", self.serviceSlot.service.title, [self.serviceSlot getStartTimeString]]}
+                                        @"message": [NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested", self.serviceSlot.service.title, [self.serviceSlot getTimeSlotString]]}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         // result is @"Hello world!"
                                         NSLog(@"%@",result);
                                     }
                                 }];
+>>>>>>> dev
 
+    if (![self.serviceSlot.participants containsObject:self.currentUser]) {
+        [self.serviceSlot.participants addObject:self.currentUser];
+        [self.serviceSlot saveInBackground];
+        [self returnToMainTabBarVC];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"You already reserved the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 //    // Build the actual push notification target query
 //    PFQuery *query = [PFInstallation query];
 //
@@ -197,16 +239,6 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 //    [push sendPushInBackground];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    if (self.serviceSlot) {
-        self.serviceTimeLabel.hidden = false;
-        [self setupTimeLabel];
-        self.participants = self.service.participants;
-        [self.participantsCollectionView reloadData];
-    }
-}
-
 -(void)getServiceImages
 {
     PFQuery *imagesQuery = [Image query];
@@ -217,8 +249,8 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
          if (!error) {
              [self.serviceImagesCollectionView reloadData];
              for (int i = 0;i < objects.count;i++) {
-                 PFFile *imageFile = objects[i];
-                 [imageFile getDataInBackgroundWithBlock:^(NSData *data,
+                 Image *image = objects[i];
+                 [image.imageFile getDataInBackgroundWithBlock:^(NSData *data,
                                                            NSError *error)
                   {
                       if (!error) {
@@ -231,18 +263,6 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
      }];
 }
 
-
-<<<<<<< HEAD
-
-=======
-- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
-{
-    UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *mapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-    [self presentViewController:mapNavVC animated:true completion:nil];
-    
-}
->>>>>>> a2b061414beff19afbc661772aeaef9829bb8fdc
 
 -(void)setupTitleLabel
 {
@@ -409,21 +429,12 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     }
 }
 
-
-- (IBAction)onConfirmButtonTapped:(UIBarButtonItem *)sender
-{
-    if (![self.serviceSlot.participants containsObject:self.currentUser]) {
-        [self.serviceSlot.participants addObject:self.currentUser];
-        [self.serviceSlot saveInBackground];
-        [self returnToMainTabBarVC];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"You already reserved the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+<<<<<<< HEAD
+=======
 
 
-}
 
+>>>>>>> dev
 - (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
 {
    

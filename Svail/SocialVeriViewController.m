@@ -170,22 +170,22 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+
 {
     NSUInteger index = [self.phoneNumberTextFields indexOfObject:textField];
     return ((UIImageView *)self.phoneNumberCheckmarks[index]).isHidden;
 }
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
-    return YES;
+    return true;
 }
 
 - (IBAction)onRequestButtonTapped:(UIButton *)sender
 {
     
-    NSString *message = [NSString stringWithFormat:@"Please help your friend %@ complete a simple safety check for using Svail. If you think %@ is a trustworthy person, please reply this meesage with %@'s 10-digit cell phone number. If you think otherwise, please don't reply. Thanks!", [User currentUser].name, [User currentUser].name, [User currentUser].name];
+//    NSString *message = [NSString stringWithFormat:@"Please help your friend %@ complete a simple safety check for using Svail.", [User currentUser].name];
     
+    NSString *message = [NSString stringWithFormat:@"Please help your friend %@ complete a simple safety check for using Svail. If you think %@ is a trustworthy person, please reply this meesage with %@'s 10-digit cell phone number. If you think otherwise, please don't reply. Thanks!", [User currentUser].name, [User currentUser].name, [User currentUser].name];
     for (int i = (int)(self.currentUser.verification.references.count); i < 3; i++) {
         UITextField *textField = self.phoneNumberTextFields[i];
         if (![textField.text isEqualToString:@""]) {
