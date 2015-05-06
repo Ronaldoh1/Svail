@@ -335,7 +335,7 @@
     [textField resignFirstResponder];
 
     [self.view endEditing:true];
-    return false;
+    return true;
 }
 
 
