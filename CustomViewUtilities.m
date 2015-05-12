@@ -10,15 +10,7 @@
 
 @implementation CustomViewUtilities
 
-+(void) setupProfileImageView:(UIImageView *)profileImageView WithImage:(UIImage *)image
-{
-    profileImageView.image = image;
-    [CustomViewUtilities transformToCircleViewFromSquareView:profileImageView];
-    UITapGestureRecognizer  *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTapOnProfileImageView:)];
-    tapGesture.numberOfTapsRequired = 1;
 
-    [profileImageView addGestureRecognizer:tapGesture];
-}
 
 +(void)transformToCircleViewFromSquareView:(UIView *)squareImageView
 {
@@ -28,10 +20,18 @@
     squareImageView.layer.borderColor = [UIColor orangeColor].CGColor;
 }
 
--(void)handleTapOnProfileImageView:(UITapGestureRecognizer *)tapGesture
++(NSMutableAttributedString *)setupTextWithHeader:(NSString *)headerString content:(NSString *)contentString fontSize:(CGFloat)fontSize
 {
     
-    
+    NSString *text = [NSString stringWithFormat:@"%@ %@",headerString,contentString];
+    NSRange rangeOfHeader = [text rangeOfString:headerString];
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:text];
+    [attributedText setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} range:NSMakeRange(0, text.length)];
+    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]} range:rangeOfHeader];
+    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:rangeOfHeader];
+    return attributedText;
 }
+
+
 
 @end

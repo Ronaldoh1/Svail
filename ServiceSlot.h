@@ -11,6 +11,12 @@
 #import "User.h"
 #import "Service.h"
 
+typedef NS_ENUM(NSUInteger, ServiceSlotStatus) {
+    HasNotStarted,
+    HasStartedButNotFinished,
+    HasFinished
+};
+
 @interface ServiceSlot : PFObject<PFSubclassing>
 
 @property (nonatomic) Service *service;
@@ -21,5 +27,6 @@
 
 
 -(NSString *)getTimeSlotString;
+-(void)checkStatusWithCompletion:(void (^)(ServiceSlotStatus))complete;
 
 @end

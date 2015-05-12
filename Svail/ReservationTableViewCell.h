@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ServiceSlot.h"
+#import "Reservation.h"
 
 @interface ReservationTableViewCell : UITableViewCell
 
-@property (nonatomic) ServiceSlot *serviceSlot;
+@property (nonatomic) Reservation *reservation;
+@property (nonatomic) UIViewController *vc;
 
 @end

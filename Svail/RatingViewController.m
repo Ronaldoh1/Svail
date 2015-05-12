@@ -9,12 +9,13 @@
 #import "RatingViewController.h"
 #import "Rating.h"
 #import "CustomViewUtilities.h"
+#import "ProfileImageView.h"
 
 @interface RatingViewController () <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *providerImageView;
+@property (weak, nonatomic) IBOutlet ProfileImageView *providerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *providerNameLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *starButtons;
 
@@ -41,29 +42,24 @@
         starButton.alpha = 0.2;
     }
     
-    PFQuery *serviceQuery = [Service query];
-    [serviceQuery includeKey:@"provider"];
+    PFQuery *serviceQuery = [ServiceSlot query];
+    [serviceQuery includeKey:@"service.provider"];
     serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    [serviceQuery getObjectInBackgroundWithId:self.service.objectId
+    [serviceQuery getObjectInBackgroundWithId:self.serviceSlot.objectId
                                         block:^(PFObject *object, NSError *error)
      {
-         self.service = (Service *)object;
+         self.serviceSlot = (ServiceSlot *)object;
          if (!error) {
-             [self.service.provider.profileImage getDataInBackgroundWithBlock:^(NSData *data,
-                                                                                NSError *error)
-              {
-                  if (!error) {
-                      [CustomViewUtilities setupProfileImageView:self.providerImageView WithImage:[UIImage imageWithData:data]];
-                  }
-              }];
-             self.providerNameLabel.text = self.service.provider.name;
-             self.titleLabel.text = self.service.title;
+             self.providerImageView.user = self.serviceSlot.service.provider;
+             self.providerImageView.vc = self;
+             self.providerNameLabel.text = self.serviceSlot.service.provider.name;
+             self.titleLabel.text = self.serviceSlot.service.title;
              
              NSDateFormatter *dateFormatter = [NSDateFormatter new];
-             [dateFormatter setDateFormat:@"MM/dd/yy HH:mm"];
-             self.timeLabel.text = [NSString stringWithFormat:@"%@ --- %@",
-                                           [dateFormatter stringFromDate:self.service.startDate],
-                                           [dateFormatter stringFromDate:self.service.endDate]];
+             [dateFormatter setDateFormat:@"MM/dd/yy"];
+             self.timeLabel.text = [dateFormatter stringFromDate:self.serviceSlot.service.startDate];
+             self.timeLabel.text = [NSString stringWithFormat:@"%@   %@", self.timeLabel.text,[self.serviceSlot getTimeSlotString]];
+             
         }
     }];
     
@@ -79,7 +75,7 @@
     
     Rating *rating = [Rating object];
     rating.rater = [User currentUser];
-    rating.ratee = self.service.provider;
+    rating.serviceSlot = self.serviceSlot;
     rating.value = indexOfTappedStar + 1;
     [rating saveInBackground];
     
@@ -91,9 +87,10 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == 1 && buttonIndex == 0) {
-        UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
-        UIViewController *mapTabVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-        [self presentViewController:mapTabVC animated:false completion:nil];
+//        UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
+//        UIViewController *mapTabVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+//        [self presentViewController:mapTabVC animated:false completion:nil];
+        [self.vc dismissViewControllerAnimated:true completion:nil];
     }
 }
 

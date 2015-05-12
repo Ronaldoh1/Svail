@@ -40,6 +40,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //setting image to Navigation Bar's title
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    titleView.font = [UIFont fontWithName:@"Noteworthy" size:20];
+    titleView.text = @"Profile";
+    titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
+    [self.navigationItem setTitleView:titleView];
 
     [self initialSetUp];
 
@@ -201,20 +209,34 @@
     self.currentUser.occupation = self.occupationTextField.text;
     [self.currentUser saveInBackground];
     
-    if (self.phoneTextField.text.length == 10 && ![self.phoneTextField.text isEqualToString:self.currentUser.phoneNumber]) {
+    if (self.phoneTextField.text.length > 0 && self.phoneTextField.text.length != 10){
+        UIAlertView  *wrongDigitsAlert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter 10 digits phone number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [wrongDigitsAlert show];
+    } else if (![self.phoneTextField.text
+                 isEqualToString:self.currentUser.phoneNumber]) {
+        [User checkIfPhoneNumber:self.phoneTextField.text
+                    hasBeenUsedWithCompletion:^(User *userWithThisNumber, NSError *error)
+        {
+            if (!error) {
+                if (userWithThisNumber == nil) {
+                    [self.currentUser.verification sendVerifyCodeToPhoneNumber:self.phoneTextField.text];
+                    UIAlertView *veriCodeAlert = [[UIAlertView alloc]initWithTitle:@"Enter verification code" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    veriCodeAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+                    veriCodeAlert.tag = 1;
+                    [veriCodeAlert show];
+                
+                } else {
+                    UIAlertView  *numberUsedAlert = [[UIAlertView alloc]initWithTitle:nil message:@"This number has been taken." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [numberUsedAlert show];
+                }
+            } else {
+                 UIAlertView  *errorAlert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [errorAlert show];
+            }
 
-        [self.currentUser.verification sendVerifyCodeToPhoneNumber:self.phoneTextField.text];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Enter verification code" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        alert.tag = 1;
-        [alert show];
-    } else if (self.phoneTextField.text.length > 0 && self.phoneTextField.text.length != 10){
-        UIAlertView  *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter 10 digits phone number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    } else {
-//        [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
     }
-
 
 }
 

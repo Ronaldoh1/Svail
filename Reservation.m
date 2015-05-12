@@ -1,27 +1,24 @@
 //
-//  Rating.m
+//  Reservation.m
 //  Svail
 //
-//  Created by Ronald Hernandez on 4/13/15.
+//  Created by zhenduo zhu on 5/10/15.
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 
-#import "Rating.h"
+#import "Reservation.h"
 #import <Parse/PFObject+Subclass.h>
 
-@implementation Rating
+@implementation Reservation
 
-//@dynamic comment;
-@dynamic rater;
-@dynamic value;
+@dynamic reserver;
 @dynamic serviceSlot;
 
-+(void)load{
++ (void)load{
     [self registerSubclass];
-
 }
 + (NSString *)parseClassName{
-    return @"Rating";
+    return @"Reservation";
 }
 
 @end

@@ -12,7 +12,8 @@
 
 @interface PostTableViewCell : UITableViewCell
 
-@property (nonatomic) ServiceSlot *serviceSlot;
+@property (nonatomic) Service *service;
+@property (nonatomic) UIViewController *vc;
 
 
 

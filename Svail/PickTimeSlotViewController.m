@@ -22,7 +22,14 @@
     [super viewDidLoad];
     
    [self.service checkAvailableSlotsWithCompletion:^(NSArray *serviceSlots) {
-       self.availableSlots = [serviceSlots valueForKeyPath:@"startTime"];
+       self.availableSlots = [[serviceSlots valueForKeyPath:@"startTime"] sortedArrayUsingComparator:^NSComparisonResult(NSNumber *obj1, NSNumber *obj2)
+       {
+           if ([obj1 integerValue] >= [obj2 integerValue]) {
+               return NSOrderedDescending;
+           } else {
+               return NSOrderedAscending;
+           }
+       }];
        [self.timeSlotsCollectionView reloadData];
    }];
 }
@@ -30,13 +37,13 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.service.startTimes.count;
+    return self.availableSlots.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomSelectTimeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TimeSlotCell" forIndexPath:indexPath];
-    NSUInteger startTime = [self.service.startTimes[indexPath.row] integerValue];
+    NSUInteger startTime = [self.availableSlots[indexPath.row] integerValue];
     NSUInteger startHour = (floor)((double)startTime / 60. /60.);
     NSUInteger startMinutes = (startTime - startHour * 60 * 60)/60;
     
@@ -44,24 +51,19 @@
     NSUInteger endHour = (floor)((double)endTime / 60. /60.);
     NSUInteger endMinutes = (endTime - endHour * 60 * 60)/60;
                        
-    cell.timeLabel.text = [NSString stringWithFormat:@"%02lu:%02lu -- %02lu:%02lu", startHour,startMinutes, endHour, endMinutes];
+    cell.timeLabel.text = [NSString stringWithFormat:@"%02lu:%02lu -- %02lu:%02lu", (long)startHour,(long)startMinutes, (long)endHour, (long)endMinutes];
     
     cell.layer.borderWidth = 2.0f;
     
-    if ([self.availableSlots containsObject:self.service.startTimes[indexPath.row]]) {
-        cell.backgroundColor = [UIColor whiteColor];
-        cell.userInteractionEnabled = true;
-    } else {
-        cell.backgroundColor = [UIColor lightGrayColor];
-        cell.userInteractionEnabled = false;
-    }
+    cell.backgroundColor = [UIColor whiteColor];
+    cell.userInteractionEnabled = true;
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PFQuery *query = [ServiceSlot query];
-    [query whereKey:@"startTime" equalTo:self.service.startTimes[indexPath.row]];
+    [query whereKey:@"startTime" equalTo:self.availableSlots[indexPath.row]];
     [query whereKey:@"service" equalTo:self.service];
     [query includeKey:@"service"];
     [query includeKey:@"participants"];

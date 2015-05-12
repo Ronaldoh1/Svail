@@ -17,7 +17,7 @@
 #import "ReviewReservationViewController.h"
 #import "CustomViewUtilities.h"
 #import "EditProfileViewController.h"
-#import "CustomImageView.h"
+#import "ProfileImageView.h"
 
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
@@ -336,20 +336,15 @@
                     [image drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
                     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
                     UIGraphicsEndImageContext();
-                    CustomImageView *imageView = [[CustomImageView alloc]initWithImage:scaledImage];
+                    ProfileImageView *imageView = [[ProfileImageView alloc]initWithImage:scaledImage];
                     imageView.layer.cornerRadius = imageView.frame.size.height / 2;
                     imageView.layer.masksToBounds = YES;
                     imageView.layer.borderWidth = 1.5;
                     imageView.layer.borderColor = [UIColor whiteColor].CGColor;
                     imageView.clipsToBounds = YES;
                     imageView.userInteractionEnabled = YES;
-//                    imageView.service = service;
                     imageView.user = service.provider;
-                    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onProfileImageTapped:)];
-                    tapGesture.delegate = self;
-                    [imageView addGestureRecognizer:tapGesture];
-                    //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
-                    //    imageView.image = scaledImage;
+                    imageView.vc = self;
                     pinAnnotation.leftCalloutAccessoryView = imageView;
                 }
             }];
@@ -362,20 +357,15 @@
             [image drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
             UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
-            CustomImageView *imageView = [[CustomImageView alloc]initWithImage:scaledImage];
+            ProfileImageView *imageView = [[ProfileImageView alloc]initWithImage:scaledImage];
             imageView.layer.cornerRadius = imageView.frame.size.height / 2;
             imageView.layer.masksToBounds = YES;
             imageView.layer.borderWidth = 1.5;
             imageView.layer.borderColor = [UIColor whiteColor].CGColor;
             imageView.clipsToBounds = YES;
             imageView.userInteractionEnabled = YES;
-//            imageView.service = service;
             imageView.user = service.provider;
-            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onProfileImageTapped:)];
-            tapGesture.delegate = self;
-            [imageView addGestureRecognizer:tapGesture];
-            //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
-            //    imageView.image = scaledImage;
+            imageView.vc = self;
             pinAnnotation.leftCalloutAccessoryView = imageView;
         }
     }];
@@ -480,6 +470,12 @@
 
 //        [self.serviceParticipants addObject:[User currentUser]];
 //        [annotation.service saveInBackground];
+        if ([[User currentUser].objectId
+             isEqual:annotation.service.provider.objectId]) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Can't reserve your own service." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }
         UIStoryboard *reservationStoryboard = [UIStoryboard storyboardWithName:@"Reservation" bundle:nil];
         UIViewController *reviewReservationNavVC = [reservationStoryboard instantiateViewControllerWithIdentifier:@"ReviewReservationNavVC"];
         ReviewReservationViewController *reviewReservationVC = reviewReservationNavVC.childViewControllers[0];
@@ -605,25 +601,6 @@
     [self.mapView setCenterCoordinate:self.locationManager.location.coordinate animated:YES];
 }
 
-
-//- (IBAction)onProfileButtonTapped:(UIBarButtonItem *)sender
-//{
-//    UIStoryboard *editProfileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
-//    UIViewController *editProfileVC = [editProfileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
-//    [self presentViewController:editProfileVC animated:true completion:nil];
-//}
-
-- (void)onProfileImageTapped:(UITapGestureRecognizer *)tapGestureRecognizer
-{
-    UIStoryboard *userProfileStoryBoard = [UIStoryboard storyboardWithName:@"UserProfile" bundle:nil];
-    UIViewController *userProfileNavVC = [userProfileStoryBoard instantiateViewControllerWithIdentifier:@"profileNavVC"];
-    UserProfileViewController *userProfileVC = userProfileNavVC.childViewControllers[0];
-    [self presentViewController:userProfileNavVC animated:true completion:nil];
-    CustomImageView *imageView = (CustomImageView *)tapGestureRecognizer.view;
-//    userProfileVC.selectedUser = imageView.service.provider;
-    userProfileVC.selectedUser = imageView.user;
-
-}
 
 
 

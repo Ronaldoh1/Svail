@@ -30,9 +30,13 @@ static NSUInteger const kPointsForVerifiedLKAccount = 2;
 @dynamic fbLevel;
 @dynamic ttLevel;
 @dynamic lkLevel;
+@dynamic fbId;
+@dynamic ttId;
+@dynamic lkId;
 @dynamic hasReachedSafeLevel;
 @dynamic safetyLevel;
 @dynamic phoneVerifyCode;
+
 
 //don't sythesize parse properties
 
@@ -86,6 +90,48 @@ static NSUInteger const kPointsForVerifiedLKAccount = 2;
     return lkLevel;
 }
 
++(void)checkIfFBId:(NSString *)fbId hasBeenUsedWithCompletion:(void (^)(Verification *, NSError *))complete
+{
+    PFQuery *verificationQuery = [Verification query];
+    [verificationQuery whereKey:@"fbId" equalTo:fbId];
+    [verificationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,NSError *error)
+     {
+         Verification *verification;
+         if (!error && objects.count > 0) {
+             verification = (Verification *)(objects[0]);
+         }
+         complete(verification, error);
+     }];
+}
+
++(void)checkIfTTId:(NSString *)ttId hasBeenUsedWithCompletion:(void (^)(Verification *, NSError *))complete
+{
+    PFQuery *verificationQuery = [Verification query];
+    [verificationQuery whereKey:@"ttId" equalTo:ttId];
+    [verificationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,NSError *error)
+     {
+         Verification *verification;
+         if (!error && objects.count > 0) {
+             verification = (Verification *)(objects[0]);
+         }
+         complete(verification, error);
+     }];
+}
+
++(void)checkIfLKId:(NSString *)lkId hasBeenUsedWithCompletion:(void (^)(Verification *, NSError *))complete
+{
+    PFQuery *verificationQuery = [Verification query];
+    [verificationQuery whereKey:@"lkId" equalTo:lkId];
+    [verificationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,NSError *error)
+     {
+         Verification *verification;
+         if (!error && objects.count > 0) {
+             verification = (Verification *)(objects[0]);
+         }
+         complete(verification, error);
+     }];
+}
+
 
 
 -(NSInteger)calculateSafetyLevel
@@ -103,7 +149,7 @@ static NSUInteger const kPointsForVerifiedLKAccount = 2;
 -(void)sendVerifyCodeToPhoneNumber:(NSString *)phoneNumber
 {
     NSUInteger verifyCode = arc4random_uniform(899999) + 100000;
-    self.phoneVerifyCode = [NSString stringWithFormat:@"%lu",verifyCode];
+    self.phoneVerifyCode = [NSString stringWithFormat:@"%lu",(long)verifyCode];
     NSString *message = [NSString stringWithFormat:@"Svail sent phone number verification code: %@",self.phoneVerifyCode];
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {

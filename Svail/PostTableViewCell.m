@@ -9,157 +9,126 @@
 #import "PostTableViewCell.h"
 #import "Image.h"
 #import "ServiceImagesCollectionViewCell.h"
+#import "CustomViewUtilities.h"
 
 @interface PostTableViewCell () <UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *capacityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numOfReservationsLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *serviceImagesCollectionView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UIButton *viewSlotsButton;
 @property (nonatomic) NSMutableArray *serviceImageArray;
-@property (nonatomic) Service *service;
 
 @end
 
 
 @implementation PostTableViewCell
 
-static NSUInteger kMaxNumberOfServiceImages = 4;
+static const CGFloat kLableFontSize = 13.0;
+
 
 - (void)awakeFromNib
 {
     self.serviceImagesCollectionView.delegate = self;
     self.serviceImagesCollectionView.dataSource = self;
     
-    self.service = self.serviceSlot.service;
     
     [self setupTitleLabel];
     [self setupLocationLabel];
     [self setupPriceLabel];
     [self setupCapacityLabel];
+    [self setupCategoryLabel];
+    [self setupDescriptionLabel];
     [self setupDateLabel];
-    [self setupTimeLabel];
+    [self setupNumOfReservationsLabel];
     
     self.editButton.tag = self.tag;
     self.deleteButton.tag = self.tag;
+    self.viewSlotsButton.tag = self.tag;
     
-    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
-        for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
-            self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
-        }
-    [self.serviceImagesCollectionView reloadData];
+    [self getServiceImages];
+    
 }
-
 
 -(void)setupTitleLabel
 {
-    self.titleLabel.text = [NSString stringWithFormat:@"Title %@",self.service.title];
-    self.titleLabel.font = [UIFont fontWithName:@"Arial" size:13.0];
-    NSRange range = [self.titleLabel.text rangeOfString:@"Title"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.titleLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:13.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.titleLabel.attributedText = attributedText;
+    self.titleLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Title" content:self.service.title fontSize:kLableFontSize];
+    
 }
-
-
--(void)setupTimeLabel
-{
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    [dateFormatter setDateFormat:@"HH:MM"];
-    self.timeLabel.text = [NSString stringWithFormat:@"Time %@",
-                           [self.serviceSlot getTimeSlotString]];
-    self.timeLabel.font = [UIFont fontWithName:@"Arial" size:13.0];
-    NSRange range = [self.timeLabel.text rangeOfString:@"Time"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.timeLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:13.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.timeLabel.attributedText = attributedText;
-}
-
 
 -(void)setupDateLabel
 {
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     [dateFormatter setDateFormat:@"MM/dd/yy"];
-    self.dateLabel.text = [NSString stringWithFormat:@"Date %@",
-                                  [dateFormatter stringFromDate:self.service.startDate]],
-    self.dateLabel.font = [UIFont fontWithName:@"Arial" size:13.0];
-    NSRange range = [self.dateLabel.text rangeOfString:@"Date"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.dateLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:13.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.dateLabel.attributedText = attributedText;
+    self.dateLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Date" content:[dateFormatter stringFromDate:self.service.startDate] fontSize:kLableFontSize];
 }
-
 
 -(void)setupPriceLabel
 {
-    
-    self.priceLabel.text = [NSString stringWithFormat:@"Price : $%@",self.service.price];
-    self.priceLabel.font = [UIFont fontWithName:@"Arial" size:13.0];
-    NSRange range = [self.priceLabel.text rangeOfString:@"Price"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.priceLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:13.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.priceLabel.attributedText = attributedText;
+    self.priceLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Price" content:[NSString stringWithFormat:@"$%@",self.service.price] fontSize:kLableFontSize];
 }
 
 -(void)setupCapacityLabel
 {
     
     self.capacityLabel.text = [NSString stringWithFormat:@"Capacity : %@",self.service.capacity];
-    self.capacityLabel.font = [UIFont fontWithName:@"Arial" size:13.0];
-    NSRange range = [self.capacityLabel.text rangeOfString:@"Capacity"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.capacityLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:13.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.capacityLabel.attributedText = attributedText;
+    self.capacityLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Capacity" content:[self.service.capacity stringValue] fontSize:kLableFontSize];
 }
 
 -(void)setupLocationLabel
 {
     if (self.service.travel) {
-        self.locationLabel.text = @"Travel";
+        self.locationLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Location" content:@"Travel" fontSize:kLableFontSize];
         return;
     }
     self.locationLabel.numberOfLines = 0;
-    self.locationLabel.text = [NSString stringWithFormat:@"Location %@",self.service.serviceLocationAddress];
-    self.locationLabel.font = [UIFont fontWithName:@"Arial" size:13.0];
-    NSRange range = [self.locationLabel.text rangeOfString:@"Location"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.locationLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:13.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.locationLabel.attributedText = attributedText;
+    self.locationLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Location" content:self.service.serviceLocationAddress fontSize:kLableFontSize];
 }
+
+
+-(void)setupCategoryLabel
+{
+    self.categoryLabel.numberOfLines = 0;
+    self.categoryLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Category" content:self.service.category fontSize:kLableFontSize];
+}
+
+
+-(void)setupDescriptionLabel
+{
+    self.descriptionLabel.numberOfLines = 0;
+    self.descriptionLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Descripton" content:self.service.serviceDescription fontSize:kLableFontSize];
+}
+
+-(void)setupNumOfReservationsLabel
+{
+    [self.service getParticipantsWithCompletion:^(NSArray *participants)
+    {
+        self.numOfReservationsLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Number of reservations" content:[NSString stringWithFormat:@"%lu",(long)(participants.count)] fontSize:kLableFontSize];
+    }];
+}
+
 
 -(void)getServiceImages
 {
-    PFQuery *imagesQuery = [Image query];
-    [imagesQuery whereKey:@"service" equalTo:self.service];
-    [imagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
-                                                    NSError *error)
-     {
-         if (!error) {
-             [self.serviceImagesCollectionView reloadData];
-             for (int i = 0;i < objects.count;i++) {
-                 Image *image = objects[i];
-                 [image.imageFile getDataInBackgroundWithBlock:^(NSData *data,
-                                                           NSError *error)
-                  {
-                      if (!error) {
-                          self.serviceImageArray[i] = [UIImage imageWithData:data];
-                          [self.serviceImagesCollectionView reloadData];
-                      }
-                  }];
-              }
-          }
-     }];
+    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
+    for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
+        self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
+    }
+    [self.serviceImagesCollectionView reloadData];
+    [self.service getServiceImageDataWithCompletion:^(NSDictionary *imageDataDict)
+    {
+        NSNumber *keyOfImage = imageDataDict.allKeys.lastObject;
+        self.serviceImageArray[keyOfImage.integerValue] = [UIImage imageWithData:imageDataDict[keyOfImage]];
+        [self.serviceImagesCollectionView reloadData];
+    }];
 }
 
 
@@ -175,6 +144,8 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 {
     ServiceImagesCollectionViewCell *serviceImageCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ServiceImageCell" forIndexPath:indexPath];
     if (self.serviceImageArray.count > indexPath.row) {
+        serviceImageCell.serviceImageView.title = self.service.title;
+        serviceImageCell.serviceImageView.vc = self.vc;
         serviceImageCell.serviceImageView.image = self.serviceImageArray[indexPath.row];
     } else {
         serviceImageCell.serviceImageView.image = [UIImage imageNamed:@"image_placeholder"];

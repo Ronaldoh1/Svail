@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
-#import "Service.h"
 
-@interface CustomImageView : UIImageView
-@property Service *service;
-@property User *user;
+@interface ProfileImageView : UIImageView
+@property (nonatomic) User *user;
+@property (nonatomic) UIViewController *vc;
 
 @end

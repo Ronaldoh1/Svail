@@ -47,6 +47,7 @@
 @property BOOL startDateTapped;
 
 @property User *currentUser;
+@property Service *service;
 
 @property (nonatomic) UITapGestureRecognizer *tapRecognizer;
 
@@ -64,26 +65,29 @@
     [self.slotSelectionButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
 
     //Define the service
-    self.service = self.service?:[Service new];
+    self.service = [Service new];
 
 
 
-    self.serviceTitle.text = self.service?self.service.title:@"";
-    self.serviceDescription.text = self.service?self.service.serviceDescription:@"";
-    self.serviceCategory.text = self.service?self.service.category:@"";
-    if (self.service) {
+    self.serviceTitle.text = self.serviceToEdit?self.serviceToEdit.title:@"";
+    self.serviceDescription.text = self.serviceToEdit?self.serviceToEdit.serviceDescription:@"";
+    self.serviceCategory.text = self.serviceToEdit?self.serviceToEdit.category:@"";
+    if (self.serviceToEdit) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        self.startDateTextField.text = [dateFormatter stringFromDate:self.service.startDate];
+        self.startDateTextField.text = [dateFormatter stringFromDate:self.serviceToEdit.startDate];
+        self.service.startDate = self.serviceToEdit.startDate;
     } else {
         self.startDateTextField.text = @"";
     }
-    self.serviceCapacity.text = self.service?[self.service.capacity stringValue]:@"";
-    self.price.text = self.service?[self.service.price stringValue]:@"";
-    self.location.text = self.service?self.service.serviceLocationAddress:@"";
-    if (self.service) {
-        self.segmentedControlPicker.selectedSegmentIndex = self.service.travel?1:0;
+    self.serviceCapacity.text = self.serviceToEdit?[self.serviceToEdit.capacity stringValue]:@"";
+    self.price.text = self.serviceToEdit?[self.serviceToEdit.price stringValue]:@"";
+    self.location.text = self.serviceToEdit?self.serviceToEdit.serviceLocationAddress:@"";
+    if (self.serviceToEdit) {
+        self.segmentedControlPicker.selectedSegmentIndex = self.serviceToEdit.travel?1:0;
     }
+    
+    self.serviceGeoPoint = self.serviceToEdit?self.serviceToEdit.theServiceGeoPoint:nil;
 
 
 

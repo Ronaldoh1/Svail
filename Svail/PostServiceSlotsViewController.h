@@ -1,15 +1,15 @@
 //
-//  EditPostViewController.h
+//  PostServiceSlotsViewController.h
 //  Svail
 //
-//  Created by zhenduo zhu on 4/28/15.
+//  Created by zhenduo zhu on 5/9/15.
 //  Copyright (c) 2015 Svail. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "Service.h"
 
-@interface EditPostViewController : UIViewController
+@interface PostServiceSlotsViewController : UIViewController
 
 @property (nonatomic) Service *service;
 

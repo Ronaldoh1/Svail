@@ -25,11 +25,14 @@ PODS:
     - AFNetworking (>= 2.0.0)
   - MBProgressHUD (0.9.1)
   - PaymentKit (1.1.1)
-  - Stripe (3.1.0):
-    - Stripe/Core (= 3.1.0)
-  - Stripe/ApplePay (3.1.0):
+  - Stripe (4.0.2):
+    - Stripe/Checkout (= 4.0.2)
+    - Stripe/Core (= 4.0.2)
+  - Stripe/ApplePay (4.0.2):
     - Stripe/Core
-  - Stripe/Core (3.1.0)
+  - Stripe/Checkout (4.0.2):
+    - Stripe/Core
+  - Stripe/Core (4.0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.2)
@@ -46,6 +49,6 @@ SPEC CHECKSUMS:
   IOSLinkedInAPI: d0adc664472d471b0df9b2aad92a2d82de926c40
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   PaymentKit: 323c25233af5060880daa0c31366d4b688c34487
-  Stripe: 8a456332f4db97bd0b8457fc8cce1e1a69ac0cd1
+  Stripe: 22906b47782784f5610190563f066468b441f403
 
-COCOAPODS: 0.37.0.beta.1
+COCOAPODS: 0.36.3

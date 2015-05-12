@@ -12,6 +12,8 @@
 
 @interface Service : PFObject<PFSubclassing>
 
+extern const NSUInteger kMaxNumberOfServiceImages;
+
 @property NSString *title;
 @property NSDate *availability;
 @property NSNumber *capacity;
@@ -36,6 +38,9 @@
 
 +(NSString *)parseClassName;
 
--(void)checkAvailableSlotsWithCompletion:(void (^)(NSArray *))complete;;
+-(void)checkAvailableSlotsWithCompletion:(void (^)(NSArray *))complete;
+-(void)getServiceImageDataWithCompletion:(void (^)(NSDictionary *))complete;
+-(void)getParticipantsWithCompletion:(void (^)(NSArray *))complete;
+-(void)deleteServiceWithCompletion:(void (^)(BOOL))complete;
 
 @end

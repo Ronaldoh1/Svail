@@ -28,6 +28,22 @@
     [self registerSubclass];
 }
 
+
++(void)checkIfPhoneNumber:(NSString *)phoneNumber hasBeenUsedWithCompletion:(void (^)(User *, NSError *))complete
+{
+    PFQuery *userQuery = [User query];
+    [userQuery whereKey:@"phoneNumber" equalTo:phoneNumber];
+    [userQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,NSError *error)
+    {
+        User *user;
+        
+        if (!error && objects.count > 0) {
+            user = (User *)(objects[0]);
+        }
+        complete(user, error);
+    }];
+}
+
 -(void)getVerificationInfoWithCompletion:(void (^)(NSError *))complete
 {
     
@@ -51,6 +67,8 @@
         }];
     }
 }
+
+
 
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="KAG-s0-BKh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="KAG-s0-BKh">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -128,17 +128,22 @@
                                 <rect key="frame" x="0.0" y="262" width="414" height="493"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ajm-4A-eq2">
-                                        <rect key="frame" x="0.0" y="53" width="414" height="180"/>
+                                        <rect key="frame" x="0.0" y="22" width="414" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="180" id="lCO-z7-jGB"/>
+                                            <constraint firstAttribute="height" constant="100" id="lCO-z7-jGB"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="tNg-9H-ffe"/>
                                         </constraints>
                                         <date key="date" timeIntervalSinceReferenceDate="451707247.01073802">
                                             <!--2015-04-26 02:14:07 +0000-->
                                         </date>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="tNg-9H-ffe"/>
+                                            </mask>
+                                        </variation>
                                     </datePicker>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9a-dl-LdT">
-                                        <rect key="frame" x="301" y="262" width="49" height="22"/>
+                                        <rect key="frame" x="301" y="182" width="49" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="8a6-jd-kMG"/>
                                         </constraints>

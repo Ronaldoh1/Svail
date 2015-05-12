@@ -12,7 +12,7 @@
 @interface CustomViewUtilities : NSObject
 
 
-+(void)setupProfileImageView:(UIImageView *)profileImageView WithImage:(UIImage *)image;
 +(void)transformToCircleViewFromSquareView:(UIView *)squareImageView;
++(NSMutableAttributedString *)setupTextWithHeader:(NSString *)headerString content:(NSString *)contentString fontSize:(CGFloat)fontSize;
 
 @end
