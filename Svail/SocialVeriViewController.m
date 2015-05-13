@@ -346,7 +346,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 
 -(void)setupTTLevelWithTTId:(NSString *)ttId followersCount:(NSUInteger)followersCount
 {
-     [Verification checkIfFBId:ttId hasBeenUsedWithCompletion:^(Verification *verification, NSError *error)
+     [Verification checkIfTTId:ttId hasBeenUsedWithCompletion:^(Verification *verification, NSError *error)
      {
          if (!error) {
              if (verification == nil || verification.objectId == self.currentUser.verification.objectId) {
@@ -395,7 +395,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 
 
 - (void)getLinkedInConnectionCountWithToken:(NSString *)accessToken {
-    NSString *queryURLString = @"https://api.linkedin.com/v1/people/~:(id)";
+    NSString *queryURLString = @"https://api.linkedin.com/v1/people/~:(id,num-connections)";
     [self.linkedIn GET:[NSString stringWithFormat:@"%@?oauth2_access_token=%@&format=json",queryURLString, accessToken] parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *result)
     {
 
@@ -416,7 +416,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                                    clientId: @"75696l29jqbq3l"
                                    clientSecret:@"YYBB2iDxC63LjOhU"
                                    state:@"f**kRonAndMert"
-                                   grantedAccess:@[@"r_fullprofile", @"r_network"]];
+                                   grantedAccess:@[@"r_basicprofile"]];
     
     return [LIALinkedInHttpClient clientForApplication:application presentingViewController:self];
 }

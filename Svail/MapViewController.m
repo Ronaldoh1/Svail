@@ -45,29 +45,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+   
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     [self setupProfileButton];
-//
-//    self.locationManager = [CLLocationManager new];
-//    [self.locationManager requestWhenInUseAuthorization];
-//   self.mapView.showsUserLocation = YES;
-
-
+    //
+    //    self.locationManager = [CLLocationManager new];
+    //    [self.locationManager requestWhenInUseAuthorization];
+    //   self.mapView.showsUserLocation = YES;
+    
+    
     //initially we should set the didGetUserLocation to false;
     self.didGetUserLocation = false;
-
+    
     
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
     self.mapView.delegate = self;
     [self.locationManager requestWhenInUseAuthorization];
     self.mapView.showsUserLocation = true;
-//    CLLocation *currentLocation = self.locationManager.location;
-
+    //    CLLocation *currentLocation = self.locationManager.location;
     
-
+    
+    
     self.segmentedControl.tintColor = //setup color tint
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
-
+    
     //setting image to Navigation Bar's title
     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
     titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
@@ -75,7 +80,7 @@
     titleView.text = @"SVAIL";
     titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
     [self.navigationItem setTitleView:titleView];
-
+    
     //setting today's date and the next days of the week for segmented control's titles
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -84,41 +89,38 @@
     [self.segmentedControl setTitle:theDate forSegmentAtIndex:0];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *dayComponent = [NSDateComponents new];
-
-//    self.currentLocationButton.layer.cornerRadius = self.currentLocationButton.frame.size.height / 2;
-//    self.currentLocationButton.layer.masksToBounds = YES;
-//    self.currentLocationButton.layer.borderWidth = 1.0;
-//    self.currentLocationButton.layer.borderColor = [UIColor grayColor];
-//    self.currentLocationButton.clipsToBounds = YES;
-
-
+    
+    //    self.currentLocationButton.layer.cornerRadius = self.currentLocationButton.frame.size.height / 2;
+    //    self.currentLocationButton.layer.masksToBounds = YES;
+    //    self.currentLocationButton.layer.borderWidth = 1.0;
+    //    self.currentLocationButton.layer.borderColor = [UIColor grayColor];
+    //    self.currentLocationButton.clipsToBounds = YES;
+    
+    
     for (int i = 1; i < 7; i++) {
         dayComponent.day = i;
         NSDate *nextDay = [calendar dateByAddingComponents:dayComponent toDate:currentDate options:0];
         NSString *nextDayDate = [dateFormat stringFromDate:nextDay];
         [self.segmentedControl setTitle:nextDayDate forSegmentAtIndex:i];
     }
-
+    
     //change tint for the map view controller
     self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
     
     //making segmentedcontrol selected when the view loads
     self.segmentedControl.selected = YES;
-
+    
     //dismissing keyboard when tapped outside searchBar
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
-
-//    //download Services from Parse and filter it according to today's event
-//    [EventLocationDownloader downloadEventLocationForLocation:currentLocation withCompletion:^(NSArray *array)
-//     {
-//         self.eventsArray = [NSMutableArray arrayWithArray:array];
-//         [self filterEventsForDate:self.segmentedControl];
-//     }];
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
+    
+    //    //download Services from Parse and filter it according to today's event
+    //    [EventLocationDownloader downloadEventLocationForLocation:currentLocation withCompletion:^(NSArray *array)
+    //     {
+    //         self.eventsArray = [NSMutableArray arrayWithArray:array];
+    //         [self filterEventsForDate:self.segmentedControl];
+    //     }];
+    
     [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
     // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
 
