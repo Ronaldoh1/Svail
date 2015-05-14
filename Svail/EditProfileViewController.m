@@ -286,6 +286,11 @@
 - (IBAction)logOUtButtonPressed:(UIBarButtonItem *)sender
 {
     [User logOut];
+
+    //Disable the tab for history
+    [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:FALSE];
+
+
     self.fullnameTextField.text = [NSString stringWithFormat:@""];
     self.emailTextField.text = [NSString stringWithFormat:@""];
     self.passwordTextField.text = [NSString stringWithFormat:@""];

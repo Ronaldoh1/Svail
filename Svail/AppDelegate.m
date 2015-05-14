@@ -39,8 +39,11 @@ NSString * const StripePublishableKey = @"pk_test_MHARLds9Wz6gEyNgBOpVruIR";
     
    
     
-
-    //set up HockeySDK
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
+    
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"654614209e824adf264ce5958b382590"];
     [[BITHockeyManager sharedHockeyManager] startManager];
     [[BITHockeyManager sharedHockeyManager].authenticator

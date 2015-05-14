@@ -44,7 +44,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //Check it the user has previously used the app.
+
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasBeenRun"]) {
+
+        UIStoryboard *tutorialStoryboard = [UIStoryboard storyboardWithName:@"Tutorial" bundle:nil];
+        UITabBarController *tutorialNavVC = [tutorialStoryboard instantiateViewControllerWithIdentifier:@"tutorialNavVC"];
+        [self presentViewController:tutorialNavVC animated:true completion:nil];
+
+    }
+
+    //if it has displayed the map then we say it has been run...therefore we do not show the Tutorial again
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasBeenRun"];
    
 }
 
@@ -55,8 +66,18 @@
     //    self.locationManager = [CLLocationManager new];
     //    [self.locationManager requestWhenInUseAuthorization];
     //   self.mapView.showsUserLocation = YES;
-    
-    
+
+
+
+    //If the user is logged in, then we want to allow him to tab on history
+    if ([User currentUser] != nil) {
+
+        [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:TRUE];
+        
+    }
+
+
+
     //initially we should set the didGetUserLocation to false;
     self.didGetUserLocation = false;
     
@@ -634,7 +655,7 @@
 
 
 
-    }else{
+    }else if(buttonIndex == 2){
 
         NSArray *permissionsArray = @[ @"email", @"public_profile"];
 
@@ -679,7 +700,9 @@
 //                EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
 //                [self presentViewController:editProfileVC animated:true completion:nil];
 
+                //we want to enable the history tab
 
+                [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:TRUE];
 
                 NSLog(@"User signed up and logged in through Facebook!");
 
@@ -688,6 +711,9 @@
 
                 NSLog(@"%@", user);
             } else {
+
+                //Enable the history tab
+                [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:TRUE];
                 NSLog(@"User logged in through Facebook!");
             }
         }];
