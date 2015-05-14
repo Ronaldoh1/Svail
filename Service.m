@@ -9,6 +9,7 @@
 #import "Service.h"
 #import "ServiceSlot.h"
 #import "Image.h"
+#import "Reservation.h"
 #import <Parse/PFObject+Subclass.h>
 
 @implementation Service
@@ -49,13 +50,15 @@ const NSUInteger kMaxNumberOfServiceImages = 4;
 {
     PFQuery *query = [ServiceSlot query];
     [query whereKey:@"service" equalTo:self];
+    [query includeKey:@"service"];
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                  NSError *error)
      {
          if (!error) {
              NSIndexSet *indexSet = [objects indexesOfObjectsPassingTest:^BOOL(ServiceSlot *obj, NSUInteger idx, BOOL *stop) {
-                 return obj.participants.count < [self.capacity integerValue];
+                 return obj.participants.count < [self.capacity integerValue] &&
+                        [obj checkStatus] == HasNotStarted;
              }];
              complete([objects objectsAtIndexes:indexSet]);
          }
@@ -123,39 +126,36 @@ const NSUInteger kMaxNumberOfServiceImages = 4;
             for (int i = 0; i < serviceSlots.count; i++) {
                 ServiceSlot *serviceSlot = serviceSlots[i];
                 if (serviceSlot.participants.count == 0) {
-                    [serviceSlot checkStatusWithCompletion:^(ServiceSlotStatus serviceSlotStatus) {
+                    if ([serviceSlot checkStatus] != HasFinished) {
+                        numOfServiceSlotDeleted += 1;
+                        [serviceSlot deleteInBackground];
+                        [self.startTimes removeObject:serviceSlot.startTime];
                         
-                        if (serviceSlotStatus != HasFinished) {
-                            numOfServiceSlotDeleted += 1;
-                            [serviceSlot deleteInBackground];
-                            [self.startTimes removeObject:serviceSlot.startTime];
-                            
-                            if (numOfServiceSlotDeleted == serviceSlots.count) {
-                                PFQuery *imageQuery = [Image query];
-                                [imageQuery whereKey:@"service" equalTo:self];
-                                [imageQuery findObjectsInBackgroundWithBlock:^(NSArray *images,NSError *error)
-                                 {
-                                     if (!error) {
-                                         for (Image *image in images) {
-                                             [image deleteInBackground];
-                                         }
+                        if (numOfServiceSlotDeleted == serviceSlots.count) {
+                            PFQuery *imageQuery = [Image query];
+                            [imageQuery whereKey:@"service" equalTo:self];
+                            [imageQuery findObjectsInBackgroundWithBlock:^(NSArray *images,NSError *error)
+                             {
+                                 if (!error) {
+                                     for (Image *image in images) {
+                                         [image deleteInBackground];
                                      }
-                                 }];
-                                [self deleteInBackground];
-                                complete(true);
-                            } else {
-                                if (i == self.serviceSlots.count - 1) {
-                                    [self saveInBackground];
-                                    complete(false);
-                                }
-                            }
+                                 }
+                             }];
+                            [self deleteInBackground];
+                            complete(true);
                         } else {
                             if (i == self.serviceSlots.count - 1) {
                                 [self saveInBackground];
                                 complete(false);
                             }
                         }
-                    }];
+                    } else {
+                        if (i == self.serviceSlots.count - 1) {
+                            [self saveInBackground];
+                            complete(false);
+                        }
+                    }
                 } else {
                     if (i == self.serviceSlots.count - 1) {
                         [self saveInBackground];
@@ -165,6 +165,33 @@ const NSUInteger kMaxNumberOfServiceImages = 4;
             }
          }
      
+     }];
+}
+
+-(void)deleteServiceAndAssociatedData
+{
+    PFQuery *serviceSlotQuery = [ServiceSlot query];
+    [serviceSlotQuery whereKey:@"service" equalTo:self];
+    [serviceSlotQuery includeKey:@"service"];
+    [serviceSlotQuery findObjectsInBackgroundWithBlock:^(NSArray *serviceSlots, NSError *error)
+     {
+         if (!error) {
+             for (ServiceSlot *serviceSlot in serviceSlots) {
+                 [serviceSlot deleteServiceSlotAndAssociatedData];
+             }
+             
+             PFQuery *imageQuery = [Image query];
+             [imageQuery whereKey:@"service" equalTo:self];
+             [imageQuery findObjectsInBackgroundWithBlock:^(NSArray *images,NSError *error)
+              {
+                  if (!error) {
+                      for (Image *image in images) {
+                          [image deleteInBackground];
+                      }
+                  }
+              }];
+             [self deleteInBackground];
+         }
      }];
 }
 

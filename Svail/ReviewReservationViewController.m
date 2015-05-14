@@ -22,9 +22,10 @@
 #import "PickTimeSlotViewController.h"
 #import "ProfileImageView.h"
 #import "ServiceImageView.h"
+#import "Report.h"
 
 
-@interface ReviewReservationViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
+@interface ReviewReservationViewController () <UICollectionViewDelegate,UICollectionViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet ProfileImageView *providerProfileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *providerNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *safetyImageView;
@@ -77,6 +78,8 @@ static const CGFloat kLabelFontSize = 13.0;
     [self.navigationItem setTitleView:titleView];
     
     
+   
+    
 
     self.safetyImageView.hidden = true;
     self.currentUser = [User currentUser];
@@ -113,19 +116,26 @@ static const CGFloat kLabelFontSize = 13.0;
              [providerServicesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
               {
                   if (!error) {
-                      self.numOfServicesLabel.text = [NSString stringWithFormat:@"%lu",objects.count];
+                      self.numOfServicesLabel.text = [NSString stringWithFormat:@"%lu",(long)(objects.count)];
                       
                   }
 
               }];
              
+             
+             PFQuery *providerServiceQuery = [Service query];
+             [providerServiceQuery whereKey:@"provider" equalTo:self.service.provider];
+             PFQuery *providerServiceSlotQuery = [ServiceSlot query];
+             [providerServiceSlotQuery whereKey:@"service" matchesQuery:providerServiceQuery];
              PFQuery *providerRatingsQuery = [Rating query];
-             [providerRatingsQuery whereKey:@"ratee" equalTo:self.provider];
+             [providerRatingsQuery whereKey:@"serviceSlot" matchesQuery:providerServiceSlotQuery];
              providerRatingsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
              [providerRatingsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
               {
                   if (!error) {
                       self.ratingLabel.text = [NSString stringWithFormat:@"%.1f",[[objects valueForKeyPath:@"@avg.value"] doubleValue]];
+                  } else {
+                      self.ratingLabel.text = @"0";
                   }
               }];
              
@@ -153,6 +163,57 @@ static const CGFloat kLabelFontSize = 13.0;
     
 }
 
+-(void)viewDidLayoutSubviews
+{
+     UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [reportButton setImage:[UIImage imageNamed:@"exclamation1"] forState:UIControlStateNormal];
+    [reportButton setFrame:CGRectMake(self.pickTimeSlotButton.center.x * 2 - 30, self.pickTimeSlotButton.center.y - 10, 20, 20)];
+    [reportButton addTarget:self action:@selector(showReportActionSheet) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:reportButton];
+}
+
+-(void)showReportActionSheet
+{
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    [actionSheet addButtonWithTitle:@"Report Inappropriate"];
+    
+    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
+    
+    [actionSheet showInView:self.view];
+}
+
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        Report *report = [Report object];
+        report.reporter = [User currentUser];
+        report.serviceReported = self.service;
+        [report handleReportWithCompletion:^(NSError *error) {
+            if (!error) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Your report has been submitted. Thanks!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                alert.tag = 1;
+                [alert show];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                alert.tag = 2;
+                [alert show];
+            }
+        }];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ((alertView.tag == 1 || alertView.tag == 2) && buttonIndex == 0) {
+        [self returnToMainTabBarVC];
+    }
+}
 
 
 
@@ -363,10 +424,13 @@ static const CGFloat kLabelFontSize = 13.0;
 
 -(void)returnToMainTabBarVC
 {
-    UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *mapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-    [self presentViewController:mapNavVC animated:true completion:nil]; 
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *mainTabBarVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+    [self presentViewController:mainTabBarVC animated:true completion:nil];
 }
+
+
+
 
 
 @end

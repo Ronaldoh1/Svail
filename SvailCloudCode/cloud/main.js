@@ -79,6 +79,51 @@ Parse.Cloud.define("processReferenceText", function(request, response) {
 
 })
 
+Parse.Cloud.define("deleteUser", function(request, response) {
+
+    Parse.Cloud.useMasterKey()
+    var userId = request.params.userId;
+    var User = Parse.Object.extend("User");
+    var queryOfUser = new Parse.Query(User);
+    queryOfUser.get(userId, {
+        success: function(user) { 
+            user.destroy({
+                success: function() {
+                response.success('User deleted');
+                },
+                error: function(error) {
+                    response.error(error);
+                    }
+            });
+        },
+        error: function(error) {
+            response.error(error);
+        }
+    });
+});
+
+
+Parse.Cloud.define("sendEmailToSvail", function(request, response) {
+    var Mailgun = require('mailgun');
+    Mailgun.initialize('sandbox3a9804201407410c85a88df9424f861d.mailgun.org', 'key-4adfc3de087e5be6eafd925379deec87');
+
+    Mailgun.sendEmail({
+        to: "svailapp@gmail.com",
+        from: "no-reply@parseapps.com",
+        subject: request.params.subject,
+        text: request.params.text
+    }, {
+        success: function(httpResponse) {
+            console.log(httpResponse);
+            response.success("Email sent!");
+        },
+        error: function(httpResponse) {
+            console.error(httpResponse);
+            response.error("Uh oh, something went wrong");
+        }
+    });
+});
+
 
 Parse.Cloud.define("test", function(request, response) {
 //    Parse.Cloud.run('processReferenceText',{fromNumber: '0123456789', message: '9253219260'},{          

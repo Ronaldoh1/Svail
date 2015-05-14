@@ -255,7 +255,7 @@
             region.span.latitudeDelta = 0.05;
             region.span.longitudeDelta = 0.05;
             region = [self.mapView regionThatFits:region];
-            [self.mapView setRegion:region animated:YES];
+            [self.mapView setRegion:region animated:NO];
 //        });
 }
 
