@@ -27,6 +27,9 @@ typedef NS_ENUM(NSUInteger, ServiceSlotStatus) {
 
 
 -(NSString *)getTimeSlotString;
+-(ServiceSlotStatus)checkStatus;
 -(void)checkStatusWithCompletion:(void (^)(ServiceSlotStatus))complete;
+-(void)deleteServiceSlotAndAssociatedData;
+
 
 @end

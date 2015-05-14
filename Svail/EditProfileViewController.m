@@ -209,7 +209,7 @@
     self.currentUser.occupation = self.occupationTextField.text;
     [self.currentUser saveInBackground];
     
-    if (self.phoneTextField.text.length > 0 && self.phoneTextField.text.length != 10){
+    if (self.phoneTextField.text.length != 10){
         UIAlertView  *wrongDigitsAlert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter 10 digits phone number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [wrongDigitsAlert show];
     } else if (![self.phoneTextField.text

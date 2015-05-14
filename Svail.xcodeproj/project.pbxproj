@@ -30,6 +30,7 @@
 		367343981B007BA700D05431 /* Reservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 367343971B007BA700D05431 /* Reservation.m */; };
 		3673439B1B00896A00D05431 /* ServiceImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3673439A1B00896A00D05431 /* ServiceImageView.m */; };
 		3673439E1B008BC600D05431 /* LargeServiceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3673439D1B008BC600D05431 /* LargeServiceImageViewController.m */; };
+		36BB2A521B03206B003B2494 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB2A511B03206B003B2494 /* Report.m */; };
 		36BBC47B1AE43394007960F1 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47A1AE43394007960F1 /* ParseFacebookUtilsV4.framework */; };
 		36BBC47D1AE435E0007960F1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47C1AE435E0007960F1 /* Parse.framework */; };
 		36BBC47F1AE43969007960F1 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47E1AE43969007960F1 /* Bolts.framework */; };
@@ -150,6 +151,8 @@
 		3673439A1B00896A00D05431 /* ServiceImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceImageView.m; sourceTree = "<group>"; };
 		3673439C1B008BC600D05431 /* LargeServiceImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeServiceImageViewController.h; sourceTree = "<group>"; };
 		3673439D1B008BC600D05431 /* LargeServiceImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeServiceImageViewController.m; sourceTree = "<group>"; };
+		36BB2A501B03206B003B2494 /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
+		36BB2A511B03206B003B2494 /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 		36BBC47A1AE43394007960F1 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		36BBC47C1AE435E0007960F1 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		36BBC47E1AE43969007960F1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -319,6 +322,7 @@
 				3673439A1B00896A00D05431 /* ServiceImageView.m */,
 			);
 			name = "Custom View";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		364DF30D1AEF2A0E00E0DFF6 /* History */ = {
@@ -374,7 +378,6 @@
 			children = (
 				F2F1C5A81AEEF1DD000C4BEF /* Svail_Team_Distribution_Profile (1).mobileprovision */,
 				F24B35CA1ADB9569006153EC /* Frameworks */,
-				F24B35C91ADB953D006153EC /* Data Model */,
 				F24B359F1ADB7E54006153EC /* Svail */,
 				F24B35BC1ADB7E54006153EC /* SvailTests */,
 				F24B359E1ADB7E54006153EC /* Products */,
@@ -396,6 +399,8 @@
 			isa = PBXGroup;
 			children = (
 				F2A4FC021AE0F8630022AAB8 /* Svail.entitlements */,
+				F24B35C91ADB953D006153EC /* Data Model */,
+				364DF2FD1AED86E400E0DFF6 /* Custom View */,
 				364DF30D1AEF2A0E00E0DFF6 /* History */,
 				3E8D28911AE30E0400D7D648 /* Profile */,
 				F24B36201ADC6A7B006153EC /* PostService */,
@@ -469,9 +474,11 @@
 				F24B364B1ADCB645006153EC /* Verification.m */,
 				36EBB0191AE5F6D50045AF92 /* Reference.h */,
 				36EBB01A1AE5F6D50045AF92 /* Reference.m */,
-				364DF2FD1AED86E400E0DFF6 /* Custom View */,
+				36BB2A501B03206B003B2494 /* Report.h */,
+				36BB2A511B03206B003B2494 /* Report.m */,
 			);
 			name = "Data Model";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F24B35CA1ADB9569006153EC /* Frameworks */ = {
@@ -790,6 +797,7 @@
 				36C8501D1AF0EAEE00235A87 /* ReservationTableViewCell.m in Sources */,
 				F2F1C5B91AF102E7000C4BEF /* PostSummaryViewController.m in Sources */,
 				3613DBF01AF0759C002B5251 /* CustomSelectTimeCell.m in Sources */,
+				36BB2A521B03206B003B2494 /* Report.m in Sources */,
 				3613DBEF1AF07584002B5251 /* SelectTimeSlotsViewController.m in Sources */,
 				3E13ED871AF0AAD700C0CB1C /* HistoryViewController.m in Sources */,
 				3613DBEB1AF04351002B5251 /* PostTableViewCell.m in Sources */,

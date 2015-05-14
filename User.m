@@ -7,6 +7,11 @@
 //
 
 #import "User.h"
+#import "Service.h"
+#import "Rating.h"
+#import "Report.h"
+#import "Reservation.h"
+#import "Reference.h"
 #import <Parse/PFObject+Subclass.h>
 
 @implementation User
@@ -66,6 +71,83 @@
             complete(error);
         }];
     }
+}
+
+-(void)deleteUserAndAssociatedDataInBackground
+{
+    
+    PFQuery *serviceQuery = [Service query];
+    [serviceQuery whereKey:@"provider" equalTo:self];
+    [serviceQuery findObjectsInBackgroundWithBlock:^(NSArray *services, NSError *error)
+     {
+         if (!error) {
+             for (Service *service in services) {
+                 [service deleteServiceAndAssociatedData];
+             }
+         }
+     }];
+         
+    PFQuery *reservationQuery = [Reservation query];
+    [reservationQuery whereKey:@"reserver" equalTo:self];
+    [reservationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
+                                                    NSError *error)
+     {
+         if (!error) {
+             for (Reservation *reservation in objects) {
+                 [reservation deleteInBackground];
+             }
+         }
+     }];
+    
+    
+    
+    PFQuery *ratingQuery = [Rating query];
+    [ratingQuery whereKey:@"rater" equalTo:self];
+    [ratingQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
+                                                    NSError *error)
+     {
+         if (!error) {
+             for (Rating *rating in objects) {
+                 [rating deleteInBackground];
+             }
+         }
+     }];
+    
+    PFQuery *reportQuery = [Report query];
+    [reportQuery whereKey:@"reporter" equalTo:self];
+    [reportQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
+                                                    NSError *error)
+     {
+         if (!error) {
+             for (Report *report in objects) {
+                 [report deleteInBackground];
+             }
+         }
+     }];
+    
+    
+    PFQuery *userQuery = [User query];
+    [userQuery includeKey:@"verification.references"];
+    [userQuery getObjectInBackgroundWithId:self.objectId block:^(PFObject *object, NSError *error)
+    {
+        if (!error) {
+            User *user = (User *)object;
+            for (Reference *reference in user.verification.references) {
+                [reference deleteInBackground];
+            }
+            [user.verification deleteInBackground];
+            
+            [PFCloud callFunctionInBackground:@"deleteUser"
+                               withParameters:@{@"userId":self.objectId}
+                                        block:^(NSString *result, NSError *error) {
+                                            if (!error) {
+//                                                NSLog(@"%@",self.name);
+                                            }
+                                        }];
+
+        }
+    }];
+    
 }
 
 

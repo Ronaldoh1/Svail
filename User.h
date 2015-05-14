@@ -31,5 +31,7 @@
 
 -(void)getVerificationInfoWithCompletion:(void (^)(NSError *))complete;
 
+-(void)deleteUserAndAssociatedDataInBackground;
+
 
 @end

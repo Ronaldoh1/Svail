@@ -8,8 +8,9 @@
 
 #import "UserProfileViewController.h"
 #import "Verification.h"
+#import "Report.h"
 
-@interface UserProfileViewController () <UIGestureRecognizerDelegate>
+@interface UserProfileViewController () <UIGestureRecognizerDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *fullnameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
@@ -69,6 +70,68 @@
         }
     }];
 }
+
+
+-(void)viewDidLayoutSubviews
+{
+    UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [reportButton setImage:[UIImage imageNamed:@"exclamation1"] forState:UIControlStateNormal];
+    [reportButton setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 30, self.safetyImageView.center.y - 10, 20, 20)];
+    [reportButton addTarget:self action:@selector(showReportActionSheet) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:reportButton];
+}
+
+-(void)showReportActionSheet
+{
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    [actionSheet addButtonWithTitle:@"Report Inappropriate"];
+    
+    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
+    
+    [actionSheet showInView:self.view];
+}
+
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        
+        Report *report = [Report object];
+        report.reporter = [User currentUser];
+        report.userReported = self.selectedUser;
+        [report handleReportWithCompletion:^(NSError *error) {
+            if (!error) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Your report has been submitted. Thanks!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                alert.tag = 1;
+                [alert show];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                alert.tag = 2;
+                [alert show];
+            }
+        }];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ((alertView.tag == 1 || alertView.tag == 2) && buttonIndex == 0) {
+        [self returnToMainTabBarVC];
+    }
+}
+
+-(void)returnToMainTabBarVC
+{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *mainTabBarVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+    [self presentViewController:mainTabBarVC animated:true completion:nil];
+}
+
 
 -(void)callPhoneNumber
 {
