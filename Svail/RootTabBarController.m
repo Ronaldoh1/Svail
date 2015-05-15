@@ -54,10 +54,6 @@
     return newImage;
 }
 
--(IBAction)unwindSegueFromLogInViewController:(UIStoryboardSegue *)segue
-
-{
-
 
 #pragma Mark - Unwind Segues
 

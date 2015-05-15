@@ -11,6 +11,7 @@
 #import "Report.h"
 
 @interface UserProfileViewController () <UIGestureRecognizerDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *fullnameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
@@ -32,6 +33,10 @@
 
     self.fullnameLabel.text = self.selectedUser.name;
     self.emailLabel.text = self.selectedUser.username;
+
+    if (self.selectedUser.phoneNumber == nil) {
+        self.phoneButton.enabled = NO;
+    }
 
     self.phoneLabel.text = self.selectedUser.phoneNumber;
 //    self.phoneLabel.userInteractionEnabled = YES;
