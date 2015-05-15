@@ -132,6 +132,7 @@
                         <outlet property="fullnameLabel" destination="hdu-iL-RIy" id="bPd-WA-Fga"/>
                         <outlet property="imageView" destination="FFR-ky-l1N" id="uZE-sv-ItV"/>
                         <outlet property="occupationLabel" destination="FkZ-fV-5ri" id="0sU-ox-WqL"/>
+                        <outlet property="phoneButton" destination="hiP-AS-LTo" id="1pE-YN-gXI"/>
                         <outlet property="phoneLabel" destination="Rl6-YH-Bl7" id="C04-fG-Z6I"/>
                         <outlet property="safetyImageView" destination="f4X-gh-JEM" id="aGY-Lq-uQh"/>
                         <outlet property="stateLabel" destination="lF3-kZ-lF0" id="kJu-0h-svY"/>

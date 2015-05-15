@@ -46,6 +46,64 @@
     [super viewDidLoad];
     //Check it the user has previously used the app.
 
+
+    //initially we should set the didGetUserLocation to false;
+    self.didGetUserLocation = false;
+
+
+    self.locationManager = [CLLocationManager new];
+    self.locationManager.delegate = self;
+    self.mapView.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
+    self.mapView.showsUserLocation = true;
+    //    CLLocation *currentLocation = self.locationManager.location;
+
+
+
+    self.segmentedControl.tintColor = //setup color tint
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+
+    //setting image to Navigation Bar's title
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+    titleView.font = [UIFont fontWithName:@"Noteworthy" size:20];
+    titleView.text = @"SVAIL";
+    titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
+    [self.navigationItem setTitleView:titleView];
+
+    //setting today's date and the next days of the week for segmented control's titles
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd"];
+    NSString *theDate = [dateFormat stringFromDate:currentDate];
+    [self.segmentedControl setTitle:theDate forSegmentAtIndex:0];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *dayComponent = [NSDateComponents new];
+
+    //    self.currentLocationButton.layer.cornerRadius = self.currentLocationButton.frame.size.height / 2;
+    //    self.currentLocationButton.layer.masksToBounds = YES;
+    //    self.currentLocationButton.layer.borderWidth = 1.0;
+    //    self.currentLocationButton.layer.borderColor = [UIColor grayColor];
+    //    self.currentLocationButton.clipsToBounds = YES;
+
+
+    for (int i = 1; i < 7; i++) {
+        dayComponent.day = i;
+        NSDate *nextDay = [calendar dateByAddingComponents:dayComponent toDate:currentDate options:0];
+        NSString *nextDayDate = [dateFormat stringFromDate:nextDay];
+        [self.segmentedControl setTitle:nextDayDate forSegmentAtIndex:i];
+    }
+
+    //change tint for the map view controller
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+
+    //making segmentedcontrol selected when the view loads
+    self.segmentedControl.selected = YES;
+
+    //dismissing keyboard when tapped outside searchBar
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasBeenRun"]) {
 
         UIStoryboard *tutorialStoryboard = [UIStoryboard storyboardWithName:@"Tutorial" bundle:nil];
@@ -62,12 +120,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self setupProfileButton];
-    //
-    //    self.locationManager = [CLLocationManager new];
-    //    [self.locationManager requestWhenInUseAuthorization];
-    //   self.mapView.showsUserLocation = YES;
-
-
 
     //If the user is logged in, then we want to allow him to tab on history
     if ([User currentUser] != nil) {
@@ -76,72 +128,6 @@
         
     }
 
-
-
-    //initially we should set the didGetUserLocation to false;
-    self.didGetUserLocation = false;
-    
-    
-    self.locationManager = [CLLocationManager new];
-    self.locationManager.delegate = self;
-    self.mapView.delegate = self;
-    [self.locationManager requestWhenInUseAuthorization];
-    self.mapView.showsUserLocation = true;
-    //    CLLocation *currentLocation = self.locationManager.location;
-    
-    
-    
-    self.segmentedControl.tintColor = //setup color tint
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
-    
-    //setting image to Navigation Bar's title
-    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
-    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
-    titleView.font = [UIFont fontWithName:@"Noteworthy" size:20];
-    titleView.text = @"SVAIL";
-    titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
-    [self.navigationItem setTitleView:titleView];
-    
-    //setting today's date and the next days of the week for segmented control's titles
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd"];
-    NSString *theDate = [dateFormat stringFromDate:currentDate];
-    [self.segmentedControl setTitle:theDate forSegmentAtIndex:0];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *dayComponent = [NSDateComponents new];
-    
-    //    self.currentLocationButton.layer.cornerRadius = self.currentLocationButton.frame.size.height / 2;
-    //    self.currentLocationButton.layer.masksToBounds = YES;
-    //    self.currentLocationButton.layer.borderWidth = 1.0;
-    //    self.currentLocationButton.layer.borderColor = [UIColor grayColor];
-    //    self.currentLocationButton.clipsToBounds = YES;
-    
-    
-    for (int i = 1; i < 7; i++) {
-        dayComponent.day = i;
-        NSDate *nextDay = [calendar dateByAddingComponents:dayComponent toDate:currentDate options:0];
-        NSString *nextDayDate = [dateFormat stringFromDate:nextDay];
-        [self.segmentedControl setTitle:nextDayDate forSegmentAtIndex:i];
-    }
-    
-    //change tint for the map view controller
-    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
-    
-    //making segmentedcontrol selected when the view loads
-    self.segmentedControl.selected = YES;
-    
-    //dismissing keyboard when tapped outside searchBar
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-    
-    //    //download Services from Parse and filter it according to today's event
-    //    [EventLocationDownloader downloadEventLocationForLocation:currentLocation withCompletion:^(NSArray *array)
-    //     {
-    //         self.eventsArray = [NSMutableArray arrayWithArray:array];
-    //         [self filterEventsForDate:self.segmentedControl];
-    //     }];
-    
     [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
     // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
 
@@ -151,23 +137,17 @@
 
     [self zoom:&latitude :&longitude];
 
-//    self.locationManager = [[CLLocationManager alloc] init];
-//    self.locationManager.delegate = self;
-//    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    [self.locationManager startUpdatingLocation];
-//    double latitude = self.locationManager.location.coordinate.latitude;
-//    double longitude = self.locationManager.location.coordinate.longitude;
-//    self.mapView.showsUserLocation = YES;
-//    [self zoom:&latitude :&longitude];
+    [self.locationManager stopUpdatingLocation];
 
-//    [super viewWillAppear:animated];
+    self.didGetUserLocation = true;
+//download Services from Parse and filter it according to today's event
+    [EventLocationDownloader downloadEventLocationForLocation:self.mapView.userLocation.location withCompletion:^(NSArray *array)
+         {
+             self.eventsArray = [NSMutableArray arrayWithArray:array];
+             [self filterEventsForDate:self.segmentedControl];
 
-}
--(void)viewDidAppear:(BOOL)animated{
-    //[self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
-    // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
-
+             [self.mapView reloadInputViews];
+         }];
 }
 
 
@@ -429,26 +409,6 @@
 //
 //    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
 
-    if(!self.didGetUserLocation){
-
-        //zooming map to current location at startup
-        double latitude = self.locationManager.location.coordinate.latitude;
-        double longitude = self.locationManager.location.coordinate.longitude;
-        [self.locationManager stopUpdatingLocation];
-
-        [self zoom:&latitude :&longitude];
-
-        self.didGetUserLocation = true;
-        //download Services from Parse and filter it according to today's event
-        [EventLocationDownloader downloadEventLocationForLocation:self.mapView.userLocation.location withCompletion:^(NSArray *array)
-         {
-             self.eventsArray = [NSMutableArray arrayWithArray:array];
-             [self filterEventsForDate:self.segmentedControl];
-         }];
-
-    }
-
-
 
 
 
@@ -542,7 +502,6 @@
             }
         }
     }
-    [self.mapView reloadInputViews];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
