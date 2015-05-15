@@ -13,6 +13,6 @@
 @interface PostViewController : UIViewController
 
 @property PFGeoPoint *serviceGeoPoint;
-@property Service *service;
+@property Service *serviceToEdit;
 
 @end

@@ -12,9 +12,9 @@
 @implementation Rating
 
 //@dynamic comment;
-@dynamic ratee;
 @dynamic rater;
 @dynamic value;
+@dynamic serviceSlot;
 
 +(void)load{
     [self registerSubclass];

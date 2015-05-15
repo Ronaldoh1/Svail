@@ -11,18 +11,22 @@
 #import "Verification.h"
 #import "Service.h"
 #import "ServiceSlot.h"
+#import "Reservation.h"
 #import "Rating.h"
+#import "Image.h"
 #import "ConfirmPurchaseViewController.h"
 #import "CustomViewUtilities.h"
 #import "RatingViewController.h"
-#import "Image.h"
 #import "ServiceImagesCollectionViewCell.h"
 #import "ParticipantCollectionViewCell.h"
 #import "PickTimeSlotViewController.h"
+#import "ProfileImageView.h"
+#import "ServiceImageView.h"
+#import "Report.h"
 
 
-@interface ReviewReservationViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
-@property (weak, nonatomic) IBOutlet UIImageView *providerProfileImageView;
+@interface ReviewReservationViewController () <UICollectionViewDelegate,UICollectionViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
+@property (weak, nonatomic) IBOutlet ProfileImageView *providerProfileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *providerNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *safetyImageView;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
@@ -34,7 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *serviceCapacityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *serviceCategoryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *serviceLocationLabel;
-@property (weak, nonatomic) IBOutlet UITextView *serviceDescriptionTextView;
+@property (weak, nonatomic) IBOutlet UILabel *serviceDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *participantsLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *serviceImagesCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *participantsCollectionView;
@@ -51,15 +55,18 @@
 
 @implementation ReviewReservationViewController
 
-static NSUInteger kMaxNumberOfServiceImages = 4;
+static const CGFloat kLabelFontSize = 13.0;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    [self getServiceImages];
+}
 
-    //setup color tint
+
+-(void)viewWillAppear:(BOOL)animated
+{
+       //setup color tint
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
     
     //setting image to Navigation Bar's title
@@ -71,21 +78,11 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     [self.navigationItem setTitleView:titleView];
     
     
-    self.participantsCollectionView.showsHorizontalScrollIndicator = true;
+   
+    
+
     self.safetyImageView.hidden = true;
     self.currentUser = [User currentUser];
-    
-    self.participantsCollectionView.layer.borderWidth = 0.5;
-    self.participantsCollectionView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    
-    self.participantsCollectionView.hidden = true;
-    self.serviceTimeLabel.hidden = true;
-    
-    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
-    for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
-        self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
-    }
-    [self.serviceImagesCollectionView reloadData];
     
 
     
@@ -101,8 +98,6 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 
              self.provider = self.service.provider;
 
-             [self.participantsCollectionView reloadData];
-             
              self.providerNameLabel.text = self.service.provider.name;
              
              if ([[self.provider.verification objectForKey:@"safetyLevel"] integerValue] >= 5) {
@@ -111,12 +106,9 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
                  self.safetyImageView.hidden = true;
              }
              
-             [self.provider.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
-              {
-                  if (!error) {
-                      [CustomViewUtilities setupProfileImageView:self.providerProfileImageView WithImage:[UIImage imageWithData:data]];
-                  }
-              }];
+             self.providerProfileImageView.user = self.provider;
+             self.providerProfileImageView.vc = self;
+             
              
              PFQuery *providerServicesQuery = [Service query];
              [providerServicesQuery whereKey:@"provider" equalTo:self.service.provider];
@@ -124,19 +116,26 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
              [providerServicesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
               {
                   if (!error) {
-                      self.numOfServicesLabel.text = [NSString stringWithFormat:@"%lu",objects.count];
+                      self.numOfServicesLabel.text = [NSString stringWithFormat:@"%lu",(long)(objects.count)];
                       
                   }
-                  
+
               }];
              
+             
+             PFQuery *providerServiceQuery = [Service query];
+             [providerServiceQuery whereKey:@"provider" equalTo:self.service.provider];
+             PFQuery *providerServiceSlotQuery = [ServiceSlot query];
+             [providerServiceSlotQuery whereKey:@"service" matchesQuery:providerServiceQuery];
              PFQuery *providerRatingsQuery = [Rating query];
-             [providerRatingsQuery whereKey:@"ratee" equalTo:self.provider];
+             [providerRatingsQuery whereKey:@"serviceSlot" matchesQuery:providerServiceSlotQuery];
              providerRatingsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
              [providerRatingsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
               {
                   if (!error) {
                       self.ratingLabel.text = [NSString stringWithFormat:@"%.1f",[[objects valueForKeyPath:@"@avg.value"] doubleValue]];
+                  } else {
+                      self.ratingLabel.text = @"0";
                   }
               }];
              
@@ -151,39 +150,81 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     
     
     
+    [self setupServiceImages];
     [self setupTitleLabel];
     [self setupPriceLabel];
     [self setupCapacityLabel];
     [self setupCategoryLabel];
     [self setupDateLabel];
-    if (self.serviceSlot) {
-        self.serviceTimeLabel.hidden = false;
-        [self setupTimeLabel];
-    }
-
-    self.participantsLabel.hidden = true;
-    
     [self setupLocationLabel];
-    [self setupDescriptionTextView];
+    [self setupDescriptionLabel];
+    [self setupTimeLabel];
+    [self setupParticipantsItems];
     
-    
-    
+}
 
+-(void)viewDidLayoutSubviews
+{
+     UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [reportButton setImage:[UIImage imageNamed:@"exclamation1"] forState:UIControlStateNormal];
+    [reportButton setFrame:CGRectMake(self.pickTimeSlotButton.center.x * 2 - 30, self.pickTimeSlotButton.center.y - 10, 20, 20)];
+    [reportButton addTarget:self action:@selector(showReportActionSheet) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:reportButton];
+}
+
+-(void)showReportActionSheet
+{
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    [actionSheet addButtonWithTitle:@"Report Inappropriate"];
+    
+    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
+    
+    [actionSheet showInView:self.view];
 }
 
 
--(void)viewWillAppear:(BOOL)animated
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (self.serviceSlot) {
-        self.serviceTimeLabel.hidden = false;
-        [self setupTimeLabel];
-        self.participants = self.service.participants;
-        [self.participantsCollectionView reloadData];
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        Report *report = [Report object];
+        report.reporter = [User currentUser];
+        report.serviceReported = self.service;
+        [report handleReportWithCompletion:^(NSError *error) {
+            if (!error) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Your report has been submitted. Thanks!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                alert.tag = 1;
+                [alert show];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                alert.tag = 2;
+                [alert show];
+            }
+        }];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ((alertView.tag == 1 || alertView.tag == 2) && buttonIndex == 0) {
+        [self returnToMainTabBarVC];
     }
 }
 
 
-- (IBAction)onContinueButton:(UIBarButtonItem *)sender {
+
+- (IBAction)onConfirmButton:(UIBarButtonItem *)sender {
+    
+    if (!self.serviceSlot) {
+        UIAlertView *pickTimeAlert = [[UIAlertView alloc]initWithTitle:nil message:@"Please pick a time slot." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [pickTimeAlert show];
+        return;
+    }
+    
     [PFCloud callFunctionInBackground:@"sendSMS"
                        withParameters:@{@"toNumber":self.service.provider.phoneNumber,
                                         @"message": [NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested", self.serviceSlot.service.title, [self.serviceSlot getTimeSlotString]]}
@@ -194,6 +235,18 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
                                     }
                                 }];
 
+    if (![self.serviceSlot.participants containsObject:self.currentUser]) {
+        [self.serviceSlot.participants addObject:self.currentUser];
+        [self.serviceSlot saveInBackground];
+        Reservation *reservation = [Reservation object];
+        reservation.reserver = [User currentUser];
+        reservation.serviceSlot = self.serviceSlot;
+        [reservation saveInBackground];
+        [self returnToMainTabBarVC];
+    } else {
+        UIAlertView *repetitiveReserveAlert = [[UIAlertView alloc]initWithTitle:nil message:@"You already reserved the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [repetitiveReserveAlert show];
+    }
 //    // Build the actual push notification target query
 //    PFQuery *query = [PFInstallation query];
 //
@@ -208,149 +261,113 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 //    [push sendPushInBackground];
 }
 
--(void)getServiceImages
+-(void)setupServiceImages
 {
-    PFQuery *imagesQuery = [Image query];
-    [imagesQuery whereKey:@"service" equalTo:self.service];
-    [imagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
-                                                    NSError *error)
-     {
-         if (!error) {
-             [self.serviceImagesCollectionView reloadData];
-             for (int i = 0;i < objects.count;i++) {
-                 PFFile *imageFile = objects[i];
-                 [imageFile getDataInBackgroundWithBlock:^(NSData *data,
-                                                           NSError *error)
-                  {
-                      if (!error) {
-                          self.serviceImageArray[i] = [UIImage imageWithData:data];
-                          [self.serviceImagesCollectionView reloadData];
-                      }
-                  }];
-             }
-         }
-     }];
+    
+    self.serviceImagesCollectionView.showsHorizontalScrollIndicator = true;
+    self.serviceImagesCollectionView.layer.borderWidth = 0.5;
+    self.serviceImagesCollectionView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
+    for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
+        self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
+    }
+    [self.serviceImagesCollectionView reloadData];
+    [self.service getServiceImageDataWithCompletion:^(NSDictionary *imageDataDict)
+    {
+        NSNumber *keyOfImage = imageDataDict.allKeys.lastObject;
+        self.serviceImageArray[keyOfImage.integerValue] = [UIImage imageWithData:imageDataDict[keyOfImage]];
+        [self.serviceImagesCollectionView reloadData];
+    }];
 }
 
 
 -(void)setupTitleLabel
 {
-    self.serviceTitleLabel.text = [NSString stringWithFormat:@"Title %@",self.service.title];
-    self.serviceTitleLabel.font = [UIFont fontWithName:@"Arial" size:15.0];
-    NSRange range = [self.serviceTitleLabel.text rangeOfString:@"Title"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceTitleLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.serviceTitleLabel.attributedText = attributedText;
+    self.serviceTitleLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Title"
+                                                                 content:self.service.title fontSize:kLabelFontSize];
+    
 }
 
 
 -(void)setupTimeLabel
 {
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    [dateFormatter setDateFormat:@"HH:MM"];
-    self.serviceTimeLabel.text = [NSString stringWithFormat:@" %@",
-                                  [self.serviceSlot getTimeSlotString]];
-    self.serviceTimeLabel.font = [UIFont fontWithName:@"Arial" size:15.0];
-    NSRange range = [self.serviceTimeLabel.text rangeOfString:@"Time"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceTimeLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.serviceTimeLabel.attributedText = attributedText;
+    if (self.serviceSlot) {
+        self.serviceTimeLabel.hidden = false;
+        self.serviceTimeLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Time" content:[self.serviceSlot getTimeSlotString] fontSize:kLabelFontSize];
+    } else {
+        self.serviceTimeLabel.hidden = true;
+    }
 }
-
 
 -(void)setupDateLabel
 {
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     [dateFormatter setDateFormat:@"MM/dd/yy"];
-    self.serviceDateLabel.text = [NSString stringWithFormat:@"Date %@",
-                                  [dateFormatter stringFromDate:self.service.startDate]],
-    self.serviceDateLabel.font = [UIFont fontWithName:@"Arial" size:15.0];
-    NSRange range = [self.serviceDateLabel.text rangeOfString:@"Date"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceDateLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.serviceDateLabel.attributedText = attributedText;
+    self.serviceDateLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Date" content:[dateFormatter stringFromDate:self.service.startDate] fontSize:kLabelFontSize];
 }
-
 
 -(void)setupPriceLabel
 {
-    
-    self.servicePriceLabel.text = [NSString stringWithFormat:@"Price : $%@",self.service.price];
-    self.servicePriceLabel.font = [UIFont fontWithName:@"Arial" size:15.0];
-    NSRange range = [self.servicePriceLabel.text rangeOfString:@"Price"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.servicePriceLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.servicePriceLabel.attributedText = attributedText;
+    self.servicePriceLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Price" content:[NSString stringWithFormat:@"$%@",self.service.price] fontSize:kLabelFontSize];
 }
 
 -(void)setupCapacityLabel
 {
     
     self.serviceCapacityLabel.text = [NSString stringWithFormat:@"Capacity : %@",self.service.capacity];
-    self.serviceCapacityLabel.font = [UIFont fontWithName:@"Arial" size:15.0];
-    NSRange range = [self.serviceCapacityLabel.text rangeOfString:@"Capacity"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceCapacityLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.serviceCapacityLabel.attributedText = attributedText;
+    self.serviceCapacityLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Capacity" content:[self.service.capacity stringValue] fontSize:kLabelFontSize];
 }
 
 -(void)setupLocationLabel
 {
-    self.serviceLocationLabel.numberOfLines = 0;
     if (self.service.travel) {
-        self.serviceLocationLabel.text = @"Travel";
+        self.serviceLocationLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Location" content:@"Travel" fontSize:kLabelFontSize];
         return;
     }
     self.serviceLocationLabel.numberOfLines = 0;
-    self.serviceLocationLabel.text = [NSString stringWithFormat:@"Location %@",self.service.serviceLocationAddress];
-    self.serviceLocationLabel.font = [UIFont fontWithName:@"Arial" size:15.0];
-    NSRange range = [self.serviceLocationLabel.text rangeOfString:@"Location"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceLocationLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.serviceLocationLabel.attributedText = attributedText;
+    self.serviceLocationLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Location" content:self.service.serviceLocationAddress fontSize:kLabelFontSize];
 }
 
 
 -(void)setupCategoryLabel
 {
     self.serviceCategoryLabel.numberOfLines = 0;
-    self.serviceCategoryLabel.text = [NSString stringWithFormat:@"Category %@",self.service.category];
-    self.serviceCategoryLabel.font = [UIFont fontWithName:@"Arial" size:15.0];
-    NSRange range = [self.serviceCategoryLabel.text rangeOfString:@"Category"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceCategoryLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.serviceCategoryLabel.attributedText = attributedText;
+    self.serviceCategoryLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Category"
+                                                                    content:self.service.category fontSize:kLabelFontSize];
 }
 
--(void)setupDescriptionTextView
+-(void)setupDescriptionLabel
 {
-    self.serviceDescriptionTextView.text = [NSString stringWithFormat:@"Description\n%@",self.service.serviceDescription];
-    self.serviceDescriptionTextView.font = [UIFont fontWithName:@"Arial" size:15.0];
-    NSRange range = [self.serviceDescriptionTextView.text rangeOfString:@"Description"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.serviceDescriptionTextView.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.serviceDescriptionTextView.attributedText = attributedText;
+    self.serviceDescriptionLabel.numberOfLines = 0;
+    self.serviceDescriptionLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Descripton" content:self.service.serviceDescription fontSize:kLabelFontSize];
 }
 
 -(void)setupParticipantsLabel
 {
-    
-    self.participantsLabel.text = [NSString stringWithFormat:@"Participants"];
-    self.participantsLabel.font = [UIFont fontWithName:@"Arial" size:15.0];
-    NSRange range = [self.participantsLabel.text rangeOfString:@"Participants"];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.participantsLabel.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:13.0]} range:range];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:range];
-    self.participantsLabel.attributedText = attributedText;
-    
+    self.participantsLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Participants" content:@"" fontSize:kLabelFontSize];
+}
+
+-(void)setupParticipantsItems
+{
+    self.participantsCollectionView.showsHorizontalScrollIndicator = true;
+    self.participantsCollectionView.layer.borderWidth = 0.5;
+    self.participantsCollectionView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+ 
+     if ([self.service.capacity integerValue] > 1 && self.serviceSlot) {
+        self.participantsLabel.hidden = false;
+        if (self.serviceSlot.participants.count > 0) {
+            [self setupParticipantsLabel];
+            self.participantsCollectionView.hidden = false;
+            self.participants = self.serviceSlot.participants;
+            [self.participantsCollectionView reloadData];
+        } else {
+            self.participantsLabel.text = @"No other participants yet";
+            self.participantsCollectionView.hidden = true;
+        }
+    } else {
+        self.participantsLabel.hidden = true;
+        self.participantsCollectionView.hidden = true;
+    }
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -370,17 +387,15 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
     
     if (collectionView == self.serviceImagesCollectionView) {
         ServiceImagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ServiceImageCell" forIndexPath:indexPath];
+        cell.serviceImageView.title = self.service.title;
+        cell.serviceImageView.vc = self;
         cell.serviceImageView.image = self.serviceImageArray[indexPath.row];
         return cell;
     } else {
         ParticipantCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ParticipantCell" forIndexPath:indexPath];
         User *participant = self.participants[indexPath.row];
-        [participant.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (!error) {
-                [CustomViewUtilities setupProfileImageView:cell.profileImageView WithImage:[UIImage imageWithData:data]];
-                [cell layoutSubviews];
-            }
-        }];
+        cell.profileImageView.user = participant;
+        cell.profileImageView.vc = self;
         cell.nameLabel.text = participant.name;
         return cell;
     }
@@ -399,19 +414,7 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 }
 
 
-- (IBAction)onConfirmButtonTapped:(UIBarButtonItem *)sender
-{
-    if (![self.serviceSlot.participants containsObject:self.currentUser]) {
-        [self.serviceSlot.participants addObject:self.currentUser];
-        [self.serviceSlot saveInBackground];
-        [self returnToMainTabBarVC];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"You already reserved the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
 
-
-}
 
 - (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender
 {
@@ -421,10 +424,13 @@ static NSUInteger kMaxNumberOfServiceImages = 4;
 
 -(void)returnToMainTabBarVC
 {
-    UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *mapNavVC = [mapStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
-    [self presentViewController:mapNavVC animated:true completion:nil]; 
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *mainTabBarVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+    [self presentViewController:mainTabBarVC animated:true completion:nil];
 }
+
+
+
 
 
 @end

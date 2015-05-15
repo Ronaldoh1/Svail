@@ -8,12 +8,13 @@
 
 #import <Parse/Parse.h>
 #import "User.h"
+#import "ServiceSlot.h"
 
 @interface Rating : PFObject<PFSubclassing>
 //@property NSString *comment;
-@property User *ratee;
-@property User *rater;
-@property double value;
+@property (nonatomic) User *rater;
+@property (nonatomic) ServiceSlot *serviceSlot;
+@property (nonatomic) double value;
 
 +(NSString *)parseClassName;
 

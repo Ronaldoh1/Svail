@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ServiceImageView.h"
 
 @interface ServiceImagesCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *serviceImageView;
+@property (weak, nonatomic) IBOutlet ServiceImageView *serviceImageView;
 
 @end

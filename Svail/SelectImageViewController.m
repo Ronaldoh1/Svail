@@ -171,6 +171,7 @@
         NSData *imageData = UIImagePNGRepresentation((UIImage *)self.imageArray[0]);
         PFFile *imageFile = [PFFile fileWithData:imageData];
         self.pickedImage1.imageFile = imageFile;
+        self.pickedImage1.service = self.service;
         [imageTempArray addObject:self.pickedImage1];
         [self.pickedImage1 saveInBackground];
 
@@ -198,6 +199,7 @@
         NSData *imageData = UIImagePNGRepresentation((UIImage *)self.imageArray[0]);
         PFFile *imageFile = [PFFile fileWithData:imageData];
         self.pickedImage1.imageFile = imageFile;
+        self.pickedImage1.service = self.service;
 
         [imageTempArray addObject:self.pickedImage1];
         [self.pickedImage1 saveInBackground];
@@ -206,7 +208,7 @@
         NSData *imageData2 = UIImagePNGRepresentation((UIImage *)self.imageArray[1]);
         PFFile *imageFile2 = [PFFile fileWithData:imageData2];
         self.pickedImage2.imageFile = imageFile2;
-        //self.pickedImage2.service = self.service;
+        self.pickedImage2.service = self.service;
         [imageTempArray addObject:self.pickedImage2];
         [self.pickedImage2 saveInBackground];
 
@@ -214,7 +216,7 @@
         NSData *imageData3 = UIImagePNGRepresentation((UIImage *)self.imageArray[2]);
         PFFile *imageFile3 = [PFFile fileWithData:imageData3];
         self.pickedImage3.imageFile = imageFile3;
-        //self.pickedImage2.service = self.service;
+        self.pickedImage3.service = self.service;
         [imageTempArray addObject:self.pickedImage3];
 
         [self saveImagesInBackGround:imageTempArray];
@@ -228,6 +230,7 @@
         NSData *imageData = UIImagePNGRepresentation((UIImage *)self.imageArray[0]);
         PFFile *imageFile = [PFFile fileWithData:imageData];
         self.pickedImage1.imageFile = imageFile;
+        self.pickedImage1.service = self.service;
         [imageTempArray addObject:self.pickedImage1];
         [self.pickedImage1 saveInBackground];
         //image2

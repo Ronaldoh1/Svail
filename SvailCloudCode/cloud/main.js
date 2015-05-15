@@ -11,29 +11,25 @@ Parse.Cloud.define('sendSMS', function(request, response) {
     var message = request.params.message;
 
     //require the Twilio module and create a REST client
-    var client = require('twilio')(accountSid, authToken);
+//    var client = require('twilio')(accountSid, authToken);
 
     //Send an SMS text message
-    client.sendSms
-    ({
 
-     //   to:'+19253219260', // Any number Twilio can deliver to
-     //   from: '+19252300512', // A number you bought from Twilio and can use for outbound communication
-     //   body: 'test' // body of the SMS message
-        to: toNumber, // Any number Twilio can deliver to
-        from: fromNumber, // A number you bought from Twilio and can use for outbound communication
-        body: message // body of the SMS message
-    }, function(err, responseData) 
-    { //this function is executed when a response is received from Twilio
-
-//        if (!err) { // "err" is an error received during the request, if any
-//            console.log(responseData.from); // outputs "+14506667788"
-//            console.log(responseData.body); // outputs "word to your mother."
-
- //       }
-//        if (err) { // "err" is an error received during the request, if any
-//            console.log(error); // outputs "+14506667788"
-//        }
+    Parse.Cloud.httpRequest({
+        method: 'POST',
+        url: 'https://' + accountSid + ':' + authToken + '@api.twilio.com/2010-04-01/Accounts/' + accountSid + '/Messages.json',
+        body: {
+            To: toNumber,
+            From: fromNumber,
+            Body: message
+        }, 
+        success: function(httpResponse) {
+            console.log('Successfully sent sms.');
+        },
+        error: function(httpResponse) {
+            console.error('Error sending sms: ' +
+            JSON.stringify(httpResponse));
+        }
     });
 });
 
@@ -82,6 +78,51 @@ Parse.Cloud.define("processReferenceText", function(request, response) {
     })
 
 })
+
+Parse.Cloud.define("deleteUser", function(request, response) {
+
+    Parse.Cloud.useMasterKey()
+    var userId = request.params.userId;
+    var User = Parse.Object.extend("User");
+    var queryOfUser = new Parse.Query(User);
+    queryOfUser.get(userId, {
+        success: function(user) { 
+            user.destroy({
+                success: function() {
+                response.success('User deleted');
+                },
+                error: function(error) {
+                    response.error(error);
+                    }
+            });
+        },
+        error: function(error) {
+            response.error(error);
+        }
+    });
+});
+
+
+Parse.Cloud.define("sendEmailToSvail", function(request, response) {
+    var Mailgun = require('mailgun');
+    Mailgun.initialize('sandbox3a9804201407410c85a88df9424f861d.mailgun.org', 'key-4adfc3de087e5be6eafd925379deec87');
+
+    Mailgun.sendEmail({
+        to: "svailapp@gmail.com",
+        from: "no-reply@parseapps.com",
+        subject: request.params.subject,
+        text: request.params.text
+    }, {
+        success: function(httpResponse) {
+            console.log(httpResponse);
+            response.success("Email sent!");
+        },
+        error: function(httpResponse) {
+            console.error(httpResponse);
+            response.error("Uh oh, something went wrong");
+        }
+    });
+});
 
 
 Parse.Cloud.define("test", function(request, response) {

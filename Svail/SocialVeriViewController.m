@@ -53,7 +53,9 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-//    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+
+    [self setUpDelegatesForTextFields];
+
 
     //setup color tint
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
@@ -104,15 +106,9 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     
     Verification *verification = self.currentUser.verification;
     verification.safetyLevel = [verification calculateSafetyLevel];
-     [verification saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-         if (succeeded) {
-             NSLog(@"%li",verification.safetyLevel);
-         } else {
-             NSLog(@"%li",verification.safetyLevel);
-         }
-     }];
+    [verification saveInBackground];
     
-    self.levelLabel.text = [NSString stringWithFormat:@"Verification Level : %li", self.currentUser.verification.safetyLevel];
+    self.levelLabel.text = [NSString stringWithFormat:@"Verification Level : %lu",(long)(self.currentUser.verification.safetyLevel)];
     [verification saveInBackground];
 }
 
@@ -169,17 +165,14 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     }
 }
 
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    NSUInteger index = [self.phoneNumberTextFields indexOfObject:textField];
-    return ((UIImageView *)self.phoneNumberCheckmarks[index]).isHidden;
-}
+
 
 - (IBAction)onRequestButtonTapped:(UIButton *)sender
 {
     
-    NSString *message = [NSString stringWithFormat:@"Could you help your friend %@ complete a simple safety level check for using Svail?", [User currentUser].name];
+//    NSString *message = [NSString stringWithFormat:@"Please help your friend %@ complete a simple safety check for using Svail.", [User currentUser].name];
     
+    NSString *message = [NSString stringWithFormat:@"Please help your friend %@ complete a simple safety check for using Svail. If you think %@ is a trustworthy person, please reply this meesage with %@'s 10-digit cell phone number. If you think otherwise, please don't reply. Thanks!", [User currentUser].name, [User currentUser].name, [User currentUser].name];
     for (int i = (int)(self.currentUser.verification.references.count); i < 3; i++) {
         UITextField *textField = self.phoneNumberTextFields[i];
         if (![textField.text isEqualToString:@""]) {
@@ -204,7 +197,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         // result is @"Hello world!"
-                                        NSLog(@"%@",result);
+                                        NSLog(@"%@",toNumber);
                                     }
                                 }];
 
@@ -228,22 +221,54 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
             if ([result.grantedPermissions containsObject:@"user_friends"]) {
                 // Do work
                 if ([FBSDKAccessToken currentAccessToken]) {
-                    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me/friends" parameters:nil]
+                    
+                    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
                      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
                          if (!error) {
-                             NSUInteger friendsCount = [result[@"summary"][@"total_count"] integerValue];
-                             NSLog(@"facebook friends count : %li", friendsCount);
-                             self.currentUser.verification.fbLevel = [Verification getFBLevelWithNumOfFriends:friendsCount];
-                             [self.currentUser saveInBackground];
-                             [self setupFBItems:self.currentUser.verification.fbLevel > 0];
-                             [self setupSafetyLevelItems];
-                            
+                             
+                             NSString *fbId = result[@"id"];
+                             [self setupFBLevelWithFBId:fbId];
                          }
                      }];
                 }
             }
         }
     }];
+}
+
+
+-(void)setupFBLevelWithFBId:(NSString *)fbId
+{
+     [Verification checkIfFBId:fbId hasBeenUsedWithCompletion:^(Verification *verification, NSError *error)
+     {
+         if (!error) {
+             if (verification == nil || verification.objectId == self.currentUser.verification.objectId) {
+             
+                 [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me/friends" parameters:nil]
+                     startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                         if (!error) {
+                             
+                             NSUInteger friendsCount = [result[@"summary"][@"total_count"] integerValue];
+                             NSLog(@"facebook %@ friends count : %lu",fbId, (long)friendsCount);
+                             self.currentUser.verification.fbId = fbId;
+                             self.currentUser.verification.fbLevel = [Verification getFBLevelWithNumOfFriends:friendsCount];
+                             [self.currentUser saveInBackground];
+                             [self setupFBItems:self.currentUser.verification.fbLevel > 0];
+                             [self setupSafetyLevelItems];
+                             
+                         }
+                     }];
+             } else {
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"This facebook account has been used to verify another user." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                 [alert show];
+             }
+         } else {
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                 [alert show];
+         }
+         
+     }];
+    
 }
 
 
@@ -306,11 +331,8 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                                        options:0
                                        error:&jsonError];
                  NSUInteger followersCount = [json[@"ids"] count];
-                 NSLog(@"Twitter followers count : %li",followersCount);
-                 self.currentUser.verification.ttLevel = [Verification getTTLevelWithNumOfFollowers:followersCount];
-                 [self.currentUser saveInBackground];
-                 [self setupTTItems:self.currentUser.verification.ttLevel > 0];
-                 [self setupSafetyLevelItems];
+                 NSLog(@"Twitter followers count : %lu",(long)followersCount);
+                 [self setupTTLevelWithTTId:twitterUserID followersCount:followersCount];
 
              }
              else {
@@ -322,6 +344,32 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     }
 }
 
+-(void)setupTTLevelWithTTId:(NSString *)ttId followersCount:(NSUInteger)followersCount
+{
+     [Verification checkIfTTId:ttId hasBeenUsedWithCompletion:^(Verification *verification, NSError *error)
+     {
+         if (!error) {
+             if (verification == nil || verification.objectId == self.currentUser.verification.objectId) {
+
+
+                 self.currentUser.verification.ttId = ttId;
+                  self.currentUser.verification.ttLevel = [Verification getTTLevelWithNumOfFollowers:followersCount];
+                 [self.currentUser saveInBackground];
+                 [self setupTTItems:self.currentUser.verification.ttLevel > 0];
+                 [self setupSafetyLevelItems];
+                             
+             } else {
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"This twitter account has been used to verify another user." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                 [alert show];
+             }
+         } else {
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                 [alert show];
+         }
+         
+     }];
+    
+}
 
 
 - (IBAction)onLinkedInVerifyButtonTapped:(UIButton *)sender
@@ -347,15 +395,14 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 
 
 - (void)getLinkedInConnectionCountWithToken:(NSString *)accessToken {
-    NSString *queryURLString = @"https://api.linkedin.com/v1/people/~:(num-connections)";
+    NSString *queryURLString = @"https://api.linkedin.com/v1/people/~:(id,num-connections)";
     [self.linkedIn GET:[NSString stringWithFormat:@"%@?oauth2_access_token=%@&format=json",queryURLString, accessToken] parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *result)
     {
-        NSLog(@"LinkedIn connection count : %@", result[@"numConnections"]);
-        NSInteger numOfConnections = [result[@"numConnections"] integerValue];
-        self.currentUser.verification.lkLevel = [Verification getLKLevelWithNumOfConnections:numOfConnections];
-        [self.currentUser saveInBackground];
-        [self setupLKItems:self.currentUser.verification.lkLevel > 0];
-        [self setupSafetyLevelItems];
+
+        NSString *lkId = result[@"id"];
+        NSInteger connectionCount = [result[@"numConnections"] integerValue];
+        NSLog(@"LinkedIn %@ connection count : %lu",lkId,(long)connectionCount);
+        [self setupLKLevelWithLKId:lkId  connectionCount:connectionCount];
         
     }   failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
@@ -369,9 +416,38 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                                    clientId: @"75696l29jqbq3l"
                                    clientSecret:@"YYBB2iDxC63LjOhU"
                                    state:@"f**kRonAndMert"
-                                   grantedAccess:@[@"r_fullprofile", @"r_network"]];
+                                   grantedAccess:@[@"r_basicprofile"]];
     
     return [LIALinkedInHttpClient clientForApplication:application presentingViewController:self];
+}
+
+
+
+-(void)setupLKLevelWithLKId:(NSString *)lkId connectionCount:(NSUInteger)connectionCount
+{
+     [Verification checkIfLKId:lkId hasBeenUsedWithCompletion:^(Verification *verification, NSError *error)
+     {
+         if (!error) {
+             if (verification == nil || verification.objectId == self.currentUser.verification.objectId) {
+
+
+                 self.currentUser.verification.lkId = lkId;
+                 self.currentUser.verification.lkLevel = [Verification getLKLevelWithNumOfConnections:connectionCount];
+                [self.currentUser saveInBackground];
+                [self setupLKItems:self.currentUser.verification.lkLevel > 0];
+                [self setupSafetyLevelItems];
+                             
+             } else {
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"This linkedIn account has been used to verify another user." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                 [alert show];
+             }
+         } else {
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                 [alert show];
+         }
+         
+     }];
+    
 }
 
 - (IBAction)onDoneButtonTapped:(UIBarButtonItem *)sender
@@ -387,6 +463,56 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *mainTabBarVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
     [self presentViewController:mainTabBarVC animated:true completion:nil];
+}
+
+#pragma Marks - hiding keyboard
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+
+    [self.view endEditing:true];
+    return true;
+}
+//hide keyboard when user touches outside.
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+-(void)setUpDelegatesForTextFields{
+
+    for (UITextField *txtFd in self.phoneNumberTextFields) {
+        txtFd.delegate = self;
+    }
+}
+
+//Declare a delegate, assign your textField to the delegate and then include these methods
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    //NSUInteger index = [self.phoneNumberTextFields indexOfObject:textField];
+    //((UIImageView *)self.phoneNumberCheckmarks[index]).isHidden;
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+
+    [self.view endEditing:YES];
+    return YES;
+}
+
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    // Assign new frame to your view
+    [self.view setFrame:CGRectMake(0,-110,320,500)]; //here taken -20 for example i.e. your view will be scrolled to -20. change its value according to your requirement.
+
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    [self.view setFrame:CGRectMake(0,0,320,600)];
 }
 
 @end

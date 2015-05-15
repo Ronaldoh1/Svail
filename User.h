@@ -27,6 +27,11 @@
 @property int numberOfPosts;
 @property BOOL isPremium;
 
++(void)checkIfPhoneNumber:(NSString *)phoneNumber hasBeenUsedWithCompletion:(void (^)(User *, NSError *))complete;
+
 -(void)getVerificationInfoWithCompletion:(void (^)(NSError *))complete;
+
+-(void)deleteUserAndAssociatedDataInBackground;
+
 
 @end

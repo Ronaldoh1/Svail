@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+
+
+
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0]];
     
     UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
@@ -36,8 +39,11 @@
     UIViewController *historyVC = [historyStoryboard instantiateViewControllerWithIdentifier:@"HistoryNavVC"];
     [self addChildViewController:historyVC];
     historyVC.tabBarItem.image =  [self imageWithImage:[UIImage imageNamed:@"history2"] scaledToSize:CGSizeMake(35, 35)];
+    historyVC.tabBarItem.enabled = false;
     
-    
+//    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasBeenRun"];
+
+
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
@@ -52,6 +58,13 @@
 
 {
 
+
+#pragma Mark - Unwind Segues
+
+-(IBAction)unwindSegueFromLogInViewController:(UIStoryboardSegue *)segue
+
+{
+
 }
 
 -(IBAction)unwindSegueFromRegisterViewController:(UIStoryboardSegue *)segue
@@ -59,5 +72,6 @@
 {
     
 }
+
 
 @end

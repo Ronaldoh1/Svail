@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0EF124F234A3472375D7C0E0"
+               BlueprintIdentifier = "7ADE7F46635F9E862F640DCD"
                BuildableName = "libPods-Svail-IOSLinkedInAPI.a"
                BlueprintName = "Pods-Svail-IOSLinkedInAPI"
                ReferencedContainer = "container:Pods.xcodeproj">

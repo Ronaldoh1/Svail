@@ -14,7 +14,7 @@
 
 #import "Verification.h"
 
-@interface EditProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIAlertViewDelegate, FBSDKGraphRequestConnectionDelegate>
+@interface EditProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIAlertViewDelegate, FBSDKGraphRequestConnectionDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *verifyButton;
@@ -40,6 +40,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //setting image to Navigation Bar's title
+    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
+    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    titleView.font = [UIFont fontWithName:@"Noteworthy" size:20];
+    titleView.text = @"Profile";
+    titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
+    [self.navigationItem setTitleView:titleView];
+
+    [self initialSetUp];
+
+
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+//    [self.view addGestureRecognizer:tap];
+
+}
+-(void)initialSetUp{
+
+    //set the delegate for each textfield to self.
+    [self setDelegatesForTextFields];
+
 
     self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor]forKey:NSForegroundColorAttributeName];
@@ -106,7 +127,7 @@
 
     self.currentUser = [User currentUser];
 
-//    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
+    //    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:248/255.0 blue:255/255.0 alpha:1.0];
 
     self.fullnameTextField.text = self.currentUser.name;
 
@@ -133,10 +154,6 @@
             self.profileImage.clipsToBounds = YES;
         }
     }];
-
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-
 }
 
 - (IBAction)onChangeImageButtonPressed:(UIButton *)sender
@@ -192,20 +209,34 @@
     self.currentUser.occupation = self.occupationTextField.text;
     [self.currentUser saveInBackground];
     
-    if (self.phoneTextField.text.length == 10 && ![self.phoneTextField.text isEqualToString:self.currentUser.phoneNumber]) {
+    if (self.phoneTextField.text.length != 10){
+        UIAlertView  *wrongDigitsAlert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter 10 digits phone number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [wrongDigitsAlert show];
+    } else if (![self.phoneTextField.text
+                 isEqualToString:self.currentUser.phoneNumber]) {
+        [User checkIfPhoneNumber:self.phoneTextField.text
+                    hasBeenUsedWithCompletion:^(User *userWithThisNumber, NSError *error)
+        {
+            if (!error) {
+                if (userWithThisNumber == nil) {
+                    [self.currentUser.verification sendVerifyCodeToPhoneNumber:self.phoneTextField.text];
+                    UIAlertView *veriCodeAlert = [[UIAlertView alloc]initWithTitle:@"Enter verification code" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    veriCodeAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+                    veriCodeAlert.tag = 1;
+                    [veriCodeAlert show];
+                
+                } else {
+                    UIAlertView  *numberUsedAlert = [[UIAlertView alloc]initWithTitle:nil message:@"This number has been taken." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [numberUsedAlert show];
+                }
+            } else {
+                 UIAlertView  *errorAlert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [errorAlert show];
+            }
 
-        [self.currentUser.verification sendVerifyCodeToPhoneNumber:self.phoneTextField.text];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Enter verification code" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        alert.tag = 1;
-        [alert show];
-    } else if (self.phoneTextField.text.length > 0 && self.phoneTextField.text.length != 10){
-        UIAlertView  *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter 10 digits phone number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    } else {
-//        [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
     }
-
 
 }
 
@@ -241,19 +272,25 @@
 
 }
 
--(void)dismissKeyboard {
-    [self.fullnameTextField resignFirstResponder];
-    [self.emailTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
-    [self.stateTextField resignFirstResponder];
-    [self.occupationTextField resignFirstResponder];
-    [self.phoneTextField resignFirstResponder];
+-(void)setDelegatesForTextFields{
+
+    self.fullnameTextField.delegate = self;
+    self.emailTextField.delegate = self;
+    self.passwordTextField.delegate = self;
+    self.stateTextField.delegate = self;
+    self.occupationTextField.delegate = self;
+    self.phoneTextField.delegate = self;
 
 
 }
 - (IBAction)logOUtButtonPressed:(UIBarButtonItem *)sender
 {
     [User logOut];
+
+    //Disable the tab for history
+    [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:FALSE];
+
+
     self.fullnameTextField.text = [NSString stringWithFormat:@""];
     self.emailTextField.text = [NSString stringWithFormat:@""];
     self.passwordTextField.text = [NSString stringWithFormat:@""];
@@ -302,5 +339,19 @@
 
     [self presentViewController:signUpVC animated:true completion:nil];
 }
+
+#pragma Marks - hiding keyboard
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+
+    [self.view endEditing:true];
+    return true;
+}
+//hide keyboard when user touches outside.
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
 
 @end

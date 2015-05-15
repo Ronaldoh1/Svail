@@ -12,6 +12,8 @@
 
 @interface Service : PFObject<PFSubclassing>
 
+extern const NSUInteger kMaxNumberOfServiceImages;
+
 @property NSString *title;
 @property NSDate *availability;
 @property NSNumber *capacity;
@@ -20,7 +22,7 @@
 @property BOOL isReserved;
 @property PFGeoPoint *theServiceGeoPoint;
 @property NSString *serviceLocationAddress;
-@property NSDecimalNumber *price;
+@property NSNumber *price;
 @property User *provider;
 @property NSDate *startDate;
 @property NSDate *endDate;
@@ -36,6 +38,10 @@
 
 +(NSString *)parseClassName;
 
--(void)checkAvailableSlotsWithCompletion:(void (^)(NSArray *))complete;;
+-(void)checkAvailableSlotsWithCompletion:(void (^)(NSArray *))complete;
+-(void)getServiceImageDataWithCompletion:(void (^)(NSDictionary *))complete;
+-(void)getParticipantsWithCompletion:(void (^)(NSArray *))complete;
+-(void)deleteServiceWithCompletion:(void (^)(BOOL))complete;
+-(void)deleteServiceAndAssociatedData;
 
 @end
