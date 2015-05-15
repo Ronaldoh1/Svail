@@ -219,6 +219,7 @@
         {
             if (!error) {
                 if (userWithThisNumber == nil) {
+                    self.currentUser.verification = self.currentUser.verification?:[Verification object];
                     [self.currentUser.verification sendVerifyCodeToPhoneNumber:self.phoneTextField.text];
                     UIAlertView *veriCodeAlert = [[UIAlertView alloc]initWithTitle:@"Enter verification code" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     veriCodeAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
