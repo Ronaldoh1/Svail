@@ -23,6 +23,13 @@ class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPi
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.profileImage.image = UIImage(named:"defaultimage")
+        let image = UIImage(named:"defaultimage")
+        let imageData = UIImagePNGRepresentation(image)
+        let imageFile = PFFile(name:"image.png", data:imageData)
+        self.currentUser.profileImage = imageFile
+        currentUser.saveInBackground()
+
         self.navigationController?.navigationBar.tintColor = UIColor.orangeColor()
         self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.orangeColor(), forKey: NSForegroundColorAttributeName) as [NSObject : AnyObject]
 
@@ -70,14 +77,9 @@ class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPi
                     }
                 }
             }
-        }else
-        {
-            self.profileImage.image = UIImage(named:"defaultimage")
-            let image = UIImage(named:"defaultimage")
-            let imageData = UIImagePNGRepresentation(image)
-            let imageFile = PFFile(name:"image.png", data:imageData)
-            self.currentUser.profileImage = imageFile
-            currentUser.saveInBackground()
+//        }else
+//        {
+//
         }
     }
 

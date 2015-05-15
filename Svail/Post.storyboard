@@ -518,14 +518,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.png" translatesAutoresizingMaskIntoConstraints="NO" id="NPx-sq-Z7Q">
-                                <rect key="frame" x="81" y="132" width="125" height="125"/>
+                                <rect key="frame" x="82" y="115" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="SVf-bv-zzo"/>
                                     <constraint firstAttribute="width" constant="125" id="iCd-Am-Rxh"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYg-IQ-nNn">
-                                <rect key="frame" x="105" y="265" width="76" height="30"/>
+                                <rect key="frame" x="106" y="248" width="76" height="30"/>
                                 <state key="normal" title="Pick Image">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -534,14 +534,14 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.png" translatesAutoresizingMaskIntoConstraints="NO" id="4tH-gw-sB3">
-                                <rect key="frame" x="214" y="132" width="125" height="125"/>
+                                <rect key="frame" x="214" y="115" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="8am-Ot-nG5"/>
                                     <constraint firstAttribute="width" constant="125" id="YMI-9D-eg0"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0o-ub-SPE">
-                                <rect key="frame" x="238" y="265" width="76" height="30"/>
+                                <rect key="frame" x="238" y="248" width="76" height="30"/>
                                 <state key="normal" title="Pick Image">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -550,14 +550,14 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.png" translatesAutoresizingMaskIntoConstraints="NO" id="hTU-pb-MBa">
-                                <rect key="frame" x="81" y="305" width="125" height="125"/>
+                                <rect key="frame" x="82" y="282" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="4XW-pV-4Na"/>
                                     <constraint firstAttribute="height" constant="125" id="Uq8-8k-hbv"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUf-MR-fCG">
-                                <rect key="frame" x="105" y="438" width="76" height="30"/>
+                                <rect key="frame" x="106" y="415" width="76" height="30"/>
                                 <state key="normal" title="Pick Image">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -566,14 +566,14 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.png" translatesAutoresizingMaskIntoConstraints="NO" id="9c4-g2-Zg5">
-                                <rect key="frame" x="214" y="305" width="125" height="125"/>
+                                <rect key="frame" x="214" y="282" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="6qF-YE-aD0"/>
                                     <constraint firstAttribute="width" constant="125" id="JEc-rJ-qQx"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nn-T5-XkQ">
-                                <rect key="frame" x="238" y="438" width="76" height="30"/>
+                                <rect key="frame" x="238" y="415" width="76" height="30"/>
                                 <state key="normal" title="Pick Image">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -582,7 +582,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE3-Et-cBl">
-                                <rect key="frame" x="287" y="507" width="52" height="30"/>
+                                <rect key="frame" x="181" y="442" width="52" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="fKu-Pi-LBt"/>
                                 </constraints>
@@ -603,7 +603,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILC-H1-fTR">
-                                <rect key="frame" x="81" y="132" width="125" height="125"/>
+                                <rect key="frame" x="82" y="115" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="39r-0J-oTd"/>
                                     <constraint firstAttribute="height" constant="125" id="NoB-nI-pQM"/>
@@ -616,7 +616,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HbS-mR-W4u">
-                                <rect key="frame" x="214" y="132" width="125" height="125"/>
+                                <rect key="frame" x="214" y="115" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="2ud-yV-5l3"/>
                                     <constraint firstAttribute="width" constant="125" id="M2d-Hr-7R5"/>
@@ -629,7 +629,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXa-Kv-Lg8">
-                                <rect key="frame" x="81" y="305" width="125" height="125"/>
+                                <rect key="frame" x="82" y="282" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="IDX-NO-Z0l"/>
                                     <constraint firstAttribute="height" constant="125" id="MOJ-wX-xwU"/>
@@ -642,7 +642,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOG-tz-p4M">
-                                <rect key="frame" x="214" y="305" width="125" height="125"/>
+                                <rect key="frame" x="214" y="282" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="5VQ-pB-0RE"/>
                                     <constraint firstAttribute="height" constant="125" id="wd0-z5-pCC"/>
@@ -659,34 +659,34 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="4tH-gw-sB3" secondAttribute="centerX" constant="-69.5" id="2AA-mY-rJ2"/>
                             <constraint firstItem="P0o-ub-SPE" firstAttribute="baseline" secondItem="EYg-IQ-nNn" secondAttribute="baseline" id="2iB-4Y-z7H"/>
-                            <constraint firstAttribute="centerX" secondItem="NPx-sq-Z7Q" secondAttribute="centerX" constant="63.5" id="5LS-aI-Kxk"/>
-                            <constraint firstItem="lE3-Et-cBl" firstAttribute="trailing" secondItem="9c4-g2-Zg5" secondAttribute="trailing" id="7ZU-FG-Dbo"/>
-                            <constraint firstItem="hTU-pb-MBa" firstAttribute="top" secondItem="EYg-IQ-nNn" secondAttribute="bottom" constant="10" id="E6X-ML-1V3"/>
-                            <constraint firstItem="lE3-Et-cBl" firstAttribute="top" secondItem="7nn-T5-XkQ" secondAttribute="bottom" constant="39" id="Fnv-c3-QPM"/>
+                            <constraint firstAttribute="centerX" secondItem="NPx-sq-Z7Q" secondAttribute="centerX" constant="62.5" id="5LS-aI-Kxk"/>
+                            <constraint firstItem="lE3-Et-cBl" firstAttribute="trailing" secondItem="9c4-g2-Zg5" secondAttribute="trailing" constant="-106" id="7ZU-FG-Dbo"/>
+                            <constraint firstItem="hTU-pb-MBa" firstAttribute="top" secondItem="EYg-IQ-nNn" secondAttribute="bottom" constant="4" id="E6X-ML-1V3"/>
+                            <constraint firstItem="lE3-Et-cBl" firstAttribute="top" secondItem="7nn-T5-XkQ" secondAttribute="bottom" constant="-3" id="Fnv-c3-QPM"/>
                             <constraint firstItem="fqz-sf-izp" firstAttribute="leading" secondItem="pzJ-g7-EdX" secondAttribute="leadingMargin" id="GyL-us-eGR"/>
                             <constraint firstItem="vUf-MR-fCG" firstAttribute="top" secondItem="hTU-pb-MBa" secondAttribute="bottom" constant="8" symbolic="YES" id="HZh-aq-WTJ"/>
                             <constraint firstItem="vUf-MR-fCG" firstAttribute="centerX" secondItem="hTU-pb-MBa" secondAttribute="centerX" id="IIz-aG-0Tw"/>
-                            <constraint firstAttribute="centerX" secondItem="hTU-pb-MBa" secondAttribute="centerX" constant="63.5" id="J1A-sC-lWD"/>
-                            <constraint firstItem="DOG-tz-p4M" firstAttribute="top" secondItem="P0o-ub-SPE" secondAttribute="bottom" constant="10" id="JuO-gO-8cb"/>
-                            <constraint firstAttribute="centerX" secondItem="LXa-Kv-Lg8" secondAttribute="centerX" constant="63.5" id="KIH-KV-BQs"/>
-                            <constraint firstItem="LXa-Kv-Lg8" firstAttribute="top" secondItem="EYg-IQ-nNn" secondAttribute="bottom" constant="10" id="LK4-Id-ENu"/>
-                            <constraint firstItem="4tH-gw-sB3" firstAttribute="top" secondItem="fqz-sf-izp" secondAttribute="bottom" constant="17" id="Qx0-hB-9Kx"/>
-                            <constraint firstItem="HbS-mR-W4u" firstAttribute="top" secondItem="fqz-sf-izp" secondAttribute="bottom" constant="17" id="SQj-0X-Bjm"/>
+                            <constraint firstAttribute="centerX" secondItem="hTU-pb-MBa" secondAttribute="centerX" constant="62.5" id="J1A-sC-lWD"/>
+                            <constraint firstItem="DOG-tz-p4M" firstAttribute="top" secondItem="P0o-ub-SPE" secondAttribute="bottom" constant="4" id="JuO-gO-8cb"/>
+                            <constraint firstAttribute="centerX" secondItem="LXa-Kv-Lg8" secondAttribute="centerX" constant="62.5" id="KIH-KV-BQs"/>
+                            <constraint firstItem="LXa-Kv-Lg8" firstAttribute="top" secondItem="EYg-IQ-nNn" secondAttribute="bottom" constant="4" id="LK4-Id-ENu"/>
+                            <constraint firstItem="4tH-gw-sB3" firstAttribute="top" secondItem="fqz-sf-izp" secondAttribute="bottom" id="Qx0-hB-9Kx"/>
+                            <constraint firstItem="HbS-mR-W4u" firstAttribute="top" secondItem="fqz-sf-izp" secondAttribute="bottom" id="SQj-0X-Bjm"/>
                             <constraint firstItem="fqz-sf-izp" firstAttribute="top" secondItem="OoM-Yf-6ct" secondAttribute="bottom" constant="8" id="VLy-Cs-7AO"/>
                             <constraint firstItem="P0o-ub-SPE" firstAttribute="top" secondItem="4tH-gw-sB3" secondAttribute="bottom" constant="8" symbolic="YES" id="X55-mF-fYq"/>
                             <constraint firstItem="fqz-sf-izp" firstAttribute="trailing" secondItem="pzJ-g7-EdX" secondAttribute="trailingMargin" id="Zhu-nO-ZKz"/>
                             <constraint firstAttribute="centerX" secondItem="9c4-g2-Zg5" secondAttribute="centerX" constant="-69.5" id="beC-QF-IiG"/>
                             <constraint firstItem="P0o-ub-SPE" firstAttribute="centerX" secondItem="4tH-gw-sB3" secondAttribute="centerX" id="dHp-AO-hV4"/>
-                            <constraint firstAttribute="centerX" secondItem="EYg-IQ-nNn" secondAttribute="centerX" constant="64" id="g6f-CN-Vts"/>
-                            <constraint firstItem="ILC-H1-fTR" firstAttribute="top" secondItem="fqz-sf-izp" secondAttribute="bottom" constant="17" id="j8l-aV-ckW"/>
+                            <constraint firstAttribute="centerX" secondItem="EYg-IQ-nNn" secondAttribute="centerX" constant="63" id="g6f-CN-Vts"/>
+                            <constraint firstItem="ILC-H1-fTR" firstAttribute="top" secondItem="fqz-sf-izp" secondAttribute="bottom" id="j8l-aV-ckW"/>
                             <constraint firstAttribute="centerX" secondItem="DOG-tz-p4M" secondAttribute="centerX" constant="-69.5" id="jOF-IJ-FkC"/>
                             <constraint firstItem="7nn-T5-XkQ" firstAttribute="leading" secondItem="P0o-ub-SPE" secondAttribute="leading" id="l5L-gG-r0p"/>
                             <constraint firstAttribute="centerX" secondItem="HbS-mR-W4u" secondAttribute="centerX" constant="-69.5" id="mOy-ch-P9X"/>
-                            <constraint firstItem="9c4-g2-Zg5" firstAttribute="top" secondItem="P0o-ub-SPE" secondAttribute="bottom" constant="10" id="map-sy-7k6"/>
-                            <constraint firstAttribute="centerX" secondItem="ILC-H1-fTR" secondAttribute="centerX" constant="63.5" id="mkN-ps-q5P"/>
+                            <constraint firstItem="9c4-g2-Zg5" firstAttribute="top" secondItem="P0o-ub-SPE" secondAttribute="bottom" constant="4" id="map-sy-7k6"/>
+                            <constraint firstAttribute="centerX" secondItem="ILC-H1-fTR" secondAttribute="centerX" constant="62.5" id="mkN-ps-q5P"/>
                             <constraint firstItem="7nn-T5-XkQ" firstAttribute="baseline" secondItem="vUf-MR-fCG" secondAttribute="baseline" id="n3t-oB-V2H"/>
                             <constraint firstItem="ILC-H1-fTR" firstAttribute="leading" secondItem="pzJ-g7-EdX" secondAttribute="leadingMargin" constant="65" id="xMA-XC-bmu"/>
-                            <constraint firstItem="NPx-sq-Z7Q" firstAttribute="top" secondItem="fqz-sf-izp" secondAttribute="bottom" constant="17" id="zuh-bx-wKd"/>
+                            <constraint firstItem="NPx-sq-Z7Q" firstAttribute="top" secondItem="fqz-sf-izp" secondAttribute="bottom" id="zuh-bx-wKd"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -768,7 +768,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7VX-F0-SWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2542" y="343"/>
+            <point key="canvasLocation" x="2458" y="323"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H2l-Ps-mSc">

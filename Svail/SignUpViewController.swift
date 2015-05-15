@@ -123,8 +123,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         var signUpError = ""
 
         if (self.emailTextField.text == "" || self.passwordTextField.text == "" || self.confirmPasswordTextField.text == "" || self.phoneNumberTextField.text == ""){
-        if (self.emailTextField.text == "" || self.passwordTextField.text == "" || self.confirmPasswordTextField.text == "")
-        {
 
             signUpError = "One or more fields are blank. Please try again!"
 
@@ -135,14 +133,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         }else if (count(self.passwordTextField.text) < 6 || count(self.confirmPasswordTextField.text) < 6)
         {
 
-            signUpError = "Password must be at least 1 characters long. Please try again."
+            signUpError = "Password must be at least 6 characters long. Please try again."
         }else{
 
             self.signUp()
 
         }
-        }
-
 
         if (signUpError != "")
         {
@@ -172,7 +168,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
 //                self.presentViewController(editProfileNavVC, animated: true, completion: nil)
                 
                 PFQuery.clearAllCachedResults();
-                
+
                 self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
 
 
