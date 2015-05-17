@@ -21,8 +21,7 @@
 #import "Reference.h"
 
 
-
-@interface SocialVeriViewController () <UITextFieldDelegate>
+@interface SocialVeriViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) BOOL isUserVerified;
 @property (nonatomic) LIALinkedInHttpClient *linkedIn;
@@ -171,6 +170,12 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 {
     
 //    NSString *message = [NSString stringWithFormat:@"Please help your friend %@ complete a simple safety check for using Svail.", [User currentUser].name];
+    if (!self.currentUser.phoneNumber || [self.currentUser.phoneNumber isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please add your cell phone number to your profile before sending request." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag = 1;
+        [alert show];
+        return;
+    }
     
     NSString *message = [NSString stringWithFormat:@"Please help your friend %@ complete a simple safety check for using Svail. If you think %@ is a trustworthy person, please reply this meesage with %@'s 10-digit cell phone number. If you think otherwise, please don't reply. Thanks!", [User currentUser].name, [User currentUser].name, [User currentUser].name];
     for (int i = (int)(self.currentUser.verification.references.count); i < 3; i++) {
@@ -464,6 +469,16 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
     UIViewController *mainTabBarVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
     [self presentViewController:mainTabBarVC animated:true completion:nil];
 }
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1 && buttonIndex == 0) {
+        UIStoryboard *editProfileStoryboard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
+        UINavigationController *editProfileNavVC = [editProfileStoryboard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
+        [self presentViewController:editProfileNavVC animated:true completion:nil];
+    }
+}
+
 
 #pragma Marks - hiding keyboard
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

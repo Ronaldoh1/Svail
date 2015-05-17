@@ -54,6 +54,7 @@
     
     if (!self.verification) {
         self.verification = [Verification object];
+        [self.verification saveInBackground];
         [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
         {
             complete(error);

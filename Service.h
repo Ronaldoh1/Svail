@@ -40,6 +40,7 @@ extern const NSUInteger kMaxNumberOfServiceImages;
 
 -(void)checkAvailableSlotsWithCompletion:(void (^)(NSArray *))complete;
 -(void)getServiceImageDataWithCompletion:(void (^)(NSDictionary *))complete;
+-(void)getServiceImageDataArrayWithCompletion:(void (^)(NSArray *))complete;
 -(void)getParticipantsWithCompletion:(void (^)(NSArray *))complete;
 -(void)deleteServiceWithCompletion:(void (^)(BOOL))complete;
 -(void)deleteServiceAndAssociatedData;

@@ -53,6 +53,7 @@ static const CGFloat kLableFontSize = 13.0;
     self.editButton.tag = self.tag;
     self.deleteButton.tag = self.tag;
     self.viewSlotsButton.tag = self.tag;
+    self.serviceImagesCollectionView.tag = self.tag;
     
     [self getServiceImages];
     
@@ -60,6 +61,7 @@ static const CGFloat kLableFontSize = 13.0;
 
 -(void)setupTitleLabel
 {
+    NSLog(@"title %@",self.service.title);
     self.titleLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Title" content:self.service.title fontSize:kLableFontSize];
     
 }
@@ -122,11 +124,19 @@ static const CGFloat kLableFontSize = 13.0;
     for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
         self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
     }
+    
     [self.serviceImagesCollectionView reloadData];
-    [self.service getServiceImageDataWithCompletion:^(NSDictionary *imageDataDict)
+    [self.service getServiceImageDataArrayWithCompletion:^(NSArray *imageDataArray)
     {
-        NSNumber *keyOfImage = imageDataDict.allKeys.lastObject;
-        self.serviceImageArray[keyOfImage.integerValue] = [UIImage imageWithData:imageDataDict[keyOfImage]];
+//        NSNumber *keyOfImage = imageDataDict.allKeys.lastObject;
+//        self.serviceImageArray[keyOfImage.integerValue] = [UIImage imageWithData:imageDataDict[keyOfImage]];
+        self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
+        for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
+            self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
+        }
+        for (int i = 0; i < imageDataArray.count; i++) {
+            self.serviceImageArray[i] = [UIImage imageWithData:imageDataArray[i]];
+        }
         [self.serviceImagesCollectionView reloadData];
     }];
 }

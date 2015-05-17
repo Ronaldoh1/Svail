@@ -71,10 +71,12 @@ const NSUInteger kMaxNumberOfServiceImages = 4;
     PFQuery *imagesQuery = [Image query];
     [imagesQuery whereKey:@"service" equalTo:self];
     imagesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    imagesQuery.cachePolicy = kPFCachePolicyNetworkOnly;
     [imagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
-                                                    NSError *error)
+                                                    NSError *findImageError)
      {
-         if (!error) {
+         NSLog(@"%@",self.objectId);
+         if (!findImageError) {
              for (int i = 0;i < objects.count;i++) {
                  Image *image = objects[i];
                  [image.imageFile getDataInBackgroundWithBlock:^(NSData *data,
@@ -82,6 +84,34 @@ const NSUInteger kMaxNumberOfServiceImages = 4;
                   {
                       if (!error) {
                           complete(@{@(i):data});
+                      }
+                  }];
+             }
+         }
+     }];
+}
+
+-(void)getServiceImageDataArrayWithCompletion:(void (^)(NSArray  *))complete
+{
+    PFQuery *imagesQuery = [Image query];
+    [imagesQuery whereKey:@"service" equalTo:self];
+    imagesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    [imagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
+                                                    NSError *findImageError)
+     {
+         NSLog(@"%@",self.objectId);
+         if (!findImageError) {
+             NSMutableArray *imageDataArray = [NSMutableArray new];
+             for (int i = 0;i < objects.count;i++) {
+                 Image *image = objects[i];
+                 [image.imageFile getDataInBackgroundWithBlock:^(NSData *data,
+                                                                 NSError *error)
+                  {
+                      if (!error) {
+                          [imageDataArray addObject:data];
+                          if (i == objects.count -1) {
+                              complete(imageDataArray);
+                          }
                       }
                   }];
              }

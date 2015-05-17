@@ -16,7 +16,7 @@
 
 static NSUInteger const kLowestSafetyLevel = 5;
 static NSUInteger const kMinimumFBFriendsCount = 10;
-static NSUInteger const kMinimumTTFollowersCount = 0;
+static NSUInteger const kMinimumTTFollowersCount = 10;
 static NSUInteger const kMinimumLKConnectionsCount = 10;
 
 static NSUInteger const kPointsForReference = 2;
