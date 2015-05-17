@@ -55,8 +55,7 @@
     self.locationManager.delegate = self;
     self.mapView.delegate = self;
     [self.locationManager requestWhenInUseAuthorization];
-    self.mapView.showsUserLocation = true;
-    //    CLLocation *currentLocation = self.locationManager.location;
+
 
 
 
@@ -128,8 +127,17 @@
         
     }
 
-    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
+//    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
     // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
+
+    [self downloadServices];
+
+    [self performSelector:@selector(getCurrentLocation) withObject:nil afterDelay:2.0];
+}
+
+-(void)getCurrentLocation
+{
+    self.mapView.showsUserLocation = true;
 
     //zooming map to current location at startup
     double latitude = self.locationManager.location.coordinate.latitude;
@@ -140,14 +148,18 @@
     [self.locationManager stopUpdatingLocation];
 
     self.didGetUserLocation = true;
-//download Services from Parse and filter it according to today's event
-    [EventLocationDownloader downloadEventLocationForLocation:self.mapView.userLocation.location withCompletion:^(NSArray *array)
-         {
-             self.eventsArray = [NSMutableArray arrayWithArray:array];
-             [self filterEventsForDate:self.segmentedControl];
+}
 
-             [self.mapView reloadInputViews];
-         }];
+-(void)downloadServices
+{
+    //download Services from Parse and filter it according to today's event
+    [EventLocationDownloader downloadEventLocationForLocation:self.mapView.userLocation.location withCompletion:^(NSArray *array)
+     {
+         self.eventsArray = [NSMutableArray arrayWithArray:array];
+         [self filterEventsForDate:self.segmentedControl];
+
+         [self.mapView reloadInputViews];
+     }];
 }
 
 
