@@ -18,6 +18,7 @@
 #import "CustomViewUtilities.h"
 #import "EditProfileViewController.h"
 #import "ProfileImageView.h"
+#import "MBProgressHUD.h"
 
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
@@ -132,6 +133,7 @@
 
     [self downloadServices];
 
+    
     [self performSelector:@selector(getCurrentLocation) withObject:nil afterDelay:2.0];
 }
 
@@ -140,6 +142,11 @@
     self.mapView.showsUserLocation = true;
 
     //zooming map to current location at startup
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        // Do something...
+
     double latitude = self.locationManager.location.coordinate.latitude;
     double longitude = self.locationManager.location.coordinate.longitude;
 
@@ -148,6 +155,8 @@
     [self.locationManager stopUpdatingLocation];
 
     self.didGetUserLocation = true;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
 }
 
 -(void)downloadServices
@@ -545,9 +554,7 @@
 
 - (IBAction)onAddServiceButtonTapped:(UIBarButtonItem *)sender
 {
-    //        UIStoryboard *postStoryBoard = [UIStoryboard storyboardWithName:@"Post" bundle:nil];
-    //        UIViewController *postVC = [postStoryBoard instantiateViewControllerWithIdentifier:@"PostNavBar"];
-    //        [self presentViewController:postVC animated:true completion:nil];
+
 
     if ([User currentUser] != nil){
 
@@ -577,11 +584,6 @@
 
     }else {
 
-        //        UIStoryboard *loginStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-
-        //        UIViewController *loginVC = [loginStoryBoard instantiateViewControllerWithIdentifier:@"LoginNavVC"];
-
-        //        [self presentViewController:loginVC animated:true completion:nil];
 
         [self presentActionSheetForLogInOrSignUp];
 

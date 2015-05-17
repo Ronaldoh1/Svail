@@ -11,6 +11,7 @@
 #import "Stripe+ApplePay.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "MBProgressHUD.h"
 
 
 @interface ConfirmPurchaseViewController () <PTKViewDelegate, PKPaymentAuthorizationViewControllerDelegate>
@@ -63,6 +64,11 @@ static float oneYearPrice = 1.99;
     card.expYear = self.paymentView.card.expYear;
     card.cvc = self.paymentView.card.cvc;
 
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 14.0 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
     [[STPAPIClient sharedClient] createTokenWithCard:card
           completion:^(STPToken *token, NSError *error) {
 
@@ -75,17 +81,26 @@ static float oneYearPrice = 1.99;
                                                       otherButtonTitles:nil] show];
 
           } else {
+
               NSString *myVal = token.tokenId;
               NSLog(@"%@",token);
+
+
+
               [PFCloud callFunctionInBackground:@"stripeCharge" withParameters:@{@"token":myVal, @"amount":@(oneYearPrice)}
                                           block:^(NSString *result, NSError *error) {
+
+
+
                                               if (!error) {
                                                   NSLog(@"from Cloud Code Res: %@",result);
 
-                                                  [User currentUser].isPremium = true;
-                                                  [[User currentUser] saveInBackground];
+                                                   
 
                                                   [self paymentSucceeded];
+
+                                                  [User currentUser].isPremium = true;
+                                                  [[User currentUser] saveInBackground];
 
                                                   [self.parentViewController.presentingViewController dismissViewControllerAnimated:true completion:nil];
 
@@ -96,9 +111,14 @@ static float oneYearPrice = 1.99;
                                               }
 
                                           }];
+
+
+
+
                                         };
                                     }];
-
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
 
 }
 - (IBAction)purchaseWithApplePayButton:(UIButton *)sender {

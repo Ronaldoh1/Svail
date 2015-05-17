@@ -697,6 +697,7 @@
 				TargetAttributes = {
 					F24B359C1ADB7E54006153EC = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = A37GTC4NZF;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -1072,7 +1073,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c24f60c8-9503-4eb7-a9f5-955f297c1869";
+				PROVISIONING_PROFILE = "6b62f2ba-61bb-42fc-a49a-44ff8d4517d9";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1100,7 +1101,7 @@
 				INFOPLIST_FILE = Svail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c24f60c8-9503-4eb7-a9f5-955f297c1869";
+				PROVISIONING_PROFILE = "6b62f2ba-61bb-42fc-a49a-44ff8d4517d9";
 				SWIFT_OBJC_BRIDGING_HEADER = "Svail-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
