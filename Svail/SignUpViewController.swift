@@ -144,6 +144,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         {
             self.showAlert(signUpError)
         }
+        
     }
 
 
@@ -156,30 +157,84 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         user.isFbUser = false
         user.numberOfPosts = 0
         // other fields can be set just like with PFObject
+        
         user["phoneNumber"] = phoneNumberTextField.text
+        
+       if (count(self.phoneNumberTextField.text) != 10)
+        {
+            self.showAlert("Please enter 10 digits phone number.")
+        } else {
+        User.checkIfPhoneNumber(self.phoneNumberTextField.text, hasBeenUsedWithCompletion: { (userWithThisNumber:User!, error:NSError?) -> Void in
+                if (error == nil) {
+                    if (userWithThisNumber == nil) {
+                        user.verification = Verification.object()
+                        user.verification.sendVerifyCodeToPhoneNumber(self.phoneNumberTextField.text)
+                        
+                        let enterCodeAlertController = UIAlertController(title: "Enter verification code", message: nil, preferredStyle: .Alert)
+                        enterCodeAlertController.addTextFieldWithConfigurationHandler({ (textField: UITextField!) -> Void in
+                            textField.keyboardType = UIKeyboardType.NumberPad
+                        })
+                        
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (_) -> Void in
+                        })
+                        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (_) -> Void in
 
-        user.signUpInBackgroundWithBlock {
-            (succeeded: Bool, error: NSError?) -> Void in
-            if error == nil {
+                            let verifyCodeTextField = enterCodeAlertController.textFields?.first as! UITextField
+                            if (user.verification .verifyPhoneNumber(self.phoneNumberTextField.text, withVerifyCode: verifyCodeTextField.text)) {
+                                
+                                user.signUpInBackgroundWithBlock {
+                                    (succeeded: Bool, error: NSError?) -> Void in
+                                    if error == nil {
 
-                //if sign up is successful then send the user to edit profile.
-//                let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
-//                let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UITabBarController
-//                self.presentViewController(editProfileNavVC, animated: true, completion: nil)
-                
-                PFQuery.clearAllCachedResults();
+                                        //if sign up is successful then send the user to edit profile.
+                        //                let mapStoryboard = UIStoryboard(name: "EditProfile", bundle: nil)
+                        //                let editProfileNavVC = mapStoryboard.instantiateViewControllerWithIdentifier("editProfileNavVC") as! UITabBarController
+                        //                self.presentViewController(editProfileNavVC, animated: true, completion: nil)
+                                        
+                                        PFQuery.clearAllCachedResults();
+                                        
 
-                self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
+
+                                        self.performSegueWithIdentifier("toCreateProfileSegue", sender: self)
 
 
-            } else {
-                if let errorString = error!.userInfo?["error"] as? NSString
-                {
-                    self.showAlert(errorString)
+                                    } else {
+                                        if let errorString = error!.userInfo?["error"] as? NSString
+                                        {
+                                            self.showAlert(errorString)
+                                        }
+
+                                    }
+                                }
+
+                            } else {
+                                enterCodeAlertController.title = "Wrong code. Please try again."
+                                self.presentViewController(enterCodeAlertController, animated: true) {
+                                }
+                            }
+
+                        })
+                        
+                        enterCodeAlertController.addAction(cancelAction)
+                        enterCodeAlertController.addAction(okAction)
+                        
+                        self.presentViewController(enterCodeAlertController, animated: true) {
+                        }
+                        
+                    } else {
+                       let numberUsedAlert = UIAlertView(title: nil, message: "This number has been taken.", delegate: self, cancelButtonTitle: "Ok")
+                        numberUsedAlert.show()
+                    }
+                } else {
+                   let  errorAlert = UIAlertView(title: nil, message: error?.localizedDescription, delegate: self, cancelButtonTitle: "Ok")
+                    errorAlert.show()
                 }
-
-            }
+            })
         }
+        
+
+
+
     }
 
     //helper method to get user data from facebook.
@@ -289,6 +344,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         }
 
     }
+    
+    
 
     //Helper methods to dismiss keyboard
     func textFieldDidBeginEditing(textField: UITextField) {

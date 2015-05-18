@@ -212,19 +212,40 @@
     if (self.phoneTextField.text.length != 10){
         UIAlertView  *wrongDigitsAlert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter 10 digits phone number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [wrongDigitsAlert show];
-    } else if (![self.phoneTextField.text
-                 isEqualToString:self.currentUser.phoneNumber]) {
+    } else if ([self.phoneTextField.text isEqualToString:self.currentUser.phoneNumber]) {
+        [self.currentUser saveInBackground];
+        [self returnToMainTabBarVC];
+    } else {
         [User checkIfPhoneNumber:self.phoneTextField.text
                     hasBeenUsedWithCompletion:^(User *userWithThisNumber, NSError *error)
         {
             if (!error) {
                 if (userWithThisNumber == nil) {
+                    self.currentUser.verification = self.currentUser.verification?:[Verification object];
                     [self.currentUser.verification sendVerifyCodeToPhoneNumber:self.phoneTextField.text];
-                    UIAlertView *veriCodeAlert = [[UIAlertView alloc]initWithTitle:@"Enter verification code" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                    veriCodeAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-                    veriCodeAlert.tag = 1;
-                    [veriCodeAlert show];
-                
+                    
+                    UIAlertController *veriCodeAlertController = [UIAlertController alertControllerWithTitle:@"Enter verification code" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    [veriCodeAlertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+                        textField.keyboardType = UIKeyboardTypeNumberPad;
+                    }];
+                    UIAlertAction *cancelEnterAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                    }];
+                    UIAlertAction *okEnterAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                        UITextField *verifyCodeTextField = veriCodeAlertController.textFields.firstObject;
+                        if ([self.currentUser.verification verifyPhoneNumber:self.phoneTextField.text withVerifyCode:verifyCodeTextField.text]) {
+                            [self.currentUser saveInBackground];
+                            [self returnToMainTabBarVC];
+                            
+                        } else {
+                            veriCodeAlertController.title = @"Wrong code. Please try again.";
+                            [self presentViewController:veriCodeAlertController animated:true completion:nil];
+                        }
+                    }];
+                    
+                    [veriCodeAlertController addAction:cancelEnterAction];
+                    [veriCodeAlertController addAction:okEnterAction];
+                    [self presentViewController:veriCodeAlertController animated:true completion:nil];
+                    
                 } else {
                     UIAlertView  *numberUsedAlert = [[UIAlertView alloc]initWithTitle:nil message:@"This number has been taken." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [numberUsedAlert show];
@@ -235,9 +256,16 @@
             }
 
         }];
-        
+                    
     }
 
+}
+
+-(void)returnToMainTabBarVC
+{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *mainTabBarVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+    [self presentViewController:mainTabBarVC animated:true completion:nil];
 }
 
 
@@ -250,108 +278,86 @@
 }
 
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == 1 && buttonIndex == 0) {
-        UITextField *verifyCodeTextField = [alertView textFieldAtIndex:0];
-        if ([self.currentUser.verification verifyPhoneNumber:self.phoneTextField.text withVerifyCode:verifyCodeTextField.text]) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Successful!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
-            alert.tag = 2;
-            [alert show];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Wrong code." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
-            alert.tag = 3;
-            [alert show];
-        }
-        
-    }
-    
-    if (alertView.tag == 2 && buttonIndex == 0) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-
-}
-
 -(void)setDelegatesForTextFields{
 
-    self.fullnameTextField.delegate = self;
-    self.emailTextField.delegate = self;
-    self.passwordTextField.delegate = self;
-    self.stateTextField.delegate = self;
-    self.occupationTextField.delegate = self;
-    self.phoneTextField.delegate = self;
+self.fullnameTextField.delegate = self;
+self.emailTextField.delegate = self;
+self.passwordTextField.delegate = self;
+self.stateTextField.delegate = self;
+self.occupationTextField.delegate = self;
+self.phoneTextField.delegate = self;
 
 
 }
 - (IBAction)logOUtButtonPressed:(UIBarButtonItem *)sender
 {
-    [User logOut];
+[User logOut];
 
-    //Disable the tab for history
-    [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:FALSE];
+//Disable the tab for history
+[[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:FALSE];
 
 
-    self.fullnameTextField.text = [NSString stringWithFormat:@""];
-    self.emailTextField.text = [NSString stringWithFormat:@""];
-    self.passwordTextField.text = [NSString stringWithFormat:@""];
-    self.stateTextField.text = [NSString stringWithFormat:@""];
-    self.occupationTextField.text = [NSString stringWithFormat:@""];
-    self.phoneTextField.text = [NSString stringWithFormat:@""];
-    self.profileImage.image = [UIImage imageNamed:@"defaultimage"];
-    self.signInButton.enabled = YES;
-    self.signInButton.hidden = NO;
-    self.signUpButton.enabled = YES;
-    self.signUpButton.hidden = NO;
-    self.pleaseSignInLabel.hidden = NO;
+self.fullnameTextField.text = [NSString stringWithFormat:@""];
+self.emailTextField.text = [NSString stringWithFormat:@""];
+self.passwordTextField.text = [NSString stringWithFormat:@""];
+self.stateTextField.text = [NSString stringWithFormat:@""];
+self.occupationTextField.text = [NSString stringWithFormat:@""];
+self.phoneTextField.text = [NSString stringWithFormat:@""];
+self.profileImage.image = [UIImage imageNamed:@"defaultimage"];
+self.signInButton.enabled = YES;
+self.signInButton.hidden = NO;
+self.signUpButton.enabled = YES;
+self.signUpButton.hidden = NO;
+self.pleaseSignInLabel.hidden = NO;
 
-    self.saveButton.enabled = NO;
-    self.saveButton.hidden = YES;
-    self.verifyButton.enabled = NO;
-    self.verifyButton.hidden = YES;
-    self.changeImageButton.enabled = NO;
-    self.changeImageButton.hidden = YES;
-    self.logOutButton.enabled = NO;
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor clearColor];
-    self.fullnameTextField.hidden = YES;
-    self.emailTextField.hidden = YES;
-    self.passwordTextField.hidden = YES;
-    self.stateTextField.hidden = YES;
-    self.occupationTextField.hidden = YES;
-    self.phoneTextField.hidden = YES;
-    self.profileImage.hidden = YES;
-    [self.view reloadInputViews];
+self.saveButton.enabled = NO;
+self.saveButton.hidden = YES;
+self.verifyButton.enabled = NO;
+self.verifyButton.hidden = YES;
+self.changeImageButton.enabled = NO;
+self.changeImageButton.hidden = YES;
+self.logOutButton.enabled = NO;
+self.navigationItem.rightBarButtonItem.tintColor = [UIColor clearColor];
+self.fullnameTextField.hidden = YES;
+self.emailTextField.hidden = YES;
+self.passwordTextField.hidden = YES;
+self.stateTextField.hidden = YES;
+self.occupationTextField.hidden = YES;
+self.phoneTextField.hidden = YES;
+self.profileImage.hidden = YES;
+[self.view reloadInputViews];
 
 }
 - (IBAction)onSignInButtonPressed:(UIButton *)sender
 {
-    UIStoryboard *loginStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+UIStoryboard *loginStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
 
-    UIViewController *loginVC = [loginStoryBoard instantiateViewControllerWithIdentifier:@"LoginNavVC"];
+UIViewController *loginVC = [loginStoryBoard instantiateViewControllerWithIdentifier:@"LoginNavVC"];
 
-    [self presentViewController:loginVC animated:true completion:nil];
+[self presentViewController:loginVC animated:true completion:nil];
 }
 
 - (IBAction)onSignUpButtonPressed:(UIButton *)sender
 {
-    UIStoryboard *signUpStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+UIStoryboard *signUpStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
 
-    UIViewController *signUpVC = [signUpStoryBoard instantiateViewControllerWithIdentifier:@"SignUpNavVC"];
+UIViewController *signUpVC = [signUpStoryBoard instantiateViewControllerWithIdentifier:@"SignUpNavVC"];
 
-    [self presentViewController:signUpVC animated:true completion:nil];
+[self presentViewController:signUpVC animated:true completion:nil];
 }
 
 
 #pragma Marks - hiding keyboard
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+[textField resignFirstResponder];
 
-    [self.view endEditing:true];
-    return true;
+[self.view endEditing:true];
+return true;
 }
 //hide keyboard when user touches outside.
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.view endEditing:YES];
+[self.view endEditing:YES];
 }
 -(void)setUpDelegatesForTextFields{
 

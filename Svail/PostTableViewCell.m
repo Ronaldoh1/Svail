@@ -22,10 +22,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numOfReservationsLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *serviceImagesCollectionView;
+
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *viewSlotsButton;
+
 @property (nonatomic) NSMutableArray *serviceImageArray;
+
+
+
 
 @end
 
@@ -53,6 +58,7 @@ static const CGFloat kLableFontSize = 13.0;
     self.editButton.tag = self.tag;
     self.deleteButton.tag = self.tag;
     self.viewSlotsButton.tag = self.tag;
+    self.serviceImagesCollectionView.tag = self.tag;
     
     [self getServiceImages];
     
@@ -60,6 +66,7 @@ static const CGFloat kLableFontSize = 13.0;
 
 -(void)setupTitleLabel
 {
+    NSLog(@"title %@",self.service.title);
     self.titleLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Title" content:self.service.title fontSize:kLableFontSize];
     
 }
@@ -122,15 +129,20 @@ static const CGFloat kLableFontSize = 13.0;
     for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
         self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
     }
+    
     [self.serviceImagesCollectionView reloadData];
     [self.service getServiceImageDataWithCompletion:^(NSDictionary *imageDataDict)
-    {
-        NSNumber *keyOfImage = imageDataDict.allKeys.lastObject;
-        self.serviceImageArray[keyOfImage.integerValue] = [UIImage imageWithData:imageDataDict[keyOfImage]];
-        [self.serviceImagesCollectionView reloadData];
-    }];
+     {
+         NSUInteger imagesCount = [imageDataDict[@"count"] integerValue];
+         NSData *imageData = imageDataDict[@"data"];
+         NSUInteger imageIndex = [imageDataDict[@"index"] integerValue];
+         self.serviceImageArray[imageIndex] = [UIImage imageWithData:imageData];
+         for (int i = imagesCount; i < kMaxNumberOfServiceImages; i++) {
+             self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
+         }
+         [self.serviceImagesCollectionView reloadData];
+     }];
 }
-
 
 
 
@@ -143,13 +155,9 @@ static const CGFloat kLableFontSize = 13.0;
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ServiceImagesCollectionViewCell *serviceImageCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ServiceImageCell" forIndexPath:indexPath];
-    if (self.serviceImageArray.count > indexPath.row) {
-        serviceImageCell.serviceImageView.title = self.service.title;
-        serviceImageCell.serviceImageView.vc = self.vc;
-        serviceImageCell.serviceImageView.image = self.serviceImageArray[indexPath.row];
-    } else {
-        serviceImageCell.serviceImageView.image = [UIImage imageNamed:@"image_placeholder"];
-    }
+    serviceImageCell.serviceImageView.title = self.service.title;
+    serviceImageCell.serviceImageView.vc = self.vc;
+    serviceImageCell.serviceImageView.image = self.serviceImageArray[indexPath.row];
     
     return serviceImageCell;
 }
