@@ -18,6 +18,7 @@
 #import "CustomViewUtilities.h"
 #import "EditProfileViewController.h"
 #import "ProfileImageView.h"
+#import "MBProgressHUD.h"
 
 @interface MapViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
@@ -55,8 +56,7 @@
     self.locationManager.delegate = self;
     self.mapView.delegate = self;
     [self.locationManager requestWhenInUseAuthorization];
-    self.mapView.showsUserLocation = true;
-    //    CLLocation *currentLocation = self.locationManager.location;
+
 
 
 
@@ -128,10 +128,25 @@
         
     }
 
-    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
+//    [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:true];
     // [self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f))];
 
+    [self downloadServices];
+
+    
+    [self performSelector:@selector(getCurrentLocation) withObject:nil afterDelay:2.0];
+}
+
+-(void)getCurrentLocation
+{
+    self.mapView.showsUserLocation = true;
+
     //zooming map to current location at startup
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        // Do something...
+
     double latitude = self.locationManager.location.coordinate.latitude;
     double longitude = self.locationManager.location.coordinate.longitude;
 
@@ -140,14 +155,20 @@
     [self.locationManager stopUpdatingLocation];
 
     self.didGetUserLocation = true;
-//download Services from Parse and filter it according to today's event
-    [EventLocationDownloader downloadEventLocationForLocation:self.mapView.userLocation.location withCompletion:^(NSArray *array)
-         {
-             self.eventsArray = [NSMutableArray arrayWithArray:array];
-             [self filterEventsForDate:self.segmentedControl];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
+}
 
-             [self.mapView reloadInputViews];
-         }];
+-(void)downloadServices
+{
+    //download Services from Parse and filter it according to today's event
+    [EventLocationDownloader downloadEventLocationForLocation:self.mapView.userLocation.location withCompletion:^(NSArray *array)
+     {
+         self.eventsArray = [NSMutableArray arrayWithArray:array];
+         [self filterEventsForDate:self.segmentedControl];
+
+         [self.mapView reloadInputViews];
+     }];
 }
 
 
@@ -533,9 +554,7 @@
 
 - (IBAction)onAddServiceButtonTapped:(UIBarButtonItem *)sender
 {
-    //        UIStoryboard *postStoryBoard = [UIStoryboard storyboardWithName:@"Post" bundle:nil];
-    //        UIViewController *postVC = [postStoryBoard instantiateViewControllerWithIdentifier:@"PostNavBar"];
-    //        [self presentViewController:postVC animated:true completion:nil];
+
 
     if ([User currentUser] != nil){
 
@@ -565,11 +584,6 @@
 
     }else {
 
-        //        UIStoryboard *loginStoryBoard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-
-        //        UIViewController *loginVC = [loginStoryBoard instantiateViewControllerWithIdentifier:@"LoginNavVC"];
-
-        //        [self presentViewController:loginVC animated:true completion:nil];
 
         [self presentActionSheetForLogInOrSignUp];
 

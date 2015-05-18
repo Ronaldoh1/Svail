@@ -346,6 +346,7 @@ UIViewController *signUpVC = [signUpStoryBoard instantiateViewControllerWithIden
 [self presentViewController:signUpVC animated:true completion:nil];
 }
 
+
 #pragma Marks - hiding keyboard
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
 [textField resignFirstResponder];
@@ -358,6 +359,40 @@ return true;
 {
 [self.view endEditing:YES];
 }
+-(void)setUpDelegatesForTextFields{
 
+
+}
+
+//Declare a delegate, assign your textField to the delegate and then include these methods
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    //NSUInteger index = [self.phoneNumberTextFields indexOfObject:textField];
+    //((UIImageView *)self.phoneNumberCheckmarks[index]).isHidden;
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+
+    [self.view endEditing:YES];
+    return YES;
+}
+
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    // Assign new frame to your view
+    [self.view setFrame:CGRectMake(0,-110,320,500)]; //here taken -20 for example i.e. your view will be scrolled to -20. change its value according to your requirement.
+
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    [self.view setFrame:CGRectMake(0,0,320,600)];
+}
 
 @end

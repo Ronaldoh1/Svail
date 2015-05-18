@@ -8,7 +8,7 @@
         <!--Welcome to Svail-->
         <scene sceneID="trS-NS-Gk5">
             <objects>
-                <viewController storyboardIdentifier="tutorialVC" id="mgy-64-Ns5" customClass="MainTutorialViewController" sceneMemberID="viewController">
+                <viewController id="mgy-64-Ns5" customClass="MainTutorialViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HSm-aB-1h0"/>
                         <viewControllerLayoutGuide type="bottom" id="VyM-MI-g85"/>
