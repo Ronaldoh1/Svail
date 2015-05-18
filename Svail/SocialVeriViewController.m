@@ -184,7 +184,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
             if (![textField.text isEqualToString:self.currentUser.phoneNumber]) {
                 [self sendSMSFromParseWithToNumber:textField.text message:message];
             } else {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter a phone number diefferent than yours." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter a phone number different than yours." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alert show];
             }
 
@@ -203,6 +203,8 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                                     if (!error) {
                                         // result is @"Hello world!"
                                         NSLog(@"%@",toNumber);
+                                        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message: [NSString stringWithFormat:@"Request has been sent to %@.",toNumber] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                        [alert show];
                                     }
                                 }];
 
