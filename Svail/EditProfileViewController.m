@@ -212,8 +212,10 @@
     if (self.phoneTextField.text.length != 10){
         UIAlertView  *wrongDigitsAlert = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter 10 digits phone number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [wrongDigitsAlert show];
-    } else if (![self.phoneTextField.text
-                 isEqualToString:self.currentUser.phoneNumber]) {
+    } else if ([self.phoneTextField.text isEqualToString:self.currentUser.phoneNumber]) {
+        [self.currentUser saveInBackground];
+        [self returnToMainTabBarVC];
+    } else {
         [User checkIfPhoneNumber:self.phoneTextField.text
                     hasBeenUsedWithCompletion:^(User *userWithThisNumber, NSError *error)
         {

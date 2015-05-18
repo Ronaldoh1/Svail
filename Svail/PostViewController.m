@@ -151,6 +151,7 @@
 
 
 
+
     NSString *errorMessage = @"Please note - All fields, Date & Times are required";
 
     if ([self.serviceTitle.text isEqualToString:@""] || [self.serviceDescription.text isEqualToString:@""] || [self.serviceCategory.text isEqualToString:@""] || [self.serviceCapacity.text isEqualToString:@""] || [self.location.text isEqualToString:@""] || [self.slotSelectionButton.titleLabel.text isEqualToString:@"Set Times For Your Service"] || self.service.startTimes.count == 0 || self.service.startDate == nil) {
@@ -226,6 +227,10 @@
 
 
     }
+    
+    [self.serviceToEdit deleteServiceWithCompletion:^(BOOL shouldDeleteService)
+     {
+     }];
 }
 
 

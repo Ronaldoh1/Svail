@@ -66,12 +66,12 @@ const NSUInteger kMaxNumberOfServiceImages = 4;
     
 }
 
+
 -(void)getServiceImageDataWithCompletion:(void (^)(NSDictionary  *))complete
 {
     PFQuery *imagesQuery = [Image query];
     [imagesQuery whereKey:@"service" equalTo:self];
-    imagesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    imagesQuery.cachePolicy = kPFCachePolicyNetworkOnly;
+   imagesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [imagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                     NSError *findImageError)
      {
@@ -83,13 +83,14 @@ const NSUInteger kMaxNumberOfServiceImages = 4;
                                                                  NSError *error)
                   {
                       if (!error) {
-                          complete(@{@(i):data});
+                          complete(@{@"count":@(objects.count), @"index":@(i), @"data":data});
                       }
                   }];
              }
          }
      }];
 }
+
 
 -(void)getServiceImageDataArrayWithCompletion:(void (^)(NSArray  *))complete
 {

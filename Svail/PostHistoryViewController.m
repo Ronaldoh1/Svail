@@ -71,8 +71,11 @@
     cell.service = self.services[indexPath.row];
     cell.tag = indexPath.row;
     [cell awakeFromNib];
+
     return cell;
 }
+
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender
 {
@@ -103,9 +106,7 @@
     postVC.serviceToEdit =  self.serviceToEdit;
     [self presentViewController:postNavVC animated:true completion:nil];
 
-    [self.serviceToEdit deleteServiceWithCompletion:^(BOOL shouldDeleteService)
-    {
-    }];
+    
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

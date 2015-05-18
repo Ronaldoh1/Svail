@@ -273,11 +273,16 @@ static const CGFloat kLabelFontSize = 13.0;
     }
     [self.serviceImagesCollectionView reloadData];
     [self.service getServiceImageDataWithCompletion:^(NSDictionary *imageDataDict)
-    {
-        NSNumber *keyOfImage = imageDataDict.allKeys.lastObject;
-        self.serviceImageArray[keyOfImage.integerValue] = [UIImage imageWithData:imageDataDict[keyOfImage]];
-        [self.serviceImagesCollectionView reloadData];
-    }];
+     {
+         NSUInteger imagesCount = [imageDataDict[@"count"] integerValue];
+         NSData *imageData = imageDataDict[@"data"];
+         NSUInteger imageIndex = [imageDataDict[@"index"] integerValue];
+         self.serviceImageArray[imageIndex] = [UIImage imageWithData:imageData];
+         for (int i = imagesCount; i < kMaxNumberOfServiceImages; i++) {
+             self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
+         }
+         [self.serviceImagesCollectionView reloadData];
+     }];
 }
 
 
