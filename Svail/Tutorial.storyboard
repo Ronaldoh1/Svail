@@ -64,6 +64,9 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WH5-Bi-h0O">
                                 <rect key="frame" x="16" y="272" width="288" height="188"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="188" id="fA2-bg-dvW"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gaf-i0-ffm">
                                 <rect key="frame" x="16" y="163" width="288" height="101"/>
@@ -77,17 +80,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="CSv-yW-yqv" secondAttribute="centerY" constant="138" id="BLS-OC-Ign"/>
                             <constraint firstItem="CSv-yW-yqv" firstAttribute="top" secondItem="Wg6-gi-4W7" secondAttribute="bottom" constant="29" id="Em7-fk-Rz9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CSv-yW-yqv" secondAttribute="trailing" constant="15" id="HKD-Ck-Uas"/>
-                            <constraint firstItem="r9T-cI-IdQ" firstAttribute="top" secondItem="WH5-Bi-h0O" secondAttribute="bottom" constant="20" id="IPU-or-v8G"/>
                             <constraint firstItem="Gaf-i0-ffm" firstAttribute="trailing" secondItem="sWM-o6-D3B" secondAttribute="trailingMargin" id="NlJ-LR-3cW"/>
                             <constraint firstItem="CSv-yW-yqv" firstAttribute="leading" secondItem="sWM-o6-D3B" secondAttribute="leadingMargin" constant="15" id="U7X-l8-FS4"/>
                             <constraint firstItem="Gaf-i0-ffm" firstAttribute="leading" secondItem="sWM-o6-D3B" secondAttribute="leadingMargin" id="Xnd-Ya-SM9"/>
-                            <constraint firstItem="WH5-Bi-h0O" firstAttribute="trailing" secondItem="sWM-o6-D3B" secondAttribute="trailingMargin" id="a7n-mH-f79"/>
-                            <constraint firstItem="WH5-Bi-h0O" firstAttribute="leading" secondItem="sWM-o6-D3B" secondAttribute="leadingMargin" id="drn-vG-Bw8"/>
+                            <constraint firstItem="WH5-Bi-h0O" firstAttribute="leading" secondItem="sWM-o6-D3B" secondAttribute="leadingMargin" id="hxy-8d-IOu"/>
                             <constraint firstItem="Gaf-i0-ffm" firstAttribute="top" secondItem="CSv-yW-yqv" secondAttribute="bottom" constant="8" id="mKx-kC-A4K"/>
-                            <constraint firstItem="WH5-Bi-h0O" firstAttribute="top" secondItem="Gaf-i0-ffm" secondAttribute="bottom" constant="8" id="s8O-Ne-ygo"/>
+                            <constraint firstItem="WH5-Bi-h0O" firstAttribute="trailing" secondItem="sWM-o6-D3B" secondAttribute="trailingMargin" id="mSP-xd-6AW"/>
+                            <constraint firstItem="WH5-Bi-h0O" firstAttribute="top" secondItem="Gaf-i0-ffm" secondAttribute="bottom" constant="8" id="qnb-Wd-nXd"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Em7-fk-Rz9"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
