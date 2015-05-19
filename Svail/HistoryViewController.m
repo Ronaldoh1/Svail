@@ -15,10 +15,12 @@
 @property (nonatomic) PostHistoryViewController *postHistoryVC;
 @property (nonatomic) ReservationHistoryViewController *reservationHistoryVC;
 @property (nonatomic) UIViewController *currentVC;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @end
 
 @implementation HistoryViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,10 +35,20 @@
     
     
     self.postHistoryVC = self.childViewControllers.lastObject;
+    
     self.reservationHistoryVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ReservationHistoryVC"];
     
     self.currentVC = self.postHistoryVC;
+    
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:true];
+    [self.currentVC viewWillAppear:true];
+}
+
+
 
 - (IBAction)onSegmentsTapped:(UISegmentedControl *)sender
 {

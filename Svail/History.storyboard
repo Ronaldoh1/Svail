@@ -95,6 +95,9 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="3Ym-5v-96a"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="containerView" destination="2au-Pr-s2C" id="EZE-Mf-toT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zq0-tn-ijf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

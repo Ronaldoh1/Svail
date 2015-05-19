@@ -30,16 +30,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.currentUser = [User currentUser];
-    [self loadPostedServices];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
     self.currentUser = [User currentUser];
     [self loadPostedServices];
-   
 }
 
 -(void)loadPostedServices
