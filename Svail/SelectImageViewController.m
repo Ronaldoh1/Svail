@@ -26,6 +26,12 @@
 @property BOOL thirdImagePicked;
 @property BOOL fourthImagePicked;
 
+@property (weak, nonatomic) IBOutlet UIButton *imageButton1;
+@property (weak, nonatomic) IBOutlet UIButton *imageButton2;
+@property (weak, nonatomic) IBOutlet UIButton *imageButton3;
+@property (weak, nonatomic) IBOutlet UIButton *imageButton4;
+
+
 @end
 
 @implementation SelectImageViewController
@@ -52,7 +58,10 @@
     titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
     [self.navigationItem setTitleView:titleView];
 
-
+    //Disable other buttons
+    self.imageButton2.enabled = NO;
+    self.imageButton3.enabled = NO;
+    self.imageButton4.enabled = NO;
 
     
 
@@ -107,6 +116,8 @@
 
     [self presentViewController:picker animated:YES completion:nil];
 
+
+
 }
 
 - (IBAction)pickSecondImageButtonTapped:(UIButton *)sender {
@@ -141,6 +152,24 @@
     [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
 
     [self presentViewController:picker animated:YES completion:nil];
+}
+- (IBAction)resetImagesButtonTapped:(UIButton *)sender {
+    //Disable Buttons
+    self.imageButton2.enabled = NO;
+    self.imageButton3.enabled = NO;
+    self.imageButton4.enabled = NO;
+
+    //set the number back for each image
+     self.imageButton1.titleLabel.text = @"1";
+     self.imageButton2.titleLabel.text = @"";
+     self.imageButton3.titleLabel.text = @"";
+    self.imageButton4.titleLabel.text = @"";
+
+    //set default image for camera
+    self.image1.image = [UIImage imageNamed:@"camera"];
+    self.image2.image = [UIImage imageNamed:@"camera"];
+    self.image3.image = [UIImage imageNamed:@"camera"];
+    self.image4.image = [UIImage imageNamed:@"camera"];
 }
 
 - (IBAction)onSaveImageButtonTapped:(UIBarButtonItem *)sender {
@@ -273,7 +302,7 @@
 
     //Indicator starts annimating when user saves images.
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.9 * NSEC_PER_SEC);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 
 
@@ -343,6 +372,9 @@
             UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
             [self.imageArray addObject:image];
 
+            self.imageButton2.enabled = YES;
+            self.imageButton1.titleLabel.text = @"";
+
 
         }else if (self.imageArray[0] != nil){
             [self.imageArray removeObjectAtIndex:0];
@@ -361,7 +393,8 @@
             UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
             [self.imageArray insertObject:image atIndex:1];
 
-
+            self.imageButton3.enabled = YES;
+            self.imageButton3.titleLabel.text = @"";
 
         } else if (self.imageArray.count == 2) {
             [self.imageArray removeObjectAtIndex:1];
@@ -378,6 +411,8 @@
 
             UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
             [self.imageArray insertObject:image atIndex:2];
+            self.imageButton4.enabled = YES;
+            self.imageButton4.titleLabel.text = @"";
 
 
 

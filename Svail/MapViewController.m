@@ -669,15 +669,15 @@
 
                 [[PFInstallation currentInstallation] saveInBackground];
 
-//                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
-//                EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
-//                [self presentViewController:editProfileVC animated:true completion:nil];
+                UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
+                EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
+                [self presentViewController:editProfileVC animated:true completion:nil];
 
                 //we want to enable the history tab
 
-                [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:TRUE];
-
-                NSLog(@"User signed up and logged in through Facebook!");
+//                [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:TRUE];
+//
+//                NSLog(@"User signed up and logged in through Facebook!");
 
 
 

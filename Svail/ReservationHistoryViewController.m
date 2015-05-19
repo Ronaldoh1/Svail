@@ -12,6 +12,7 @@
 #import "ServiceSlot.h"
 #import "Reservation.h"
 #import "ReservationTableViewCell.h"
+#import "MBProgressHUD.h"
 
 @interface ReservationHistoryViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
@@ -51,6 +52,10 @@
     [reservationQuery whereKey:@"reserver" equalTo:[User currentUser]];
     [reservationQuery includeKey:@"serviceSLot"];
     [reservationQuery addDescendingOrder:@"createdAt"];
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
     [reservationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                      NSError *error)
      {
@@ -61,6 +66,9 @@
              
          }
      }];
+
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

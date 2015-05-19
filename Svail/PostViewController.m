@@ -190,7 +190,7 @@
 
         //Indicator starts annimating when user posts.
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.7 * NSEC_PER_SEC);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 
 
