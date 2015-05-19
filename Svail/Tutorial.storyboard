@@ -54,24 +54,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSv-yW-yqv">
-                                <rect key="frame" x="31" y="49" width="258" height="106"/>
+                                <rect key="frame" x="26" y="102" width="258" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="106" id="ZQj-pF-lJO"/>
+                                    <constraint firstAttribute="height" constant="60" id="ZQj-pF-lJO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WH5-Bi-h0O">
-                                <rect key="frame" x="16" y="272" width="288" height="188"/>
+                                <rect key="frame" x="16" y="254" width="288" height="188"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="188" id="fA2-bg-dvW"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gaf-i0-ffm">
-                                <rect key="frame" x="16" y="163" width="288" height="101"/>
+                                <rect key="frame" x="16" y="165" width="288" height="88"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="101" id="BNi-xz-GCh"/>
+                                    <constraint firstAttribute="height" constant="88" id="BNi-xz-GCh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -80,16 +80,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="CSv-yW-yqv" secondAttribute="centerY" constant="138" id="BLS-OC-Ign"/>
+                            <constraint firstAttribute="centerY" secondItem="CSv-yW-yqv" secondAttribute="centerY" constant="108" id="BLS-OC-Ign"/>
                             <constraint firstItem="CSv-yW-yqv" firstAttribute="top" secondItem="Wg6-gi-4W7" secondAttribute="bottom" constant="29" id="Em7-fk-Rz9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CSv-yW-yqv" secondAttribute="trailing" constant="15" id="HKD-Ck-Uas"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CSv-yW-yqv" secondAttribute="trailing" constant="20" id="HKD-Ck-Uas"/>
                             <constraint firstItem="Gaf-i0-ffm" firstAttribute="trailing" secondItem="sWM-o6-D3B" secondAttribute="trailingMargin" id="NlJ-LR-3cW"/>
-                            <constraint firstItem="CSv-yW-yqv" firstAttribute="leading" secondItem="sWM-o6-D3B" secondAttribute="leadingMargin" constant="15" id="U7X-l8-FS4"/>
+                            <constraint firstItem="CSv-yW-yqv" firstAttribute="leading" secondItem="sWM-o6-D3B" secondAttribute="leadingMargin" constant="10" id="U7X-l8-FS4"/>
                             <constraint firstItem="Gaf-i0-ffm" firstAttribute="leading" secondItem="sWM-o6-D3B" secondAttribute="leadingMargin" id="Xnd-Ya-SM9"/>
                             <constraint firstItem="WH5-Bi-h0O" firstAttribute="leading" secondItem="sWM-o6-D3B" secondAttribute="leadingMargin" id="hxy-8d-IOu"/>
-                            <constraint firstItem="Gaf-i0-ffm" firstAttribute="top" secondItem="CSv-yW-yqv" secondAttribute="bottom" constant="8" id="mKx-kC-A4K"/>
+                            <constraint firstItem="Gaf-i0-ffm" firstAttribute="top" secondItem="CSv-yW-yqv" secondAttribute="bottom" constant="3" id="mKx-kC-A4K"/>
                             <constraint firstItem="WH5-Bi-h0O" firstAttribute="trailing" secondItem="sWM-o6-D3B" secondAttribute="trailingMargin" id="mSP-xd-6AW"/>
-                            <constraint firstItem="WH5-Bi-h0O" firstAttribute="top" secondItem="Gaf-i0-ffm" secondAttribute="bottom" constant="8" id="qnb-Wd-nXd"/>
+                            <constraint firstItem="WH5-Bi-h0O" firstAttribute="top" secondItem="Gaf-i0-ffm" secondAttribute="bottom" constant="1" id="qnb-Wd-nXd"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
