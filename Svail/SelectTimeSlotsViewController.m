@@ -38,6 +38,8 @@ static NSString *const kReusableIdentifier = @"cell";
 //helper Method for initial set up
 -(void)performInitialSetUp{
 
+    //set slider
+    [self.durationSlider setValue:0.5];
     //initially disable the save button
     self.saveTimesButton.enabled = false;
 
@@ -205,6 +207,10 @@ static NSString *const kReusableIdentifier = @"cell";
 
     //get the number of cell to disable
     int numberOfCellsToDisable = (self.durationTime / .5);
+    if (numberOfCellsToDisable == 0) {
+        [self displayAlertForNoDurationTimeSelected];
+
+    }else {
 
     //get the duration time and disable slider.
     self.service.durationTime = self.durationTime;
@@ -274,6 +280,7 @@ static NSString *const kReusableIdentifier = @"cell";
     if (self.service.startTimes.count != 0){
         self.saveTimesButton.enabled = true;
     }
+    }
 
 }
 
@@ -330,6 +337,11 @@ static NSString *const kReusableIdentifier = @"cell";
 -(void)displayAlertForNoTimesSelected{
 
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"No Times Selected" message:@"You must select at least one time slot" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+-(void)displayAlertForNoDurationTimeSelected{
+
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"No Duration Time" message:@"Duration time cannot be 0 hours! Click Ok and try again. Thank you!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alertView show];
 }
 

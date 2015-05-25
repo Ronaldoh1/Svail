@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qS9-OV-CCC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qS9-OV-CCC">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -312,19 +312,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.5" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="9fc-7H-rcv">
-                                <rect key="frame" x="14" y="101" width="272" height="31"/>
-                                <connections>
-                                    <action selector="timeSlotSetter:" destination="KAG-s0-BKh" eventType="valueChanged" id="tec-PA-Jux"/>
-                                </connections>
-                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5k-sA-wDr">
                                 <rect key="frame" x="297" y="101" width="101" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Cii-pf-c4C"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="0.5 ">
+                                    <fragment content="0 ">
                                         <attributes>
                                             <font key="NSFont" size="12" name="Noteworthy-Light"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -405,6 +399,12 @@
                                     <action selector="onClearButtonPressed:" destination="KAG-s0-BKh" eventType="touchUpInside" id="43z-cV-YAk"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.5" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="9fc-7H-rcv">
+                                <rect key="frame" x="14" y="101" width="272" height="31"/>
+                                <connections>
+                                    <action selector="timeSlotSetter:" destination="KAG-s0-BKh" eventType="valueChanged" id="tec-PA-Jux"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

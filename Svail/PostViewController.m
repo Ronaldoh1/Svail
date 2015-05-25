@@ -369,21 +369,21 @@
 
 }
 //share to facebook
-- (IBAction)sharetoFacebookButton:(UIButton *)sender {
-
-    //allocate composed view controller
-    self.mySL = [[SLComposeViewController alloc]init];
-
-    //set the type of social media that you want to post to.
-    self.mySL = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-
-    //set the text that you want to share.
-    [self.mySL setInitialText:[NSString stringWithFormat:@"Hi, I just posted a new service on Svail! Please check it out! => %@ - %@ for only $%@", self.serviceTitle.text, self.serviceDescription.text, self.price.text]];
-
-    [self presentViewController:self.mySL animated:true completion:nil];
-
-
-}
+//- (IBAction)sharetoFacebookButton:(UIButton *)sender {
+//
+//    //allocate composed view controller
+//    self.mySL = [[SLComposeViewController alloc]init];
+//
+//    //set the type of social media that you want to post to.
+//    self.mySL = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+//
+//    //set the text that you want to share.
+//    [self.mySL setInitialText:[NSString stringWithFormat:@"Hi, I just posted a new service on Svail! Please check it out! => %@ - %@ for only $%@", self.serviceTitle.text, self.serviceDescription.text, self.price.text]];
+//
+//    [self presentViewController:self.mySL animated:true completion:nil];
+//
+//
+//}
 
 //Share on Twitter
 
