@@ -53,6 +53,8 @@ NSString * const StripePublishableKey = @"pk_test_MHARLds9Wz6gEyNgBOpVruIR";
     //set up stripe
 
     [Stripe setDefaultPublishableKey:StripePublishableKey];
+
+
     //Setup Push Notifications
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                     UIUserNotificationTypeBadge |
@@ -64,15 +66,7 @@ NSString * const StripePublishableKey = @"pk_test_MHARLds9Wz6gEyNgBOpVruIR";
 
     [Fabric with:@[TwitterKit]];
     
-    //Parse Setup
 
-    [User registerSubclass];
-    [Service registerSubclass];
-    [Purchase registerSubclass];
-    [Image registerSubclass];
-    [Rating registerSubclass];
-    [Verification registerSubclass];
-    [Reference registerSubclass];
     
     [Parse setApplicationId:@"ebHjZbY6vKWbDo1fmskeLG2XE8Kz6sOEEgXrZolM"
                   clientKey:@"U8IGSnk5tGWURWY0xeQGfXakjWpSiGUbGtKYDShI"];
@@ -85,20 +79,21 @@ NSString * const StripePublishableKey = @"pk_test_MHARLds9Wz6gEyNgBOpVruIR";
 
 
 
-
-
-//    return YES;
-
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
-    currentInstallation.channels = @[ @"global" ];
+    currentInstallation.channels = @[@"global" ];
+    if([User currentUser] != nil){
+        [currentInstallation setObject:[User currentUser] forKey:@"user"];
+    }
+
+
     [currentInstallation saveInBackground];
 
-    NSLog(@"success - registred");
+
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];

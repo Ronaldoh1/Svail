@@ -225,15 +225,6 @@ static const CGFloat kLabelFontSize = 13.0;
         return;
     }
     
-    [PFCloud callFunctionInBackground:@"sendSMS"
-                       withParameters:@{@"toNumber":self.service.provider.phoneNumber,
-                                        @"message": [NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested", self.serviceSlot.service.title, [self.serviceSlot getTimeSlotString]]}
-                                block:^(NSString *result, NSError *error) {
-                                    if (!error) {
-                                        // result is @"Hello world!"
-                                        NSLog(@"%@",result);
-                                    }
-                                }];
 
     if (![self.serviceSlot.participants containsObject:self.currentUser]) {
         [self.serviceSlot.participants addObject:self.currentUser];
@@ -241,7 +232,30 @@ static const CGFloat kLabelFontSize = 13.0;
         Reservation *reservation = [Reservation object];
         reservation.reserver = [User currentUser];
         reservation.serviceSlot = self.serviceSlot;
-        [reservation saveInBackground];
+
+
+        [reservation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                    // Create our Installation query
+                    PFQuery *pushQuery = [PFInstallation query];
+                    // only return Installations that belong to a User that
+                    // matches the innerQuery
+                    [pushQuery whereKey:@"user" matchesQuery: self.service.provider];
+                
+                    // Send push notification to query
+                    PFPush *push = [[PFPush alloc] init];
+                    [push setQuery:pushQuery]; // Set our Installation query
+                    [push setMessage:[NSString stringWithFormat:@"Your Service:%@ @ %@ has been requested. Please check your Service History for more information.", self.serviceSlot.service.title, [self.serviceSlot getTimeSlotString]]];
+                    [push sendPushInBackground];
+
+
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"There was an error confirming your reservation, please click Ok and try again." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alert show];
+
+            }
+        }];
+
         [self returnToMainTabBarVC];
     } else {
         UIAlertView *repetitiveReserveAlert = [[UIAlertView alloc]initWithTitle:nil message:@"You already reserved the service" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

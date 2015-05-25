@@ -45,8 +45,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    if([User currentUser] != nil){
+        [[PFInstallation currentInstallation] setObject:[User currentUser] forKey:@"user"];
+    }
+    // Associate the device with a user
+//    PFInstallation *installation = [PFInstallation currentInstallation];
+//    installation[@"user"] = [User currentUser];
+//    [installation saveInBackground];
     //Check it the user has previously used the app.
 
+//    // Create our Installation query
+//    PFQuery *pushQuery = [PFInstallation query];
+//    // only return Installations that belong to a User that
+//    // matches the innerQuery
+//    [pushQuery whereKey:@"user" matchesQuery: [User currentUser]];
+//
+//    // Send push notification to query
+//    PFPush *push = [[PFPush alloc] init];
+//    [push setQuery:pushQuery]; // Set our Installation query
+//    [push setMessage:@"Willie Hayes injured by own pop fly."];
+//    [push sendPushInBackground];
 
     //initially we should set the didGetUserLocation to false;
     self.didGetUserLocation = false;
