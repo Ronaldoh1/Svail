@@ -34,41 +34,44 @@
 {
      self.currentUser = [User currentUser];
     
-//    PFQuery *serviceQuery = [ServiceSlot query];
-//    [serviceQuery whereKey:@"participants" equalTo:self.currentUser];
-//    [serviceQuery orderByDescending:@"startDate"];
-//    serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    [serviceQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
-//                                                     NSError *error)
-//     {
-//         if (!error)
-//         {
-//             self.reservations = objects.mutableCopy;
-//             [self.servicesTableView reloadData];
-//         }
-//     }];
-    
     PFQuery *reservationQuery = [Reservation query];
     [reservationQuery whereKey:@"reserver" equalTo:[User currentUser]];
     [reservationQuery includeKey:@"serviceSLot"];
+    reservationQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [reservationQuery addDescendingOrder:@"createdAt"];
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.01 * NSEC_PER_SEC);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
     [reservationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                      NSError *error)
      {
          if (!error)
          {
-             self.reservations = objects.mutableCopy;
-             [self.servicesTableView reloadData];
+             if (objects.count == 0) {
+                 [self presentNoReservationLabel];
+             } else {
+                 self.reservations = objects.mutableCopy;
+                 [self.servicesTableView reloadData];
+             }
              
          }
      }];
 
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     });
+}
+
+-(void)presentNoReservationLabel
+{
+    CGRect viewBounds = self.view.bounds;
+    CGRect labelFrame = CGRectMake(viewBounds.origin.x + viewBounds.size.width / 2. - 120., 150., 240., 40.);
+    UILabel *label = [[UILabel alloc]initWithFrame:labelFrame];
+    label.text = @"You have no reservation.";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor lightGrayColor];
+    label.font = [UIFont systemFontOfSize:20];
+    [self.view addSubview:label];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

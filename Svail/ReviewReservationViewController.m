@@ -219,6 +219,12 @@ static const CGFloat kLabelFontSize = 13.0;
 
 - (IBAction)onConfirmButton:(UIBarButtonItem *)sender {
     
+    if ([User currentUser] == nil) {
+        UIAlertView *loginAlert = [[UIAlertView alloc]initWithTitle:nil message:@"Please log in or sing up first." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [loginAlert show];
+        return;
+    }
+    
     if (!self.serviceSlot) {
         UIAlertView *pickTimeAlert = [[UIAlertView alloc]initWithTitle:nil message:@"Please pick a time slot." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [pickTimeAlert show];

@@ -71,7 +71,7 @@ const NSUInteger kMaxNumberOfServiceImages = 4;
 {
     PFQuery *imagesQuery = [Image query];
     [imagesQuery whereKey:@"service" equalTo:self];
-   imagesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    imagesQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [imagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                     NSError *findImageError)
      {

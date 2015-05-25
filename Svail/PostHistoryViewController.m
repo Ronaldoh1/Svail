@@ -49,10 +49,27 @@
      {
          if (!error)
          {
-             self.services = objects.mutableCopy;
-             [self.servicesTableView reloadData];
+             if (objects.count == 0) {
+                 [self presentNoPostLabel];
+                 
+             } else {
+                 self.services = objects.mutableCopy;
+                 [self.servicesTableView reloadData];
+             }
          }
      }]; 
+}
+
+-(void)presentNoPostLabel
+{
+    CGRect viewBounds = self.view.bounds;
+    CGRect labelFrame = CGRectMake(viewBounds.origin.x + viewBounds.size.width / 2. - 100., 150. - 20., 200., 40.);
+    UILabel *label = [[UILabel alloc]initWithFrame:labelFrame];
+    label.text = @"You have no post.";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor lightGrayColor];
+    label.font = [UIFont systemFontOfSize:20];
+    [self.view addSubview:label];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

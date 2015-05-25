@@ -262,6 +262,11 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                              [self.currentUser saveInBackground];
                              [self setupFBItems:self.currentUser.verification.fbLevel > 0];
                              [self setupSafetyLevelItems];
+                             if (self.currentUser.verification.fbLevel == 0) {
+                                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Your facebook friends number is not enough." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                                 [alert show];
+                             }
+
                              
                          }
                      }];
@@ -364,7 +369,11 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                  [self.currentUser saveInBackground];
                  [self setupTTItems:self.currentUser.verification.ttLevel > 0];
                  [self setupSafetyLevelItems];
-                             
+                 if (self.currentUser.verification.ttLevel == 0) {
+                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Your twitter followers number is not enough." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                     [alert show];
+                 }
+                 
              } else {
                  UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"This twitter account has been used to verify another user." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                  [alert show];
@@ -443,9 +452,13 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
                 [self.currentUser saveInBackground];
                 [self setupLKItems:self.currentUser.verification.lkLevel > 0];
                 [self setupSafetyLevelItems];
-                             
+                if (self.currentUser.verification.lkLevel == 0) {
+                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Your LinkedIn connections number is not enough." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                     [alert show];
+                }
+                 
              } else {
-                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"This linkedIn account has been used to verify another user." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"This LinkedIn account has been used to verify another user." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                  [alert show];
              }
          } else {
