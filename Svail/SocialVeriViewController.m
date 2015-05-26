@@ -97,15 +97,17 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
 
 -(void)setupSafetyLevelItems
 {
+    
+    Verification *verification = self.currentUser.verification;
+    verification.safetyLevel = [verification calculateSafetyLevel];
+    [verification saveInBackground];
+    
     if (self.currentUser.verification.hasReachedSafeLevel) {
         self.safetyCheckmark.alpha = 1.0;
     } else {
         self.safetyCheckmark.alpha = kAlphaForSafetyCheckmarkUnqualified;
     }
     
-    Verification *verification = self.currentUser.verification;
-    verification.safetyLevel = [verification calculateSafetyLevel];
-    [verification saveInBackground];
     
     self.levelLabel.text = [NSString stringWithFormat:@"Verification Level : %lu",(long)(self.currentUser.verification.safetyLevel)];
     [verification saveInBackground];
