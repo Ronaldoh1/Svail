@@ -85,13 +85,13 @@
         [self.mapView addAnnotation:self.servicePoint];
 
 
-        PFQuery *query = [Service query];
-
-        [query getObjectInBackgroundWithId:@"OnGxGqBfwI" block:^(PFObject *object, NSError *error) {
-            NSLog(@"%@", ((Service* )object));
-        }];
-
-        // self.serviceGeoPointToEdit = [PFGeoPoint new];
+//        PFQuery *query = [Service query];
+//
+//        [query getObjectInBackgroundWithId:@"OnGxGqBfwI" block:^(PFObject *object, NSError *error) {
+//            NSLog(@"%@", ((Service* )object));
+//        }];
+//
+//        // self.serviceGeoPointToEdit = [PFGeoPoint new];
 
         CLLocationCoordinate2D coordinate  = CLLocationCoordinate2DMake(self.serviceGeoPointToEdit.latitude, self.serviceGeoPointToEdit.longitude);
 

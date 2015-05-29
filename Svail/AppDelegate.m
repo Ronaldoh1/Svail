@@ -38,7 +38,11 @@ NSString * const StripePublishableKey = @"pk_test_MHARLds9Wz6gEyNgBOpVruIR";
     // Override point for customization after application launch.
     
    
-    
+
+
+//    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
+
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];

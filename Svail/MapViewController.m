@@ -311,6 +311,8 @@
         [requestButton.layer setBorderWidth:1];
         [requestButton.layer setBorderColor:[UIColor colorWithRed:100/255.0 green:233/255.0 blue:134/255.0 alpha:1.0].CGColor];
         pinAnnotation.rightCalloutAccessoryView = requestButton;
+
+
     }else if (self.serviceParticipants.count == [customAnnotation.service.capacity integerValue])
     {
         UILabel *fullLabel = [UILabel new];
@@ -659,7 +661,7 @@
 
                 //Present an alert when the user cancels the login
 
-                NSString *alertMessage = @"There was a problem logging in. You must Svail to use your facebook account to log you in";
+                NSString *alertMessage = @"There was a problem logging in. You must allow Svail to use your facebook account to log in";
 
                 NSString *alertTitle =@"Oops - Facebook Login was canceled";
 
@@ -684,28 +686,25 @@
                 //set the number of posts
                 [User currentUser].numberOfPosts = 0;
                 [User currentUser].isPremium = false;
-           
+
+                //create a new installation for this user.
 
                 [[PFInstallation currentInstallation] setObject:[User currentUser] forKey:@"user"];
 
                 [[PFInstallation currentInstallation] saveInBackground];
 
+                //present the edit profile view controller.
                 UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
                 EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
                 [self presentViewController:editProfileVC animated:true completion:nil];
 
-                //we want to enable the history tab
 
-//                [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:TRUE];
-//
-//                NSLog(@"User signed up and logged in through Facebook!");
-
-
-
-
-                NSLog(@"%@", user);
             } else {
 
+                UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UIViewController *mainTabBarVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+                [self presentViewController:mainTabBarVC animated:true completion:nil];
+                
                 //Enable the history tab
                 [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:TRUE];
                 NSLog(@"User logged in through Facebook!");
