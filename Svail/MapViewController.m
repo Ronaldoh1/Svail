@@ -162,7 +162,7 @@
 
     //zooming map to current location at startup
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.01 * NSEC_PER_SEC);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         // Do something...
 
@@ -185,6 +185,8 @@
      {
          self.eventsArray = [NSMutableArray arrayWithArray:array];
          [self filterEventsForDate:self.segmentedControl];
+
+
 
          [self.mapView reloadInputViews];
      }];

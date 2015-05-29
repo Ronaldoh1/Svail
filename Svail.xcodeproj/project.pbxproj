@@ -47,7 +47,6 @@
 		3E13ED871AF0AAD700C0CB1C /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E13ED851AF0AAD700C0CB1C /* HistoryViewController.m */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
-		3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E80C4951AE4C85800405828 /* ParticipantsViewController.m */; };
 		3E8324971AF0FC4D00DDA24E /* CustomPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8324961AF0FC4D00DDA24E /* CustomPinAnnotation.m */; };
 		3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
@@ -187,8 +186,6 @@
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
 		3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationDownloader.m; sourceTree = "<group>"; };
-		3E80C4941AE4C85800405828 /* ParticipantsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantsViewController.h; sourceTree = "<group>"; };
-		3E80C4951AE4C85800405828 /* ParticipantsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsViewController.m; sourceTree = "<group>"; };
 		3E8324951AF0FC4D00DDA24E /* CustomPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPinAnnotation.h; sourceTree = "<group>"; };
 		3E8324961AF0FC4D00DDA24E /* CustomPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPinAnnotation.m; sourceTree = "<group>"; };
 		3E83BB8D1AE6B93C0064AE89 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
@@ -375,8 +372,6 @@
 			children = (
 				3E8D28921AE30E8C00D7D648 /* EditProfileViewController.h */,
 				3E8D28931AE30E8C00D7D648 /* EditProfileViewController.m */,
-				3E80C4941AE4C85800405828 /* ParticipantsViewController.h */,
-				3E80C4951AE4C85800405828 /* ParticipantsViewController.m */,
 				3E8D289B1AE381F900D7D648 /* UserProfileViewController.h */,
 				3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */,
 				3E8D28971AE30ED600D7D648 /* EditProfile.storyboard */,
@@ -885,7 +880,6 @@
 				364CBE9C1AEF7FC200754D9C /* RootTabBarController.m in Sources */,
 				36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */,
 				F2FE7E4C1B03D49F00CDD057 /* MainTutorialViewController.m in Sources */,
-				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */,
