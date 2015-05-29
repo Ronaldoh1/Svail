@@ -582,7 +582,7 @@
     if ([User currentUser] != nil){
 
         //if the user has 14 or less posts allow him to post.
-        if(([User currentUser].numberOfPosts <= 14) || ([User currentUser].isPremium == true)){
+        if(([User currentUser].numberOfPosts < 14) || ([User currentUser].isPremium == true)){
 
 
             NSLog(@"%d number of posts", [User currentUser].numberOfPosts);
