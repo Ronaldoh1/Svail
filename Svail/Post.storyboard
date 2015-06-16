@@ -346,21 +346,21 @@
                                 <rect key="frame" x="0.0" y="154" width="414" height="582"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="5AM-SV-t9z">
-                                    <size key="itemSize" width="150" height="72"/>
+                                    <size key="itemSize" width="160" height="72"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="25" minY="0.0" maxX="25" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="01x-TN-vFS" customClass="CustomSelectTimeCell">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="72"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMH-aQ-Xb4">
-                                                    <rect key="frame" x="2" y="0.0" width="148" height="72"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMH-aQ-Xb4">
+                                                    <rect key="frame" x="8" y="8" width="144" height="56"/>
                                                     <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="25"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -368,6 +368,12 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="QMH-aQ-Xb4" firstAttribute="leading" secondItem="01x-TN-vFS" secondAttribute="leadingMargin" id="PSv-R0-x0B"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="QMH-aQ-Xb4" secondAttribute="bottom" id="WKc-UP-vr9"/>
+                                            <constraint firstItem="QMH-aQ-Xb4" firstAttribute="top" secondItem="01x-TN-vFS" secondAttribute="topMargin" id="lrA-u8-4BC"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="QMH-aQ-Xb4" secondAttribute="trailing" id="nLX-37-tr3"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="timeLabel" destination="QMH-aQ-Xb4" id="cTI-FA-ms8"/>
                                         </connections>
@@ -699,7 +705,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="628"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="wlR-3Q-yQC">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="wlR-3Q-yQC">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wlR-3Q-yQC" id="N3k-fb-2IT">
                                             <autoresizingMask key="autoresizingMask"/>

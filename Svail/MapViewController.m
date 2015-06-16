@@ -305,7 +305,7 @@
     {
         UIButton *requestButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         requestButton.frame = CGRectMake(0, 0, 70, 20);
-        [requestButton setTitle:@"Request" forState:UIControlStateNormal];
+        [requestButton setTitle:@"info" forState:UIControlStateNormal];
         [requestButton setTitleColor:[UIColor colorWithRed:100/255.0 green:233/255.0 blue:134/255.0 alpha:1.0] forState:UIControlStateNormal];
         requestButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
         [requestButton.layer setBorderWidth:1];
@@ -682,7 +682,7 @@
 
                 //set the number of posts
                 [User currentUser].numberOfPosts = 0;
-                [User currentUser].isPremium = false;
+//                [User currentUser].isPremium = false;
 
                 //create a new installation for this user.
 

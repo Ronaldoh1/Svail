@@ -1,18 +1,18 @@
+////
+////  PurchaseViewController.h
+////  
+////
+////  Created by Ronald Hernandez on 6/15/15.
+////
+////
 //
-//  PurchaseViewController.h
-//  
+//#import <UIKit/UIKit.h>
+//#import <StoreKit/StoreKit.h>
+//#import "PurchaseViewController.h"
 //
-//  Created by Ronald Hernandez on 6/15/15.
+//@interface SubscriptionViewController : UIViewController
+//@property (weak, nonatomic) IBOutlet UILabel *disclosureLabel;
 //
 //
-
-#import <UIKit/UIKit.h>
-#import <StoreKit/StoreKit.h>
-#import "PurchaseViewController.h"
-
-@interface SubscriptionViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *disclosureLabel;
-
-
-
-@end
+//
+//@end

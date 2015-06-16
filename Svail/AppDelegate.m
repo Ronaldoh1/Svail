@@ -20,7 +20,7 @@
 #import "Rating.h"
 #import "Verification.h"
 #import "Reference.h"
-#import <Stripe/Stripe.h>
+//#import <Stripe/Stripe.h>
 #import "HockeySDK.h"
 
 
@@ -55,8 +55,8 @@ NSString * const StripePublishableKey = @"pk_test_MHARLds9Wz6gEyNgBOpVruIR";
 
 
     //set up stripe
-
-    [Stripe setDefaultPublishableKey:StripePublishableKey];
+//
+//    [Stripe setDefaultPublishableKey:StripePublishableKey];
 
 
     //Setup Push Notifications

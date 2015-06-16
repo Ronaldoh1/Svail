@@ -1079,14 +1079,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="63w-T5-qoh">
-                                <rect key="frame" x="0.0" y="154" width="414" height="582"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="63w-T5-qoh">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="tLg-c7-SDr">
                                     <size key="itemSize" width="150" height="72"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="25" minY="0.0" maxX="25" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimeSlotCell" id="q4T-dV-kmb" customClass="CustomSelectTimeCell">
@@ -1120,18 +1120,25 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="63w-T5-qoh" secondAttribute="trailing" constant="-16" id="6LI-17-5Ov"/>
                             <constraint firstAttribute="bottomMargin" secondItem="63w-T5-qoh" secondAttribute="bottom" id="E81-xD-rxC"/>
+                            <constraint firstItem="b9b-eA-fOH" firstAttribute="top" secondItem="63w-T5-qoh" secondAttribute="bottom" id="Fei-wi-hkX"/>
                             <constraint firstItem="63w-T5-qoh" firstAttribute="leading" secondItem="oNv-ap-Lt9" secondAttribute="leadingMargin" constant="-16" id="Gs7-iF-I1q"/>
+                            <constraint firstItem="63w-T5-qoh" firstAttribute="leading" secondItem="oNv-ap-Lt9" secondAttribute="leadingMargin" constant="-16" id="NZT-ZE-6df"/>
                             <constraint firstItem="63w-T5-qoh" firstAttribute="leading" secondItem="oNv-ap-Lt9" secondAttribute="leadingMargin" constant="-16" id="a1D-g2-XhO"/>
+                            <constraint firstItem="63w-T5-qoh" firstAttribute="top" secondItem="pxE-T1-mma" secondAttribute="bottom" id="eVw-o6-usi"/>
                             <constraint firstItem="b9b-eA-fOH" firstAttribute="top" secondItem="63w-T5-qoh" secondAttribute="bottom" id="g6J-WJ-3yT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="63w-T5-qoh" secondAttribute="trailing" constant="-16" id="ib1-k1-zPG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="63w-T5-qoh" secondAttribute="trailing" constant="-16" id="rcN-h9-cNf"/>
                             <constraint firstItem="63w-T5-qoh" firstAttribute="top" secondItem="pxE-T1-mma" secondAttribute="bottom" id="zTQ-mm-rYW"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="6LI-17-5Ov"/>
                                 <exclude reference="E81-xD-rxC"/>
                                 <exclude reference="Gs7-iF-I1q"/>
+                                <exclude reference="a1D-g2-XhO"/>
                                 <exclude reference="ib1-k1-zPG"/>
                                 <exclude reference="zTQ-mm-rYW"/>
+                                <exclude reference="g6J-WJ-3yT"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1161,7 +1168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WgS-Yy-LCy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448.5" y="1202"/>
+            <point key="canvasLocation" x="448" y="1202"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="al4-g7-AF2">

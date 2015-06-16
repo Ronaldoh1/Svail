@@ -11,6 +11,6 @@
 @interface LargeServiceImageViewController : UIViewController
 
 @property (nonatomic) UIImage *serviceImage;
-@property (nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *title;
 
 @end
