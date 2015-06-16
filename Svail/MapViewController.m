@@ -469,10 +469,7 @@
 
 }
 
-//- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation: (CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-//{
-//  CLLocationCoordinate2D zoomLocation = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-//}
+
 
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
@@ -581,9 +578,9 @@
 
     if ([User currentUser] != nil){
 
-        //if the user has 14 or less posts allow him to post.
-        if(([User currentUser].numberOfPosts < 14) || ([User currentUser].isPremium == true)){
-
+//        //if the user has 14 or less posts allow him to post.
+//        if(([User currentUser].numberOfPosts < 14) || ([User currentUser].isPremium == true)){
+//
 
             NSLog(@"%d number of posts", [User currentUser].numberOfPosts);
 
@@ -598,12 +595,12 @@
         [self presentViewController:postVC animated:true completion:nil];
 
 
-        }else{
-        //else if the user has more than 14 posts - then present an alert view controller and allow him to purchase paid version of our app.
-              [self displayNeedPremiumAlert];
-
-
-        }
+//        }else{
+////        //else if the user has more than 14 posts - then present an alert view controller and allow him to purchase paid version of our app.
+//              [self displayNeedPremiumAlert];
+//
+//
+//        }
 
     }else {
 
@@ -778,28 +775,28 @@
     [actionSheet showInView:self.view];
     
 }
-//Helper method to display error to user.
--(void)displayNeedPremiumAlert{
+////Helper method to display error to user.
+//-(void)displayNeedPremiumAlert{
+//
+//
+//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Your have posted 14 services for free" message:@"Would you like to keep posting? Go Premium!" delegate:self cancelButtonTitle:@"No, Thank You" otherButtonTitles:@"Let's Do it", nil];
+//
+//    [alertView show];
+//    
+//}
 
-
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Your have posted 14 services for free" message:@"Would you like to keep posting? Go Premium!" delegate:self cancelButtonTitle:@"No, Thank You" otherButtonTitles:@"Let's Do it", nil];
-
-    [alertView show];
-    
-}
-
-//actionsheet delegate method.
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-
-    if (buttonIndex == [alertView cancelButtonIndex]){
-
-    }else{
-        UIStoryboard *purchaseStoryBoard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
-        UIViewController *confirmPurchase = [purchaseStoryBoard instantiateViewControllerWithIdentifier:@"purchasePremiumNavVC"];
-        [self presentViewController:confirmPurchase animated:true completion:nil];
-    }
-
-}
+////actionsheet delegate method.
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//
+//    if (buttonIndex == [alertView cancelButtonIndex]){
+//
+//    }else{
+//        UIStoryboard *purchaseStoryBoard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
+//        UIViewController *confirmPurchase = [purchaseStoryBoard instantiateViewControllerWithIdentifier:@"purchasePremiumNavVC"];
+//        [self presentViewController:confirmPurchase animated:true completion:nil];
+//    }
+//
+//}
 
 
 

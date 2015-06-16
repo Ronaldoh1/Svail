@@ -56,6 +56,9 @@
 		3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */; };
 		3E8D289F1AE382A800D7D648 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8D289E1AE382A800D7D648 /* UserProfile.storyboard */; };
 		3E968BD31AED9F2B009FB31F /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E968BD21AED9F2B009FB31F /* ProfileImageView.m */; };
+		F2292F4E1B2E9BAF003D82D5 /* SubscriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2292F4D1B2E9BAF003D82D5 /* SubscriptionViewController.m */; };
+		F2292F521B2EA30A003D82D5 /* PurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2292F501B2EA30A003D82D5 /* PurchaseViewController.m */; };
+		F2292F531B2EA30A003D82D5 /* PurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2292F511B2EA30A003D82D5 /* PurchaseViewController.xib */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
 		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
 		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
@@ -202,6 +205,11 @@
 		3E968BD21AED9F2B009FB31F /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageView.m; path = Svail/ProfileImageView.m; sourceTree = "<group>"; };
 		A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.release.xcconfig"; sourceTree = "<group>"; };
 		D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.debug.xcconfig"; sourceTree = "<group>"; };
+		F2292F4C1B2E9BAF003D82D5 /* SubscriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionViewController.h; sourceTree = "<group>"; };
+		F2292F4D1B2E9BAF003D82D5 /* SubscriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriptionViewController.m; sourceTree = "<group>"; };
+		F2292F4F1B2EA30A003D82D5 /* PurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseViewController.h; sourceTree = "<group>"; };
+		F2292F501B2EA30A003D82D5 /* PurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseViewController.m; sourceTree = "<group>"; };
+		F2292F511B2EA30A003D82D5 /* PurchaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PurchaseViewController.xib; sourceTree = "<group>"; };
 		F232741C1AECF3E00019CE62 /* SelectTimeSlotsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTimeSlotsViewController.h; sourceTree = "<group>"; };
 		F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTimeSlotsViewController.m; sourceTree = "<group>"; };
 		F232741F1AED59CB0019CE62 /* CustomSelectTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSelectTimeCell.h; sourceTree = "<group>"; };
@@ -621,6 +629,11 @@
 			isa = PBXGroup;
 			children = (
 				F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */,
+				F2292F4C1B2E9BAF003D82D5 /* SubscriptionViewController.h */,
+				F2292F4D1B2E9BAF003D82D5 /* SubscriptionViewController.m */,
+				F2292F4F1B2EA30A003D82D5 /* PurchaseViewController.h */,
+				F2292F501B2EA30A003D82D5 /* PurchaseViewController.m */,
+				F2292F511B2EA30A003D82D5 /* PurchaseViewController.xib */,
 				36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */,
 				36EBB0251AE822A80045AF92 /* ConfirmPurchaseViewController.h */,
 			);
@@ -740,6 +753,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F262CB691AEACAED00988E5B /* mapicon.png in Resources */,
+				F2292F531B2EA30A003D82D5 /* PurchaseViewController.xib in Resources */,
 				F2F94D2D1AE7FD0C0092C583 /* facebook-share-buttons.png in Resources */,
 				36DE955D1ADDC93900ABDB93 /* TwitterKitResources.bundle in Resources */,
 				F24B362B1ADC6B3C006153EC /* Verification.storyboard in Resources */,
@@ -856,6 +870,7 @@
 				36EBB0241AE80F550045AF92 /* ReviewReservationViewController.m in Sources */,
 				365847E31AF1AD6F00013A88 /* PickTimeSlotViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
+				F2292F4E1B2E9BAF003D82D5 /* SubscriptionViewController.m in Sources */,
 				3E968BD31AED9F2B009FB31F /* ProfileImageView.m in Sources */,
 				367343921AFF1A1A00D05431 /* PostServiceSlotsViewController.m in Sources */,
 				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
@@ -881,6 +896,7 @@
 				36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */,
 				F2FE7E4C1B03D49F00CDD057 /* MainTutorialViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
+				F2292F521B2EA30A003D82D5 /* PurchaseViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */,
 				F24B36461ADCB320006153EC /* Image.m in Sources */,

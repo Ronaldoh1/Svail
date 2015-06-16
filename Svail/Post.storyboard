@@ -24,20 +24,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="UiV-xp-9I1"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Service Description" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DzA-uh-Jv6">
-                                <rect key="frame" x="16" y="110" width="382" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="8iy-Ta-lMP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="iCd-3u-c9q"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Service Category" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HRL-xO-mg2">
                                 <rect key="frame" x="16" y="148" width="382" height="30"/>
@@ -46,9 +32,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="Mao-wV-jM4"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Capacity" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="BBP-wV-FkX">
                                 <rect key="frame" x="16" y="262" width="135" height="30"/>
@@ -57,11 +40,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchDown" id="GQ9-cK-Ugi"/>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="qZ5-eu-W1Q"/>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchCancel" id="zV2-rD-L4d"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mVy-cJ-xD1">
                                 <rect key="frame" x="16" y="300" width="382" height="30"/>
@@ -71,14 +49,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchUpOutside" id="5Wh-o9-LKH"/>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchUpInside" id="Bkp-ZI-gsd"/>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchDown" id="FG5-H1-A5H"/>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="VqF-kt-tbE"/>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="touchCancel" id="u6r-BD-aER"/>
-                                    <action selector="onLocationLabelTapped:" destination="ZlP-UW-QQ6" eventType="editingDidBegin" id="MJe-zc-JjV"/>
-                                </connections>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vv0-FE-9j9">
                                 <rect key="frame" x="16" y="338" width="382" height="34"/>
@@ -94,10 +64,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEnd" id="Ahg-Ka-X5V"/>
-                                    <action selector="hideKeyBoardForLocationTextField:" destination="ZlP-UW-QQ6" eventType="editingDidEndOnExit" id="ppt-yM-KlS"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Service Date" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="B1D-Nb-50q">
                                 <rect key="frame" x="128" y="186" width="270" height="30"/>
@@ -127,8 +93,8 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8T-7K-fb1">
                                 <rect key="frame" x="0.0" y="262" width="414" height="493"/>
                                 <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ajm-4A-eq2">
-                                        <rect key="frame" x="0.0" y="22" width="414" height="100"/>
+                                    <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ajm-4A-eq2">
+                                        <rect key="frame" x="0.0" y="36" width="414" height="162"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="lCO-z7-jGB"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="tNg-9H-ffe"/>
@@ -142,8 +108,8 @@
                                             </mask>
                                         </variation>
                                     </datePicker>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9a-dl-LdT">
-                                        <rect key="frame" x="301" y="182" width="49" height="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9a-dl-LdT">
+                                        <rect key="frame" x="301" y="106" width="49" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="8a6-jd-kMG"/>
                                         </constraints>
@@ -154,8 +120,8 @@
                                             <action selector="onDonePickingDate:" destination="ZlP-UW-QQ6" eventType="touchUpInside" id="Hl8-a5-oj3"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Start Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuN-rE-BPr">
-                                        <rect key="frame" x="114" y="8" width="187" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select A Start Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuN-rE-BPr">
+                                        <rect key="frame" x="114" y="-68" width="187" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="aFg-O9-Eg5"/>
                                         </constraints>
@@ -206,6 +172,26 @@
                                     <action selector="onPickStartDateButtonTapped:" destination="ZlP-UW-QQ6" eventType="touchUpInside" id="gID-ca-eKD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6s-c8-rK0">
+                                <rect key="frame" x="16" y="300" width="382" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="XAh-b1-eQq"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onLocationButtonTapped:" destination="ZlP-UW-QQ6" eventType="touchUpInside" id="OUL-bx-NTH"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Service Description" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DzA-uh-Jv6">
+                                <rect key="frame" x="16" y="110" width="382" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8iy-Ta-lMP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -216,10 +202,13 @@
                             <constraint firstItem="HRL-xO-mg2" firstAttribute="top" secondItem="DzA-uh-Jv6" secondAttribute="bottom" constant="8" id="5Sy-C2-eAs"/>
                             <constraint firstItem="VzK-az-Yql" firstAttribute="leading" secondItem="gX2-I8-CXX" secondAttribute="leadingMargin" id="8t8-St-vOE"/>
                             <constraint firstAttribute="centerX" secondItem="xdY-Mf-fnQ" secondAttribute="centerX" id="9g7-Qs-dmU"/>
+                            <constraint firstItem="G6s-c8-rK0" firstAttribute="top" secondItem="6P9-IM-1Uj" secondAttribute="bottom" constant="8" id="AqA-eg-Fsp"/>
                             <constraint firstItem="6P9-IM-1Uj" firstAttribute="trailing" secondItem="mVy-cJ-xD1" secondAttribute="trailing" id="BJt-om-c69"/>
                             <constraint firstItem="BBP-wV-FkX" firstAttribute="leading" secondItem="HRL-xO-mg2" secondAttribute="leading" id="CyU-WF-Mgf"/>
                             <constraint firstItem="e8n-mG-Ipq" firstAttribute="leading" secondItem="gX2-I8-CXX" secondAttribute="leadingMargin" id="Gwx-ht-qtw"/>
+                            <constraint firstItem="G6s-c8-rK0" firstAttribute="leading" secondItem="gX2-I8-CXX" secondAttribute="leadingMargin" id="HSt-R4-IeY"/>
                             <constraint firstItem="BBP-wV-FkX" firstAttribute="top" secondItem="HRL-xO-mg2" secondAttribute="bottom" constant="84" id="IsA-PM-sr0"/>
+                            <constraint firstItem="G6s-c8-rK0" firstAttribute="trailing" secondItem="gX2-I8-CXX" secondAttribute="trailingMargin" id="IyD-0A-z9P"/>
                             <constraint firstItem="e8n-mG-Ipq" firstAttribute="trailing" secondItem="gX2-I8-CXX" secondAttribute="trailingMargin" id="LCl-sE-243"/>
                             <constraint firstItem="VzK-az-Yql" firstAttribute="top" secondItem="mVy-cJ-xD1" secondAttribute="bottom" constant="70" id="MaQ-bv-Mhi"/>
                             <constraint firstItem="HRL-xO-mg2" firstAttribute="top" secondItem="DzA-uh-Jv6" secondAttribute="bottom" constant="8" id="O0c-6u-ln3"/>

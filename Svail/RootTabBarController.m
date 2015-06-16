@@ -19,7 +19,7 @@
 
 
 
-
+    //Change the color of the tab bar 
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0]];
     
     UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
