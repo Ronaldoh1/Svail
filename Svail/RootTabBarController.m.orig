@@ -19,7 +19,7 @@
 
 
 
-    //Change the color of the tab bar 
+
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0]];
     
     UIStoryboard *mapStoryboard = [UIStoryboard storyboardWithName:@"Map" bundle:nil];
@@ -54,6 +54,12 @@
     return newImage;
 }
 
+-(IBAction)unwindSegueFromLogInViewController:(UIStoryboardSegue *)segue
+
+{
+
+<<<<<<< HEAD
+=======
 
 #pragma Mark - Unwind Segues
 
@@ -61,6 +67,7 @@
 
 {
 
+>>>>>>> 1af05fdfdd8b057ec0277be5e4416ac2d3bd5b18
 }
 
 -(IBAction)unwindSegueFromRegisterViewController:(UIStoryboardSegue *)segue
@@ -68,6 +75,9 @@
 {
     
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1af05fdfdd8b057ec0277be5e4416ac2d3bd5b18
 
 @end

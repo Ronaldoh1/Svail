@@ -1,98 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ohV-LM-Xyw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="n1l-X9-Oo4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Confirm Purchase View Controller-->
+        <!--Subscription View Controller-->
         <scene sceneID="cSO-8I-oNX">
             <objects>
-                <viewController id="n1l-X9-Oo4" customClass="ConfirmPurchaseViewController" sceneMemberID="viewController">
+                <viewController id="n1l-X9-Oo4" customClass="SubscriptionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4cZ-Hs-R4f"/>
                         <viewControllerLayoutGuide type="bottom" id="By1-L8-nah"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JOh-3c-BbW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ws5-PN-i3M">
-                                <rect key="frame" x="137" y="401" width="140" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You're currently a free Svail user" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bha-uZ-Ncd">
+                                <rect key="frame" x="16" y="116" width="288" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="xcz-mD-NZ9"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="ApplePayBTN_42pt__black_textLogo_">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="xcz-mD-NZ9"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="xcz-mD-NZ9"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="purchaseWithApplePayButton:" destination="n1l-X9-Oo4" eventType="touchUpInside" id="RyN-ZZ-27m"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXr-pf-bCC">
-                                <rect key="frame" x="195" y="362" width="25" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="dHK-pf-fQM"/>
-                                    <constraint firstAttribute="height" constant="25" id="eoW-6D-f2p"/>
+                                    <constraint firstAttribute="height" constant="46" id="E4T-If-xjv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="dHK-pf-fQM"/>
-                                        <exclude reference="eoW-6D-f2p"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="dHK-pf-fQM"/>
-                                        <include reference="eoW-6D-f2p"/>
-                                    </mask>
-                                </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioZ-gv-HR5">
+                                <rect key="frame" x="49" y="231" width="222" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0HB-zn-xug"/>
+                                </constraints>
+                                <state key="normal" title="Purchase One Year Subscription">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPurchaseButtonTapped:" destination="n1l-X9-Oo4" eventType="touchUpInside" id="GXU-bG-165"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="ws5-PN-i3M" secondAttribute="centerX" id="9qy-xh-uA2"/>
-                            <constraint firstAttribute="centerX" secondItem="YXr-pf-bCC" secondAttribute="centerX" id="GbO-ag-gVM"/>
-                            <constraint firstItem="YXr-pf-bCC" firstAttribute="top" secondItem="4cZ-Hs-R4f" secondAttribute="bottom" constant="168" id="Pkg-Ew-ob0"/>
-                            <constraint firstItem="ws5-PN-i3M" firstAttribute="top" secondItem="YXr-pf-bCC" secondAttribute="bottom" constant="13" id="pib-zN-XmF"/>
+                            <constraint firstItem="Bha-uZ-Ncd" firstAttribute="leading" secondItem="JOh-3c-BbW" secondAttribute="leadingMargin" id="1u3-vF-cGT"/>
+                            <constraint firstItem="ioZ-gv-HR5" firstAttribute="top" secondItem="Bha-uZ-Ncd" secondAttribute="bottom" constant="69" id="Mbi-it-xql"/>
+                            <constraint firstItem="Bha-uZ-Ncd" firstAttribute="trailing" secondItem="JOh-3c-BbW" secondAttribute="trailingMargin" id="RR8-Xe-NSS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ioZ-gv-HR5" secondAttribute="trailing" constant="33" id="SSy-Om-foP"/>
+                            <constraint firstItem="ioZ-gv-HR5" firstAttribute="leading" secondItem="JOh-3c-BbW" secondAttribute="leadingMargin" constant="33" id="VMY-9O-gbS"/>
+                            <constraint firstItem="Bha-uZ-Ncd" firstAttribute="top" secondItem="4cZ-Hs-R4f" secondAttribute="bottom" constant="52" id="xq4-nd-ypy"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="ws5-PN-i3M"/>
-                                <exclude reference="YXr-pf-bCC"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="GbO-ag-gVM"/>
-                                <exclude reference="Pkg-Ew-ob0"/>
-                                <exclude reference="9qy-xh-uA2"/>
-                                <exclude reference="pib-zN-XmF"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="ws5-PN-i3M"/>
-                                <include reference="YXr-pf-bCC"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="GbO-ag-gVM"/>
-                                <include reference="Pkg-Ew-ob0"/>
-                                <include reference="9qy-xh-uA2"/>
-                                <include reference="pib-zN-XmF"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="gb9-P8-es8">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="G0w-Av-i8f">
@@ -100,83 +55,22 @@
                                 <action selector="onCancelButtonTapped:" destination="n1l-X9-Oo4" id="G1F-RS-B62"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Pay" id="fJp-Gd-tVI">
-                            <connections>
-                                <action selector="onPayButtonTapped:" destination="n1l-X9-Oo4" id="avV-ps-LSH"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="disclosureLabel" destination="Bha-uZ-Ncd" id="wh7-A9-EXn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVq-Mr-ukL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3949.5" y="602"/>
-        </scene>
-        <!--Confirm Purchase-->
-        <scene sceneID="KHW-Zi-Eny">
-            <objects>
-                <viewController id="YSt-Ta-dF7" customClass="ConfirmPurchaseViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="avf-hv-Uee"/>
-                        <viewControllerLayoutGuide type="bottom" id="aXD-LM-NKu"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1Vp-it-dnt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDy-Yf-iLb">
-                                <rect key="frame" x="137" y="401" width="140" height="42"/>
-                                <state key="normal" backgroundImage="ApplePayBTN_42pt__black_textLogo_">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="purchaseWithApplePayButton:" destination="YSt-Ta-dF7" eventType="touchUpInside" id="zq1-HV-jep"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="OR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sho-cg-9no">
-                                <rect key="frame" x="195" y="362" width="25" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please enter your card number to request service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMw-in-Etu">
-                                <rect key="frame" x="19" y="72" width="379" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="Bgi-Bo-h5d"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="sho-cg-9no" firstAttribute="centerX" secondItem="iDy-Yf-iLb" secondAttribute="centerX" id="2aG-2M-ORx"/>
-                            <constraint firstItem="aMw-in-Etu" firstAttribute="leading" secondItem="1Vp-it-dnt" secondAttribute="leadingMargin" constant="3" id="47N-VZ-hzR"/>
-                            <constraint firstItem="aXD-LM-NKu" firstAttribute="top" secondItem="iDy-Yf-iLb" secondAttribute="bottom" constant="293" id="DDM-A9-WZ5"/>
-                            <constraint firstItem="iDy-Yf-iLb" firstAttribute="centerX" secondItem="1Vp-it-dnt" secondAttribute="centerX" id="GRa-Qb-RPa"/>
-                            <constraint firstItem="iDy-Yf-iLb" firstAttribute="top" secondItem="sho-cg-9no" secondAttribute="bottom" constant="18" id="KKS-ay-lnp"/>
-                            <constraint firstItem="aMw-in-Etu" firstAttribute="trailing" secondItem="1Vp-it-dnt" secondAttribute="trailingMargin" id="Q95-TN-Xei"/>
-                            <constraint firstItem="aMw-in-Etu" firstAttribute="top" secondItem="avf-hv-Uee" secondAttribute="bottom" constant="8" symbolic="YES" id="xh8-X4-c57"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Confirm Purchase" id="lWI-Pz-t20">
-                        <barButtonItem key="rightBarButtonItem" title="Pay" id="JKy-Ji-Geg">
-                            <connections>
-                                <action selector="onPayButtonTapped:" destination="YSt-Ta-dF7" id="aFy-94-4Ck"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="px9-BU-7ZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1812" y="332"/>
+            <point key="canvasLocation" x="3953" y="602"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gpM-fo-PY5">
             <objects>
                 <navigationController storyboardIdentifier="purchasePremiumNavVC" automaticallyAdjustsScrollViewInsets="NO" id="ohV-LM-Xyw" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WXC-H5-0EL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -191,7 +85,4 @@
             <point key="canvasLocation" x="3031.5" y="602"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ApplePayBTN_42pt__black_textLogo_" width="140" height="42"/>
-    </resources>
 </document>

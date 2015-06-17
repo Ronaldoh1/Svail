@@ -310,6 +310,10 @@
 }
 
 
+- (IBAction)onLocationButtonTapped:(id)sender {
+    [self resignFirstResponder];
+    [self performSegueWithIdentifier:@"toSelectLocationFromMap" sender:self];
+}
 
 //hide keyboard when user touches outside.
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -339,19 +343,7 @@
 
 }
 
-#pragma Marks - hiding keyboard
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
 
-    [self.view endEditing:true];
-    return true;
-}
-
-
-- (IBAction)hideKeyBoardForLocationTextField:(UITextField *)sender {
-    [sender resignFirstResponder];
-
-}
 //set the delegate for textfields.
 //Helpers method to set the delegates of the textfields.
 -(void)setDelegatesForTextFields{

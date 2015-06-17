@@ -162,7 +162,7 @@
 
     //zooming map to current location at startup
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.01 * NSEC_PER_SEC);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         // Do something...
 
@@ -185,6 +185,8 @@
      {
          self.eventsArray = [NSMutableArray arrayWithArray:array];
          [self filterEventsForDate:self.segmentedControl];
+
+
 
          [self.mapView reloadInputViews];
      }];
@@ -303,12 +305,14 @@
     {
         UIButton *requestButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         requestButton.frame = CGRectMake(0, 0, 70, 20);
-        [requestButton setTitle:@"Request" forState:UIControlStateNormal];
+        [requestButton setTitle:@"info" forState:UIControlStateNormal];
         [requestButton setTitleColor:[UIColor colorWithRed:100/255.0 green:233/255.0 blue:134/255.0 alpha:1.0] forState:UIControlStateNormal];
         requestButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
         [requestButton.layer setBorderWidth:1];
         [requestButton.layer setBorderColor:[UIColor colorWithRed:100/255.0 green:233/255.0 blue:134/255.0 alpha:1.0].CGColor];
         pinAnnotation.rightCalloutAccessoryView = requestButton;
+
+
     }else if (self.serviceParticipants.count == [customAnnotation.service.capacity integerValue])
     {
         UILabel *fullLabel = [UILabel new];
@@ -465,10 +469,7 @@
 
 }
 
-//- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation: (CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-//{
-//  CLLocationCoordinate2D zoomLocation = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-//}
+
 
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
@@ -577,9 +578,9 @@
 
     if ([User currentUser] != nil){
 
-        //if the user has 14 or less posts allow him to post.
-        if(([User currentUser].numberOfPosts <= 14) || ([User currentUser].isPremium == true)){
-
+//        //if the user has 14 or less posts allow him to post.
+//        if(([User currentUser].numberOfPosts < 14) || ([User currentUser].isPremium == true)){
+//
 
             NSLog(@"%d number of posts", [User currentUser].numberOfPosts);
 
@@ -594,12 +595,12 @@
         [self presentViewController:postVC animated:true completion:nil];
 
 
-        }else{
-        //else if the user has more than 14 posts - then present an alert view controller and allow him to purchase paid version of our app.
-              [self displayNeedPremiumAlert];
-
-
-        }
+//        }else{
+////        //else if the user has more than 14 posts - then present an alert view controller and allow him to purchase paid version of our app.
+//              [self displayNeedPremiumAlert];
+//
+//
+//        }
 
     }else {
 
@@ -657,7 +658,7 @@
 
                 //Present an alert when the user cancels the login
 
-                NSString *alertMessage = @"There was a problem logging in. You must Svail to use your facebook account to log you in";
+                NSString *alertMessage = @"There was a problem logging in. You must allow Svail to use your facebook account to log in";
 
                 NSString *alertTitle =@"Oops - Facebook Login was canceled";
 
@@ -681,29 +682,26 @@
 
                 //set the number of posts
                 [User currentUser].numberOfPosts = 0;
-                [User currentUser].isPremium = false;
-           
+//                [User currentUser].isPremium = false;
+
+                //create a new installation for this user.
 
                 [[PFInstallation currentInstallation] setObject:[User currentUser] forKey:@"user"];
 
                 [[PFInstallation currentInstallation] saveInBackground];
 
+                //present the edit profile view controller.
                 UIStoryboard *profileStoryBoard = [UIStoryboard storyboardWithName:@"EditProfile" bundle:nil];
                 EditProfileViewController *editProfileVC = [profileStoryBoard instantiateViewControllerWithIdentifier:@"editProfileNavVC"];
                 [self presentViewController:editProfileVC animated:true completion:nil];
 
-                //we want to enable the history tab
 
-//                [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:TRUE];
-//
-//                NSLog(@"User signed up and logged in through Facebook!");
-
-
-
-
-                NSLog(@"%@", user);
             } else {
 
+                UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UIViewController *mainTabBarVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarVC"];
+                [self presentViewController:mainTabBarVC animated:true completion:nil];
+                
                 //Enable the history tab
                 [[[[self.tabBarController tabBar]items]objectAtIndex:2]setEnabled:TRUE];
                 NSLog(@"User logged in through Facebook!");
@@ -777,28 +775,28 @@
     [actionSheet showInView:self.view];
     
 }
-//Helper method to display error to user.
--(void)displayNeedPremiumAlert{
+////Helper method to display error to user.
+//-(void)displayNeedPremiumAlert{
+//
+//
+//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Your have posted 14 services for free" message:@"Would you like to keep posting? Go Premium!" delegate:self cancelButtonTitle:@"No, Thank You" otherButtonTitles:@"Let's Do it", nil];
+//
+//    [alertView show];
+//    
+//}
 
-
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Your have posted 14 services for free" message:@"Would you like to keep posting? Go Premium!" delegate:self cancelButtonTitle:@"No, Thank You" otherButtonTitles:@"Let's Do it", nil];
-
-    [alertView show];
-    
-}
-
-//actionsheet delegate method.
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-
-    if (buttonIndex == [alertView cancelButtonIndex]){
-
-    }else{
-        UIStoryboard *purchaseStoryBoard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
-        UIViewController *confirmPurchase = [purchaseStoryBoard instantiateViewControllerWithIdentifier:@"purchasePremiumNavVC"];
-        [self presentViewController:confirmPurchase animated:true completion:nil];
-    }
-
-}
+////actionsheet delegate method.
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//
+//    if (buttonIndex == [alertView cancelButtonIndex]){
+//
+//    }else{
+//        UIStoryboard *purchaseStoryBoard = [UIStoryboard storyboardWithName:@"Purchase" bundle:nil];
+//        UIViewController *confirmPurchase = [purchaseStoryBoard instantiateViewControllerWithIdentifier:@"purchasePremiumNavVC"];
+//        [self presentViewController:confirmPurchase animated:true completion:nil];
+//    }
+//
+//}
 
 
 

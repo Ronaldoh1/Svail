@@ -218,6 +218,13 @@ static NSString *const kReusableIdentifier = @"cell";
 
     [self.service.startTimes addObject: self.timesArray[indexPath.row]];
 
+
+//        if ([self.service.startTimes[0] timeIntervalSinceNow] < 0.0) {
+//            // Date has passed
+//
+//            NSLog(@"the date has passed");
+//        }
+
     NSLog(@"start times is at %@", self.service.startTimes);
 
     NSLog(@"%d",numberOfCellsToDisable);

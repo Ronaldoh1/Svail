@@ -39,11 +39,23 @@
     [self.navigationItem setTitleView:titleView];
 
 
-   self.arrayPageFirstLabel = @[@"Want to promote your service and earn some extra cash?",@"Concerned about meeting with strange people?",@"How much does it cost?", @"How can I purchase a full year subscription?", @"How do I get paid?", @"Advise for posting services", @"Requesting Services", @"Disclaimer"];
+   self.arrayPageFirstLabel = @[@"Want to promote your service and earn some extra cash?",
+                                @"Concerned about meeting with strangers?",
+                                @"How much does it cost?",
+                                @"How do I get paid?",
+                                @"Recommendation for posting services:",
+                                @"Requesting Services:", @"Disclaimer:"];
 
-    self.arrayPageSecondLabel = @[@"Svail makes it possible by connecting you with people around your city!", @"Svail provides a verification system on all users. A checkmark like the one below is displayed for all verified users with a safety level of 5 or greater.",@"Svail is free for the first 14 service posts. After that, Svail is $1.99 for a full year subcription.", @"After your 14 post, you will be prompted to pay with your credit or Apple Pay. PS - We do not store credit card information.", @"Svail does not handle payments. We recommend you use other third party apps for payments such as Venmo, Paypal or Square.", @"Your service will be disabled/removed when users flag it for inappropriate content.", @"Requesting services is completely free. You can search and request any available services. Some servervice provider can travel to you!",  @"Please take the necessary precautions when meeting other people."];
+    self.arrayPageSecondLabel = @[
+                                  @"Svail makes it possible by connecting you with people around your city!",
+                                  @"Svail provides a verification system for all users. A checkmark like the one below is displayed for all verified users with a safety level of 5 or greater.",
+                                  @"Svail will be free during its first 6 months.",
+                                  @"Svail does not handle any payment. Svail only provides the connection between provider and requester.  We recommend you use other third party apps for payments such as Venmo, Paypal or Square.",
+                                  @"Your service will be disabled/removed when users flag it for inappropriate content. Do not use any profanity or inappropriate language.",
+                                  @"You can request any service based on your particular need. You can search and request any available services. Some service providers can travel to you!",
+                                  @"Please take the necessary precautions when meeting other people."];
 
-    self.arrayImages = @[@"SvailLogo", @"checkmark", @"money", @"applePay", @"questionMark", @"cautionImage.jpg", @"requestService", @"cautionImage"];
+    self.arrayImages = @[@"SvailLogo", @"checkmark", @"money", @"questionMark", @"questionMark", @"cautionImage.jpg", @"requestService", @"cautionImage"];
 
     // Create page view controller
     self.PageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -82,13 +94,11 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSUInteger index = ((PageContentViewController*) viewController).pageIndex;
-    if (index == NSNotFound)
-    {
+    if (index == NSNotFound){
         return nil;
     }
     index++;
-    if (index == [self.arrayPageFirstLabel count])
-    {
+    if (index == [self.arrayPageFirstLabel count]){
         return nil;
     }
     return [self viewControllerAtIndex:index];

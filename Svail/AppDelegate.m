@@ -20,7 +20,7 @@
 #import "Rating.h"
 #import "Verification.h"
 #import "Reference.h"
-#import <Stripe/Stripe.h>
+//#import <Stripe/Stripe.h>
 #import "HockeySDK.h"
 
 
@@ -38,7 +38,11 @@ NSString * const StripePublishableKey = @"pk_test_MHARLds9Wz6gEyNgBOpVruIR";
     // Override point for customization after application launch.
     
    
-    
+
+
+//    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
+
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
@@ -51,8 +55,8 @@ NSString * const StripePublishableKey = @"pk_test_MHARLds9Wz6gEyNgBOpVruIR";
 
 
     //set up stripe
-
-    [Stripe setDefaultPublishableKey:StripePublishableKey];
+//
+//    [Stripe setDefaultPublishableKey:StripePublishableKey];
 
 
     //Setup Push Notifications

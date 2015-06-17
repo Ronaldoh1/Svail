@@ -43,11 +43,9 @@
 		36DE955E1ADDC93900ABDB93 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE955B1ADDC93900ABDB93 /* Fabric.framework */; };
 		36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB01A1AE5F6D50045AF92 /* Reference.m */; };
 		36EBB0241AE80F550045AF92 /* ReviewReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0231AE80F550045AF92 /* ReviewReservationViewController.m */; };
-		36EBB0271AE822A80045AF92 /* ConfirmPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */; };
 		3E13ED871AF0AAD700C0CB1C /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E13ED851AF0AAD700C0CB1C /* HistoryViewController.m */; };
 		3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036DC1ADD882600C4A0A0 /* MapViewController.m */; };
 		3E4036E61ADD90A500C4A0A0 /* EventLocationDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */; };
-		3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E80C4951AE4C85800405828 /* ParticipantsViewController.m */; };
 		3E8324971AF0FC4D00DDA24E /* CustomPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8324961AF0FC4D00DDA24E /* CustomPinAnnotation.m */; };
 		3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E83BB8E1AE6B93C0064AE89 /* CustomPointAnnotation.m */; };
 		3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A669D1ADC7D7200EF976F /* SignUpViewController.swift */; };
@@ -57,6 +55,7 @@
 		3E8D289D1AE381F900D7D648 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */; };
 		3E8D289F1AE382A800D7D648 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8D289E1AE382A800D7D648 /* UserProfile.storyboard */; };
 		3E968BD31AED9F2B009FB31F /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E968BD21AED9F2B009FB31F /* ProfileImageView.m */; };
+		F2292F4E1B2E9BAF003D82D5 /* SubscriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2292F4D1B2E9BAF003D82D5 /* SubscriptionViewController.m */; };
 		F24B35A31ADB7E54006153EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A21ADB7E54006153EC /* main.m */; };
 		F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A51ADB7E54006153EC /* AppDelegate.m */; };
 		F24B35A91ADB7E54006153EC /* Svail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F24B35A71ADB7E54006153EC /* Svail.xcdatamodeld */; };
@@ -79,7 +78,6 @@
 		F24B36311ADC6EDD006153EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24B36301ADC6EDD006153EC /* MapKit.framework */; };
 		F24B36381ADC781F006153EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24B36371ADC781F006153EC /* LoginViewController.swift */; };
 		F24B363D1ADCA6D0006153EC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B363C1ADCA6D0006153EC /* User.m */; };
-		F24B36431ADCB0E8006153EC /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36421ADCB0E8006153EC /* Purchase.m */; };
 		F24B36461ADCB320006153EC /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36451ADCB320006153EC /* Image.m */; };
 		F24B36491ADCB534006153EC /* Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36481ADCB534006153EC /* Rating.m */; };
 		F24B364C1ADCB645006153EC /* Verification.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B364B1ADCB645006153EC /* Verification.m */; };
@@ -91,7 +89,6 @@
 		F268B4991AE4D6D9008F2370 /* fbloginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F268B4981AE4D6D9008F2370 /* fbloginButton.png */; };
 		F2A4FC011ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4FC001ADEF1E30022AAB8 /* SelectLocationFromMapViewController.m */; };
 		F2F1C5A71AEEA773000C4BEF /* GenerateTimeSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F1C5A61AEEA773000C4BEF /* GenerateTimeSlot.m */; };
-		F2F1C5B41AEF6394000C4BEF /* Purchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */; };
 		F2F1C5B91AF102E7000C4BEF /* PostSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24B36531ADD4FBF006153EC /* PostSummaryViewController.m */; };
 		F2F94D291AE785BA0092C583 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D281AE785BA0092C583 /* Social.framework */; };
 		F2F94D2B1AE785C00092C583 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F94D2A1AE785C00092C583 /* Accounts.framework */; };
@@ -187,8 +184,6 @@
 		3E4036DC1ADD882600C4A0A0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3E4036E41ADD90A500C4A0A0 /* EventLocationDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocationDownloader.h; sourceTree = "<group>"; };
 		3E4036E51ADD90A500C4A0A0 /* EventLocationDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocationDownloader.m; sourceTree = "<group>"; };
-		3E80C4941AE4C85800405828 /* ParticipantsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantsViewController.h; sourceTree = "<group>"; };
-		3E80C4951AE4C85800405828 /* ParticipantsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsViewController.m; sourceTree = "<group>"; };
 		3E8324951AF0FC4D00DDA24E /* CustomPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPinAnnotation.h; sourceTree = "<group>"; };
 		3E8324961AF0FC4D00DDA24E /* CustomPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPinAnnotation.m; sourceTree = "<group>"; };
 		3E83BB8D1AE6B93C0064AE89 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
@@ -205,6 +200,11 @@
 		3E968BD21AED9F2B009FB31F /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageView.m; path = Svail/ProfileImageView.m; sourceTree = "<group>"; };
 		A136A7F36C2EEAEA88027034 /* Pods-Svail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.release.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.release.xcconfig"; sourceTree = "<group>"; };
 		D5BD42A6ED01621FC10A9AFB /* Pods-Svail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Svail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Svail/Pods-Svail.debug.xcconfig"; sourceTree = "<group>"; };
+		F2292F4C1B2E9BAF003D82D5 /* SubscriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriptionViewController.h; sourceTree = "<group>"; };
+		F2292F4D1B2E9BAF003D82D5 /* SubscriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriptionViewController.m; sourceTree = "<group>"; };
+		F2292F4F1B2EA30A003D82D5 /* PurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseViewController.h; sourceTree = "<group>"; };
+		F2292F501B2EA30A003D82D5 /* PurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseViewController.m; sourceTree = "<group>"; };
+		F2292F511B2EA30A003D82D5 /* PurchaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PurchaseViewController.xib; sourceTree = "<group>"; };
 		F232741C1AECF3E00019CE62 /* SelectTimeSlotsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTimeSlotsViewController.h; sourceTree = "<group>"; };
 		F232741D1AECF3E00019CE62 /* SelectTimeSlotsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTimeSlotsViewController.m; sourceTree = "<group>"; };
 		F232741F1AED59CB0019CE62 /* CustomSelectTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSelectTimeCell.h; sourceTree = "<group>"; };
@@ -375,8 +375,6 @@
 			children = (
 				3E8D28921AE30E8C00D7D648 /* EditProfileViewController.h */,
 				3E8D28931AE30E8C00D7D648 /* EditProfileViewController.m */,
-				3E80C4941AE4C85800405828 /* ParticipantsViewController.h */,
-				3E80C4951AE4C85800405828 /* ParticipantsViewController.m */,
 				3E8D289B1AE381F900D7D648 /* UserProfileViewController.h */,
 				3E8D289C1AE381F900D7D648 /* UserProfileViewController.m */,
 				3E8D28971AE30ED600D7D648 /* EditProfile.storyboard */,
@@ -626,6 +624,11 @@
 			isa = PBXGroup;
 			children = (
 				F2F1C5B31AEF6394000C4BEF /* Purchase.storyboard */,
+				F2292F4C1B2E9BAF003D82D5 /* SubscriptionViewController.h */,
+				F2292F4D1B2E9BAF003D82D5 /* SubscriptionViewController.m */,
+				F2292F4F1B2EA30A003D82D5 /* PurchaseViewController.h */,
+				F2292F501B2EA30A003D82D5 /* PurchaseViewController.m */,
+				F2292F511B2EA30A003D82D5 /* PurchaseViewController.xib */,
 				36EBB0261AE822A80045AF92 /* ConfirmPurchaseViewController.m */,
 				36EBB0251AE822A80045AF92 /* ConfirmPurchaseViewController.h */,
 			);
@@ -752,7 +755,6 @@
 				F2F94D2F1AE7FD240092C583 /* TweetIt.png in Resources */,
 				F24B362D1ADC6B4B006153EC /* Post.storyboard in Resources */,
 				F2FE7E5D1B04743700CDD057 /* SvailScreenShot.png in Resources */,
-				F2F1C5B41AEF6394000C4BEF /* Purchase.storyboard in Resources */,
 				F2FE7E531B046DD500CDD057 /* money.jpg in Resources */,
 				F24B36251ADC6AF1006153EC /* Map.storyboard in Resources */,
 				F2FE7E5B1B04702600CDD057 /* cautionImage.jpg in Resources */,
@@ -861,13 +863,13 @@
 				36EBB0241AE80F550045AF92 /* ReviewReservationViewController.m in Sources */,
 				365847E31AF1AD6F00013A88 /* PickTimeSlotViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
+				F2292F4E1B2E9BAF003D82D5 /* SubscriptionViewController.m in Sources */,
 				3E968BD31AED9F2B009FB31F /* ProfileImageView.m in Sources */,
 				367343921AFF1A1A00D05431 /* PostServiceSlotsViewController.m in Sources */,
 				F24B365F1ADE2015006153EC /* SelectImageViewController.m in Sources */,
 				F2FE7E4F1B03D52900CDD057 /* PageContentViewController.m in Sources */,
 				364DF31E1AEF566700E0DFF6 /* ServiceImagesCollectionViewCell.m in Sources */,
 				367343981B007BA700D05431 /* Reservation.m in Sources */,
-				F24B36431ADCB0E8006153EC /* Purchase.m in Sources */,
 				364DF30C1AEDA2F600E0DFF6 /* CustomViewUtilities.m in Sources */,
 				3673439B1B00896A00D05431 /* ServiceImageView.m in Sources */,
 				F24B35A61ADB7E54006153EC /* AppDelegate.m in Sources */,
@@ -885,7 +887,6 @@
 				364CBE9C1AEF7FC200754D9C /* RootTabBarController.m in Sources */,
 				36EBB01B1AE5F6D50045AF92 /* Reference.m in Sources */,
 				F2FE7E4C1B03D49F00CDD057 /* MainTutorialViewController.m in Sources */,
-				3E80C4961AE4C85800405828 /* ParticipantsViewController.m in Sources */,
 				3666FD901ADDB4CE00105272 /* SocialVeriViewController.m in Sources */,
 				F24B364F1ADCD911006153EC /* PostViewController.m in Sources */,
 				3E83BB8F1AE6B93C0064AE89 /* CustomPointAnnotation.m in Sources */,
@@ -895,7 +896,6 @@
 				36C850231AF1615D00235A87 /* ServiceSlot.m in Sources */,
 				3E4036DD1ADD882600C4A0A0 /* MapViewController.m in Sources */,
 				367343951AFF1A7200D05431 /* PostServiceSlotTableViewCell.m in Sources */,
-				36EBB0271AE822A80045AF92 /* ConfirmPurchaseViewController.m in Sources */,
 				3E8A66A01ADCA9D800EF976F /* CreateProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1039,8 +1039,6 @@
 					"-l\"Pods-Svail-HockeySDK\"",
 					"-l\"Pods-Svail-IOSLinkedInAPI\"",
 					"-l\"Pods-Svail-MBProgressHUD\"",
-					"-l\"Pods-Svail-PaymentKit\"",
-					"-l\"Pods-Svail-Stripe\"",
 					"-framework",
 					"\"AssetsLibrary\"",
 					"-framework",
