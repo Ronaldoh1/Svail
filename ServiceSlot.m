@@ -97,8 +97,6 @@
     } else {
         return HasFinished;
     }
-    
-    
 }
 
 -(void)checkStatusWithCompletion:(void (^)(ServiceSlotStatus))complete

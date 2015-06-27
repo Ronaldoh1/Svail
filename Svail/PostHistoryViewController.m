@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
 @property (nonatomic) Service *serviceToDelete;
 @property (nonatomic) Service *serviceToEdit;
+@property (nonnull) UILabel *noPostLabel;
 
 @end
 
@@ -29,6 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.currentUser = [User currentUser];
+    [self loadPostedServices];
     
 }
 
@@ -53,6 +56,7 @@
                  [self presentNoPostLabel];
                  
              } else {
+                 [self removeNoPostLabel];
                  self.services = objects.mutableCopy;
                  [self.servicesTableView reloadData];
              }
@@ -64,12 +68,17 @@
 {
     CGRect viewBounds = self.view.bounds;
     CGRect labelFrame = CGRectMake(viewBounds.origin.x + viewBounds.size.width / 2. - 100., 150. - 20., 200., 40.);
-    UILabel *label = [[UILabel alloc]initWithFrame:labelFrame];
-    label.text = @"You have no post.";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor lightGrayColor];
-    label.font = [UIFont systemFontOfSize:20];
-    [self.view addSubview:label];
+    self.noPostLabel = [[UILabel alloc]initWithFrame:labelFrame];
+    self.noPostLabel.text = @"You have no post.";
+    self.noPostLabel.textAlignment = NSTextAlignmentCenter;
+    self.noPostLabel.textColor = [UIColor lightGrayColor];
+    self.noPostLabel.font = [UIFont systemFontOfSize:20];
+    [self.view addSubview:self.noPostLabel];
+}
+
+-(void)removeNoPostLabel
+{
+    [self.noPostLabel removeFromSuperview];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

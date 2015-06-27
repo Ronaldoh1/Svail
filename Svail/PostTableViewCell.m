@@ -45,6 +45,13 @@ static const CGFloat kLableFontSize = 13.0;
     self.serviceImagesCollectionView.delegate = self;
     self.serviceImagesCollectionView.dataSource = self;
     
+    self.editButton.tag = self.tag;
+    self.deleteButton.tag = self.tag;
+    self.viewSlotsButton.tag = self.tag;
+    self.serviceImagesCollectionView.tag = self.tag;
+    
+    [self setupDefaultContent];
+    [self getServiceImages];
     
     [self setupTitleLabel];
     [self setupLocationLabel];
@@ -55,13 +62,26 @@ static const CGFloat kLableFontSize = 13.0;
     [self setupDateLabel];
     [self setupNumOfReservationsLabel];
     
-    self.editButton.tag = self.tag;
-    self.deleteButton.tag = self.tag;
-    self.viewSlotsButton.tag = self.tag;
-    self.serviceImagesCollectionView.tag = self.tag;
+
     
-    [self getServiceImages];
+}
+
+-(void)setupDefaultContent
+{
+    self.titleLabel.text = @"";
+    self.locationLabel.text = @"";
+    self.priceLabel.text = @"";
+    self.capacityLabel.text = @"";
+    self.categoryLabel.text = @"";
+    self.descriptionLabel.text = @"";
+    self.dateLabel.text = @"";
+    self.numOfReservationsLabel.text = @"";
     
+    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
+    for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
+        self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
+    }
+    [self.serviceImagesCollectionView reloadData];
 }
 
 -(void)setupTitleLabel
@@ -125,22 +145,13 @@ static const CGFloat kLableFontSize = 13.0;
 
 -(void)getServiceImages
 {
-    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
-    for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
-        self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
-    }
-    
-    [self.serviceImagesCollectionView reloadData];
     [self.service getServiceImageDataWithCompletion:^(NSDictionary *imageDataDict)
      {
-         NSUInteger imagesCount = [imageDataDict[@"count"] integerValue];
          NSData *imageData = imageDataDict[@"data"];
          NSUInteger imageIndex = [imageDataDict[@"index"] integerValue];
          self.serviceImageArray[imageIndex] = [UIImage imageWithData:imageData];
-         for (int i = imagesCount; i < kMaxNumberOfServiceImages; i++) {
-             self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
-         }
-         [self.serviceImagesCollectionView reloadData];
+         NSIndexPath *imageIndexPath = [NSIndexPath indexPathForItem:imageIndex inSection:0];
+         [self.serviceImagesCollectionView reloadItemsAtIndexPaths:@[imageIndexPath]];
      }];
 }
 
