@@ -179,7 +179,7 @@ static float const kAlphaForButtonsIfNotVerified = 1.0;
         return;
     }
     
-    NSString *message = [NSString stringWithFormat:@"Please help your friend %@ complete a simple safety check in order to Svail. If you think %@ is a trustworthy person, please reply this message with %@'s 10-digit cell phone number. Do not use any any punctuations eg. dashes, periods, parenthesis etc. If you think otherwise, please don't reply. Thank you!", [User currentUser].name, [User currentUser].name, [User currentUser].name];
+    NSString *message = [NSString stringWithFormat:@"Please help your friend %@ complete a simple safety check in order to use Svail. If you think %@ is a trustworthy person, please reply this message with %@'s 10-digit cell phone number. Do not use any any punctuations eg. dashes, periods, parenthesis etc. If you think otherwise, please don't reply. Thank you!", [User currentUser].name, [User currentUser].name, [User currentUser].name];
     for (int i = (int)(self.currentUser.verification.references.count); i < 3; i++) {
         UITextField *textField = self.phoneNumberTextFields[i];
         if (![textField.text isEqualToString:@""]) {

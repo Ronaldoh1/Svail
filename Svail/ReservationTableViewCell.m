@@ -13,16 +13,23 @@
 #import "CustomViewUtilities.h"
 #import "ServiceImagesCollectionViewCell.h"
 #import "ParticipantCollectionViewCell.h"
-#import "ProfileImageView.h"
 #import "RatingViewController.h"
+#import "MBProgressHUD.h"
+
 
 
 @interface ReservationTableViewCell () <UICollectionViewDelegate,UICollectionViewDataSource>
 
 
+@property (nonatomic) User *provider;
+@property (nonatomic) NSArray *participants;
+@property (nonatomic) NSMutableArray *serviceImageArray;
+@property (nonatomic) Service *service;
+@property (nonatomic) ServiceSlot *serviceSlot;
+@property (weak, nonatomic) IBOutlet UIView *providerContainerView;
+
 @property (weak, nonatomic) IBOutlet ProfileImageView *providerImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *safetyBadgeImageView;
-
 @property (weak, nonatomic) IBOutlet UILabel *providerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *servicesNumberLabel;
@@ -42,146 +49,197 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *serviceImagesCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *participantsCollectionView;
 
-@property (nonatomic) User *provider;
-@property (nonatomic) NSMutableArray *participants;
-@property (nonatomic) NSMutableArray *serviceImageArray;
-@property (nonatomic) Service *service;
-@property (nonatomic) ServiceSlot *serviceSlot;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rateButtonHeightConstraint;
+@property CGFloat rateButtonHeightConstant;
+
+@property (weak, nonatomic) NSLayoutConstraint *participantsLabelHeightConstraint;
+@property CGFloat participantsLabelHeightConstant;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *participantsCVHeightConstraint;
+@property CGFloat participantsCVHeightConstant;
 
 @end
 
 @implementation ReservationTableViewCell
 
-static const CGFloat kLabelFontSize = 10.0;
+static const CGFloat kLabelFontSize = 13.0;
 
--(void)awakeFromNib {
-    
-    if (self.reservation) {
-        
-    
+
+-(void)setupContent
+{
     self.participantsCollectionView.delegate = self;
     self.participantsCollectionView.dataSource = self;
     self.serviceImagesCollectionView.delegate = self;
     self.serviceImagesCollectionView.dataSource = self;
     
+    [self setupDefaultContent];
 
+    self.serviceSlot = self.reservation.serviceSlot;
+     self.service = self.serviceSlot.service;
+     self.provider = self.serviceSlot.service.provider;
     
-    PFQuery *serviceSlotQuery = [ServiceSlot query];
-    [serviceSlotQuery includeKey:@"service.provider.verification"];
-    [serviceSlotQuery includeKey:@"participants"];
-    serviceSlotQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    [serviceSlotQuery getObjectInBackgroundWithId:self.reservation.serviceSlot.objectId block:^(PFObject *object, NSError *error)
-     {
+     self.providerImageView.user = self.provider;
+     self.providerImageView.vc = self.vc;
+    
+    self.providerContainerView.layer.borderWidth = 0.5;
+    self.providerContainerView.layer.borderColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0].CGColor;
+    
+     [self setupProviderNameLabel];
+    [self setupProviderServiceNumberLabel];
+    [self setupProviderRatingLabel];
+    [self setupSafetyBadge];
+    
 
-         if (!error) {
-             self.serviceSlot = (ServiceSlot *)object;
-             self.service = self.serviceSlot.service;
-             self.provider = self.serviceSlot.service.provider;
-             
-             [self setupServiceImages];
-             [self setupTitleLabel];
-             [self setupPriceLabel];
-             [self setupCapacityLabel];
-             [self setupCategoryLabel];
-             [self setupDateLabel];
-             [self setupTimeLabel];
-             [self setupLocationLabel];
-             [self setupDescriptionLabel];
-             [self setupParticipantsItems];
-             [self setupReservedAtLabel];
-                 
+     [self setupTitleLabel];
+     [self setupPriceLabel];
+     [self setupCapacityLabel];
+     [self setupCategoryLabel];
+     [self setupDateLabel];
+     [self setupTimeLabel];
+     [self setupLocationLabel];
+     [self setupDescriptionLabel];
+     [self setupReservedAtLabel];
+     [self setupServiceImages];
+     [self setupParticipantsItems];
+     [self setupRateButton];
+}
 
-             self.providerNameLabel.text = self.serviceSlot.service.provider.name;
-             
-             if ([[self.provider.verification objectForKey:@"safetyLevel"] integerValue] >= 5) {
-                      self.safetyBadgeImageView.hidden = false;
-                  } else {
-                      self.safetyBadgeImageView.hidden = true;
-             }
-         
-             self.providerImageView.user = self.provider;
-             self.providerImageView.vc = self.vc;
-             
-              PFQuery *providerServiceQuery = [Service query];
-             [providerServiceQuery whereKey:@"provider" equalTo:self.service.provider];
-              PFQuery *providerServiceSlotsQuery = [ServiceSlot query];
-              [providerServiceSlotsQuery whereKey:@"service" matchesQuery:providerServiceQuery];
-              providerServiceSlotsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-              [providerServiceSlotsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-              {
-                   if (!error) {
-                       self.servicesNumberLabel.text = [NSString stringWithFormat:@"%lu",(long)(objects.count)];
-                       
-                   }
-                   
-              }];
-             
-             PFQuery *serviceQuery = [Service query];
-             [serviceQuery whereKey:@"provider" equalTo:self.provider];
-             PFQuery *serviceSlotQuery = [ServiceSlot query];
-             [serviceSlotQuery whereKey:@"service" matchesQuery:serviceQuery];
-             PFQuery *providerRatingsQuery = [Rating query];
-             [providerRatingsQuery whereKey:@"serviceSlot" matchesQuery:serviceSlotQuery];
-             providerRatingsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-              [providerRatingsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-               {
-                   if (!error) {
-                       self.ratingLabel.text = [NSString stringWithFormat:@"%.1f",[[objects valueForKeyPath:@"@avg.value"] doubleValue]];
-                   } else {
-                       self.ratingLabel.text = @"0";
-                   }
-               }];
-             
-             [self setupRateButton];
-             
-             
-          } else {
-                      //             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                      //            [alert show];
-                      return;
-          }
-                  
-    }];
+-(void)setupDefaultContent
+{
+    self.serviceTitleLabel.text = @"";
+    self.serviceLocationLabel.text = @"";
+    self.servicePriceLabel.text = @"";
+    self.serviceCapacityLabel.text = @"";
+    self.serviceCategoryLabel.text = @"";
+    self.serviceDescriptionLabel.text = @"";
+    self.serviceDateLabel.text = @"";
+    self.reservedAtLabel.text = @"";
+    self.serviceTimeLabel.text = @"";
+    self.ratingLabel.text = @"";
+    self.providerNameLabel.text = @"";
+    self.providerImageView.image = nil;
+    self.safetyBadgeImageView.hidden = true;
+    self.servicesNumberLabel.text = @"";
+    
+    self.rateButtonHeightConstant = 20;
+    self.rateButtonHeightConstraint.constant = 0.0;
+    self.rateButton.hidden = true;
+
+    self.participantsLabel.text = nil;
+    
+    self.participantsCVHeightConstant = 42;
+    self.participantsCVHeightConstraint.constant = 0.0;
+    self.participantsCollectionView.hidden = true;
+    
+    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
+    for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
+        self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
     }
+    [self.serviceImagesCollectionView reloadData];
+}
+
+-(void)updateConstraints
+{
+    [super updateConstraints];
+    [self.serviceImagesCollectionView addConstraint:[NSLayoutConstraint constraintWithItem:self.serviceImagesCollectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.serviceImagesCollectionView attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0.0]];
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    CGFloat imageHeight = self.serviceImagesCollectionView.bounds.size.height;
+    ((UICollectionViewFlowLayout *) self.serviceImagesCollectionView.collectionViewLayout).itemSize = CGSizeMake(imageHeight, imageHeight);
+}
+
+-(void)setupProviderNameLabel
+{
+    self.providerNameLabel.text = self.serviceSlot.service.provider.name;
+}
+
+-(void)setupProviderServiceNumberLabel
+{
+      PFQuery *providerServiceQuery = [Service query];
+     [providerServiceQuery whereKey:@"provider" equalTo:self.service.provider];
+      PFQuery *providerServiceSlotsQuery = [ServiceSlot query];
+      [providerServiceSlotsQuery whereKey:@"service" matchesQuery:providerServiceQuery];
+      providerServiceSlotsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+      [providerServiceSlotsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+      {
+           if (!error) {
+               self.servicesNumberLabel.text = [NSString stringWithFormat:@"%lu",(long)(objects.count)];
+               
+           }
+           
+      }];
     
+}
+
+-(void)setupProviderRatingLabel
+{
+     PFQuery *serviceQuery = [Service query];
+     [serviceQuery whereKey:@"provider" equalTo:self.provider];
+     PFQuery *serviceSlotQuery = [ServiceSlot query];
+     [serviceSlotQuery whereKey:@"service" matchesQuery:serviceQuery];
+     PFQuery *providerRatingsQuery = [Rating query];
+     [providerRatingsQuery whereKey:@"serviceSlot" matchesQuery:serviceSlotQuery];
+     providerRatingsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+      [providerRatingsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+       {
+           if (!error) {
+               self.ratingLabel.text = [NSString stringWithFormat:@"%.1f",[[objects valueForKeyPath:@"@avg.value"] doubleValue]];
+           } else {
+               self.ratingLabel.text = @"0";
+           }
+       }];
+}
+
+-(void)setupSafetyBadge
+{
+    if ([self.provider.verification hasReachedSafeLevel]) {
+          self.safetyBadgeImageView.hidden = false;
+     } else {
+          self.safetyBadgeImageView.hidden = true;
+     }
 }
 
 -(void)setupRateButton
 {
-    [self.serviceSlot checkStatusWithCompletion:^(ServiceSlotStatus serviceSlotStatus)
-    {
-        
-        self.rateButton.userInteractionEnabled = false;
-        [self.rateButton setTitle:@"" forState:UIControlStateNormal];
-        
-        if (serviceSlotStatus != HasFinished) {
-            self.rateButton.hidden = true;
-        } else {
+    if ([self.serviceSlot checkStatus] == HasFinished) {
 
-            self.rateButton.hidden = true;
-              PFQuery *requesterRatingQuery = [Rating query];
-             [requesterRatingQuery whereKey:@"serviceSlot" equalTo:self.serviceSlot];
-             [requesterRatingQuery whereKey:@"rater" equalTo:[User currentUser]];
-            requesterRatingQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-             [requesterRatingQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-             {
-                 if (!error) {
-                     Rating *requesterRating = (Rating *)object;
-                    self.rateButton.hidden = false;
-                     self.rateButton.userInteractionEnabled = false;
-                     [self.rateButton setTitle:[NSString stringWithFormat:@"You rated this service %1.0f stars",requesterRating.value] forState:UIControlStateNormal];
-                    [self.rateButton sizeToFit];
-                 } else {
-                    self.rateButton.hidden = false;
-                    self.rateButton.userInteractionEnabled = true;
-                    [self.rateButton setTitle:@"Rate it!" forState:UIControlStateNormal];
-                    [self.rateButton sizeToFit];
-                    [self.rateButton addTarget:self action:@selector(onRateButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-                 }
-             }];
-        }
-    }];
-    
+         self.rateButtonHeightConstraint.constant = self.rateButtonHeightConstant;
+          PFQuery *requesterRatingQuery = [Rating query];
+         [requesterRatingQuery whereKey:@"serviceSlot" equalTo:self.serviceSlot];
+         [requesterRatingQuery whereKey:@"rater" equalTo:[User currentUser]];
+         requesterRatingQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+         [requesterRatingQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+         {
+             if (!error) {
+                 Rating *requesterRating = (Rating *)object;
+
+                 self.rateButton.userInteractionEnabled = false;
+                 [self.rateButton setTitle:[NSString stringWithFormat:@"You rated this service %1.0f stars",requesterRating.value] forState:UIControlStateNormal];
+                [self.rateButton sizeToFit];
+                 self.rateButton.tintColor = [UIColor lightGrayColor];
+                 self.rateButton.layer.borderWidth = 0.0;
+                self.rateButton.hidden = false;
+//                 self.rateButton.layer.shouldRasterize = true;
+//                 self.rateButton.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+
+             } else {
+                self.rateButton.userInteractionEnabled = true;
+                [self.rateButton setTitle:@"Rate it!" forState:UIControlStateNormal];
+                [self.rateButton sizeToFit];
+                 self.rateButton.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
+                 self.rateButton.layer.borderWidth = 1.0;
+                 self.rateButton.layer.borderColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0].CGColor;
+                self.rateButton.hidden = false;
+//                 self.rateButton.layer.shouldRasterize = true;
+//                 self.rateButton.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+
+                [self.rateButton addTarget:self action:@selector(onRateButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+             }
+         }];
+    }
 }
 
 
@@ -202,23 +260,17 @@ static const CGFloat kLabelFontSize = 10.0;
     self.serviceImagesCollectionView.showsHorizontalScrollIndicator = true;
     self.serviceImagesCollectionView.layer.borderWidth = 0.5;
     self.serviceImagesCollectionView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
-    for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
-        self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
-    }
-    [self.serviceImagesCollectionView reloadData];
     [self.service getServiceImageDataWithCompletion:^(NSDictionary *imageDataDict)
      {
-         NSUInteger imagesCount = [imageDataDict[@"count"] integerValue];
          NSData *imageData = imageDataDict[@"data"];
          NSUInteger imageIndex = [imageDataDict[@"index"] integerValue];
          self.serviceImageArray[imageIndex] = [UIImage imageWithData:imageData];
-         for (int i = imagesCount; i < kMaxNumberOfServiceImages; i++) {
-             self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
-         }
-         [self.serviceImagesCollectionView reloadData];
+         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:imageIndex inSection:0];
+         [self.serviceImagesCollectionView reloadItemsAtIndexPaths:@[indexPath]];
      }];
 }
+
+
 
 
 -(void)setupTitleLabel
@@ -289,25 +341,18 @@ static const CGFloat kLabelFontSize = 10.0;
 
 -(void)setupParticipantsLabel
 {
-    self.participantsLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Participants" content:@"" fontSize:kLabelFontSize];
+    self.participantsLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Other participants" content:@"" fontSize:kLabelFontSize];
 }
 
 -(void)setupParticipantsItems
 {
-     if ([self.service.capacity integerValue] > 1) {
-        self.participantsLabel.hidden = false;
-        if (self.serviceSlot.participants.count > 0) {
-            [self setupParticipantsLabel];
-            self.participantsCollectionView.hidden = false;
-            self.participants = self.serviceSlot.participants;
-            [self.participantsCollectionView reloadData];
-        } else {
-            self.participantsLabel.text = @"No other participants";
-            self.participantsCollectionView.hidden = true;
-        }
-    } else {
-        self.participantsLabel.hidden = true;
-        self.participantsCollectionView.hidden = true;
+    if (self.serviceSlot.participants.count > 1) {
+        [self setupParticipantsLabel];
+        self.participantsCVHeightConstraint.constant = self.participantsCVHeightConstant;
+        self.participantsCollectionView.hidden = false;
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"objectId != %@", [User currentUser].objectId];
+        self.participants = [self.serviceSlot.participants filteredArrayUsingPredicate:predicate];
+        [self.participantsCollectionView reloadData];
     }
 }
 
@@ -341,6 +386,7 @@ static const CGFloat kLabelFontSize = 10.0;
         return cell;
     }
 }
+
 
 
 @end

@@ -34,18 +34,27 @@
     [self.navigationItem setTitleView:titleView];
     
     
-    self.postHistoryVC = self.childViewControllers.lastObject;
-    
+//    self.postHistoryVC = self.childViewControllers.lastObject;
+    self.postHistoryVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PostHistoryVC"];
+   
     self.reservationHistoryVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ReservationHistoryVC"];
     
     self.currentVC = self.postHistoryVC;
+
+
     
 }
 
--(void)viewWillAppear:(BOOL)animated
+//-(void)viewWillAppear:(BOOL)animated
+//{
+////    [super viewWillAppear:true];
+//    [self.currentVC viewWillAppear:true];
+//}
+
+-(void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:true];
-    [self.currentVC viewWillAppear:true];
+    [self addChildViewController:self.currentVC];
+    [self.containerView addSubview:self.currentVC.view];
 }
 
 
@@ -70,7 +79,7 @@
 -(void)moveToNewController:(UIViewController *)newController
 {
     [self.currentVC willMoveToParentViewController:nil];
-    [self transitionFromViewController:self.currentVC toViewController:newController duration:0.6 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil
+    [self transitionFromViewController:self.currentVC toViewController:newController duration:0.4 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil
                             completion:^(BOOL finished) {
                                 [self.currentVC removeFromParentViewController];
                                 [newController didMoveToParentViewController:self];

@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
 @property (nonatomic) User *currentUser;
 @property (nonatomic) NSMutableArray *reservations;
+@property (nonatomic) UILabel *noReservationLabel;
+
 
 @end
 
@@ -25,58 +27,78 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.currentUser = [User currentUser];
-    
 }
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
-     self.currentUser = [User currentUser];
-    
+    [super viewWillAppear:animated];
+    [self configureTableView];
+    self.currentUser = [User currentUser];
+    [self loadReservations];
+}
+
+-(void)configureTableView
+{
+    self.servicesTableView.rowHeight = UITableViewAutomaticDimension;
+    self.servicesTableView.estimatedRowHeight = 200;
+//    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.servicesTableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0);
+}
+
+-(void)loadReservations
+{
     PFQuery *reservationQuery = [Reservation query];
     [reservationQuery whereKey:@"reserver" equalTo:[User currentUser]];
-    [reservationQuery includeKey:@"serviceSLot"];
-    reservationQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    [reservationQuery includeKey:@"serviceSlot.service.provider.verification"];
+    [reservationQuery includeKey:@"serviceSlot.participants"];
+    reservationQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
     [reservationQuery addDescendingOrder:@"createdAt"];
-
+    
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
     [reservationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
-                                                     NSError *error)
+                                                         NSError *error)
      {
          if (!error)
          {
              if (objects.count == 0) {
                  [self presentNoReservationLabel];
              } else {
+                 [self removeNoReservationLabel];
                  self.reservations = objects.mutableCopy;
                  [self.servicesTableView reloadData];
+//                 [self.servicesTableView setNeedsDisplay];
+                 [self.servicesTableView layoutIfNeeded];
+                 [self.servicesTableView reloadData];
              }
-             
          }
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
      }];
-
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    });
 }
 
 -(void)presentNoReservationLabel
 {
     CGRect viewBounds = self.view.bounds;
     CGRect labelFrame = CGRectMake(viewBounds.origin.x + viewBounds.size.width / 2. - 120., 150., 240., 40.);
-    UILabel *label = [[UILabel alloc]initWithFrame:labelFrame];
-    label.text = @"You have no reservation.";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor lightGrayColor];
-    label.font = [UIFont systemFontOfSize:20];
-    [self.view addSubview:label];
+    self.noReservationLabel = [[UILabel alloc]initWithFrame:labelFrame];
+    self.noReservationLabel.text = @"You have no reservation.";
+    self.noReservationLabel.textAlignment = NSTextAlignmentCenter;
+    self.noReservationLabel.textColor = [UIColor lightGrayColor];
+    self.noReservationLabel.font = [UIFont systemFontOfSize:20];
+    [self.view addSubview:self.noReservationLabel];
+}
+
+-(void)removeNoReservationLabel
+{
+    [self.noReservationLabel removeFromSuperview];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.reservations.count;
+//    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -86,9 +108,11 @@
     cell.tag = indexPath.row;
     cell.vc = self;
     cell.reservation = self.reservations[indexPath.row];
-    [cell awakeFromNib];
+    [cell setupContent];
+
     return cell;
 }
+
 
 
 @end

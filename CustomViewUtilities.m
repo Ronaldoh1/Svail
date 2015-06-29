@@ -18,6 +18,8 @@
     squareImageView.layer.masksToBounds = YES;
     squareImageView.layer.borderWidth = 2.0;
     squareImageView.layer.borderColor = [UIColor orangeColor].CGColor;
+    squareImageView.layer.shouldRasterize = true;
+    squareImageView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
 }
 
 +(NSMutableAttributedString *)setupTextWithHeader:(NSString *)headerString content:(NSString *)contentString fontSize:(CGFloat)fontSize

@@ -14,6 +14,7 @@
 #import "PostTableViewCell.h"
 #import "PostViewController.h"
 #import "PostServiceSlotsViewController.h"
+#import "MBProgressHUD.h"
 
 @interface PostHistoryViewController () <UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
 @property (nonatomic) Service *serviceToDelete;
 @property (nonatomic) Service *serviceToEdit;
+@property (nonnull) UILabel *noPostLabel;
 
 @end
 
@@ -29,13 +31,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    self.servicesTableView.hidden = true;
+    [self configureTableView];
     self.currentUser = [User currentUser];
     [self loadPostedServices];
+}
+
+-(void)configureTableView
+{
+    self.servicesTableView.rowHeight = UITableViewAutomaticDimension;
+    self.servicesTableView.estimatedRowHeight = 200;
+//    self.servicesTableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0.);
 }
 
 -(void)loadPostedServices
@@ -43,20 +54,29 @@
     PFQuery *serviceQuery = [Service query];
     [serviceQuery whereKey:@"provider" equalTo:self.currentUser];
     [serviceQuery orderByDescending:@"createdAt"];
-    serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    serviceQuery.cachePolicy = kPFCachePolicyNetworkElseCache;
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [serviceQuery findObjectsInBackgroundWithBlock:^(NSArray *objects,
                                                  NSError *error)
      {
-         if (!error)
-         {
+         if (!error) {
              if (objects.count == 0) {
                  [self presentNoPostLabel];
+                 self.servicesTableView.hidden = true;
                  
              } else {
+                 [self removeNoPostLabel];
+                 self.servicesTableView.hidden = false;
                  self.services = objects.mutableCopy;
+                 [self.servicesTableView reloadData];
+//                 [self.servicesTableView setNeedsDisplay];
+                 [self.servicesTableView layoutIfNeeded];
                  [self.servicesTableView reloadData];
              }
          }
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
      }]; 
 }
 
@@ -64,12 +84,17 @@
 {
     CGRect viewBounds = self.view.bounds;
     CGRect labelFrame = CGRectMake(viewBounds.origin.x + viewBounds.size.width / 2. - 100., 150. - 20., 200., 40.);
-    UILabel *label = [[UILabel alloc]initWithFrame:labelFrame];
-    label.text = @"You have no post.";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor lightGrayColor];
-    label.font = [UIFont systemFontOfSize:20];
-    [self.view addSubview:label];
+    self.noPostLabel = [[UILabel alloc]initWithFrame:labelFrame];
+    self.noPostLabel.text = @"You have no post.";
+    self.noPostLabel.textAlignment = NSTextAlignmentCenter;
+    self.noPostLabel.textColor = [UIColor lightGrayColor];
+    self.noPostLabel.font = [UIFont systemFontOfSize:20];
+    [self.view addSubview:self.noPostLabel];
+}
+
+-(void)removeNoPostLabel
+{
+    [self.noPostLabel removeFromSuperview];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -83,11 +108,15 @@
     cell.vc = self;
     cell.service = self.services[indexPath.row];
     cell.tag = indexPath.row;
-    [cell awakeFromNib];
+    [cell setupContent];
 
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    NSLog(@"%f",cell.contentView.bounds.size.width);
+}
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender

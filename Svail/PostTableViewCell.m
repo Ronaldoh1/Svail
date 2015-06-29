@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *viewSlotsButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *serviceImagesCVHeightConstraint;
 
 @property (nonatomic) NSMutableArray *serviceImageArray;
 
@@ -40,11 +41,18 @@
 static const CGFloat kLableFontSize = 13.0;
 
 
-- (void)awakeFromNib
+- (void)setupContent
 {
     self.serviceImagesCollectionView.delegate = self;
     self.serviceImagesCollectionView.dataSource = self;
     
+    self.editButton.tag = self.tag;
+    self.deleteButton.tag = self.tag;
+    self.viewSlotsButton.tag = self.tag;
+    self.serviceImagesCollectionView.tag = self.tag;
+    
+    [self setupDefaultContent];
+    [self getServiceImages];
     
     [self setupTitleLabel];
     [self setupLocationLabel];
@@ -55,14 +63,43 @@ static const CGFloat kLableFontSize = 13.0;
     [self setupDateLabel];
     [self setupNumOfReservationsLabel];
     
-    self.editButton.tag = self.tag;
-    self.deleteButton.tag = self.tag;
-    self.viewSlotsButton.tag = self.tag;
-    self.serviceImagesCollectionView.tag = self.tag;
-    
-    [self getServiceImages];
+
     
 }
+
+-(void)setupDefaultContent
+{
+    self.titleLabel.text = @"";
+    self.locationLabel.text = @"";
+    self.priceLabel.text = @"";
+    self.capacityLabel.text = @"";
+    self.categoryLabel.text = @"";
+    self.descriptionLabel.text = @"";
+    self.dateLabel.text = @"";
+    self.numOfReservationsLabel.text = @"";
+    
+    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
+    for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
+        self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
+    }
+    [self.serviceImagesCollectionView reloadData];
+}
+
+
+-(void)updateConstraints
+{
+    [super updateConstraints];
+    [self.serviceImagesCollectionView addConstraint:[NSLayoutConstraint constraintWithItem:self.serviceImagesCollectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.serviceImagesCollectionView attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0.0]];
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    CGFloat imageHeight = self.serviceImagesCollectionView.bounds.size.height;
+    ((UICollectionViewFlowLayout *) self.serviceImagesCollectionView.collectionViewLayout).itemSize = CGSizeMake(imageHeight, imageHeight);
+}
+
+
 
 -(void)setupTitleLabel
 {
@@ -96,21 +133,18 @@ static const CGFloat kLableFontSize = 13.0;
         self.locationLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Location" content:@"Travel" fontSize:kLableFontSize];
         return;
     }
-    self.locationLabel.numberOfLines = 0;
     self.locationLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Location" content:self.service.serviceLocationAddress fontSize:kLableFontSize];
 }
 
 
 -(void)setupCategoryLabel
 {
-    self.categoryLabel.numberOfLines = 0;
     self.categoryLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Category" content:self.service.category fontSize:kLableFontSize];
 }
 
 
 -(void)setupDescriptionLabel
 {
-    self.descriptionLabel.numberOfLines = 0;
     self.descriptionLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Descripton" content:self.service.serviceDescription fontSize:kLableFontSize];
 }
 
@@ -125,22 +159,17 @@ static const CGFloat kLableFontSize = 13.0;
 
 -(void)getServiceImages
 {
-    self.serviceImageArray = [[NSMutableArray alloc]initWithCapacity:kMaxNumberOfServiceImages];
-    for (int i = 0; i < kMaxNumberOfServiceImages; i++) {
-        self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
-    }
     
-    [self.serviceImagesCollectionView reloadData];
+    self.serviceImagesCollectionView.showsHorizontalScrollIndicator = true;
+    self.serviceImagesCollectionView.layer.borderWidth = 0.5;
+    self.serviceImagesCollectionView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [self.service getServiceImageDataWithCompletion:^(NSDictionary *imageDataDict)
      {
-         NSUInteger imagesCount = [imageDataDict[@"count"] integerValue];
          NSData *imageData = imageDataDict[@"data"];
          NSUInteger imageIndex = [imageDataDict[@"index"] integerValue];
          self.serviceImageArray[imageIndex] = [UIImage imageWithData:imageData];
-         for (int i = imagesCount; i < kMaxNumberOfServiceImages; i++) {
-             self.serviceImageArray[i] = [UIImage imageNamed:@"image_placeholder"];
-         }
-         [self.serviceImagesCollectionView reloadData];
+         NSIndexPath *imageIndexPath = [NSIndexPath indexPathForItem:imageIndex inSection:0];
+         [self.serviceImagesCollectionView reloadItemsAtIndexPaths:@[imageIndexPath]];
      }];
 }
 
@@ -161,7 +190,6 @@ static const CGFloat kLableFontSize = 13.0;
     
     return serviceImageCell;
 }
-
 
 
 @end

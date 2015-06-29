@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PGO-H9-GA0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PGO-H9-GA0">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -448,9 +448,11 @@
                             <constraint firstItem="wAt-4U-dpy" firstAttribute="top" secondItem="u8t-I3-zfX" secondAttribute="bottom" constant="26" id="H9B-E7-mmN">
                                 <variation key="widthClass=compact" constant="8"/>
                             </constraint>
+                            <constraint firstItem="jhm-57-MDv" firstAttribute="centerY" secondItem="u8t-I3-zfX" secondAttribute="centerY" id="K3U-h2-wC7"/>
                             <constraint firstItem="4vj-75-PRR" firstAttribute="top" secondItem="yWB-a5-w5H" secondAttribute="bottom" constant="26" id="L7r-tv-pTf">
                                 <variation key="widthClass=compact" constant="22"/>
                             </constraint>
+                            <constraint firstItem="uma-9T-D9X" firstAttribute="centerY" secondItem="wAt-4U-dpy" secondAttribute="centerY" id="N7m-vD-xtx"/>
                             <constraint firstItem="uma-9T-D9X" firstAttribute="leading" secondItem="wAt-4U-dpy" secondAttribute="trailing" constant="8" id="QXE-lI-J5X"/>
                             <constraint firstItem="u8t-I3-zfX" firstAttribute="top" secondItem="4vj-75-PRR" secondAttribute="bottom" constant="25" id="Qvu-AW-C7g">
                                 <variation key="widthClass=compact" constant="8"/>
@@ -461,6 +463,7 @@
                             <constraint firstItem="bqn-6M-5K4" firstAttribute="top" secondItem="7mt-2m-Pb2" secondAttribute="bottom" constant="19" id="Yvm-jk-zBB">
                                 <variation key="widthClass=compact" constant="10"/>
                             </constraint>
+                            <constraint firstItem="4vj-75-PRR" firstAttribute="centerY" secondItem="ctQ-Y5-Kak" secondAttribute="centerY" id="a20-wL-F3v"/>
                             <constraint firstItem="jhm-57-MDv" firstAttribute="top" secondItem="ctQ-Y5-Kak" secondAttribute="bottom" constant="31" id="hxb-Ei-Lq1">
                                 <variation key="widthClass=compact" constant="14"/>
                             </constraint>
@@ -488,26 +491,29 @@
                                 <exclude reference="yWB-a5-w5H"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="L7r-tv-pTf"/>
-                                <exclude reference="tvj-25-oIw"/>
+                                <exclude reference="40t-3i-V9z"/>
+                                <exclude reference="GVR-aA-b1d"/>
+                                <exclude reference="Stw-7d-FR3"/>
+                                <exclude reference="jag-Nh-7Z0"/>
                                 <exclude reference="Yvm-jk-zBB"/>
                                 <exclude reference="ulK-Jr-nHv"/>
+                                <exclude reference="L7r-tv-pTf"/>
+                                <exclude reference="a20-wL-F3v"/>
+                                <exclude reference="tvj-25-oIw"/>
                                 <exclude reference="Qvu-AW-C7g"/>
                                 <exclude reference="n2t-km-r1e"/>
                                 <exclude reference="53P-9d-daa"/>
                                 <exclude reference="H9B-E7-mmN"/>
-                                <exclude reference="3sY-9Q-qQQ"/>
-                                <exclude reference="lJb-ep-xXI"/>
-                                <exclude reference="40t-3i-V9z"/>
-                                <exclude reference="GVR-aA-b1d"/>
                                 <exclude reference="9wA-4c-uwr"/>
                                 <exclude reference="kJg-xu-pkz"/>
+                                <exclude reference="K3U-h2-wC7"/>
                                 <exclude reference="hxb-Ei-Lq1"/>
                                 <exclude reference="utl-Y9-baa"/>
+                                <exclude reference="3sY-9Q-qQQ"/>
+                                <exclude reference="lJb-ep-xXI"/>
                                 <exclude reference="84I-Gh-Plg"/>
+                                <exclude reference="N7m-vD-xtx"/>
                                 <exclude reference="QXE-lI-J5X"/>
-                                <exclude reference="Stw-7d-FR3"/>
-                                <exclude reference="jag-Nh-7Z0"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -524,26 +530,29 @@
                                 <include reference="yWB-a5-w5H"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="L7r-tv-pTf"/>
-                                <include reference="tvj-25-oIw"/>
+                                <include reference="40t-3i-V9z"/>
+                                <include reference="GVR-aA-b1d"/>
+                                <include reference="Stw-7d-FR3"/>
+                                <include reference="jag-Nh-7Z0"/>
                                 <include reference="Yvm-jk-zBB"/>
                                 <include reference="ulK-Jr-nHv"/>
+                                <include reference="L7r-tv-pTf"/>
+                                <include reference="a20-wL-F3v"/>
+                                <include reference="tvj-25-oIw"/>
                                 <include reference="Qvu-AW-C7g"/>
                                 <include reference="n2t-km-r1e"/>
                                 <include reference="53P-9d-daa"/>
                                 <include reference="H9B-E7-mmN"/>
+                                <exclude reference="9wA-4c-uwr"/>
+                                <include reference="kJg-xu-pkz"/>
+                                <include reference="K3U-h2-wC7"/>
+                                <exclude reference="hxb-Ei-Lq1"/>
+                                <include reference="utl-Y9-baa"/>
                                 <include reference="3sY-9Q-qQQ"/>
                                 <include reference="lJb-ep-xXI"/>
-                                <include reference="40t-3i-V9z"/>
-                                <include reference="GVR-aA-b1d"/>
-                                <include reference="9wA-4c-uwr"/>
-                                <include reference="kJg-xu-pkz"/>
-                                <include reference="hxb-Ei-Lq1"/>
-                                <include reference="utl-Y9-baa"/>
-                                <include reference="84I-Gh-Plg"/>
+                                <exclude reference="84I-Gh-Plg"/>
+                                <include reference="N7m-vD-xtx"/>
                                 <include reference="QXE-lI-J5X"/>
-                                <include reference="Stw-7d-FR3"/>
-                                <include reference="jag-Nh-7Z0"/>
                             </mask>
                         </variation>
                     </view>
@@ -559,7 +568,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="fbCheckmark" destination="cTf-PS-gUX" id="Ync-Jj-wvg"/>
                         <outlet property="fbVerifyButton" destination="FAu-0R-IWW" id="Yk1-oh-zWV"/>

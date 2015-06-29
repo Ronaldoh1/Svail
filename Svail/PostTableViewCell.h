@@ -16,8 +16,8 @@
 @property (nonatomic) UIViewController *vc;
 
 
-
-
+-(void)setupContent;
 -(void)getServiceImages;
+
 
 @end

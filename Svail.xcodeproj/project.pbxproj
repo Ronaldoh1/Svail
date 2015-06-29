@@ -34,6 +34,8 @@
 		36BBC47B1AE43394007960F1 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47A1AE43394007960F1 /* ParseFacebookUtilsV4.framework */; };
 		36BBC47D1AE435E0007960F1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47C1AE435E0007960F1 /* Parse.framework */; };
 		36BBC47F1AE43969007960F1 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BBC47E1AE43969007960F1 /* Bolts.framework */; };
+		36C165E31B40F0F8009AB89A /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C165E21B40F0F8009AB89A /* TestViewController.m */; };
+		36C165E61B40F1DB009AB89A /* TestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C165E51B40F1DB009AB89A /* TestTableViewCell.m */; };
 		36C8501C1AF0B3D000235A87 /* ReservationHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C8501B1AF0B3D000235A87 /* ReservationHistoryViewController.m */; };
 		36C8501D1AF0EAEE00235A87 /* ReservationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 364DF31A1AEF4CEA00E0DFF6 /* ReservationTableViewCell.m */; };
 		36C850201AF0ED0300235A87 /* ParticipantCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C8501F1AF0ED0300235A87 /* ParticipantCollectionViewCell.m */; };
@@ -163,6 +165,10 @@
 		36BBC47A1AE43394007960F1 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		36BBC47C1AE435E0007960F1 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		36BBC47E1AE43969007960F1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		36C165E11B40F0F8009AB89A /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		36C165E21B40F0F8009AB89A /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		36C165E41B40F1DB009AB89A /* TestTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewCell.h; sourceTree = "<group>"; };
+		36C165E51B40F1DB009AB89A /* TestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewCell.m; sourceTree = "<group>"; };
 		36C8501A1AF0B3D000235A87 /* ReservationHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationHistoryViewController.h; sourceTree = "<group>"; };
 		36C8501B1AF0B3D000235A87 /* ReservationHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationHistoryViewController.m; sourceTree = "<group>"; };
 		36C8501E1AF0ED0300235A87 /* ParticipantCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantCollectionViewCell.h; sourceTree = "<group>"; };
@@ -364,6 +370,10 @@
 				367343911AFF1A1A00D05431 /* PostServiceSlotsViewController.m */,
 				367343931AFF1A7200D05431 /* PostServiceSlotTableViewCell.h */,
 				367343941AFF1A7200D05431 /* PostServiceSlotTableViewCell.m */,
+				36C165E11B40F0F8009AB89A /* TestViewController.h */,
+				36C165E21B40F0F8009AB89A /* TestViewController.m */,
+				36C165E41B40F1DB009AB89A /* TestTableViewCell.h */,
+				36C165E51B40F1DB009AB89A /* TestTableViewCell.m */,
 				364DF2FA1AECDAFD00E0DFF6 /* RatingViewController.h */,
 				364DF2FB1AECDAFD00E0DFF6 /* RatingViewController.m */,
 			);
@@ -858,10 +868,12 @@
 				3E8A669E1ADC7D7200EF976F /* SignUpViewController.swift in Sources */,
 				F24B364C1ADCB645006153EC /* Verification.m in Sources */,
 				F24B36491ADCB534006153EC /* Rating.m in Sources */,
+				36C165E61B40F1DB009AB89A /* TestTableViewCell.m in Sources */,
 				3E8324971AF0FC4D00DDA24E /* CustomPinAnnotation.m in Sources */,
 				F24B365C1ADDA923006153EC /* Service.m in Sources */,
 				36EBB0241AE80F550045AF92 /* ReviewReservationViewController.m in Sources */,
 				365847E31AF1AD6F00013A88 /* PickTimeSlotViewController.m in Sources */,
+				36C165E31B40F0F8009AB89A /* TestViewController.m in Sources */,
 				3E8D28941AE30E8C00D7D648 /* EditProfileViewController.m in Sources */,
 				F2292F4E1B2E9BAF003D82D5 /* SubscriptionViewController.m in Sources */,
 				3E968BD31AED9F2B009FB31F /* ProfileImageView.m in Sources */,

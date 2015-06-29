@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Reservation.h"
+#import "ProfileImageView.h"
 
 @interface ReservationTableViewCell : UITableViewCell
 
 @property (nonatomic) Reservation *reservation;
 @property (nonatomic) UIViewController *vc;
+
+-(void)setupContent;
+
 
 @end
