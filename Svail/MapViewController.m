@@ -387,6 +387,11 @@
 
 
         if (!(provider.profileImage == nil) || !(provider == nil)) {
+            
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+            dispatch_async(queue, ^{
+
 
             [provider.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                 if (!error) {
@@ -408,6 +413,8 @@
                     pinAnnotation.leftCalloutAccessoryView = imageView;
                 }
             }];
+
+                });
 
         }else
         {
@@ -569,7 +576,7 @@
     if (![searchBar.text isEqualToString:@""]) {
 
         for (Service *aService in self.filterArray) {
-            if ([[aService objectForKey:@"title"] containsString:searchBar.text]) {
+            if ([[aService objectForKey:@"title"] localizedCaseInsensitiveContainsString:searchBar.text]) {
 
                 [self.searchResults addObject:aService];
             }

@@ -22,6 +22,7 @@
 
 
 
+
 @interface PostViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *serviceTitle;
@@ -154,10 +155,21 @@
 
     NSString *errorMessage = @"Please note - All fields, Date & Times are required";
 
+
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDate *yesterday = [cal dateByAddingUnit:NSCalendarUnitDay
+                                       value:-1
+                                      toDate:[NSDate date]
+                                     options:0];
+
     if ([self.serviceTitle.text isEqualToString:@""] || [self.serviceDescription.text isEqualToString:@""] || [self.serviceCategory.text isEqualToString:@""] || [self.serviceCapacity.text isEqualToString:@""] || [self.location.text isEqualToString:@""] || [self.slotSelectionButton.titleLabel.text isEqualToString:@"Set Times For Your Service"] || self.service.startTimes.count == 0 || self.service.startDate == nil) {
 
         [self displayErrorAlert:errorMessage];
 
+
+    }else if([yesterday timeIntervalSince1970] >  [self.service.startDate timeIntervalSince1970] ){
+        errorMessage = @"Your service date must be later today or another day in the future.";
+        [self displayErrorAlert:errorMessage];
 
     }else{
 
