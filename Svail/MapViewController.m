@@ -34,6 +34,7 @@
 @property NSArray *resultsArray;
 @property NSArray *annotationArray;
 @property NSMutableArray *serviceParticipants;
+@property NSDate *currentTime;
 @property (weak, nonatomic) IBOutlet UIButton *currentLocationButton;
 @property BOOL didGetUserLocation;
 
@@ -186,8 +187,6 @@
          self.eventsArray = [NSMutableArray arrayWithArray:array];
          [self filterEventsForDate:self.segmentedControl];
 
-
-
          [self.mapView reloadInputViews];
      }];
 }
@@ -199,7 +198,7 @@
                                                                   NSError *error)
      {
          if (!error) {
-             UIImage *profileImage = [UIImage imageWithData:data];
+            UIImage *profileImage = [UIImage imageWithData:data];
             CGRect buttonFrame = CGRectMake(0, 0, 40., 40.);
             UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
              
@@ -230,6 +229,12 @@
 
 -(void)addAnnotationToMapFromArray:(NSArray *)array
 {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"hh:mm"];
+    NSDate *currentDate = [NSDate date];
+    NSString *currentDateString = [dateFormatter stringFromDate:currentDate];
+    self.currentTime = [dateFormatter dateFromString:currentDateString];
+
     //converting GeoPoint stored on Parse to coordinate and adding the annotation on map
     for (Service *aService in array) {
 
@@ -252,7 +257,7 @@
             newAnnotation.color = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:0/255.0 alpha:1.0];
             newAnnotation.type = CustomPinAnnotationTypeTag;
         }
-        else if (self.serviceParticipants.count == [newAnnotation.service.capacity integerValue])
+        else if (self.serviceParticipants.count == [newAnnotation.service.capacity integerValue] || newAnnotation.service.startTimes[newAnnotation.service.startTimes.count-1] < self.currentTime)
         {
             newAnnotation.color = [UIColor redColor];
             newAnnotation.type = CustomPinAnnotationTypeTag;
@@ -305,7 +310,7 @@
     {
         UIButton *requestButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         requestButton.frame = CGRectMake(0, 0, 70, 20);
-        [requestButton setTitle:@"info" forState:UIControlStateNormal];
+        [requestButton setTitle:@"Request" forState:UIControlStateNormal];
         [requestButton setTitleColor:[UIColor colorWithRed:100/255.0 green:233/255.0 blue:134/255.0 alpha:1.0] forState:UIControlStateNormal];
         requestButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
         [requestButton.layer setBorderWidth:1];
@@ -319,6 +324,15 @@
         fullLabel.frame = CGRectMake(0, 0, 30, 20);
         fullLabel.text = @"Full";
         fullLabel.textColor = [UIColor colorWithRed:247/255.0 green:94/255.0 blue:89/255.0 alpha:1.0];
+        pinAnnotation.rightCalloutAccessoryView = fullLabel;
+
+//    }else if (customAnnotation.service.startDate < [NSDate date])
+    }else if (customAnnotation.service.startTimes[customAnnotation.service.startTimes.count-1] < self.currentTime)
+    {
+        UILabel *fullLabel = [UILabel new];
+        fullLabel.frame = CGRectMake(0, 0, 30, 20);
+        fullLabel.text = @"Overdue";
+        fullLabel.textColor = [UIColor orangeColor];
         pinAnnotation.rightCalloutAccessoryView = fullLabel;
     }
 
@@ -348,7 +362,7 @@
             pinAnnotation.image = scaledImage;
 
         }
-        else if (self.serviceParticipants.count == [customAnnotation.service.capacity integerValue])
+        else if (self.serviceParticipants.count == [customAnnotation.service.capacity integerValue] || customAnnotation.service.startTimes[customAnnotation.service.startTimes.count-1] < self.currentTime)
         {
             UIImage *carImage = [UIImage imageNamed:@"redcar"];
             CGSize scaledSize = CGSizeMake(30, 20);
@@ -362,7 +376,6 @@
 
     PFQuery *serviceQuery = [Service query];
     [serviceQuery includeKey:@"provider"];
-    serviceQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [serviceQuery getObjectInBackgroundWithId:customAnnotation.service.objectId block:^(PFObject *object, NSError *error) {
         
         if (error) {
@@ -374,6 +387,11 @@
 
 
         if (!(provider.profileImage == nil) || !(provider == nil)) {
+            
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+            dispatch_async(queue, ^{
+
 
             [provider.profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                 if (!error) {
@@ -395,6 +413,8 @@
                     pinAnnotation.leftCalloutAccessoryView = imageView;
                 }
             }];
+
+                });
 
         }else
         {
@@ -556,7 +576,7 @@
     if (![searchBar.text isEqualToString:@""]) {
 
         for (Service *aService in self.filterArray) {
-            if ([[aService objectForKey:@"title"] containsString:searchBar.text]) {
+            if ([[aService objectForKey:@"title"] localizedCaseInsensitiveContainsString:searchBar.text]) {
 
                 [self.searchResults addObject:aService];
             }

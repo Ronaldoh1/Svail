@@ -14,6 +14,8 @@
 {
     PFGeoPoint *newGeoPoint= [PFGeoPoint geoPointWithLocation:location];
     PFQuery *newQuery=[Service query];
+   // [newQuery whereKey:@"theServiceGeoPoint" nearGeoPoint:newGeoPoint withinMiles:15.0];
+
     [newQuery whereKey:@"theServiceGeoPoint" nearGeoPoint:newGeoPoint];
     newQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [newQuery findObjectsInBackgroundWithBlock:^(NSArray *services, NSError *error) {

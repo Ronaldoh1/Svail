@@ -203,7 +203,5 @@ class CreateProfileViewController: UIViewController, UIActionSheetDelegate, UIPi
         self.stateTextField.delegate = self
 
 
-
-
     }
 }
