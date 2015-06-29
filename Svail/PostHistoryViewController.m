@@ -46,7 +46,7 @@
 {
     self.servicesTableView.rowHeight = UITableViewAutomaticDimension;
     self.servicesTableView.estimatedRowHeight = 200;
-//    self.servicesTableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0.);
+    self.servicesTableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0.);
 }
 
 -(void)loadPostedServices
