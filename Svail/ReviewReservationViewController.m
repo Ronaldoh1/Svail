@@ -43,6 +43,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *serviceImagesCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *participantsCollectionView;
 @property (weak, nonatomic) IBOutlet UIButton *pickTimeSlotButton;
+@property (weak, nonatomic) IBOutlet UIView *providerContainerView;
 
 
 
@@ -69,6 +70,9 @@ static const CGFloat kLabelFontSize = 13.0;
        //setup color tint
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
     
+    self.providerContainerView.layer.borderWidth = 0.5;
+    self.providerContainerView.layer.borderColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0].CGColor; 
+    
     //setting image to Navigation Bar's title
     UILabel *titleView = (UILabel *)self.navigationItem.titleView;
     titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
@@ -77,14 +81,9 @@ static const CGFloat kLabelFontSize = 13.0;
     titleView.textColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0];
     [self.navigationItem setTitleView:titleView];
     
-    
-   
-    
 
     self.safetyImageView.hidden = true;
     self.currentUser = [User currentUser];
-    
-
     
     PFQuery *serviceQuery = [Service query];
     [serviceQuery includeKey:@"provider.verification"];
