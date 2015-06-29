@@ -26,24 +26,24 @@
 @implementation ReservationHistoryViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
-    self.servicesTableView.rowHeight = UITableViewAutomaticDimension;
-    self.servicesTableView.estimatedRowHeight = 200;
-    self.currentUser = [User currentUser];
-//    [self loadReservations];
 }
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self configureTableView];
+    self.currentUser = [User currentUser];
+    [self loadReservations];
+}
+
+-(void)configureTableView
+{
     self.servicesTableView.rowHeight = UITableViewAutomaticDimension;
     self.servicesTableView.estimatedRowHeight = 200;
 //    self.edgesForExtendedLayout = UIRectEdgeAll;
     self.servicesTableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0);
-    self.currentUser = [User currentUser];
-    [self loadReservations];
 }
 
 -(void)loadReservations
@@ -68,7 +68,7 @@
                  [self removeNoReservationLabel];
                  self.reservations = objects.mutableCopy;
                  [self.servicesTableView reloadData];
-                 [self.servicesTableView setNeedsDisplay];
+//                 [self.servicesTableView setNeedsDisplay];
                  [self.servicesTableView layoutIfNeeded];
                  [self.servicesTableView reloadData];
              }
@@ -113,10 +113,6 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"%f",cell.frame.size.height);
-}
 
 
 @end

@@ -40,8 +40,8 @@
     self.reservationHistoryVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ReservationHistoryVC"];
     
     self.currentVC = self.postHistoryVC;
-    [self addChildViewController:self.currentVC];
-    [self.containerView addSubview:self.currentVC.view];
+
+
     
 }
 
@@ -50,6 +50,12 @@
 ////    [super viewWillAppear:true];
 //    [self.currentVC viewWillAppear:true];
 //}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self addChildViewController:self.currentVC];
+    [self.containerView addSubview:self.currentVC.view];
+}
 
 
 

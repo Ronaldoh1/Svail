@@ -52,7 +52,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rateButtonHeightConstraint;
 @property CGFloat rateButtonHeightConstant;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *participantsLabelHeightConstraint;
+@property (weak, nonatomic) NSLayoutConstraint *participantsLabelHeightConstraint;
 @property CGFloat participantsLabelHeightConstant;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *participantsCVHeightConstraint;
@@ -62,7 +62,7 @@
 
 @implementation ReservationTableViewCell
 
-static const CGFloat kLabelFontSize = 11.0;
+static const CGFloat kLabelFontSize = 13.0;
 
 
 -(void)setupContent
@@ -138,6 +138,19 @@ static const CGFloat kLabelFontSize = 11.0;
     [self.serviceImagesCollectionView reloadData];
 }
 
+-(void)updateConstraints
+{
+    [super updateConstraints];
+    [self.serviceImagesCollectionView addConstraint:[NSLayoutConstraint constraintWithItem:self.serviceImagesCollectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.serviceImagesCollectionView attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0.0]];
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    CGFloat imageHeight = self.serviceImagesCollectionView.bounds.size.height;
+    ((UICollectionViewFlowLayout *) self.serviceImagesCollectionView.collectionViewLayout).itemSize = CGSizeMake(imageHeight, imageHeight);
+}
+
 -(void)setupProviderNameLabel
 {
     self.providerNameLabel.text = self.serviceSlot.service.provider.name;
@@ -208,9 +221,8 @@ static const CGFloat kLabelFontSize = 11.0;
                 [self.rateButton sizeToFit];
                  self.rateButton.tintColor = [UIColor lightGrayColor];
                  self.rateButton.layer.borderWidth = 0.0;
-                 self.rateButton.layer.cornerRadius = 0.0;
-                 self.rateButton.layer.shouldRasterize = true;
-                 self.rateButton.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+//                 self.rateButton.layer.shouldRasterize = true;
+//                 self.rateButton.layer.rasterizationScale = [[UIScreen mainScreen] scale];
 
              } else {
                 self.rateButton.hidden = false;
@@ -220,9 +232,8 @@ static const CGFloat kLabelFontSize = 11.0;
                  self.rateButton.tintColor = [UIColor colorWithRed:255/255.0 green:127/255.0 blue:59/255.0 alpha:1.0];
                  self.rateButton.layer.borderWidth = 1.0;
                  self.rateButton.layer.borderColor = [UIColor colorWithRed:21/255.0 green:137/255.0 blue:255/255.0 alpha:1.0].CGColor;
-                 self.rateButton.layer.cornerRadius = self.rateButton.frame.size.width * 0.1;
-                 self.rateButton.layer.shouldRasterize = true;
-                 self.rateButton.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+//                 self.rateButton.layer.shouldRasterize = true;
+//                 self.rateButton.layer.rasterizationScale = [[UIScreen mainScreen] scale];
 
                 [self.rateButton addTarget:self action:@selector(onRateButtonTapped) forControlEvents:UIControlEventTouchUpInside];
              }
@@ -329,8 +340,6 @@ static const CGFloat kLabelFontSize = 11.0;
 
 -(void)setupParticipantsLabel
 {
-//    self.participantsLabel.hidden = false;
-    self.participantsLabelHeightConstraint.constant = self.participantsLabelHeightConstant;
     self.participantsLabel.attributedText = [CustomViewUtilities setupTextWithHeader:@"Other participants" content:@"" fontSize:kLabelFontSize];
 }
 

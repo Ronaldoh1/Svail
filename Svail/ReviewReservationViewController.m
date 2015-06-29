@@ -163,14 +163,27 @@ static const CGFloat kLabelFontSize = 13.0;
     
 }
 
+-(void)updateViewConstraints
+{
+    [super updateViewConstraints];
+    [self.serviceImagesCollectionView addConstraint:[NSLayoutConstraint constraintWithItem:self.serviceImagesCollectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.serviceImagesCollectionView attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0.0]];
+}
+
 -(void)viewDidLayoutSubviews
 {
+    [super viewDidLayoutSubviews];
+    
      UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [reportButton setImage:[UIImage imageNamed:@"exclamation1"] forState:UIControlStateNormal];
     [reportButton setFrame:CGRectMake(self.pickTimeSlotButton.center.x * 2 - 30, self.pickTimeSlotButton.center.y - 10, 20, 20)];
     [reportButton addTarget:self action:@selector(showReportActionSheet) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:reportButton];
+    
+    CGFloat imageHeight = self.serviceImagesCollectionView.bounds.size.height;
+    ((UICollectionViewFlowLayout *) self.serviceImagesCollectionView.collectionViewLayout).itemSize = CGSizeMake(imageHeight, imageHeight);
 }
+
+
 
 -(void)showReportActionSheet
 {
